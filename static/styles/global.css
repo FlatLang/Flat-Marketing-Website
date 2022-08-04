@@ -235,6 +235,10 @@ a {
     white-space: nowrap;
 }
 
+.code {
+    background-color: #1f122d;
+}
+
 .indent {
     margin-left: 105px;
     text-indent: -105px;
@@ -257,19 +261,28 @@ pre {
     margin: 0;
 }
 
-code.hljs,
-.code {
+code.hljs {
     font-family: 'Roboto Mono', sans-serif;
 
     word-break: break-word;
 
-    padding: 8px 20px;
-
-    border-radius: 10px;
-
     background-color: #1f122d;
 
     text-align: left;
+
+    padding: 1px 4px;
+
+    border-radius: 4px;
+    color: white;
+    background-color: #1f122d;
+    font-size: 14px;
+}
+
+pre code.hljs,
+.code {
+    padding: 8px 20px;
+
+    border-radius: 10px;
 }
 
 code.hljs *:not(span) {
@@ -277,7 +290,7 @@ code.hljs *:not(span) {
     text-indent: -38px;
 }
 
-code.hljs,
+pre code.hljs,
 .code,
 .code p,
 .pre {
@@ -290,11 +303,11 @@ code.hljs,
 
 .code-container,
 .code,
-.hljs {
+pre .hljs {
     max-width: 100%;
 }
 
-.hljs {
+pre .hljs {
     display: inline-block;
 
     margin: 0px;
@@ -309,7 +322,7 @@ main {
     height: 100%;
 }
 
-.skinny .hljs {
+pre .skinny .hljs {
     min-width: initial;
 }
 
@@ -630,6 +643,10 @@ tree-browser {
 
 .tree-browser {
     text-align: left;
+}
+
+.tree-browser:not(.open) {
+    display: none;
 }
 
 .tree-browser.root {

@@ -318,6 +318,7 @@ pre {
     white-space: pre;
     word-break: normal;
     word-wrap: normal;
+		display: flex;
 }
 
 .code {
@@ -373,6 +374,10 @@ pre {
 	margin-left: 50px;
 }
 
+.code {
+	white-space: pre-wrap;
+}
+
 #code-example .traits .code {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
@@ -424,12 +429,17 @@ pre {
 
 #code-comparisons .code h4 {
 	margin: 0;
-	margin-left: 25px;
-	margin-bottom: 10px;
+	margin-left: 18px;
+	margin-bottom: 0px;
 }
 
 #code-comparisons .code {
 	border-radius: 0;
+}
+
+#code-comparisons code.code {
+	margin-left: 0;
+	margin-right: 0;
 }
 
 #code-comparisons .code hr {
@@ -552,7 +562,7 @@ pre {
 
 #code-comparisons .code .container > div:nth-of-type(1),
 #code-comparisons .code .container > div:nth-of-type(3) {
-	padding: 15px 0;
+	/* padding: 15px 0; */
 }
 
 #code-comparisons .code .container > div {
