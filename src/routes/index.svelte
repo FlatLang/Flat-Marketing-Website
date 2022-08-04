@@ -128,27 +128,27 @@
           <p>One cool thing about the way List's are implemented in Flat is that because it is a trait, any class can implement it and they only have to define an Iterator for the class for it to gain access to all of the functional capabilities of a List.</p>
       </div>
       <div class="code-container">
-          <div class="code dark-background indent-children">
-              <div class="from-invisible time04">
-                  <p><span class="type">let</span> <span class="identifier">tree</span> = <span class="modifier">new</span> <span class="type">BinaryTree</span>([<span class="text">"F"</span>, <span class="text">"B"</span>, <span class="text">"A"</span>, <span class="text">"D"</span>, <span class="text">"C"</span>, <span class="text">"E"</span>, <span class="text">"G"</span>, <span class="text">"I"</span>, <span class="text">"H"</span>])</p><br>
-              </div>
-              <div class="from-invisible time04 delay01">
-                  <p><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"Preorder: #{`{`}</span><span class="identifier">tree</span>.<span class="identifier">preorder</span>().<span class="identifier">join</span>(<span class="text">", "</span>)<span class="text">{`}`}"</span>)</p>
-                  <p class="comment">// Preorder: [F, B, A, D, C, E, G, I, H]</p>
-              </div>
-              <div class="from-invisible time04 delay02">
-                  <p><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"Inorder: #{`{`}</span><span class="identifier">tree</span>.<span class="identifier">inorder</span>().<span class="identifier">join</span>(<span class="text">", "</span>)<span class="text">{`}`}"</span>)</p>
-                  <p class="comment">// Inorder: [A, B, C, D, E, F, G, H, I]</p>
-              </div>
-              <div class="from-invisible time04 delay03">
-                  <p><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"Postorder: #{`{`}</span><span class="identifier">tree</span>.<span class="identifier">postorder</span>().<span class="identifier">join</span>(<span class="text">", "</span>)<span class="text">{`}`}"</span>)</p>
-                  <p class="comment">// Postorder: [A, C, E, D, B, H, I, G, F]</p>
-              </div>
-              <div class="from-invisible time04 delay04">
-                  <p><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"Levelorder: #{`{`}</span><span class="identifier">tree</span>.<span class="identifier">levelorder</span>().<span class="identifier">join</span>(<span class="text">", "</span>)<span class="text">{`}`}"</span>)</p>
-                  <p class="comment">// Levelorder: [F, B, G, A, D, I, C, E, H]</p>
-              </div>
-          </div>
+        <pre>
+          <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
+
+Console.writeLine("Preorder: #{tree.preorder().join(", ")}")
+
+// Preorder: [F, B, A, D, C, E, G, I, H]
+
+Console.writeLine("Inorder: #{tree.inorder().join(", ")}")
+
+// Inorder: [A, B, C, D, E, F, G, H, I]
+
+Console.writeLine("Postorder: #{tree.postorder().join(", ")}")
+
+// Postorder: [A, C, E, D, B, H, I, G, F]
+
+Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
+
+// Levelorder: [F, B, G, A, D, I, C, E, H]
+        `}</code>
+        </pre>
       </div>
   </div>
   <div class="example traits">
@@ -174,22 +174,31 @@
     </div>
     <div class="code-container">
       <div class="code dark-background indent-children">
-          <p><span class="modifier">class</span> <span class="type">MyClass</span> <span class="modifier">implements</span> <span class="type">MyTrait</span>, <span class="type">MyInterface</span> {`{`}</p>
-          <p style="padding-left: 43px;"><span class="modifier">public</span> <span class="identifier">calculateValue</span>() => <span class="text">"my value"</span></p><br>
-          <p style="padding-left: 43px;"><span class="modifier">public</span> <span class="identifier">saySomething</span>() {`{`}</p>
-          <p style="padding-left: 82px;"><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"My value is: '#</span><span class="identifier">calculateValue</span>()<span class="text">'"</span>)</p>
-          <p style="padding-left: 43px;">{`}`}</p>
-          <p>{`}`}</p><br>
-          <p><span class="modifier">trait</span> <span class="type">MyTrait</span> <span class="modifier">implements</span> <span class="type">PlusOperator</span>&lt;<span class="type">Int</span>, <span class="type">MyTrait</span>&gt; {`{`}</p>
-          <p style="padding-left: 43px;"><span class="modifier">visible</span> <span class="type">Int</span> <span class="identifier">id</span></p><br>
-          <p style="padding-left: 43px;"><span class="modifier">public</span> <span class="identifier">plus</span>(<span class="type">Int</span> <span class="identifier">num</span>) -> <span class="type">MyTrait</span> {`{`}</p>
-          <p style="padding-left: 82px;"><span class="identifier">id</span> += <span class="identifier">num</span></p>
-          <p style="padding-left: 82px;"><span class="modifier">return</span> <span class="identifier">this</span></p>
-          <p style="padding-left: 43px;">{`}`}</p>
-          <p>{`}`}</p><br>
-          <p><span class="modifier">interface</span> <span class="type">MyInterface</span> {`{`}</p>
-          <p style="padding-left: 43px;"><span class="modifier">public</span> <span class="identifier">calculateValue</span>() -> <span class="type">String</span></p>
-          <p>}</p>
+        <pre>
+          <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+class MyClass implements MyTrait, MyInterface {
+  public calculateValue() => "my value"
+
+  public saySomething() {
+    Console.writeLine("My value is: '#calculateValue()'")
+  }
+}
+
+trait MyTrait implements PlusOperator<Int, MyTrait> {
+  visible Int id
+
+  public plus(Int num) -> MyTrait {
+    id += num
+
+    return this
+  }
+}
+
+interface MyInterface {
+  public calculateValue() -> String
+}
+        `}</code>
+        </pre>
       </div>
     </div>
   </div>
@@ -211,12 +220,17 @@
               <div>
                   <div class="transition from-bottom time08 delay05">
                       <h4>FLAT CODE:</h4>
-                      <p class="indent"><span class="modifier">public static</span> <span class="identifier">main</span>() {`{`}</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">let</span> <span class="identifier">names</span> = [<span class="text">"Braden"</span>, <span class="text">"Ethan"</span>, <span class="text">"George"</span>]</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">for</span> (<span class="identifier">name</span> <span class="modifier">in</span> <span class="identifier">names</span>) {`{`}</p>
-                      <p class="indent" style="padding-left: 87px;"><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"Hello, #<span class="identifier">name</span>!"</span>)</p>
-                      <p style="padding-left: 56px;">{`}`}</p>
-                      <p>{`}`}</p>
+                      <pre>
+                        <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+public static main() {
+  let names = ["Braden", "Ethan", "George"]
+
+  for (name in names) {
+    Console.writeLine("Hello, #name!")
+  }
+}
+                      `}</code>
+                      </pre>
                   </div>
               </div>
               <div>
@@ -225,12 +239,18 @@
               <div>
                   <div class="transition from-top time08 delay05">
                       <h4>GENERATED JAVASCRIPT CODE:</h4>
-                      <p><span class="modifier">var</span> <span class="identifier">names</span> = <span class="modifier">new</span> <span class="type">FlatArray</span>([<span class="text">"Braden"</span>, <span class="text">"Ethan"</span>, <span class="text">"George"</span>]);</p>
-                      <p><span class="modifier">var</span> <span class="identifier">iterator</span> = <span class="identifier">names</span>.<span class="identifier">iterator</span>();</p><br>
-                      <p><span class="modifier">while</span> (<span class="identifier">iterator</span>.<span class="identifier">hasNext</span>()) {`{`}</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">var</span> <span class="identifier">name</span> = <span class="identifier">iterator</span>.<span class="identifier">next</span>();</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="type">console</span>.<span class="identifier">log</span>(<span class="text">"Hello, "</span> + <span class="identifier">name</span> + <span class="text">"!"</span>);</p>
-                      <p>{`}`}</p>
+                      <pre>
+                        <code class="language-js code dark-background indent-children" use:highlightCodeElement>{`
+let names = new FlatArray(["Braden", "Ethan", "George"]);
+
+let iterator = names.iterator();
+
+while (iterator.hasNext()) {
+  let name = iterator.next();
+  console.log("Hello, " + name + "!");
+}
+                      `}</code>
+                      </pre>
                   </div>
               </div>
           </div>
@@ -255,12 +275,17 @@
               <div>
                   <div class="transition from-bottom time08 delay05">
                       <h4>FLAT CODE:</h4>
-                      <p class="indent"><span class="modifier">public static</span> <span class="identifier">main</span>() {`{`}</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">let</span> <span class="identifier">names</span> = [<span class="text">"Braden"</span>, <span class="text">"Ethan"</span>, <span class="text">"George"</span>]</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">for</span> (<span class="identifier">name</span> <span class="modifier">in</span> <span class="identifier">names</span>) {`{`}</p>
-                      <p class="indent" style="padding-left: 87px;"><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"Hello, #<span class="identifier">name</span>!"</span>)</p>
-                      <p style="padding-left: 56px;">{`}`}</p>
-                      <p>{`}`}</p>
+                      <pre>
+                        <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+public static main() {
+  let names = ["Braden", "Ethan", "George"]
+
+  for (name in names) {
+    Console.writeLine("Hello, #name!")
+  }
+}
+                      `}</code>
+                      </pre>
                   </div>
               </div>
               <div>
@@ -269,14 +294,20 @@
               <div>
                   <div class="transition from-top time08 delay05">
                       <h4>GENERATED JAVA CODE:</h4>
-                      <p><span class="modifier">public static void</span> <span class="identifier">main</span>(<span class="type">String</span>[] <span class="identifier">args</span>) {`{`}</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="type">Array</span>&lt;<span class="type">String</span>&gt; <span class="identifier">names</span> = <span class="modifier">new</span> <span class="type">Array</span>&lt;&gt;(<span class="modifier">new</span> <span class="type">String</span>[] {`{`} <span class="text">"Braden"</span>, <span class="text">"Ethan"</span>, <span class="text">"George"</span> {`}`});</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="type">Iterator</span>&lt;<span class="type">String</span>&gt; <span class="identifier">iterator</span> = <span class="identifier">names</span>.<span class="identifier">iterator</span>();</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">while</span> (<span class="identifier">iterator</span>.<span class="identifier">hasNext</span>()) {`{`}</p>
-                      <p class="indent" style="padding-left: 87px;"><span class="type">String</span> <span class="identifier">name</span> = <span class="identifier">iterator</span>.<span class="identifier">next</span>();</p>
-                      <p class="indent" style="padding-left: 87px;"><span class="type">System</span>.<span class="identifier">out</span>.<span class="identifier">println</span>(<span class="text">"Hello, "</span> + <span class="identifier">name</span> + <span class="text">"!"</span>);</p>
-                      <p class="indent" style="padding-left: 56px;">{`}`}</p>
-                      <p>{`}`}</p>
+                      <pre>
+                        <code class="language-java code dark-background indent-children" use:highlightCodeElement>{`
+public static void main(String[] args) {
+  Array<String> names = new Array<>(new String[] { "Braden", "Ethan", "George" });
+
+  Iterator<String> iterator = names.iterator();
+
+  while (iterator.hasNext()) {
+    String name = iterator.next();
+    System.out.println("Hello, " + name + "!");
+  }
+}
+                      `}</code>
+                      </pre>
                   </div>
               </div>
           </div>
@@ -301,12 +332,17 @@
               <div>
                   <div class="transition from-bottom time08 delay05">
                       <h4>FLAT CODE:</h4>
-                      <p class="indent"><span class="modifier">public static</span> <span class="identifier">main</span>() {`{`}</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">let</span> <span class="identifier">names</span> = [<span class="text">"Braden"</span>, <span class="text">"Ethan"</span>, <span class="text">"George"</span>]</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">for</span> (<span class="identifier">name</span> <span class="modifier">in</span> <span class="identifier">names</span>) {`{`}</p>
-                      <p class="indent" style="padding-left: 87px;"><span class="type">Console</span>.<span class="identifier">writeLine</span>(<span class="text">"Hello, #<span class="identifier">name</span>!"</span>)</p>
-                      <p style="padding-left: 56px;">{`}`}</p>
-                      <p>{`}`}</p>
+                      <pre>
+                        <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+public static main() {
+  let names = ["Braden", "Ethan", "George"]
+
+  for (name in names) {
+    Console.writeLine("Hello, #name!")
+  }
+}
+                      `}</code>
+                      </pre>
                   </div>
               </div>
               <div>
@@ -315,22 +351,33 @@
               <div>
                   <div class="transition from-top time08 delay05">
                       <h4>GENERATED C CODE:</h4>
-                      <p><span class="type">int</span> <span class="identifier">main</span>(<span class="type">int</span> <span class="identifier">argc</span>, <span class="type">char</span>** <span class="identifier">argvs</span>) {`{`}</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="type">flat_Array</span>* <span class="identifier">names</span> = <span class="identifier">generate_array</span>();</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="type">flat_ArrayIterator</span>* <span class="identifier">iterator</span> = <span class="identifier">flat_Array_iterator</span>(<span class="identifier">names</span>, <span class="identifier">exceptionData</span>);</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">while</span> (<span class="identifier">flat_ArrayIterator_hasNext</span>(<span class="identifier">iterator</span>, <span class="identifier">exceptionData</span>)) {`{`}</p>
-                      <p class="indent" style="padding-left: 87px;"><span class="type">flat_String</span>* <span class="identifier">name</span> = (<span class="type">flat_String</span>*)<span class="identifier">flat_ArrayIterator_next</span>(<span class="identifier">iterator</span>, <span class="identifier">exceptionData</span>);</p>
-                      <p class="indent" style="padding-left: 87px;"><span class="identifier">flat_Console_writeLine</span>(<span class="identifier">flat_String_concat</span>(<span class="identifier">flat_String_concat</span>(<span class="identifier">flat_String_construct</span>(0, <span class="identifier">exceptionData</span>, <span class="text">"Hello, "</span>), <span class="identifier">exceptionData</span>, <span class="identifier">name</span>), <span class="identifier">flat_String_construct</span>(0, <span class="identifier">exceptionData</span>, <span class="text">"!"</span>)));</p>
-                      <p class="indent" style="padding-left: 56px;">{`}`}</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">return</span> 0;</p>
-                      <p>{`}`}</p><br>
-                      <p class="indent"><span class="type">flat_Array</span>* <span class="identifier">generate_array</span>() {`{`}</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="type">flat_String</span>** <span class="identifier">temp</span> = (<span class="type">flat_String</span>**)<span class="identifier">FLAT_MALLOC</span>(<span class="modifier">sizeof</span>(<span class="type">flat_String</span>*) * 3);</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="identifier">temp</span>[0] = <span class="identifier">flat_String_construct</span>(0, <span class="identifier">exceptionData</span>, <span class="text">"Braden"</span>);</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="identifier">temp</span>[1] = <span class="identifier">flat_String_construct</span>(0, <span class="identifier">exceptionData</span>, <span class="text">"Ethan"</span>);</p>
-                      <p class="indent" style="padding-left: 56px;"><span class="identifier">temp</span>[2] = <span class="identifier">flat_String_construct</span>(0, <span class="identifier">exceptionData</span>, <span class="text">"George"</span>);</p><br>
-                      <p class="indent" style="padding-left: 56px;"><span class="modifier">return</span> <span class="identifier">flat_Array_construct</span>(0, <span class="identifier">exceptionData</span>, (<span class="type">flat_Object</span>**)<span class="identifier">temp</span>, 3);</p>
-                      <p>{`}`}</p>
+                      <pre>
+                        <code class="language-c code dark-background indent-children" use:highlightCodeElement>{`
+int main(int argc, char** argvs) {
+  flat_Array* names = generate_array();
+
+  flat_ArrayIterator* iterator = flat_Array_iterator(names, exceptionData);
+
+  while (flat_ArrayIterator_hasNext(iterator, exceptionData)) {
+    flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator, exceptionData);
+
+    flat_Console_writeLine(flat_String_concat(flat_String_concat(flat_String_construct(0, exceptionData, "Hello, "), exceptionData, name), flat_String_construct(0, exceptionData, "!")));
+  }
+
+  return 0;
+}
+
+flat_Array* generate_array() {
+  flat_String** temp = (flat_String**)FLAT_MALLOC(sizeof(flat_String*) * 3);
+
+  temp[0] = flat_String_construct(0, exceptionData, "Braden");
+  temp[1] = flat_String_construct(0, exceptionData, "Ethan");
+  temp[2] = flat_String_construct(0, exceptionData, "George");
+
+  return flat_Array_construct(0, exceptionData, (flat_Object**)temp, 3);
+}
+                      `}</code>
+                      </pre>
                   </div>
               </div>
           </div>
@@ -376,8 +423,11 @@
 
 <script>
   	import {onMount} from 'svelte';
+    import {highlightCodeElement} from '/src/util';
 
     onMount(async () => {
-      initSlide();
+      if (typeof initSlide === 'function') {
+        initSlide();
+      }
     });
 </script>
