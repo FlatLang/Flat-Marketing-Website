@@ -33,7 +33,7 @@
       </tr>
     </table>
     {#if item.children && item.children.length > 0}
-    <TreeBrowser on:notify="{test}" isRoot={false} data={item.children} urlPrefix="{urlPrefix + "/" + item.url}" parent={item} stack={[...stack, item]}></TreeBrowser>
+    <TreeBrowser isRoot={false} data={item.children} urlPrefix="{urlPrefix + "/" + item.url}" parent={item} stack={[...stack, item]}></TreeBrowser>
     {/if}
   </div>
   {/each}
@@ -56,10 +56,10 @@
         if (!element.hasClass("link")) {
             return;
         }
+
         const elements = jq(".tree-browser .open");
         const selected = jq(".tree-browser .selected");
         const arrows = jq(".tree-browser .arrow");
-        console.log(item, elements, target);
         // elements.toggleClass("open", false);
         selected.toggleClass("selected", false);
         // arrows.toggleClass("down", false);
@@ -73,9 +73,5 @@
             .toggleClass("down", true)
             .closest(".tree-browser")
             .toggleClass("open", true);
-    };
-
-    const test = (data) => {
-        console.log("here", data, parent);
     };
 </script>

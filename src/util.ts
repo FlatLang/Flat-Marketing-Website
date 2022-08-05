@@ -33,7 +33,10 @@ export const highlightCodeElement = async (element) => {
   element.innerHTML = html;
 
   const last = element.children[element.children.length - 1];
-  last.innerHTML = last.innerHTML.trimEnd();
+
+  if (last) {
+    last.innerHTML = last.innerHTML.trimEnd();
+  }
 };
 
 export const jscd = (() => {
