@@ -19,7 +19,7 @@ flatc HelloWorld.flat -o HelloWorld
 </code>
 </pre>
 
-<p class="note">If you see an error that looks something like: "<i>'flatc' is not recognized as an internal or external command, operable program or batch file.</i>", follow the instructions explained <a ui-sref="docs.getting-started.configure-environment">here</a>.</p>
+<p class="note" style="margin-top: 20px;">If you see an error that looks something like: "<i>'flatc' is not recognized as an internal or external command, operable program or batch file.</i>", follow the instructions explained <a ui-sref="docs.getting-started.configure-environment">here</a>.</p>
 
 <p>You should see a new executable file outputted in the folder that you ran <span class="pre">flatc</span> in.</p>
 <p>From the same command prompt window, you can run the HelloWorld program:</p>
