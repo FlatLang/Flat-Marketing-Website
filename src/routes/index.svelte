@@ -419,10 +419,12 @@ flat_Array* generate_array() {
       <p class="comment bold">// hit enter to submit</p>
   </div>
 </slide>
-<footer></footer>
+<Footer></Footer>
 
 <script>
-  	import {onMount} from 'svelte';
+    import Footer from '/src/components/Footer.svelte';
+
+    import {onMount} from 'svelte';
     import {highlightCodeElement} from '/src/util';
 
     onMount(async () => {
