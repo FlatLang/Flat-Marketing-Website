@@ -128,7 +128,7 @@
           <p>One cool thing about the way List's are implemented in Flat is that because it is a trait, any class can implement it and they only have to define an Iterator for the class for it to gain access to all of the functional capabilities of a List.</p>
       </div>
       <div class="code-container">
-        <pre>
+        <pre class="full">
           <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
 let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
 
@@ -174,7 +174,7 @@ Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
     </div>
     <div class="code-container">
       <div class="dark-background indent-children">
-        <pre>
+        <pre class="full">
           <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
 class MyClass implements MyTrait, MyInterface {
   public calculateValue() => "my value"

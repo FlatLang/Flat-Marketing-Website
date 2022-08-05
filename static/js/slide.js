@@ -1,5 +1,4 @@
 function initSlide() {
-	console.log("init");
 	$("slide").each(function (index, node) {
 		function refreshSlides() {
 			const element = $(node);

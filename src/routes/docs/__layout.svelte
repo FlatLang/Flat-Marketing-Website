@@ -64,6 +64,12 @@
   <link rel="stylesheet" type="text/css" href="/styles/blog-styles.css" />
 </svelte:head>
 
+<style>
+  .flat-text-container {
+      margin-top: 20px;
+  }
+</style>
+
 <main>
   <div class="container">
       <div class="navigation dark-background">
