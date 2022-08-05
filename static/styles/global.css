@@ -157,6 +157,8 @@ a {
     position: relative;
 
     display: inline-block;
+
+    bottom: 2px;
 }
 
 .flat-text-container a {
@@ -828,4 +830,13 @@ tree-browser {
     border: 0;
     border-radius: 5px;
     background-color: white;
+}
+
+pre:not(.full) {
+    text-align: center;
+}
+
+pre:not(.full) > code {
+    display: inline-block;
+    width: auto;
 }
