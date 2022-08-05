@@ -413,6 +413,8 @@ header, footer {
     width: 550px;
 
     position: relative;
+
+    margin: auto;
 }
 
 .note > p:first-child {
