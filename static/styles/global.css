@@ -279,10 +279,15 @@ code.hljs {
 }
 
 pre code.hljs,
-.code {
+div.code {
     padding: 8px 20px;
 
     border-radius: 10px;
+}
+
+div.code div,
+div.code pre {
+    display: grid;
 }
 
 code.hljs *:not(span) {
@@ -294,7 +299,7 @@ pre code.hljs,
 .code,
 .code p,
 .pre {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .code-container {

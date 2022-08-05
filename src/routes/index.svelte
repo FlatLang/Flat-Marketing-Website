@@ -173,7 +173,7 @@ Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
         </ul>
     </div>
     <div class="code-container">
-      <div class="code dark-background indent-children">
+      <div class="dark-background indent-children">
         <pre>
           <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
 class MyClass implements MyTrait, MyInterface {

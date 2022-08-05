@@ -132,6 +132,8 @@
 	border-radius: 0;
 
 	position: relative;
+
+	display: inline-block;
 }
 
 .download table {
@@ -315,10 +317,10 @@
 
 pre {
     padding: 0;
-    white-space: pre;
+    white-space: pre-wrap;
     word-break: normal;
     word-wrap: normal;
-		display: flex;
+		/* display: flex; */
 }
 
 .code {
@@ -550,7 +552,7 @@ pre {
     bottom: 0;
 }
 
-#code-comparisons .code {
+#code-comparisons div.code {
 	position: relative;
 
 	max-width: 50%;
@@ -560,9 +562,12 @@ pre {
 	overflow: hidden;
 }
 
-#code-comparisons .code .container > div:nth-of-type(1),
+#code-comparisons .code .container > div:nth-of-type(1) {
+	padding-bottom: 15px;
+}
+
 #code-comparisons .code .container > div:nth-of-type(3) {
-	/* padding: 15px 0; */
+	padding-top: 15px;
 }
 
 #code-comparisons .code .container > div {
