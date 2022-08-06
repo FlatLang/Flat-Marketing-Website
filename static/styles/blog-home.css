@@ -8,11 +8,12 @@ li {
 
 .show-all {
     font-size: 14px;
+    cursor: pointer;
 }
 
 .recent-posts-header {
     width: 100%;
-    
+
     margin-left: 8px;
 }
 
@@ -23,11 +24,11 @@ li {
 .recent-posts-header .search input {
     border: 2px solid #f15d3b;
     border-radius: 10px;
-    
+
     width: 250px;
-    
+
     padding: 4px 10px;
-    
+
     font-size: 18px;
 }
 

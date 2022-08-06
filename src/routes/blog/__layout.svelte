@@ -3,16 +3,20 @@
         <Header></Header>
         <div id="content-container">
             <div class="content">
-                {#if page != null}
-                <div class="content-header-container dark-border" ng-if="page">
+                {#if $currentPage != null}
+                <div class="content-header-container dark-border">
                     <table>
                         <tr>
                             <td>
                                 <div class="header-container">
-                                    <h1 class="content-header" ng-bind="page.header | uppercase"></h1>
-                                    <h2 class="content-subheader" ng-bind="page.subheader | uppercase" ng-if="page.subheader"></h2>
-                                    <p class="info" ng-if="page.author || page.date">
-                                        <span class="author" ng-bind="page.author"></span><span ng-if="page.author && page.date"> - </span><span class="date" ng-bind="page.date"></span>
+                                    {#if $currentPage.header}
+                                    <h1 class="content-header">{$currentPage.header.toUpperCase()}</h1>
+                                    {/if}
+                                    {#if $currentPage.subheader}
+                                    <h2 class="content-subheader">{$currentPage.subheader.toUpperCase}</h2>
+                                    {/if}
+                                    <p class="info" ng-if="$currentPage.author || $currentPage.date">
+                                        <span class="author" ng-bind="$currentPage.author"></span><span ng-if="$currentPage.author && $currentPage.date"> - </span><span class="date" ng-bind="$currentPage.date"></span>
                                     </p>
                                 </div>
                             </td>
@@ -25,16 +29,16 @@
                 {/if}
                 <div class="content-view-container">
                     <div class="content-view">
-                        <div class="view{ !page ? " home" : "" }">
+                        <div class="view{ !$currentPage ? " home" : "" }">
                             <slot></slot>
                         </div>
                     </div>
-                    {#if page.references && page.references.length > 0}
+                    {#if $currentPage && $currentPage.references && $currentPage.references.length > 0}
                     <div class="references dark-border">
                         <h2>References</h2>
                         <ul class="references-list">
-                            {#each page.references as ref}
-                            <li ng-repeat="ref in page.references">
+                            {#each $currentPage.references as ref}
+                            <li>
                                 <a href="{ref.url}" ng-bind="ref.header" title="{ ref.tooltip }"></a>
                             </li>
                             {/each}
@@ -52,8 +56,28 @@
     import Header from '/src/components/Header.svelte';
     import Footer from '/src/components/Footer.svelte';
 
-    let currentUrl;
-    let page = {references: []};
+    import { currentPage, blogPages } from './blog';
+    import { page } from '$app/stores';
+
+    let currentUrl = "";
+
+    page.subscribe(({url}) => {
+        currentUrl = url.href;
+
+        currentPage.set(null);
+
+        const prefix = "/blog/";
+        const urlIndex = url.pathname.indexOf(prefix);
+
+        if (urlIndex === 0) {
+            const blogPage = url.pathname.substring(urlIndex + prefix.length);
+
+            if (blogPage) {
+                currentPage.set(blogPages.find(p => p.url === blogPage));
+            }
+        }
+    });
+
 </script>
 
 <svelte:head>

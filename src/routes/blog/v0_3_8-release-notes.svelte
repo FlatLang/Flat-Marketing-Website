@@ -13,7 +13,7 @@
         <div id="first-class-functions" class="release-note">
             <h4>Added full support for first-class functions <issue values={[{number: 371, repo: 'Flat'}, {number: 374, repo: 'Flat'}, {number: 375, repo: 'Flat'}, {number: 376, repo: 'Flat'}]}></issue></h4>
             <p>
-                More info on first class functions discussed in <a ui-sref="blog.first-class-functions">this blog post</a>.
+                More info on first class functions discussed in <a href="/blog/first-class-functions">this blog post</a>.
             </p>
         </div>
         <div id="this-modifier" class="release-note">
@@ -89,7 +89,7 @@ x = 50 // valid
         <div id="unit-testing" class="release-note">
             <h4>Added unit testing functionality with Flat <a href="https://github.com/FlatLang/Nest">Nest</a></h4>
             <p>
-                There will be a blog post on how to use Flat Nest's unit testing framework <a ui-sref="blog.flat-unit-testing">here</a>.
+                There will be a blog post on how to use Flat Nest's unit testing framework <a href="/blog/flat-unit-testing">here</a>.
             </p>
         </div>
         <div id="bug-fixes" class="release-note">

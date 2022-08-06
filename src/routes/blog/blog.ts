@@ -1,13 +1,13 @@
-window.blogPages = [{
+import { writable } from 'svelte/store'
+
+const blogPages = [{
     header: "Flat Compiler Design",
     url: "compiler-design",
-    css: "/Shared/styles/flow-boxes.css",
     date: "2/18/2017",
     // author: "Braden Steffaniak"
 }, {
     header: "Multiple Targets",
     url: "multiple-targets",
-    css: "/Shared/styles/flow-boxes.css",
     date: "2/19/2017",
     // author: "Braden Steffaniak"
 }, {
@@ -18,31 +18,26 @@ window.blogPages = [{
 }, {
     header: "Zero-Cost Primitive Generics",
     url: "zero-cost-primitive-generics",
-    css: "/Shared/styles/flow-boxes.css",
     date: "2/21/2017",
     // author: "Braden Steffaniak"
 }, {
     header: "Thread-Local Storage",
     url: "thread-local-storage",
-    css: "/Shared/styles/flow-boxes.css",
     date: "2/22/2017",
     // author: "Braden Steffaniak"
 }, {
     header: "Flat Won't Have Yield",
     url: "no-yield",
-    css: "/Shared/styles/flow-boxes.css",
     date: "2/23/2017",
     // author: "Braden Steffaniak"
 }, {
     header: "Flat Exception Handling",
     url: "exception-handling",
-    css: "/Shared/styles/flow-boxes.css",
     date: "2/24/2017",
     // author: "Braden Steffaniak"
 }, {
     header: "Automated API Importing",
     url: "automated-api-importing",
-    css: "/Shared/styles/flow-boxes.css",
     date: "2/25/2017",
     // author: "Braden Steffaniak"
 }, {
@@ -63,19 +58,16 @@ window.blogPages = [{
 }, {
     header: "Scalable Compiler Components",
     url: "scalable-compiler-components",
-    css: ["/Shared/styles/flow-boxes.css", "/blog/scalable-compiler-components.css"],
     date: "3/1/2017",
     // author: "Braden Steffaniak"
 }, {
     header: "Flat Path Forward",
     url: "path-forward",
-    css: ["/Shared/styles/flow-boxes.css", "/blog/path-forward.css"],
     date: "3/2/2017",
     author: "Braden Steffaniak"
 }, {
     header: "Flat Unit Testing",
     url: "flat-unit-testing",
-    css: ["/Shared/styles/flow-boxes.css"],
     date: "3/3/2017",
     visible: false,
     author: "Braden Steffaniak"
@@ -92,51 +84,8 @@ window.blogPages = [{
     // author: "Braden Steffaniak"
 }];
 
-angular.module("flat").controller("BlogController", ["$scope", "$rootScope", function ($scope, $rootScope) {
-    $scope.pages = blogPages.filter(function (page) {
-        return page.visible !== false;
-    });
+blogPages.forEach(page => page.dateObj = new Date(page.date));
 
-    function recursiveApply(func) {
-        function action(page) {
-            func(page);
+const currentPage = writable<any>(null);
 
-            if (page.children) {
-                page.children.forEach(action);
-            }
-        }
-
-        $scope.pages.forEach(action);
-    }
-
-    recursiveApply(function (page) {
-        page.selected = false;
-        page.open = false;
-    });
-
-    function stateUpdated() {
-        var url = $rootScope.state.url.substring(1);
-
-        $scope.page = $rootScope.state.state.data.page;
-
-        var current = $scope.page;
-
-        if (current) {
-            recursiveApply(function (page) {
-                page.selected = false;
-            });
-
-            current.selected = true;
-
-            while (current) {
-                current.open = true;
-
-                current = current.parent;
-            }
-        }
-    }
-
-    stateUpdated();
-
-    $rootScope.$on("stateUpdated", stateUpdated);
-}]);
+export { blogPages, currentPage };

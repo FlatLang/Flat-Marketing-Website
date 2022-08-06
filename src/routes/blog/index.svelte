@@ -2,7 +2,7 @@
     <table class="recent-posts-header">
         <tr>
             <td>
-                <h1>{ limit ? 'RECENT' : 'ALL' } POSTS <span ng-show="limit" class="show-all" ng-click="limit = false">Show all</span></h1>
+                <h1>{ limit ? 'RECENT' : 'ALL' } POSTS {#if limit}<span ng-show="limit" class="show-all" on:click={() => toggleLimit()}>Show all</span>{/if}</h1>
             </td>
             <td class="search">
                 <input type="text" ng-model="searchValue" placeholder="SEARCH POSTS" />
@@ -25,100 +25,24 @@
 </svelte:head>
 
 <script>
-    let limit;
-    let page = {};
+    import { blogPages, currentPage } from './blog';
 
-    let pages = [{
-        header: "Flat Compiler Design",
-        url: "compiler-design",
-        css: "/Shared/styles/flow-boxes.css",
-        date: "2/18/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Multiple Targets",
-        url: "multiple-targets",
-        css: "/Shared/styles/flow-boxes.css",
-        date: "2/19/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Writing Target-Specific Code",
-        url: "target-specific-code",
-        date: "2/20/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Zero-Cost Primitive Generics",
-        url: "zero-cost-primitive-generics",
-        css: "/Shared/styles/flow-boxes.css",
-        date: "2/21/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Thread-Local Storage",
-        url: "thread-local-storage",
-        css: "/Shared/styles/flow-boxes.css",
-        date: "2/22/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Flat Won't Have Yield",
-        url: "no-yield",
-        css: "/Shared/styles/flow-boxes.css",
-        date: "2/23/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Flat Exception Handling",
-        url: "exception-handling",
-        css: "/Shared/styles/flow-boxes.css",
-        date: "2/24/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Automated API Importing",
-        url: "automated-api-importing",
-        css: "/Shared/styles/flow-boxes.css",
-        date: "2/25/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "v0.3.7 Release Notes",
-        url: "v0_3_7-release-notes",
-        date: "2/26/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "First-Class Functions",
-        url: "first-class-functions",
-        date: "2/27/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Runtime Module Loading",
-        url: "runtime-module-loading",
-        date: "2/28/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Scalable Compiler Components",
-        url: "scalable-compiler-components",
-        css: ["/Shared/styles/flow-boxes.css", "/blog/scalable-compiler-components.css"],
-        date: "3/1/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "Flat Path Forward",
-        url: "path-forward",
-        css: ["/Shared/styles/flow-boxes.css", "/blog/path-forward.css"],
-        date: "3/2/2017",
-        author: "Braden Steffaniak"
-    }, {
-        header: "Flat Unit Testing",
-        url: "flat-unit-testing",
-        css: ["/Shared/styles/flow-boxes.css"],
-        date: "3/3/2017",
-        visible: false,
-        author: "Braden Steffaniak"
-    }, {
-        header: "v0.3.8 Release Notes",
-        url: "v0_3_8-release-notes",
-        date: "3/12/2017",
-        // author: "Braden Steffaniak"
-    }, {
-        header: "v0.3.9 Release Notes",
-        url: "v0_3_9-release-notes",
-        date: "3/20/2017",
-        visible: false,
-        // author: "Braden Steffaniak"
-    }];
+    currentPage.set(null);
+
+    let limit = false;
+    let pages = [];
+
+    const toggleLimit = () => {
+        limit = !limit;
+
+        pages = [...blogPages]
+            .filter(p => p.visible !== false)
+            .sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
+
+        if (limit) {
+            pages = pages.slice(0, 10);
+        }
+    };
+
+    toggleLimit();
 </script>

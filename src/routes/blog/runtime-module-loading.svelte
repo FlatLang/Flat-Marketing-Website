@@ -174,7 +174,7 @@ Incremented memberField: 3
 <div id="conclusion">
     <h1>Conclusion</h1>
     <p>
-        I will release a more in-depth blog post on this topic tomorrow <a ui-sref="blog.scalable-compiler-components">here</a>. It will pertain to how dynamic loading of modules will be used in the Flat compiler to achieve the ultra-scalability that is necessary to expedite the development of the Flat language.
+        I will release a more in-depth blog post on this topic tomorrow <a href="/blog/scalable-compiler-components">here</a>. It will pertain to how dynamic loading of modules will be used in the Flat compiler to achieve the ultra-scalability that is necessary to expedite the development of the Flat language.
     </p>
 </div>
 
