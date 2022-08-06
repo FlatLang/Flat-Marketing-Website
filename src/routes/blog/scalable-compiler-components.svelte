@@ -6,7 +6,7 @@
 <div id="compiler-components">
     <h1>RUNTIME LOADED COMPILER COMPONENTS</h1>
     <p>
-        The Flat compiler is being developed with the aim of being the most scalable compiler ever. The approach that is being taken to do this is to make use of <a ui-sref="blog.runtime-module-loading">runtime module loading</a>.
+        The Flat compiler is being developed with the aim of being the most scalable compiler ever. The approach that is being taken to do this is to make use of <a href="/blog/runtime-module-loading">runtime module loading</a>.
     </p>
     <p>
         The blog post that was written on runtime module loading was geared toward the essence of runtime module loading, not necessarily the application of it. This post is going to explain how runtime loading of modules is applied within the compiler.
@@ -16,7 +16,7 @@
 <div id="compiler-structure">
     <h1>COMPILER STRUCTURE</h1>
     <p>
-        I wrote a blog post on the <a ui-sref="blog.compiler-design">compiler design</a> and how it is had three core principles: Separation of concerns, extensibility, and simplicity. The source of how a lot of each of those principles are kept rely on the scalability of the compiler. Here is a refresher on the structure of the compiler:
+        I wrote a blog post on the <a href="/blog/compiler-design">compiler design</a> and how it is had three core principles: Separation of concerns, extensibility, and simplicity. The source of how a lot of each of those principles are kept rely on the scalability of the compiler. Here is a refresher on the structure of the compiler:
     </p>
     <div class="flow-container">
         <p style="white-space: nowrap;">SOURCE CODE</p>
@@ -365,4 +365,9 @@ class AssignmentWriter extends NodeWriter {
 
 <script>
     import {highlightCodeElement} from '/src/util';
+
+    import { blogPages, currentPage } from './blog';
+
+    currentPage.update(c => c = blogPages[0]);
+    console.log();
 </script>
