@@ -13,7 +13,7 @@
                                     <h1 class="content-header">{$currentPage.header.toUpperCase()}</h1>
                                     {/if}
                                     {#if $currentPage.subheader}
-                                    <h2 class="content-subheader">{$currentPage.subheader.toUpperCase}</h2>
+                                    <h2 class="content-subheader">{$currentPage.subheader.toUpperCase()}</h2>
                                     {/if}
                                     <p class="info" ng-if="$currentPage.author || $currentPage.date">
                                         <span class="author" ng-bind="$currentPage.author"></span><span ng-if="$currentPage.author && $currentPage.date"> - </span><span class="date" ng-bind="$currentPage.date"></span>

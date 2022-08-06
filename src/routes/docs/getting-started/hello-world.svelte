@@ -1,5 +1,5 @@
 <h1>CREATING A HELLO WORLD PROGRAM</h1>
-<p>After having <a>downloaded</a> and installed Flat, enter the following code into a file named HelloWorld.flat</p>
+<p>After having <a href="/download">downloaded</a> and installed Flat, enter the following code into a file named HelloWorld.flat</p>
 
 <pre>
 <code class="language-flat" use:highlightCodeElement>
