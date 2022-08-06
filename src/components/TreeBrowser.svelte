@@ -1,14 +1,13 @@
 <div
-  class="tree-browser{
-    (isRoot ? " root" : " sub-tree-browser") +
-    (isRoot ? " open" : "")
-  }"
+  class="tree-browser{(isRoot ? " root" : " sub-tree-browser")}"
+  class:open={open}
 >
   {#each data as item}
   <div
-    class="tree-item{
-      (item.children && item.children.length > 0 ? " children" : "")
-    }"
+    class="tree-item"
+    class:children={item.children?.length > 0}
+    class:open={opened[item.path]}
+    class:selected={selectedItem === item}
   >
     <table
       on:click="{(event) => toggle(item, event.target)}"
@@ -17,8 +16,10 @@
         <td class="arrow-container">
         <div
           class="arrow{
-            (!item.children || item.children.length == 0 ? " invisible" : "")
+            (item.children?.length > 0 ? "" : " invisible")
           }"
+          class:invisible={!item.children || item.children.length === 0}
+          class:down={opened[item.path]}
         ></div>
         </td>
         <td class="link-container">
@@ -26,52 +27,60 @@
           class="link"
           href="{urlPrefix}/{item.url}"
           title="{item.tooltip}"
+          class:selected={selectedItem === item}
         >
           {item.header}
         </a>
         </td>
       </tr>
     </table>
-    {#if item.children && item.children.length > 0}
-    <TreeBrowser isRoot={false} data={item.children} urlPrefix="{urlPrefix + "/" + item.url}" parent={item} stack={[...stack, item]}></TreeBrowser>
+    {#if item.children?.length > 0}
+    <TreeBrowser
+      isRoot={false}
+      selected={selectedItem === item}
+      open={opened[item.path]}
+      data={item.children}
+      urlPrefix="{urlPrefix}/{item.url}"
+      parent={item}
+    ></TreeBrowser>
     {/if}
   </div>
   {/each}
 </div>
 
 <script>
+    import { page } from '$app/stores';
+
     import TreeBrowser from './TreeBrowser.svelte';
 
     export let isRoot = true;
+    export let open = isRoot;
+    export let selected;
     export let data;
     export let urlPrefix = "";
     export let parent;
-    export let stack = [];
 
-    const jq = typeof window !== 'undefined' ? window.$ : null;
+    let selectedItem;
+    let opened = {[urlPrefix]: open};
+
+    page.subscribe(({url}) => {
+      const postUrl = url.pathname.substring("/docs/".length);
+      const item = data.find(c => c.path === postUrl);
+
+      selectedItem = item;
+    });
 
     const toggle = (item, target) => {
-        const element = jq(target);
+      if (!target.classList.contains("link")) {
+        return;
+      }
 
-        if (!element.hasClass("link")) {
-            return;
-        }
+      const prev = opened[item.path];
 
-        const elements = jq(".tree-browser .open");
-        const selected = jq(".tree-browser .selected");
-        const arrows = jq(".tree-browser .arrow");
-        // elements.toggleClass("open", false);
-        selected.toggleClass("selected", false);
-        // arrows.toggleClass("down", false);
-
-        element
-            .toggleClass("selected", true)
-            .closest(".tree-item")
-            .toggleClass("selected", true)
-            .toggleClass("open", true)
-            .find(".arrow")
-            .toggleClass("down", true)
-            .closest(".tree-browser")
-            .toggleClass("open", true);
+      if (selectedItem === item) {
+        opened[item.path] = !prev;
+      } else {
+        opened[item.path] = true;
+      }
     };
 </script>

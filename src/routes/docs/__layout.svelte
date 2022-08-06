@@ -1,62 +1,23 @@
 <script>
+  import { page } from '$app/stores';
+  import { docPages, currentPage, getDocFromPath } from './docs';
+
   import TreeBrowser from '/src/components/TreeBrowser.svelte';
 
-  let data = [{
-      header: "Class types",
-      url: "class-types",
-      children: [{
-          header: "Classes",
-          url: "classes",
-          references: ["traits", "interfaces"],
-          children: []
-      }, {
-          header: "Interfaces",
-          url: "interfaces",
-          references: ["traits", "classes"],
-          children: []
-      }, {
-          header: "Traits",
-          url: "traits",
-          references: ["classes", "interfaces"],
-          children: []
-      }]
-  }, {
-      header: "Data structures",
-      url: "data-structures",
-      references: ["data-structures/lists"],
-      children: [{
-          header: "Lists",
-          url: "lists",
-          tooltip: "Fundamental collection datatype",
-          references: ["arrays"]
-      }, {
-          header: "Arrays",
-          url: "arrays",
-          references: ["lists"]
-      }]
-  }, {
-      header: "Getting started",
-      url: "getting-started",
-      children: [{
-          header: "Configure environment",
-          url: "configure-environment",
-          controller: "ConfigureEnvironmentController",
-          css: "/docs/getting-started/configure-environment.css",
-          references: [],
-          children: []
-      }, {
-          header: "Hello world",
-          url: "hello-world",
-          references: [{
-              header: "Downloading flat",
-              url: "/download({ '#': 'downloads' })"
-          }, {
-              header: "Setting environment variables",
-              url: "configure-environment"
-          }],
-          children: []
-      }]
-  }];
+  page.subscribe(({url}) => {
+        currentPage.set(null);
+
+        const prefix = "/docs/";
+        const urlIndex = url.pathname.indexOf(prefix);
+
+        if (urlIndex === 0) {
+            const docPage = url.pathname.substring(urlIndex + prefix.length);
+
+            if (docPage) {
+                currentPage.set(getDocFromPath(docPage));
+            }
+        }
+    });
 </script>
 
 <svelte:head>
@@ -88,7 +49,7 @@
               <a href="/">
                   <h1 class="return-home">RETURN HOME</h1>
               </a>
-              <TreeBrowser class="page-browser" data={data} urlPrefix="/docs"></TreeBrowser>
+              <TreeBrowser class="page-browser" data={docPages} urlPrefix="/docs"></TreeBrowser>
 
               <div class="tree-browser root">
                 <div ng-repeat="item in data | orderBy:'-children.length'" class="tree-item">
@@ -121,13 +82,18 @@
           </div>
       </div>
       <div class="content white-background">
+          {#if $currentPage !== null}
           <div class="content-header-container dark-border">
               <table>
                   <tr>
                       <td>
                           <div class="header-container">
-                              <h1 class="content-header"></h1>
-                              <h2 class="content-subheader"></h2>
+                              {#if $currentPage.header}
+                              <h1 class="content-header">{$currentPage.header.toUpperCase()}</h1>
+                              {/if}
+                              {#if $currentPage.subheader}
+                              <h2 class="content-subheader">{$currentPage.subheader.toUpperCase()}</h2>
+                              {/if}
                           </div>
                       </td>
                       <td class="export-options">
@@ -136,20 +102,25 @@
                   </tr>
               </table>
           </div>
+          {/if}
           <div class="content-view-container">
               <div class="content-view">
                   <div class="view">
                     <slot></slot>
                   </div>
               </div>
-              <div class="references dark-border" ng-if="page.references && page.references.length > 0">
+              {#if $currentPage?.references?.length > 0}
+              <div class="references dark-border">
                   <h2>References</h2>
                   <ul class="references-list">
+                    {#each $currentPage.references as ref}
                       <li>
-                          <a ng-bind="ref.header"></a>
+                          <a href="{ref.href}">{ref.header}</a>
                       </li>
+                    {/each}
                   </ul>
               </div>
+              {/if}
           </div>
       </div>
   </div>
