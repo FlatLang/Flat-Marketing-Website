@@ -5,19 +5,19 @@
   import TreeBrowser from '/src/components/TreeBrowser.svelte';
 
   page.subscribe(({url}) => {
-        currentPage.set(null);
+    currentPage.set(null);
 
-        const prefix = "/docs/";
-        const urlIndex = url.pathname.indexOf(prefix);
+    const prefix = "/docs/";
+    const urlIndex = url.pathname.indexOf(prefix);
 
-        if (urlIndex === 0) {
-            const docPage = url.pathname.substring(urlIndex + prefix.length);
+    if (urlIndex === 0) {
+      const docPage = url.pathname.substring(urlIndex + prefix.length);
 
-            if (docPage) {
-                currentPage.set(getDocFromPath(docPage));
-            }
-        }
-    });
+      if (docPage) {
+        currentPage.set(getDocFromPath(docPage));
+      }
+    }
+  });
 </script>
 
 <svelte:head>
@@ -85,6 +85,7 @@
           {#if $currentPage !== null}
           <div class="content-header-container dark-border">
               <table>
+                <tbody>
                   <tr>
                       <td>
                           <div class="header-container">
@@ -100,6 +101,7 @@
                           <h2 class="share-link nowrap" share>SHARE PAGE <img class="share" src="/images/share.svg" /></h2>
                       </td>
                   </tr>
+                  </tbody>
               </table>
           </div>
           {/if}
