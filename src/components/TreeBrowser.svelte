@@ -50,6 +50,7 @@
 
 <script>
     import { page } from '$app/stores';
+    import { docPages, currentPage } from '/src/routes/docs/docs';
 
     import TreeBrowser from './TreeBrowser.svelte';
 
@@ -68,6 +69,15 @@
       const item = data.find(c => c.path === postUrl);
 
       selectedItem = item;
+    });
+
+    currentPage.subscribe(() => {
+      const value = data.find(c => $currentPage?.path.startsWith(c.path));
+
+      if (value) {
+        open = true;
+        opened[value.path] = true;
+      }
     });
 
     const toggle = (item, target) => {
