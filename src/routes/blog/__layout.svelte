@@ -6,6 +6,7 @@
                 {#if $currentPage != null}
                 <div class="content-header-container dark-border">
                     <table>
+                    <tbody>
                         <tr>
                             <td>
                                 <div class="header-container">
@@ -15,15 +16,28 @@
                                     {#if $currentPage.subheader}
                                     <h2 class="content-subheader">{$currentPage.subheader.toUpperCase()}</h2>
                                     {/if}
-                                    <p class="info" ng-if="$currentPage.author || $currentPage.date">
-                                        <span class="author" ng-bind="$currentPage.author"></span><span ng-if="$currentPage.author && $currentPage.date"> - </span><span class="date" ng-bind="$currentPage.date"></span>
+                                    {#if $currentPage.author || $currentPage.date}
+                                    <p class="info">
+                                        {#if $currentPage.author}
+                                        <span
+                                          class="author"
+                                        >{$currentPage.author}</span>
+                                        {/if}
+                                        {#if $currentPage.author && $currentPage.date}
+                                        <span> - </span>
+                                        {/if}
+                                        {#if $currentPage.date}
+                                        <span class="date">{$currentPage.date}</span>
+                                        {/if}
                                     </p>
+                                    {/if}
                                 </div>
                             </td>
                             <td class="export-options">
                                 <h2 class="share-link nowrap" share url="{currentUrl}">SHARE PAGE <img class="share" src="/images/share.svg" /></h2>
                             </td>
                         </tr>
+                    </tbody>
                     </table>
                 </div>
                 {/if}
