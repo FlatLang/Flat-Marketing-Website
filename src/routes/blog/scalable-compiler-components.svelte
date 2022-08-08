@@ -189,7 +189,7 @@ class AssignmentParser extends NodeParser {
             This AssignmentWriter example first searches for the index of the equals sign in the assignment. If the index exists at a valid position (the index must be > 0 for it to be valid), then it tries to parse the assigned node (the left-hand side of the assignment) <i>and</i> the assignment node (the right-hand side of the assignment) using their own parsers. If all of that is successful, then it returns the parsed Assignment node.
         </p>
         <p>
-            Applying this parser pattern to each different type of Node is what is required to create a Parser component. This kind of divide and conquer through using a <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive-descent parser</a> pattern is recommended to make the most of the Object oriented nature of Flat.
+            Applying this parser pattern to each different type of Node is what is required to create a Parser component. This kind of divide and conquer through using a <a target="_blank" href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive-descent parser</a> pattern is recommended to make the most of the Object oriented nature of Flat.
         </p>
     </div>
     <div id="inspectors">
@@ -268,7 +268,7 @@ class TreeTransformer {
 }
         `}</code></pre>
         <p>
-            This class has the targetTypes array just like the CodeInspector class. The method used to perform the transformation is called "transform". An example optimizer for <a href="https://en.wikipedia.org/wiki/Loop_unrolling">unrolling simple loops</a> might look like this:
+            This class has the targetTypes array just like the CodeInspector class. The method used to perform the transformation is called "transform". An example optimizer for <a target="_blank" href="https://en.wikipedia.org/wiki/Loop_unrolling">unrolling simple loops</a> might look like this:
         </p>
         <pre><code use:highlightCodeElement class="language-flat">{`
 class LoopUnrollTransformer extends TreeTransformer {

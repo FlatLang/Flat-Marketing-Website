@@ -142,7 +142,7 @@
     <div id="separation-of-concerns">
         <h3>SEPARATION OF CONCERNS</h3>
         <p>
-            Anyone who works on the compiler shouldn't have to understand the whole compiler's design in detail to be able to contribute. In the same way that <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> separates concerns into the Model, View and Controller, the compiler needs to be separated into distinct components. The components for the compiler are the top-level stages that the compiler goes through: Parser, Code Inspector, Code Optimizer, Code Generator. Someone writing a parser shouldn't have to understand how to write code inspectors, and so forth.
+            Anyone who works on the compiler shouldn't have to understand the whole compiler's design in detail to be able to contribute. In the same way that <a target="_blank" href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> separates concerns into the Model, View and Controller, the compiler needs to be separated into distinct components. The components for the compiler are the top-level stages that the compiler goes through: Parser, Code Inspector, Code Optimizer, Code Generator. Someone writing a parser shouldn't have to understand how to write code inspectors, and so forth.
         </p>
     </div>
     <div id="written-in-flat">
@@ -185,7 +185,7 @@
         </div>
     </div>
     <p>
-        By the way, I am not completely sure how I am going to find these mythical developers, so if you are reading this and you are not a bot, the repositories are open-source and you can fork them <a href="https://github.com/FlatLang">here</a>. Up until this point I have been the only developer on this project. The idea is to build out the framework to be extremely conducive to open-source development and then beg my friends to work on it.
+        By the way, I am not completely sure how I am going to find these mythical developers, so if you are reading this and you are not a bot, the repositories are open-source and you can fork them <a target="_blank" href="https://github.com/FlatLang">here</a>. Up until this point I have been the only developer on this project. The idea is to build out the framework to be extremely conducive to open-source development and then beg my friends to work on it.
     </p>
 </div>
 
@@ -195,7 +195,7 @@
         The performance analysis in Flat, <a href="/blog/multiple-targets#performance-analysis">as explained here</a>, has some serious potential. The performance perspective that multiple-targets allows for is a big white-space in the performance analysis field.
     </p>
     <p>
-        The face of the tool will be through a website. Users will go to the website (currently <a href="http://www.flat-reactor.com">flat-reactor.com</a>) and have a dashboard of their repos from github (or other repo providers) available to perform analysis on and to visualize analytics from.
+        The face of the tool will be through a website. Users will go to the website (currently <a target="_blank" href="http://www.flat-reactor.com">flat-reactor.com</a>) and have a dashboard of their repos from github (or other repo providers) available to perform analysis on and to visualize analytics from.
     </p>
     <p>
         One of the staple features I want to be at the core of this project is the complete repo performance history. Essentially, the website would pull every version of the code possible from each commit, try to compile and run it with performance analysis. Doing this could give 3 dimensional insight on the project's performance. You would be able to see which functions got faster or got slower, what areas of the code have always been bottlenecks, etc. And with the ability to differentiate from <a href="/blog/multiple-targets#bottleneck-types">language architecture bottlenecks and algorithmic bottlenecks</a>, the performance history becomes exponentially more powerful.
@@ -208,7 +208,7 @@
 <div id="finalize-syntax">
     <h1>FINALIZE SYNTAX / RELEASE 1.0</h1>
     <p>
-        Flat 1.0 will be defined by the finalization of the syntax. However, in this case, finalization of syntax does not mean the syntax will never be updated again. It simply means that the main objective is shifted from language design to tool design. There will be a tool created, much like <a href="https://blog.golang.org/introducing-gofix">gofix</a>, where even if the new syntax is not backwards compatible, the old code will be convertible to the new syntax through automation. I think the releasing of the "Flatfix", or whatever it will be named, will mark the release of Flat 1.0 and the finalization of the syntax.
+        Flat 1.0 will be defined by the finalization of the syntax. However, in this case, finalization of syntax does not mean the syntax will never be updated again. It simply means that the main objective is shifted from language design to tool design. There will be a tool created, much like <a target="_blank" href="https://blog.golang.org/introducing-gofix">gofix</a>, where even if the new syntax is not backwards compatible, the old code will be convertible to the new syntax through automation. I think the releasing of the "Flatfix", or whatever it will be named, will mark the release of Flat 1.0 and the finalization of the syntax.
     </p>
 </div>
 
@@ -218,7 +218,7 @@
         The idea of the standard library is still malleable. I'm not even completely sure if the standard library should be built out at all. The other path to choose instead of building out the library would be to write libraries and have them be installed with the compiler by default. This can still sort of be thought of as "standard", but instead of a single conglomeration library, it would be fragmented into packages like "io", "math", "graphics", and others like that. By the time we even reach this point, we should have better perspective on what path to take, so I'm not thinking too much on which path to take yet.
     </p>
     <p>
-        The fragmentation of the library brings up an important point on which I will make a future blog post on: <b>package management</b>. I have been lightly thinking about the package manager that Flat is going to use, called "<a target="_blank" href="https://github.com/FlatLang/Airship">Airship</a>". The package manager would be much like <a href="https://www.npmjs.com/">npm</a> and other package managers, but little has been fleshed out on this topic thus far. Perhaps this could be a project that is primarily worked on by a contributer.
+        The fragmentation of the library brings up an important point on which I will make a future blog post on: <b>package management</b>. I have been lightly thinking about the package manager that Flat is going to use, called "<a target="_blank" href="https://github.com/FlatLang/Airship">Airship</a>". The package manager would be much like <a target="_blank" href="https://www.npmjs.com/">npm</a> and other package managers, but little has been fleshed out on this topic thus far. Perhaps this could be a project that is primarily worked on by a contributer.
     </p>
 </div>
 

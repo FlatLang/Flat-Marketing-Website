@@ -129,7 +129,7 @@ if (errno != 0) {
     <div id="design-by-contract">
         <h3>DESIGN BY CONTRACT</h3>
         <p>
-            <a href="https://en.wikibooks.org/wiki/Computer_Programming/Design_by_Contract">Design by Contract</a> (DbC) handles errors by requiring correct input and correct output. A function does this by specifying <b>pre-condition</b> and <b>post-condition</b> states that the function must fulfill to be considered a success.
+            <a target="_blank" href="https://en.wikibooks.org/wiki/Computer_Programming/Design_by_Contract">Design by Contract</a> (DbC) handles errors by requiring correct input and correct output. A function does this by specifying <b>pre-condition</b> and <b>post-condition</b> states that the function must fulfill to be considered a success.
         </p>
         <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
 function myFunc(x: Float): Float

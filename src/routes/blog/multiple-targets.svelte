@@ -204,7 +204,7 @@
         <div id="bottleneck-types" style="margin-left: 25px; margin-bottom: 20px;">
             <h4>Algorithmic bottlenecks</h4>
             <p>
-                Algorithmic bottlenecks are caused by the <i>program's</i> implementation in contrast to the <i>language's</i> implementation. These bottlenecks would detect areas of code that might use <a href="https://en.wikipedia.org/wiki/Bubble_sort">bubble sort</a> instead of a faster sorting algorithm like <a href="https://en.wikipedia.org/wiki/Quicksort">quicksort</a>.
+                Algorithmic bottlenecks are caused by the <i>program's</i> implementation in contrast to the <i>language's</i> implementation. These bottlenecks would detect areas of code that might use <a target="_blank" href="https://en.wikipedia.org/wiki/Bubble_sort">bubble sort</a> instead of a faster sorting algorithm like <a target="_blank" href="https://en.wikipedia.org/wiki/Quicksort">quicksort</a>.
             </p>
             <h4>Language architecture bottlenecks</h4>
             <p>
@@ -450,7 +450,7 @@ var distance = SomeLibrary.distance(a, b); // 5.0
         When you deal with multiple targets, you can add the complexity of each language along with it. The Flat language is designed to make this as cheap as possible, but there is always going to be some work required when adding another compilation target, especially if the target language is a considerably different paradigm.
     </p>
     <p>
-        Aside from the compiler implementation of the target language, you may need to code special functionality for a specific language target to work as needed. An example of this is multi-threaded programs with Javascript. Javascript does not natively support multi-threading. For this reason, any programs that are heavily based upon multi-threading need some special attention in order for the Javascript target to work. A simple solution to this is to have threads run synchronously, but this can create undesirable results from a program that is expected to run in parallel. To deal with this you can: not compile to Javascript altogether; use a non-standard multi-threading library for Javascript (<a href="http://keithwhor.github.io/multithread.js">multithread.js</a> maybe?).
+        Aside from the compiler implementation of the target language, you may need to code special functionality for a specific language target to work as needed. An example of this is multi-threaded programs with Javascript. Javascript does not natively support multi-threading. For this reason, any programs that are heavily based upon multi-threading need some special attention in order for the Javascript target to work. A simple solution to this is to have threads run synchronously, but this can create undesirable results from a program that is expected to run in parallel. To deal with this you can: not compile to Javascript altogether; use a non-standard multi-threading library for Javascript (<a target="_blank" href="http://keithwhor.github.io/multithread.js">multithread.js</a> maybe?).
     </p>
 </div>
 
@@ -463,7 +463,7 @@ var distance = SomeLibrary.distance(a, b); // 5.0
 
 <div id="footnotes">
     <p class="header">Footnotes:</p>
-    <Footnote id="gcc-asm">Some compilers, <a href="http://stackoverflow.com/questions/137038/how-do-you-get-assembler-output-from-c-c-source-in-gcc">like GCC</a>, allow output of equivalent assembly code.</Footnote>
+    <Footnote id="gcc-asm">Some compilers, <a target="_blank" href="http://stackoverflow.com/questions/137038/how-do-you-get-assembler-output-from-c-c-source-in-gcc">like GCC</a>, allow output of equivalent assembly code.</Footnote>
 </div>
 
 <script>

@@ -74,7 +74,7 @@ let barrelOfNumbers = new Barrel<IntWrapperClass>()
 barrelOfNumbers.add(new IntWrapperClass(5))
         `}</code></pre>
         <p>
-            This is required because you cannot abstract between <i>reference</i> types and <i>value</i> types. If you are not familiar with the difference between reference and value types, <a href="https://msdn.microsoft.com/en-us/library/t63sy5hs.aspx">this page</a> does a pretty good job explaining the difference. But in short, Object types are reference types, and primitive types are value types.
+            This is required because you cannot abstract between <i>reference</i> types and <i>value</i> types. If you are not familiar with the difference between reference and value types, <a target="_blank" href="https://msdn.microsoft.com/en-us/library/t63sy5hs.aspx">this page</a> does a pretty good job explaining the difference. But in short, Object types are reference types, and primitive types are value types.
         </p>
         <p>
             This poses a performance issue for code that heavily relies on primitive types in place of generic arguments. When you create a new instance of a primtive wrapper class, it's not free. The common way to work around this is to create a separate class that has the same fields and functions, but instead of using that generic parameter, hardcode that primitive type instead. Something comparable to:
@@ -120,7 +120,7 @@ myFunBarrelFunction(barrelOfNumbers)
     <div id="the-solution">
         <h3>THE SOLUTION</h3>
         <p>
-            In C++ this is a common code structure that you use when you are doing generic programming: <a href="https://www.tutorialspoint.com/cplusplus/cpp_templates.htm">templates</a>. When you use a template in C++, a unique set of code is compiled for each of the different types that is used with the template. For instance:
+            In C++ this is a common code structure that you use when you are doing generic programming: <a target="_blank" href="https://www.tutorialspoint.com/cplusplus/cpp_templates.htm">templates</a>. When you use a template in C++, a unique set of code is compiled for each of the different types that is used with the template. For instance:
         </p>
         <pre><code use:highlightCodeElement class="language-cpp" style="margin: 40px 0;">{`
 template<typename T> void f(T s)
@@ -150,7 +150,7 @@ void f(const char* s)
 }
         `}</code></pre>
         <p>
-            The solution to the primitive generic problem in Flat resembles some of the aspects of C++ templates. In most cases, when you are not using primitive datatypes as generic arguments, you are safe to resort to the standard method of how generic datatypes work by using <a href="http://code.stephenmorley.org/articles/java-generics-type-erasure">type erasure</a>. But for when primitive datatypes are used in place of generic arguments, you have to do a process much like what templates do with each datatype.
+            The solution to the primitive generic problem in Flat resembles some of the aspects of C++ templates. In most cases, when you are not using primitive datatypes as generic arguments, you are safe to resort to the standard method of how generic datatypes work by using <a target="_blank" href="http://code.stephenmorley.org/articles/java-generics-type-erasure">type erasure</a>. But for when primitive datatypes are used in place of generic arguments, you have to do a process much like what templates do with each datatype.
         </p>
         <p>
             What the Flat compiler does when it comes across generic type arguments is:
