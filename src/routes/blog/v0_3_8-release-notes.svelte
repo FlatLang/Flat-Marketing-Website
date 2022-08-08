@@ -11,7 +11,7 @@
     </ul>
     <div id="release-notes" class="release-notes" style="margin-bottom: 20px;">
         <div id="first-class-functions" class="release-note">
-            <h4>Added full support for first-class functions <issue values={[{number: 371, repo: 'Flat'}, {number: 374, repo: 'Flat'}, {number: 375, repo: 'Flat'}, {number: 376, repo: 'Flat'}]}></issue></h4>
+            <h4>Added full support for first-class functions <Issue values={[{number: 371, repo: 'Flat'}, {number: 374, repo: 'Flat'}, {number: 375, repo: 'Flat'}, {number: 376, repo: 'Flat'}]}></Issue></h4>
             <p>
                 More info on first class functions discussed in <a href="/blog/first-class-functions">this blog post</a>.
             </p>
@@ -53,7 +53,7 @@ Console.writeLine(myClass.myField) // outputs 10
             </p>
         </div>
         <div id="auto-final" class="release-note">
-            <h4>Updated declarations to default to final <issue values={[{number: 368, repo: 'Flat'}]}></issue></h4>
+            <h4>Updated declarations to default to final <Issue values={[{number: 368, repo: 'Flat'}]}></Issue></h4>
             <p>
                 The default state of variable declarations is now final. Final variables are good practice when writing software, and the easier it is to make final variables the better.
             </p>
@@ -93,14 +93,16 @@ x = 50 // valid
             </p>
         </div>
         <div id="bug-fixes" class="release-note">
-            <h4>General bug fixes <issue values={[{number: 372, repo: 'Flat'}]}></issue></h4>
+            <h4>General bug fixes <Issue values={[{number: 372, repo: 'Flat'}]}></Issue></h4>
             <p>
-                Fixed private function prototypes not being generated in C <issue values={[{number: 372, repo: 'Flat'}]}></issue>.
+                Fixed private function prototypes not being generated in C <Issue values={[{number: 372, repo: 'Flat'}]}></Issue>.
             </p>
         </div>
     </div>
 </div>
 
 <script>
+    import Issue from '/src/components/Issue.svelte';
+
     import {highlightCodeElement} from '/src/util';
 </script>
