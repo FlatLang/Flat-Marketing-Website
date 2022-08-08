@@ -763,7 +763,7 @@ tree-browser {
 
     position: fixed;
 
-    border-radius: 25px;
+    border: 7px solid white;
     padding: 20px;
 
     left: 50%;
@@ -788,6 +788,8 @@ tree-browser {
     opacity: 0;
 
     pointer-events: none;
+
+    z-index: 5;
 }
 
 .share-modal.active {
@@ -828,8 +830,22 @@ tree-browser {
     margin-bottom: 25px;
 
     border: 0;
-    border-radius: 5px;
     background-color: white;
+}
+
+.share-modal .copy-link {
+    font-size: 50%;
+}
+
+.share-modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4;
+    backdrop-filter: blur(3px);
 }
 
 pre:not(.full) {

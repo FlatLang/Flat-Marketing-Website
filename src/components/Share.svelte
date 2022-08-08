@@ -1,5 +1,6 @@
+{#if $active}<div class="share-modal-background"></div>{/if}
 <div
-  class="share-modal"
+  class="share-modal neon-shadow"
   class:active={$active}
   use:clickOutside
   on:clickoutside={() => active.set(false)}
@@ -7,7 +8,19 @@
   <table>
       <tr>
           <td colspan="4">
-              <h1>SHARE THIS PAGE</h1>
+              <h1 class="neon-shadow">SHARE THIS PAGE
+                <a
+                  href="#"
+                  class="copy-link"
+                  on:click|preventDefault={() => copyToClipboard()}
+                >
+                  {#if copied}
+                    COPIED!
+                  {:else}
+                    COPY
+                  {/if}
+                </a>
+              </h1>
           </td>
       </tr>
       <tr>
@@ -17,17 +30,17 @@
       </tr>
       <tr>
           <td>
-            <a on:click={() => fbShare(url, '', '', 520, 350)}>
+            <a href="#" on:click={() => fbShare(url, '', '', 520, 350)}>
               <img src="/images/facebook.svg" />
             </a>
           </td>
           <td>
-            <a on:click={() => twitterShare(url, '', '', 520, 350)}>
+            <a href="#" on:click={() => twitterShare(url, '', '', 520, 350)}>
               <img src="/images/twitter.svg" />
             </a>
           </td>
           <td>
-            <a on:click={() => linkedinShare(url, '', '', 520, 350)}>
+            <a href="#" on:click={() => linkedinShare(url, '', '', 520, 350)}>
               <img src="/images/linkedin.svg" />
             </a>
           </td>
@@ -49,9 +62,10 @@
     export let url;
 
     let urlElement;
+    let copied = false;
 
     active.subscribe((value) => {
-      if (value) {
+      if (value && urlElement) {
         urlElement.select();
       }
     });
@@ -59,6 +73,23 @@
     page.subscribe((page) => {
       url = page.url.href;
     });
+
+    let timeoutRef;
+
+    const copyToClipboard = () => {
+      navigator.clipboard.writeText(urlElement.value);
+      copied = true;
+
+      if (timeoutRef) {
+        clearTimeout(timeoutRef);
+      }
+
+      timeoutRef = setTimeout(() => {
+        copied = false;
+
+        clearTimeout(timeoutRef);
+      }, 1500);
+    };
 
     const fbShare = (url, title, descr, winWidth, winHeight) => {
       const winTop = (screen.height / 2) - (winHeight / 2);
