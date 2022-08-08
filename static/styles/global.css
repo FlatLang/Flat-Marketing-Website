@@ -842,3 +842,7 @@ pre:not(.full) > code {
     display: inline-block;
     width: auto;
 }
+
+.hljs-deletion, .hljs-number, .hljs-type {
+    color:rgba(241, 93, 59);
+}
