@@ -187,7 +187,7 @@ In lambda that takes no parameters
             First-class functions can reduce the amount of code to perform tasks. This is an important point considering one of the founding principles of Flat is <i>speed of development</i>. When you reduce the amount of code to solve a problem, you often times are reducing the time it takes to complete the task.
         </p>
         <p>
-            This can be demonstrated with the <a href="https://en.wikipedia.org/wiki/Strategy_pattern">strategy pattern</a> design pattern. This pattern is used when you want to run different algorithms based off of different conditions, <i>at runtime</i>. To illustrate this, lets suppose that you want to enforce a specific pricing algorithm depending on the type of the day. With the strategy pattern you could do this:
+            This can be demonstrated with the <a target="_blank" href="https://en.wikipedia.org/wiki/Strategy_pattern">strategy pattern</a> design pattern. This pattern is used when you want to run different algorithms based off of different conditions, <i>at runtime</i>. To illustrate this, lets suppose that you want to enforce a specific pricing algorithm depending on the type of the day. With the strategy pattern you could do this:
         </p>
         <pre><code use:highlightCodeElement class="language-flat">{`
 interface Billable {

@@ -299,8 +299,8 @@ class FibsIterator implements Iterator<Int> {
 
 <div id="footnotes">
     <p class="header">Footnotes:</p>
-    <Footnote id="csharp-yield-backend">A more in-depth explanation of the back-end implementation of the C# yield return state machine can be found <a href="https://startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword">here</a>.</Footnote>
-    <Footnote id="obscure-behavior"><a href="http://www.daedtech.com/getting-too-cute-with-c-yield-return">Obscure behavior</a> with C# yield return.</Footnote>
+    <Footnote id="csharp-yield-backend">A more in-depth explanation of the back-end implementation of the C# yield return state machine can be found <a target="_blank" href="https://startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword">here</a>.</Footnote>
+    <Footnote id="obscure-behavior"><a target="_blank" href="http://www.daedtech.com/getting-too-cute-with-c-yield-return">Obscure behavior</a> with C# yield return.</Footnote>
 </div>
 
 <script>

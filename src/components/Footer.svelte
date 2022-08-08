@@ -5,10 +5,10 @@
             <td><a class="bold" href="mailto:info@flat-lang.org">INFO@FLAT-LANG.ORG</a></td>
             {#if false}
             <td class="social">
-                <a href="https://www.facebook.com/NovexTech">
+                <a target="_blank" href="https://www.facebook.com/NovexTech">
                     <img src="/images/facebook.svg" />
                 </a>
-                <a href="https://twitter.com/NovexTech">
+                <a target="_blank" href="https://twitter.com/NovexTech">
                     <img src="/images/twitter.svg" />
                 </a>
             </td>

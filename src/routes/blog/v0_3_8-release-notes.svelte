@@ -87,7 +87,7 @@ x = 50 // valid
             `}</code></pre>
         </div>
         <div id="unit-testing" class="release-note">
-            <h4>Added unit testing functionality with Flat <a href="https://github.com/FlatLang/Nest">Nest</a></h4>
+            <h4>Added unit testing functionality with Flat <a target="_blank" href="https://github.com/FlatLang/Nest">Nest</a></h4>
             <p>
                 There will be a blog post on how to use Flat Nest's unit testing framework <a href="/blog/flat-unit-testing">here</a>.
             </p>
