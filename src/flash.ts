@@ -1,17 +1,24 @@
-export function loadFlash() {
-  function checkHash() {
-    const hash = window.location.hash?.substring(1);
+export function checkHash() {
+  const hash = window.location.hash?.substring(1);
 
-    if (hash) {
-      const element = document.getElementById(hash);
+  if (hash) {
+    const element = document.getElementById(hash);
 
-      element?.classList.remove("flash");
+    element?.classList.remove("flash");
+
+    setTimeout(() => {
       element?.classList.add("flash");
       element?.scrollIntoView();
-    }
+    }, 0);
   }
+}
 
-  checkHash();
+if (typeof document !== 'undefined') {
+  document.addEventListener("click", ({target}) => {
+    const href = target?.getAttribute("href");
 
-  window.addEventListener("hashchange", checkHash, false);
+    if (typeof href === 'string' && href[0] === '#') {
+      checkHash();
+    }
+  });
 }
