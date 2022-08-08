@@ -1,7 +1,3 @@
-<svelte:head>
-    <link rel="stylesheet" type="text/css" href="/styles/flow-boxes.css" />
-</svelte:head>
-
 <div id="what-are-generic-types">
     <h1>WHAT ARE GENERICS DATA TYPES?</h1>
     <p>

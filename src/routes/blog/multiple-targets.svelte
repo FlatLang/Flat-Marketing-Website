@@ -1,7 +1,3 @@
-<svelte:head>
-    <link rel="stylesheet" type="text/css" href="/styles/flow-boxes.css" />
-</svelte:head>
-
 <div id="meaning">
     <h1>WHAT DOES COMPILING TO MULTIPLE TARGETS REALLY MEAN?</h1>
     <p>

@@ -1,7 +1,3 @@
-<svelte:head>
-    <link rel="stylesheet" type="text/css" href="/styles/flow-boxes.css" />
-</svelte:head>
-
 <div id="core-principles" style="margin-bottom: 40px;">
     <h1>CORE DESIGN PRINCIPLES</h1>
 
