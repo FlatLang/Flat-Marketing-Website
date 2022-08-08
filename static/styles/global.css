@@ -714,6 +714,11 @@ tree-browser {
     opacity: 0;
 }
 
+.neon-shadow {
+    -webkit-filter: drop-shadow(0px 0px 4px #f15d3b);
+    filter: drop-shadow(0px 0px 4px #f15d3b);
+}
+
 .tree-browser .tree-item.selected.children.open:before {
     opacity: 1;
 }

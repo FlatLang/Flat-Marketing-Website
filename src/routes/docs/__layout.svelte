@@ -50,7 +50,7 @@
                   </a>
               </div>
 
-              <a href="/">
+              <a class="neon-shadow" href="/">
                   <h1 class="return-home">RETURN HOME</h1>
               </a>
               <TreeBrowser class="page-browser" data={docPages} urlPrefix="/docs"></TreeBrowser>
