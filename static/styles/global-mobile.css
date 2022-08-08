@@ -54,4 +54,8 @@
     .share-modal h1 {
         font-size: 42px;
     }
+
+    .share-modal img {
+        height: 65px;
+    }
 }
