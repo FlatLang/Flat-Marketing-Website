@@ -34,12 +34,12 @@
                                 </div>
                             </td>
                             <td class="export-options">
-                                <h2
+                                <h4
                                   class="share-link nowrap"
                                   on:click={() => share.set(true)}
                                 >
                                   SHARE PAGE <img class="share" src="/images/share.svg" />
-                                </h2>
+                                </h4>
                             </td>
                         </tr>
                     </tbody>
