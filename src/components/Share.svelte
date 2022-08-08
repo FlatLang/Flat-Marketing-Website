@@ -2,7 +2,7 @@
   class="share-modal"
   class:active={$active}
   use:clickOutside
-  on:click_outside={() => active.set(false)}
+  on:clickoutside={() => active.set(false)}
 >
   <table>
       <tr>
