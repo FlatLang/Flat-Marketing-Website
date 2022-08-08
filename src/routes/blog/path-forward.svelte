@@ -218,7 +218,7 @@
         The idea of the standard library is still malleable. I'm not even completely sure if the standard library should be built out at all. The other path to choose instead of building out the library would be to write libraries and have them be installed with the compiler by default. This can still sort of be thought of as "standard", but instead of a single conglomeration library, it would be fragmented into packages like "io", "math", "graphics", and others like that. By the time we even reach this point, we should have better perspective on what path to take, so I'm not thinking too much on which path to take yet.
     </p>
     <p>
-        The fragmentation of the library brings up an important point on which I will make a future blog post on: <b>package management</b>. I have been lightly thinking about the package manager that Flat is going to use, called "<a href="https://github.com/FlatLang/Stardust">Stardust</a>". The package manager would be much like <a href="https://www.npmjs.com/">npm</a> and other package managers, but little has been fleshed out on this topic thus far. Perhaps this could be a project that is primarily worked on by a contributer.
+        The fragmentation of the library brings up an important point on which I will make a future blog post on: <b>package management</b>. I have been lightly thinking about the package manager that Flat is going to use, called "<a target="_blank" href="https://github.com/FlatLang/Airship">Airship</a>". The package manager would be much like <a href="https://www.npmjs.com/">npm</a> and other package managers, but little has been fleshed out on this topic thus far. Perhaps this could be a project that is primarily worked on by a contributer.
     </p>
 </div>
 
