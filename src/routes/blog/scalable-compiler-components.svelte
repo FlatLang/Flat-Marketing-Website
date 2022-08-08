@@ -365,9 +365,4 @@ class AssignmentWriter extends NodeWriter {
 
 <script>
     import {highlightCodeElement} from '/src/util';
-
-    import { blogPages, currentPage } from './blog';
-
-    currentPage.update(c => c = blogPages[0]);
-    console.log();
 </script>
