@@ -67,8 +67,6 @@
 
 #logo-main {
 	height: 38vh;
-
-	max-width: calc(100% - 150px);
 }
 
 .downloads {
