@@ -411,7 +411,8 @@ flat_Array* generate_array() {
       </div>
   </div>
 </slide>
-<slide ng-if="false" id="stay-up-to-date2" class="stay-up-to-date dark-background monospace">
+{#if false}
+<slide id="stay-up-to-date2" class="stay-up-to-date dark-background monospace">
   <div class="content primary-border">
       <p class="header indent bold"><span class="secondary5">public</span> <span class="secondary4">stayUpToDate</span>(<span class="nowrap secondary1">String <span class="secondary4">name</span></span>, <span class="nowrap secondary1">String <span class="secondary4">email</span></span>) <span class="nowrap">-> <span class="secondary1">Email</span></span></p>
 
@@ -421,6 +422,7 @@ flat_Array* generate_array() {
       <p class="comment bold">// hit enter to submit</p>
   </div>
 </slide>
+{/if}
 <Footer></Footer>
 
 <script>
