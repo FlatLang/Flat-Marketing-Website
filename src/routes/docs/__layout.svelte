@@ -1,8 +1,12 @@
 <script>
   import { page } from '$app/stores';
   import { docPages, currentPage, getDocFromPath } from './docs';
+  import { writable } from 'svelte/store';
 
   import TreeBrowser from '/src/components/TreeBrowser.svelte';
+  import Share from '/src/components/Share.svelte';
+
+  let share = writable(false);
 
   page.subscribe(({url}) => {
     currentPage.set(null);
@@ -98,7 +102,12 @@
                           </div>
                       </td>
                       <td class="export-options">
-                          <h2 class="share-link nowrap" share>SHARE PAGE <img class="share" src="/images/share.svg" /></h2>
+                        <h2
+                          class="share-link nowrap"
+                          on:click={() => share.set(true)}
+                        >
+                          SHARE PAGE <img class="share" src="/images/share.svg" />
+                        </h2>
                       </td>
                   </tr>
                   </tbody>
@@ -124,6 +133,7 @@
               </div>
               {/if}
           </div>
+          <Share active={share}></Share>
       </div>
   </div>
 </main>

@@ -34,7 +34,12 @@
                                 </div>
                             </td>
                             <td class="export-options">
-                                <h2 class="share-link nowrap" share url="{currentUrl}">SHARE PAGE <img class="share" src="/images/share.svg" /></h2>
+                                <h2
+                                  class="share-link nowrap"
+                                  on:click={() => share.set(true)}
+                                >
+                                  SHARE PAGE <img class="share" src="/images/share.svg" />
+                                </h2>
                             </td>
                         </tr>
                     </tbody>
@@ -63,21 +68,22 @@
             </div>
         </div>
         <Footer></Footer>
+        <Share active={share}></Share>
     </div>
 </div>
 
 <script>
     import Header from '/src/components/Header.svelte';
     import Footer from '/src/components/Footer.svelte';
+    import Share from '/src/components/Share.svelte';
 
     import { currentPage, blogPages } from './blog';
     import { page } from '$app/stores';
+    import { writable } from 'svelte/store';
 
-    let currentUrl = "";
+    let share = writable(false);
 
     page.subscribe(({url}) => {
-        currentUrl = url.href;
-
         currentPage.set(null);
 
         const prefix = "/blog/";
