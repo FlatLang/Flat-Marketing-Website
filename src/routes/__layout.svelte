@@ -1,9 +1,9 @@
 <script>
-  import { loadFlash } from '/src/flash'
+  import { checkHash } from '/src/flash'
   import { afterNavigate } from '$app/navigation';
 
   afterNavigate(() => {
-    loadFlash();
+    checkHash();
   });
 </script>
 
