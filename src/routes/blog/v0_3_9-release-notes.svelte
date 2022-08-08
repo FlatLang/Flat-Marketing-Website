@@ -7,7 +7,7 @@
     </ul>
     <div id="release-notes" class="release-notes" style="margin-bottom: 20px;">
         <div id="null-function-references" class="release-note">
-            <h4>Function references now compatible with null <issue values={[{number: 377, repo: 'Flat'}]}></issue></h4>
+            <h4>Function references now compatible with null <Issue values={[{number: 377, repo: 'Flat'}]}></Issue></h4>
             <p>
                 More info on first class functions discussed in <a href="/blog}first-class-functions">this blog post</a>.
             </p>
@@ -22,5 +22,7 @@
 </div>
 
 <script>
+    import Issue from '/src/components/Issue.svelte';
+
     import {highlightCodeElement} from '/src/util';
 </script>

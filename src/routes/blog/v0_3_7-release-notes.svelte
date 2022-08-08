@@ -69,14 +69,16 @@ void my_external_func(funcReference ref) {
             </p>
         </div>
         <div id="bug-fixes" class="release-note">
-            <h4>General bug fixes <issue values={[{number: 367, repo: 'Flat'}]}></issue></h4>
+            <h4>General bug fixes <Issue values={[{number: 367, repo: 'Flat'}]}></Issue></h4>
             <p>
-                Fixed some bugs with primtive overloads <issue values={[{number: 367, repo: 'Flat'}]}></issue>.
+                Fixed some bugs with primtive overloads <Issue values={[{number: 367, repo: 'Flat'}]}></Issue>.
             </p>
         </div>
     </div>
 </div>
 
 <script>
+    import Issue from '/src/components/Issue.svelte';
+
     import {highlightCodeElement} from '/src/util';
 </script>
