@@ -28,6 +28,7 @@
               <input class="url" type="text" value={url} readonly="readonly" bind:this={urlElement} />
           </td>
       </tr>
+      {#if false}
       <tr>
           <td>
             <a href="#" on:click={() => fbShare(url, '', '', 520, 350)}>
@@ -50,6 +51,7 @@
             </a>
           </td>
       </tr>
+      {/if}
   </table>
 </div>
 
