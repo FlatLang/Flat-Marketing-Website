@@ -144,7 +144,7 @@
     <h1>HOW COMPILER MODULES ARE LOADED</h1>
     <p><i><b>Disclaimer</b>: The following code is just demo code to give a general idea of what the implementation looks like. There will be individual blog posts on each of the specific component types in the future where the implementation details and specifics are shared.</i></p>
     <p>
-        The compiler looks for classes that extend or implement specific classes or interfaces to determine what components to run for each stage of compilation. After loading the Library (explained in the <a href="/blog/runtime-module-loading">previous blog post</a>), you can search for classes that extended or implement a specific class or interface with the Class.getClassesOfType function<footnote id="class-filtering"></footnote>.
+        The compiler looks for classes that extend or implement specific classes or interfaces to determine what components to run for each stage of compilation. After loading the Library (explained in the <a href="/blog/runtime-module-loading">previous blog post</a>), you can search for classes that extended or implement a specific class or interface with the Class.getClassesOfType function<FootnoteRef id="class-filtering"></FootnoteRef>.
     </p>
     <div id="parsers">
         <h3>PARSER COMPONENTS</h3>
@@ -359,9 +359,12 @@ class AssignmentWriter extends NodeWriter {
 
 <div id="footnotes">
     <p class="header">Footnotes:</p>
-    <footnote id="class-filtering">If some more fine-tuned control over the class type filtering is needed, then you can use the Class.ALL to filter upon. The Class.ALL static field contains all of the class declarations within the module.</footnote>
+    <Footnote id="class-filtering">If some more fine-tuned control over the class type filtering is needed, then you can use the Class.ALL to filter upon. The Class.ALL static field contains all of the class declarations within the module.</Footnote>
 </div>
 
 <script>
+    import Footnote from '/src/components/Footnote.svelte';
+    import FootnoteRef from '/src/components/FootnoteRef.svelte'
+
     import {highlightCodeElement} from '/src/util';
 </script>
