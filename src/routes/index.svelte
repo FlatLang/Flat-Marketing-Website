@@ -27,7 +27,8 @@
       </div>
   </div>
 </slide>
-<slide id="aspects" style="display: none;">
+{#if false}
+<slide id="aspects">
   <div>
       <div class="section primary primary-border">
           <table>
@@ -114,6 +115,7 @@
       </div>
   </div>
 </slide>
+{/if}
 <slide id="code-example">
   <h1 class="bold">FLAT SYNTAX</h1>
   <div class="example tree">
