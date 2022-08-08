@@ -42,4 +42,16 @@
     .content-view-container .references {
         border: none;
     }
+
+    .share-modal {
+        width: 65%;
+    }
+
+    .share-modal input {
+        font-size: 22px;
+    }
+
+    .share-modal h1 {
+        font-size: 42px;
+    }
 }
