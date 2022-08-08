@@ -863,3 +863,7 @@ pre:not(.full) > code {
 .hljs-deletion, .hljs-number, .hljs-type {
     color:rgba(241, 93, 59);
 }
+
+[id] {
+    scroll-margin-top: 20px;
+}

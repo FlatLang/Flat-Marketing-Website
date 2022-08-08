@@ -1,5 +1,4 @@
 <svelte:head>
-    <link rel="stylesheet" type="text/css" href="/styles/flow-boxes.css" />
     <link rel="stylesheet" type="text/css" href="/styles/scalable-compiler-components.css" />
 </svelte:head>
 
