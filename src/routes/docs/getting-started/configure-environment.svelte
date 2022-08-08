@@ -45,7 +45,8 @@
 
 
 <script>
-    import {highlightCodeElement, jscd} from '/src/util';
+    import { onMount } from 'svelte';
+    import { jscd } from '/src/util';
 
     let os = jscd.os || "";
     let osVersion = jscd.osVersion;
@@ -87,5 +88,11 @@
 
     let osArray = Object.keys(oses).map((key) => {
         return oses[key];
+    });
+
+    onMount(() => {
+        if (!window.location.hash) {
+            window.location.hash = "#" + lowerOs;
+        }
     });
 </script>
