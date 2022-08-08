@@ -66,7 +66,7 @@
 }
 
 #logo-main {
-	height: 38%;
+	height: 38vh;
 
 	max-width: calc(100% - 150px);
 }
