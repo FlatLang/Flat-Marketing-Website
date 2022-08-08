@@ -77,3 +77,11 @@ h1 {
 
   overflow: auto;
 }
+
+.content-view-container > .content-view > .view {
+  max-width: 1200px;
+}
+
+.references {
+  min-width: 15%;
+}
