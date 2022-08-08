@@ -58,7 +58,7 @@ static fibs(Int fibCount) -> Int[] {
 }
         `}</code></pre>
         <p>
-            The difference between the two code examples is that in the C# example, no data structure is allocated to iterate over the Fibonacci numbers. The implementation of the yield keyword under the hood is essentially a complex state-machine that waits to be iterated over. The back-end code can be visualized as something comparable to the next code example. This is a vast over-simplification of the state-machine, but it gets the point across<footnote id="csharp-yield-backend"></footnote>:
+            The difference between the two code examples is that in the C# example, no data structure is allocated to iterate over the Fibonacci numbers. The implementation of the yield keyword under the hood is essentially a complex state-machine that waits to be iterated over. The back-end code can be visualized as something comparable to the next code example. This is a vast over-simplification of the state-machine, but it gets the point across<FootnoteRef id="csharp-yield-backend"></FootnoteRef>:
         </p>
         <pre><code use:highlightCodeElement class="language-csharp" style="margin: 40px 0;">{`
 static void Main(string[] args)
@@ -153,7 +153,7 @@ static MyStateMachine Fibs(int fibCount)
             You add an extra keyword to the language vocabulary. Adding keywords to languages is not necessarily a bad thing, if they are reducing the amount of work you would have otherwise done in place of the keyword. In the case of the yield keyword, there is no substantial reduction of code that results from using it over mapping or filtering functionality. The benefit it gives is <i>performance</i>. You aren't allocating unnecessary memory, and thus the program runs faster.
         </p>
         <p>
-            Another drawback is that because the yield keyword does some sneaky things behind the scenes, the state-machine construct can create some obscure bugs as well<footnote id="obscure-behavior"></footnote>.
+            Another drawback is that because the yield keyword does some sneaky things behind the scenes, the state-machine construct can create some obscure bugs as well<FootnoteRef id="obscure-behavior"></FootnoteRef>.
         </p>
     </div>
 </div>
@@ -299,10 +299,13 @@ class FibsIterator implements Iterator<Int> {
 
 <div id="footnotes">
     <p class="header">Footnotes:</p>
-    <footnote id="csharp-yield-backend">A more in-depth explanation of the back-end implementation of the C# yield return state machine can be found <a href="https://startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword">here</a>.</footnote>
-    <footnote id="obscure-behavior"><a href="http://www.daedtech.com/getting-too-cute-with-c-yield-return">Obscure behavior</a> with C# yield return.</footnote>
+    <Footnote id="csharp-yield-backend">A more in-depth explanation of the back-end implementation of the C# yield return state machine can be found <a href="https://startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword">here</a>.</Footnote>
+    <Footnote id="obscure-behavior"><a href="http://www.daedtech.com/getting-too-cute-with-c-yield-return">Obscure behavior</a> with C# yield return.</Footnote>
 </div>
 
 <script>
+    import Footnote from '/src/components/Footnote.svelte';
+    import FootnoteRef from '/src/components/FootnoteRef.svelte'
+
     import {highlightCodeElement} from '/src/util';
 </script>

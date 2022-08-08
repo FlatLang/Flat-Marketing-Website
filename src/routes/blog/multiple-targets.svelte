@@ -14,7 +14,7 @@
         <p style="white-space: nowrap;">EXECUTABLE or SHARED LIBRARY</p>
     </div>
     <p>
-        You feed your source code into a compiler, and that compiler transforms it into an executable or shared library of some sort. You go from a high-level source code file, to a binary executable or shared library <footnote id="gcc-asm"></footnote>. Generally, this is how it has been done for a long time.
+        You feed your source code into a compiler, and that compiler transforms it into an executable or shared library of some sort. You go from a high-level source code file, to a binary executable or shared library <FootnoteRef id="gcc-asm"></FootnoteRef>. Generally, this is how it has been done for a long time.
     </p>
     <p>
         The Flat compiler works a little different. It supports outputting to any of the implemented output sources. For example: C, Java, and C# are depicted in the chart below.
@@ -463,9 +463,12 @@ var distance = SomeLibrary.distance(a, b); // 5.0
 
 <div id="footnotes">
     <p class="header">Footnotes:</p>
-    <footnote id="gcc-asm">Some compilers, <a href="http://stackoverflow.com/questions/137038/how-do-you-get-assembler-output-from-c-c-source-in-gcc">like GCC</a>, allow output of equivalent assembly code.</footnote>
+    <Footnote id="gcc-asm">Some compilers, <a href="http://stackoverflow.com/questions/137038/how-do-you-get-assembler-output-from-c-c-source-in-gcc">like GCC</a>, allow output of equivalent assembly code.</Footnote>
 </div>
 
 <script>
-    import {highlightCodeElement} from '/src/util';
+    import Footnote from '/src/components/Footnote.svelte';
+    import FootnoteRef from '/src/components/FootnoteRef.svelte';
+
+    import { highlightCodeElement } from '/src/util';
 </script>

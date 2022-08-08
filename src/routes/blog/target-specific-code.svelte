@@ -4,7 +4,7 @@
         If you are writing a program that you need to be available on a wide range of devices, then you will most likely come across a situation where you need to write some device-specific code. That is where target-specific code comes into play.
     </p>
     <p>
-        For example, say you are writing a mobile application. You want this app to be available on iPhone and Android. However, iPhone and Android apps are programmed with two different languages and APIs. To overcome this, you can either use a library that acts as an abstraction layer (more on this soon<!-- <footnote id="abstraction-layer"></footnote>-->), or you can write the target-specific code yourself. The first option offers a much cleaner and easier approach, while the second option can offer more fine tuned control on every aspect of your app.
+        For example, say you are writing a mobile application. You want this app to be available on iPhone and Android. However, iPhone and Android apps are programmed with two different languages and APIs. To overcome this, you can either use a library that acts as an abstraction layer (more on this soon<!-- <FootnoteRef id="abstraction-layer"></FootnoteRef>-->), or you can write the target-specific code yourself. The first option offers a much cleaner and easier approach, while the second option can offer more fine tuned control on every aspect of your app.
     </p>
     <p>
         I am going to demonstrate how to write target-specific code yourself in this post.
@@ -127,9 +127,12 @@ flatc MyApp -target java -d MyJavaApp
 
 <!--<div id="footnotes">
     <p class="header">Footnotes:</p>
-    <footnote id="abstraction-layer">Abstraction layer</footnote>
+    <Footnote id="abstraction-layer">Abstraction layer</Footnote>
 </div>-->
 
 <script>
+    import Footnote from '/src/components/Footnote.svelte';
+    import FootnoteRef from '/src/components/FootnoteRef.svelte'
+
     import {highlightCodeElement} from '/src/util';
 </script>

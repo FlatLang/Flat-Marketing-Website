@@ -223,7 +223,7 @@ void f(const char* s)
             A positive side-effect of the compiler doing the conversion instead of a human doing it is that the compiler can be sure that IntBarrel and Barrel are compatible. It is because of this that you can use <span class="pre">Barrel&lt;Int&gt;</span> for the <span class="pre type">myFunBarrelFunction</span> function!
         </p>
         <p>
-            With primitive generics you can have the <i>high-performance</i> of an <span class="pre">IntBarrel</span> with the <i>flexibility</i> of <span class="pre">Barrel&lt;Type&gt;</span>. This is where the <i>zero-cost</i> part of the name comes in. There is no compromise <footnote id="executable-size"></footnote>.
+            With primitive generics you can have the <i>high-performance</i> of an <span class="pre">IntBarrel</span> with the <i>flexibility</i> of <span class="pre">Barrel&lt;Type&gt;</span>. This is where the <i>zero-cost</i> part of the name comes in. There is no compromise <FootnoteRef id="executable-size"></FootnoteRef>.
         </p>
     </div>
 </div>
@@ -237,9 +237,12 @@ void f(const char* s)
 
 <div id="footnotes">
     <p class="header">Footnotes:</p>
-    <footnote id="executable-size">Except for a slightly larger executable filesize.</footnote>
+    <Footnote id="executable-size">Except for a slightly larger executable filesize.</Footnote>
 </div>
 
 <script>
+    import Footnote from '/src/components/Footnote.svelte';
+    import FootnoteRef from '/src/components/FootnoteRef.svelte'
+
     import {highlightCodeElement} from '/src/util';
 </script>

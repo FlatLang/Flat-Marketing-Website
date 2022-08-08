@@ -1,7 +1,7 @@
 <div id="what-are-generic-types">
     <h1>WHAT IS THREAD-LOCAL STORAGE (TLS)?</h1>
     <p>
-        Thread-local storage<footnote id="tls"></footnote> is global and static memory, but instead of being shared between threads, it is local to individual threads. To better explain this, I will briefly go over the types of memory in a program<footnote id="types-of-memory"></footnote>:
+        Thread-local storage<FootnoteRef id="tls"></FootnoteRef> is global and static memory, but instead of being shared between threads, it is local to individual threads. To better explain this, I will briefly go over the types of memory in a program<FootnoteRef id="types-of-memory"></FootnoteRef>:
     </p>
         <ul>
             <li><b>Data</b>: preinitialized modifiable static and global data</li>
@@ -238,10 +238,13 @@ class ThreadLocalExample {
 
 <div id="footnotes">
     <p class="header">Footnotes:</p>
-    <footnote id="tls">More information on thread-local storage can be found <a href="https://en.wikipedia.org/wiki/Thread-local_storage">here</a>.</footnote>
-    <footnote id="types-of-memory">More information can be found <a href="https://en.wikipedia.org/wiki/Data_segment">here</a>.</footnote>
+    <Footnote id="tls">More information on thread-local storage can be found <a href="https://en.wikipedia.org/wiki/Thread-local_storage">here</a>.</Footnote>
+    <Footnote id="types-of-memory">More information can be found <a href="https://en.wikipedia.org/wiki/Data_segment">here</a>.</Footnote>
 </div>
 
 <script>
+    import Footnote from '/src/components/Footnote.svelte';
+    import FootnoteRef from '/src/components/FootnoteRef.svelte'
+
     import {highlightCodeElement} from '/src/util';
 </script>
