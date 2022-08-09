@@ -1,4 +1,4 @@
-<div id="core-principles" style="margin-bottom: 40px;">
+<div use:anchorButton id="core-principles" style="margin-bottom: 40px;">
     <h1>CORE DESIGN PRINCIPLES</h1>
 
     <p>The Flat compiler has 3 core design principles that guide the development:</p>
@@ -10,7 +10,7 @@
     <p>These principles guide each decision that is made on the design of the compiler. </p>
 </div>
 
-<div id="separation-of-concerns">
+<div use:anchorButton id="separation-of-concerns">
     <h1 style="margin-bottom: 10px;">SEPARATION OF CONCERNS</h1>
     <hr>
     <p>
@@ -29,25 +29,25 @@
         <img class="down-arrow" src="/images/down-arrow.svg" /><br>
         <p style="white-space: nowrap;">EXECUTABLE</p>
     </div>
-    <div id="parser">
+    <div use:anchorButton id="parser">
         <h3>Parser</h3>
         <p>
             The parser's job is to parse the source code, from an <i>input language</i>, to an AST (Abstract Syntax Tree). "Input language" is italicised to bring attention to the fact that the compiler is not restricted to Flat code only. Any language can be compiled with the Flat compiler if a parser is written for that language. Because all of the parsing code is separated out into the parse phase, the parser is the <i>only</i> component that needs to be written to add support for an additional input language. For example, if you want to add support for compiling Swift code with the Flat compiler, the only component you need to write is the parser.
         </p>
     </div>
-    <div id="code-inspector">
+    <div use:anchorButton id="code-inspector">
         <h3>Code inspector</h3>
         <p>
             The code inspector is where type validation for the code is done. This is where most compile-time errors and warnings are generated. This phase makes sure the code is valid before handing it off to the code optimizer.
         </p>
     </div>
-    <div id="code-optimizer">
+    <div use:anchorButton id="code-optimizer">
         <h3>Code optimizer</h3>
         <p>
             This is the phase where the AST (Abstract Syntax Tree) is transformed. There are many reasons you would want to transform the AST including to: improve performance, obfuscate code (to help keep proprietary code private), minify code, inject custom functionality (e.g. benchmarking timers), and much more.
         </p>
     </div>
-    <div id="code-generator">
+    <div use:anchorButton id="code-generator">
         <h3>Code generator</h3>
         <p>
             The code generator is the inverse of the parser. This phase takes the AST (Abstract Syntax Tree) and writes it to a specified target language. In the same way that when you write a new parser you gain access to all of the libraries written in the language that is being parsed, when writing a new code generator for a specified language, that language gains access to all of <i>Flat's</i> libraries. This is great because it means that all code that you write in Flat is not only usable in a Flat project, it also can be used in the specified target language. For example, if you write a Swift code generator, then you can use any code written in Flat natively in a Swift project.
@@ -55,7 +55,7 @@
     </div>
 </div>
 
-<div id="extensibility">
+<div use:anchorButton id="extensibility">
     <h1 style="margin-bottom: 10px;">EXTENSIBILITY</h1>
     <hr>
     <p>
@@ -64,7 +64,7 @@
     <p>
         Here are some reasons you might want to extend each of the components of the compiler:
     </p>
-    <div id="parser-uses">
+    <div use:anchorButton id="parser-uses">
         <h3>Parsers</h3>
         <p>
             Writing a new parser allows any other language to have <i>all</i> of the functionality that Flat has. Once a parser is written for a language, you get all of the functionality of any existing code inspectors, optimizers, and code generators. You could even use the parser strictly as a translater to Flat by outputting the code with the Flat code generator.
@@ -73,7 +73,7 @@
             The separation of concerns of the parser is incredibly powerful because it allows for rapid development of new input languages. Each new language that can be compiled by the Flat compiler adds to the available libraries for all Flat programs.
         </p>
     </div>
-    <div id="code-inspector-uses">
+    <div use:anchorButton id="code-inspector-uses">
         <h3>Code inspectors</h3>
         <p>
             Reasons you would write extensions for this phase is to add more comprehensive, or better, warning and error messages. Examples of extensions that could be added include:
@@ -84,7 +84,7 @@
                 <p>You could throw compilation errors whenever a program does not fulfill a specified formatting convention. This is helpful when writing software in teams.</p>
             </div>
     </div>
-    <div id="code-optimizer-uses">
+    <div use:anchorButton id="code-optimizer-uses">
         <h3>Code optimizers</h3>
         <p>
             There are many reasons to write code optimizers. The ability to choose which optimizers you do or do not want to run during compilation gives fine tuned control to the user on how they want their program to be built. Some common reasons to write optimizer components include:
@@ -95,7 +95,7 @@
                 <p>You could add timers sections of the code to observe the performance of those areas.</p>
             </div>
     </div>
-    <div id="code-generator-uses">
+    <div use:anchorButton id="code-generator-uses">
         <h3>Code generators</h3>
         <p>
             Implementing a code generator means adding support for Flat on a new platform. As mentioned before, you can write code generators to other languages to give that language full support of any libraries written in Flat. Adding new language targets also adds the ability for Flat programs to run on any of the platforms and architectures that the target language can run on. For example, if you generate the code to the Javascript language, you can run all of your Flat code in the browser. You can also interact with the generated Flat code from any existing Javascript libraries.
@@ -103,7 +103,7 @@
     </div>
 </div>
 
-<div id="simplicity">
+<div use:anchorButton id="simplicity">
     <h1 style="margin-bottom: 10px;">SIMPLICITY</h1>
     <hr>
     <p>
@@ -114,9 +114,13 @@
     </p>
 </div>
 
-<div id="moving-forward" style="margin-top: 40px;">
+<div use:anchorButton id="moving-forward" style="margin-top: 40px;">
     <h2>MOVING FORWARD</h2>
     <p>
         This is only the first evolution of the compiler and I expect a lot to change in the future when there are more components built on it, as well as more different perspectives on it from the community.
     </p>
 </div>
+
+<script>
+    import { anchorButton } from '/src/util';
+</script>

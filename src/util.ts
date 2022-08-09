@@ -39,6 +39,25 @@ export const highlightCodeElement = async (element) => {
   }
 };
 
+export function anchorButton(element: HTMLElement) {
+    const anchor = document.createElement("a");
+    anchor.innerHTML = `<img src="/images/link.svg" alt="permalink" />`;
+    anchor.classList.add("anchor-button")
+    anchor.setAttribute("href", `#${element.id}`);
+
+    const child = element.children[0] as HTMLElement;
+
+    if (["h1", "h2", "h3", "h4", "h5", "h6"].indexOf(child.tagName.toLocaleLowerCase()) >= 0) {
+        child.appendChild(anchor);
+        child.classList.add("anchor-button-container");
+        child.style.position = "relative";
+    } else {
+        element.appendChild(anchor);
+        element.classList.add("anchor-button-container");
+        element.style.position = "relative";
+    }
+}
+
 export const jscd = (() => {
   if (typeof screen === 'undefined' || typeof navigator === 'undefined') {
     return {};

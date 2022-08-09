@@ -63,5 +63,5 @@ class HelloWorld {`{`}
 </div>
 
 <script>
-    import {highlightCodeElement} from '/src/util';
+    import { highlightCodeElement } from '/src/util';
 </script>

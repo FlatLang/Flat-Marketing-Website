@@ -1,4 +1,4 @@
-<div id="meaning">
+<div use:anchorButton id="meaning">
     <h1>WHAT DOES COMPILING TO MULTIPLE TARGETS REALLY MEAN?</h1>
     <p>
         If you have not programmed in a language that allows compilation to multiple different compilation targets, then you probably are unaware of the benefits (and possible drawbacks) of using a language that offers this feature. Furthermore, you might not even know what exactly compiling to multiple targets means.
@@ -106,9 +106,9 @@
     </table>
 </div>
 
-<div id="benefits">
+<div use:anchorButton id="benefits">
     <h1>BENEFITS OF MULTIPLE COMPILATION TARGETS</h1>
-    <div id="performance-analysis">
+    <div use:anchorButton id="performance-analysis">
         <h3>Better performance analysis</h3>
         <p>
             When you have more targets available to compile to, you have more data points on the performance of your programs from different perspectives. This allows for a whole new area of performance analysis that has not been touched. The ability to compare performance of a program from different languages gives insite comparable to adding a whole new dimension to the field. Building off of the previous example, consider the following compilation process:
@@ -201,7 +201,7 @@
         <p>
             So with a deeper look, you can see that the discrepency is largely caused by function c(). This gives you information that you would not have had otherwise if you had only been analyzing the performance based off of a single executable. With this information you can pinpoint with more certainty what parts of your software are bottlenecks created by the algorithms they use, or whether it is caused by the language architecture itself.
         </p>
-        <div id="bottleneck-types" style="margin-left: 25px; margin-bottom: 20px;">
+        <div use:anchorButton id="bottleneck-types" style="margin-left: 25px; margin-bottom: 20px;">
             <h4>Algorithmic bottlenecks</h4>
             <p>
                 Algorithmic bottlenecks are caused by the <i>program's</i> implementation in contrast to the <i>language's</i> implementation. These bottlenecks would detect areas of code that might use <a target="_blank" href="https://en.wikipedia.org/wiki/Bubble_sort">bubble sort</a> instead of a faster sorting algorithm like <a target="_blank" href="https://en.wikipedia.org/wiki/Quicksort">quicksort</a>.
@@ -376,7 +376,7 @@
             First of all, we can conclude that because the runtime is consistent for function d() across all of the languages, it is probably not a lanugage architecture bottleneck. Furthermore, because this function takes considerably longer to run than the other functions, it is most likely an algorithm bottleneck. The combination of <i>similar</i> and <i>long</i> runtimes across languages is how you can filter the algorithmic bottlenecks from non-algorithmic bottlenecks with automation.
         </p>
     </div>
-    <div id="better-compatibility">
+    <div use:anchorButton id="better-compatibility">
         <h3>Better compatibility</h3>
         <p>
             Compiling to multiple targets gives you better compatiblity. You are able to access all of the compatibility that the target language has. You can run your programs on low-level micro controllers that C can compile to, use Flat code coupled with microsoft code with ASP.NET, and much more.
@@ -444,7 +444,7 @@ var distance = SomeLibrary.distance(a, b); // 5.0
     </div>
 </div>
 
-<div id="drawbacks">
+<div use:anchorButton id="drawbacks">
     <h1>DRAWBACKS OF MULTIPLE COMPILATION TARGETS</h1>
     <p>
         When you deal with multiple targets, you can add the complexity of each language along with it. The Flat language is designed to make this as cheap as possible, but there is always going to be some work required when adding another compilation target, especially if the target language is a considerably different paradigm.
@@ -454,15 +454,15 @@ var distance = SomeLibrary.distance(a, b); // 5.0
     </p>
 </div>
 
-<div id="conclusion">
+<div use:anchorButton id="conclusion">
     <h2>Conclusion</h2>
     <p>
         With both sides of the argument given, I believe that the benefits greatly outweigh the possible drawbacks. The extra dimension that multiple targets adds to performance analysis alone is something worth investigating. Time will tell if multiple targets is as useful in practice as it is in theory.
     </p>
 </div>
 
-<div id="footnotes">
-    <p class="header">Footnotes:</p>
+<div use:anchorButton id="footnotes">
+    <h4>Footnotes:</h4>
     <Footnote id="gcc-asm">Some compilers, <a target="_blank" href="http://stackoverflow.com/questions/137038/how-do-you-get-assembler-output-from-c-c-source-in-gcc">like GCC</a>, allow output of equivalent assembly code.</Footnote>
 </div>
 
@@ -470,5 +470,5 @@ var distance = SomeLibrary.distance(a, b); // 5.0
     import Footnote from '/src/components/Footnote.svelte';
     import FootnoteRef from '/src/components/FootnoteRef.svelte';
 
-    import { highlightCodeElement } from '/src/util';
+    import { highlightCodeElement, anchorButton } from '/src/util';
 </script>

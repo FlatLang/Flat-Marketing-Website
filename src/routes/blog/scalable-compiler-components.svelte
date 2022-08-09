@@ -2,7 +2,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/scalable-compiler-components.css" />
 </svelte:head>
 
-<div id="compiler-components">
+<div use:anchorButton id="compiler-components">
     <h1>RUNTIME LOADED COMPILER COMPONENTS</h1>
     <p>
         The Flat compiler is being developed with the aim of being the most scalable compiler ever. The approach that is being taken to do this is to make use of <a href="/blog/runtime-module-loading">runtime module loading</a>.
@@ -12,7 +12,7 @@
     </p>
 </div>
 
-<div id="compiler-structure">
+<div use:anchorButton id="compiler-structure">
     <h1>COMPILER STRUCTURE</h1>
     <p>
         I wrote a blog post on the <a href="/blog/compiler-design">compiler design</a> and how it is had three core principles: Separation of concerns, extensibility, and simplicity. The source of how a lot of each of those principles are kept rely on the scalability of the compiler. Here is a refresher on the structure of the compiler:
@@ -129,7 +129,7 @@
     <p>
        The key to the scalability is to load these components at runtime. Each of these components resides in its own module.
     </p>
-    <div id="why-runtime">
+    <div use:anchorButton id="why-runtime">
         <h3>WHY AT RUNTIME?</h3>
         <p>
             Why is the key to scalability to load the components at runtime? Why not compile them with the rest of the code? Compiling in a single compilation unit requires all of the packages to be known and available at the time of the compile. This does not allow for adding, removing, or configuring the components limitlessly without recompiling the whole system.
@@ -140,13 +140,13 @@
     </div>
 </div>
 
-<div id="module-examples">
+<div use:anchorButton id="module-examples">
     <h1>HOW COMPILER MODULES ARE LOADED</h1>
     <p><i><b>Disclaimer</b>: The following code is just demo code to give a general idea of what the implementation looks like. There will be individual blog posts on each of the specific component types in the future where the implementation details and specifics are shared.</i></p>
     <p>
         The compiler looks for classes that extend or implement specific classes or interfaces to determine what components to run for each stage of compilation. After loading the Library (explained in the <a href="/blog/runtime-module-loading">previous blog post</a>), you can search for classes that extended or implement a specific class or interface with the Class.getClassesOfType function<FootnoteRef id="class-filtering"></FootnoteRef>.
     </p>
-    <div id="parsers">
+    <div use:anchorButton id="parsers">
         <h3>PARSER COMPONENTS</h3>
         <p>
             Let's look at an example Parser component to help illustrate this. When searching for a parser, the compiler searches for classes that extend the class "NodeParser". The NodeParser class contains function definitions used to parse statements that are iterated over. The base NodeParser class looks like this:
@@ -192,7 +192,7 @@ class AssignmentParser extends NodeParser {
             Applying this parser pattern to each different type of Node is what is required to create a Parser component. This kind of divide and conquer through using a <a target="_blank" href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive-descent parser</a> pattern is recommended to make the most of the Object oriented nature of Flat.
         </p>
     </div>
-    <div id="inspectors">
+    <div use:anchorButton id="inspectors">
         <h3>CODE INSPECTOR COMPONENTS</h3>
         <p>
             The code inspector components are run after the parsers have constructed the Abstract Syntax Tree (AST). The compiler's code inspector foundation code traverses the tree and calls upon the inspector components on the types of nodes that they are looking at.
@@ -250,7 +250,7 @@ class SpellCheckWarning extends CompilerWarning {
             The reason that the warning is <i>tossed</i> is because we do not want to halt execution of the code inspector for a spelling error. Toss allows you to save the warning to the output and continue the flow of the inspector.
         </p>
     </div>
-    <div id="optimizers">
+    <div use:anchorButton id="optimizers">
         <h3>CODE OPTIMIZER COMPONENTS</h3>
         <p>
             The code optimizer components are run after the Abstract Syntax Tree has been validated. Just as the code inspector components, the compiler's code optimizer foundation code traverses the tree and calls upon the optimizer components on the types of nodes that they are looking at.
@@ -320,7 +320,7 @@ class LoopUnrollTransformer extends TreeTransformer {
             This is an extremely basic implementation, but it should get the point across of how optimizer components are implemented.
         </p>
     </div>
-    <div id="generators">
+    <div use:anchorButton id="generators">
         <h3>CODE GENERATOR COMPONENTS</h3>
         <p>
             The code generator components are designed similarly to the parsers. The writer components extend a "NodeWriter" class that takes a Node and writes it to an output stream. The definition of the NodeWriter class looks like this:
@@ -350,15 +350,15 @@ class AssignmentWriter extends NodeWriter {
     </div>
 </div>
 
-<div id="disclaimer">
+<div use:anchorButton id="disclaimer">
     <h1>ANOTHER DISCLAIMER</h1>
     <p>
         The code shown here is definitely not a final product by any means. The framework is highly likely going to change over time after it has been worked with for a while. That said, it is a pretty good glimpse into what the compiler's components/modules are going to look like.
     </p>
 </div>
 
-<div id="footnotes">
-    <p class="header">Footnotes:</p>
+<div use:anchorButton id="footnotes">
+    <h4>Footnotes:</h4>
     <Footnote id="class-filtering">If some more fine-tuned control over the class type filtering is needed, then you can use the Class.ALL to filter upon. The Class.ALL static field contains all of the class declarations within the module.</Footnote>
 </div>
 
@@ -366,5 +366,5 @@ class AssignmentWriter extends NodeWriter {
     import Footnote from '/src/components/Footnote.svelte';
     import FootnoteRef from '/src/components/FootnoteRef.svelte'
 
-    import {highlightCodeElement} from '/src/util';
+    import { highlightCodeElement, anchorButton } from '/src/util';
 </script>

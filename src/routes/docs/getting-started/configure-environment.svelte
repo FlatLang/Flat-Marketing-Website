@@ -1,5 +1,5 @@
 <hr>
-<div id="windows">
+<div use:anchorButton id="windows">
     <h1>Configuring a Windows environment</h1>
     <h3>If you used the installer, then you should already have these configurations set up.</h3>
     <h4 ng-if="lowerOs == 'windows'" class="gray">We think you are running { osHeader }</h4>
@@ -29,14 +29,14 @@
     <div class="note">After setting the environment variables, you will need to restart any open command prompts or IDEs for the changes to take effect.</div>
 </div>
 <hr>
-<div id="mac">
+<div use:anchorButton id="mac">
     <h1>Configuring a Mac OS X environment</h1>
     <h4 ng-if="lowerOs == 'mac'" class="gray">We think you are running { osHeader }</h4>
 
 
 </div>
 <hr>
-<div id="linux">
+<div use:anchorButton id="linux">
     <h1>Configuring a Linux environment</h1>
     <h4 ng-if="lowerOs == 'linux'" class="gray">We think you are running { osHeader }</h4>
 
@@ -46,7 +46,7 @@
 
 <script>
     import { onMount } from 'svelte';
-    import { jscd } from '/src/util';
+    import { jscd, anchorButton } from '/src/util';
 
     let os = jscd.os || "";
     let osVersion = jscd.osVersion;
