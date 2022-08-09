@@ -25,6 +25,7 @@
 </svelte:head>
 
 <script>
+    import { browser } from '$app/env';
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import { blogPages, currentPage } from './blog';
@@ -36,8 +37,10 @@
     let searchValue;
 
     page.subscribe(() => {
-        searchValue = typeof searchValue === 'undefined' ? $page.url.searchParams.get("search") : searchValue;
-        limit = typeof limit === 'undefined' ? !$page.url.searchParams.get("showAll") : limit;
+        if (browser) {
+            searchValue = typeof searchValue === 'undefined' ? $page.url.searchParams.get("search") : searchValue;
+            limit = typeof limit === 'undefined' ? !$page.url.searchParams.get("showAll") : limit;
+        }
     });
 
     const toggleLimit = () => {
