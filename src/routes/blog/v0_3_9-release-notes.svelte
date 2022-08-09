@@ -9,7 +9,7 @@
         <div use:anchorButton id="null-function-references" class="release-note">
             <h4>Function references now compatible with null <Issue values={[{number: 377, repo: 'Flat'}]}></Issue></h4>
             <p>
-                More info on first class functions discussed in <a href="/blog}first-class-functions">this blog post</a>.
+                More info on first class functions discussed in <a href="/blog/first-class-functions">this blog post</a>.
             </p>
         </div>
         <div use:anchorButton id="bug-fixes" class="release-note">
