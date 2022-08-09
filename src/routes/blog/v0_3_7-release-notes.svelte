@@ -1,7 +1,7 @@
 <div>
     <h3><a href="/download">DOWNLOAD BETA v0.3.7</a></h3>
     <h1>NOTABLE CHANGES</h1>
-    <div use:anchorButton id="release-notes" class="release-notes" style="margin-bottom: 20px;">
+    <div id="release-notes" class="release-notes" style="margin-bottom: 20px;">
         <div use:anchorButton id="thread_local" class="release-note">
             <h4>Added thread_local annotation modifier</h4>
             <p>
