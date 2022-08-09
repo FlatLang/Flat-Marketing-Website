@@ -869,7 +869,7 @@ pre:not(.full) > code {
 a.anchor-button {
     position: absolute;
     left: 2em;
-    top: 50%;
+    top: .7em;
     display: none;
     transform: translate(calc(-100% - 3px), -50%);
 }
