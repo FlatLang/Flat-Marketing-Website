@@ -23,7 +23,14 @@ if (typeof document !== 'undefined') {
   window.addEventListener("hashchange", checkHash, false);
 
   document.addEventListener("click", ({target}) => {
-    const href = target?.getAttribute("href");
+    let current = target as HTMLElement;
+    let href: string;
+
+    while (!href && current && current !== document) {
+      href = current?.getAttribute("href");
+
+      current = current.parentElement;
+    }
 
     if (typeof href === 'string' && href[0] === '#') {
       const hash = window.location.hash;
