@@ -868,10 +868,10 @@ pre:not(.full) > code {
 
 a.anchor-button {
     position: absolute;
-    left: 10px;
-    top: 0px;
+    left: 2em;
+    top: 50%;
     display: none;
-    transform: translateX(-30%);
+    transform: translate(calc(-100% - 3px), -50%);
 }
 
 *:hover > a.anchor-button {
@@ -879,7 +879,11 @@ a.anchor-button {
 }
 
 * > a.anchor-button {
-    height: 1em;
+    height: .75em;
+}
+
+a.anchor-button > img {
+    vertical-align: top;
 }
 
 div > a.anchor-button > img {
@@ -887,10 +891,10 @@ div > a.anchor-button > img {
 }
 
 :not(div) > a.anchor-button > img {
-    height: 75%;
+    height: 100%;
 }
 
 .anchor-button-container {
-    margin-left: -32px;
-    padding-left: 32px;
+    margin-left: -2em;
+    padding-left: 2em;
 }
