@@ -16,7 +16,7 @@
                     <div ng-repeat="version in type.versions | orderBy:'-'">
                         <a
                           ng-repeat="os in type.oses"
-                          href="{ !disabled ? '/downloads/' + os.key + '/' + version + '/' + os.filename + os.extension : undefined }"
+                          href="#"
                           download="{ !disabled ? os.filename + os.extension : undefined }"
                           target="_blank"
                           class="download-button{disabled ? " disabled" : ""}"
