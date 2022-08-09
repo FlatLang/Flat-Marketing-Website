@@ -2,7 +2,7 @@
   <link rel="stylesheet" type="text/css" href="/styles/home.css" />
 </svelte:head>
 
-<div use:slide id="splashscreen" class="full">
+<div use:slide id="splashscreen" class="full slide">
   <a href="/">
       <h1 class="flat-text" style="color: rgba(0,0,0,0);">FLAT</h1>
       <h1 class="flat-text">FLAT</h1>
@@ -27,7 +27,7 @@
   </div>
 </div>
 {#if false}
-<div use:slide id="aspects">
+<div use:slide id="aspects" class="slide">
   <div>
       <div class="section primary primary-border">
           <table>
@@ -115,7 +115,7 @@
   </div>
 </div>
 {/if}
-<div use:slide id="code-example">
+<div use:slide id="code-example" class="slide">
   <h1 class="bold">FLAT SYNTAX</h1>
   <div class="example tree">
       <div class="description">
@@ -204,7 +204,7 @@ interface MyInterface {
     </div>
   </div>
 </div>
-<div use:slide id="code-comparisons" class="dark-background">
+<div use:slide id="code-comparisons" class="dark-background slide">
   <h1>FLAT COMPILATION TARGETS</h1>
   <div class="comparison">
       <div class="explanation transition from-left time08 delay0">
@@ -389,7 +389,7 @@ flat_Array* generate_array() {
       </div>
   </div>
 </div>
-<div use:slide id="target-benefits" class="white-background transparent">
+<div use:slide id="target-benefits" class="white-background transparent slide">
   <h1>BENEFITS OF MULTIPLE COMPILATION TARGETS</h1>
   <div class="component-container">
       <div class="component">
@@ -411,7 +411,7 @@ flat_Array* generate_array() {
   </div>
 </div>
 {#if false}
-<div use:slide id="stay-up-to-date2" class="stay-up-to-date dark-background monospace">
+<div use:slide id="stay-up-to-date2" class="stay-up-to-date dark-background monospace slide">
   <div class="content primary-border">
       <p class="header indent bold"><span class="secondary5">public</span> <span class="secondary4">stayUpToDate</span>(<span class="nowrap secondary1">String <span class="secondary4">name</span></span>, <span class="nowrap secondary1">String <span class="secondary4">email</span></span>) <span class="nowrap">-> <span class="secondary1">Email</span></span></p>
 

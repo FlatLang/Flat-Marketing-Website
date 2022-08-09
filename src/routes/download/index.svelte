@@ -6,7 +6,7 @@
     <div class="page-container">
         <Header></Header>
         <div class="content-container">
-            <div use:slide id="downloads">
+            <div use:slide id="downloads" class="slide">
                 <div><h1 class="primary">DOWNLOAD</h1></div>
                 <hr>
                 <h4 class="gray">We think you are running { osHeader }</h4>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div use:slide id="installation" ng-if="currentOs">
+            <div use:slide id="installation" ng-if="currentOs" class="slide">
                 <div><h1 class="primary">INSTALLATION</h1></div>
                 <hr>
                 <h4>Pre-requisites</h4>
