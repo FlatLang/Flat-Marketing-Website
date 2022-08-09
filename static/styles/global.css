@@ -865,3 +865,32 @@ pre:not(.full) > code {
 [id] {
     scroll-margin-top: 20px;
 }
+
+a.anchor-button {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    display: none;
+    transform: translateX(-30%);
+}
+
+*:hover > a.anchor-button {
+    display: inline;
+}
+
+* > a.anchor-button {
+    height: 1em;
+}
+
+div > a.anchor-button > img {
+    height: 20px;
+}
+
+:not(div) > a.anchor-button > img {
+    height: 75%;
+}
+
+.anchor-button-container {
+    margin-left: -32px;
+    padding-left: 32px;
+}

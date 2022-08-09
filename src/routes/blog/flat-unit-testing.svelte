@@ -1,4 +1,4 @@
-<div id="xunit">
+<div use:anchorButton id="xunit">
     <h1>XUNIT TESTING</h1>
     <p>
         <a href="https://en.wikipedia.org/wiki/XUnit">xUnit</a> testing is a common paradigm of unit testing that was birthed from <a target="_blank" href="https://en.wikipedia.org/wiki/Smalltalk">Smalltalk's</a> <a target="_blank" href="https://en.wikipedia.org/wiki/SUnit">SUnit</a>. xUnit testing revolves around a few common testing structures: test runners, test cases, test fixtures, and test suites.
@@ -11,9 +11,13 @@
     </ul>
 </div>
 
-<div id="nest">
+<div use:anchorButton id="nest">
     <h1>FLAT'S UNIT TESTING LIBRARY</h1>
     <p>
         Flat's unit testing library is named <a target="_blank" href="https://github.com/FlatLang/Nest">Nest</a>, which stands for <b>N</b>ova T<b>est</b>. Nest follows the xUnit paradigm of having test runners, test cases, test fixtures, and test suites.
     </p>
 </div>
+
+<script>
+    import { anchorButton } from '/src/util';
+</script>

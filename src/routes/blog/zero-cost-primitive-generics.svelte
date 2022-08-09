@@ -1,4 +1,4 @@
-<div id="what-are-generic-types">
+<div use:anchorButton id="what-are-generic-types">
     <h1>WHAT ARE GENERICS DATA TYPES?</h1>
     <p>
         Before getting into what <i>zero-cost primitive</i> generic types are, lets cover what regular generic data types are. Generic data types are parameters you can specify for a class that are used to generalize some data types used within the class. To better understand this, consider an example:
@@ -51,9 +51,9 @@ myGenericFunc<Shell, Monkey>(5, new Shell(), new Monkey())
     `}</code></pre>
 </div>
 
-<div id="zero-cost-primitive-generics">
+<div use:anchorButton id="zero-cost-primitive-generics">
     <h1>ZERO-COST PRIMITIVE GENERICS</h1>
-    <div id="the-problem">
+    <div use:anchorButton id="the-problem">
         <h3>THE PROBLEM</h3>
         <p>
             In the case of <i>zero-cost primitive</i> generic types, I will focus on this example:
@@ -117,7 +117,7 @@ myFunBarrelFunction(barrelOfNumbers)
             In Flat, <b>reusability</b> is a core design principle. It was quite evident that we needed an elegant solution to this.
         </p>
     </div>
-    <div id="the-solution">
+    <div use:anchorButton id="the-solution">
         <h3>THE SOLUTION</h3>
         <p>
             In C++ this is a common code structure that you use when you are doing generic programming: <a target="_blank" href="https://www.tutorialspoint.com/cplusplus/cpp_templates.htm">templates</a>. When you use a template in C++, a unique set of code is compiled for each of the different types that is used with the template. For instance:
@@ -228,15 +228,15 @@ void f(const char* s)
     </div>
 </div>
 
-<div id="conclusion">
+<div use:anchorButton id="conclusion">
     <h1>Conclusion</h1>
     <p>
         When using Flat, the last thing we want to happen is people be afraid to write reusable code because it might affect performance. Adding support for converting primitive generic argument types was a necessary step to let generic parameters truly reach their full potential. It is also worth noting that in the new compiler, the functionality to convert primitive generic argument types will be optional (on by default). If you are compiling to a language that uses templates in place of generic parameters (e.g. C++ and Rust), there is no need to do the conversions.
     </p>
 </div>
 
-<div id="footnotes">
-    <p class="header">Footnotes:</p>
+<div use:anchorButton id="footnotes">
+    <h4>Footnotes:</h4>
     <Footnote id="executable-size">Except for a slightly larger executable filesize.</Footnote>
 </div>
 
@@ -244,5 +244,5 @@ void f(const char* s)
     import Footnote from '/src/components/Footnote.svelte';
     import FootnoteRef from '/src/components/FootnoteRef.svelte'
 
-    import {highlightCodeElement} from '/src/util';
+    import { highlightCodeElement, anchorButton } from '/src/util';
 </script>

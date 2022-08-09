@@ -10,13 +10,13 @@
         <li><a href="#bug-fixes">Bug fixes</a></li>
     </ul>
     <div id="release-notes" class="release-notes" style="margin-bottom: 20px;">
-        <div id="first-class-functions" class="release-note">
+        <div use:anchorButton id="first-class-functions" class="release-note">
             <h4>Added full support for first-class functions <Issue values={[{number: 371, repo: 'Flat'}, {number: 374, repo: 'Flat'}, {number: 375, repo: 'Flat'}, {number: 376, repo: 'Flat'}]}></Issue></h4>
             <p>
                 More info on first class functions discussed in <a href="/blog/first-class-functions">this blog post</a>.
             </p>
         </div>
-        <div id="this-modifier" class="release-note">
+        <div use:anchorButton id="this-modifier" class="release-note">
             <h4>Added 'this' modifier for constructor parameters</h4>
             <p>
                 Used to assign passed parameter value to field in parent class with same name as parameter. Example:
@@ -52,7 +52,7 @@ Console.writeLine(myClass.myField) // outputs 10
                 But reduces code duplication.
             </p>
         </div>
-        <div id="auto-final" class="release-note">
+        <div use:anchorButton id="auto-final" class="release-note">
             <h4>Updated declarations to default to final <Issue values={[{number: 368, repo: 'Flat'}]}></Issue></h4>
             <p>
                 The default state of variable declarations is now final. Final variables are good practice when writing software, and the easier it is to make final variables the better.
@@ -86,13 +86,13 @@ var x = 10
 x = 50 // valid
             `}</code></pre>
         </div>
-        <div id="unit-testing" class="release-note">
+        <div use:anchorButton id="unit-testing" class="release-note">
             <h4>Added unit testing functionality with Flat <a target="_blank" href="https://github.com/FlatLang/Nest">Nest</a></h4>
             <p>
                 There will be a blog post on how to use Flat Nest's unit testing framework <a href="/blog/flat-unit-testing">here</a>.
             </p>
         </div>
-        <div id="bug-fixes" class="release-note">
+        <div use:anchorButton id="bug-fixes" class="release-note">
             <h4>General bug fixes <Issue values={[{number: 372, repo: 'Flat'}]}></Issue></h4>
             <p>
                 Fixed private function prototypes not being generated in C <Issue values={[{number: 372, repo: 'Flat'}]}></Issue>.
@@ -104,5 +104,5 @@ x = 50 // valid
 <script>
     import Issue from '/src/components/Issue.svelte';
 
-    import {highlightCodeElement} from '/src/util';
+    import { highlightCodeElement, anchorButton } from '/src/util';
 </script>

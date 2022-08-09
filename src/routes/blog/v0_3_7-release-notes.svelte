@@ -1,26 +1,26 @@
 <div>
     <h3><a href="/download">DOWNLOAD BETA v0.3.7</a></h3>
     <h1>NOTABLE CHANGES</h1>
-    <div id="release-notes" class="release-notes" style="margin-bottom: 20px;">
-        <div id="thread_local" class="release-note">
+    <div use:anchorButton id="release-notes" class="release-notes" style="margin-bottom: 20px;">
+        <div use:anchorButton id="thread_local" class="release-note">
             <h4>Added thread_local annotation modifier</h4>
             <p>
                 As explained in <a href="/blog/thread-local-storage">this blog post</a>, allows thread local storage (TLS).
             </p>
         </div>
-        <div id="compiler_visible" class="release-note">
+        <div use:anchorButton id="compiler_visible" class="release-note">
             <h4>Added compiler_visible annotation modifier</h4>
             <p>
                 New annotation/modifier used to set a field or function's visbility to public before code-gen.
             </p>
         </div>
-        <div id="external_name" class="release-note">
+        <div use:anchorButton id="external_name" class="release-note">
             <h4>Added external_name annotation modifier</h4>
             <p>
                 New annotation/modifier used to set the outputted name in the external source.
             </p>
         </div>
-        <div id="tls-exception-data" class="release-note">
+        <div use:anchorButton id="tls-exception-data" class="release-note">
             <h4>Updated ExceptionData to be kept track of through <a href="/blog/thread-local-storage">TLS</a> instead of being passed by parameter</h4>
             <p>
                 ExceptionData is a structure that is used to keep track of what types of exceptions are being caught and where they are being caught at. Previously, every function required an ExceptionData parameter to be supplied. This offers slightly better performance over TLS, but is not good for compatibility of function references across external code. For instance, if an external C function were to interface with a Flat function reference, it would have to specify the second parameter as ExceptionData:
@@ -68,7 +68,7 @@ void my_external_func(funcReference ref) {
                 This approach is cleaner and <b>safer</b>. Because the exceptionData variable is referenced from TLS by Flat generated code, in instances such as the previous code where external code is calling Flat generated code, the ExceptionData is always available. In the previous code, if an exception was thrown somewhere insided the funcReference function call, there would have been a segmentation fault. This is because we were passing in 0 as the ExceptionData. Referencing it from TLS removes the responsibility from the user to pass ExceptionData in external code.
             </p>
         </div>
-        <div id="bug-fixes" class="release-note">
+        <div use:anchorButton id="bug-fixes" class="release-note">
             <h4>General bug fixes <Issue values={[{number: 367, repo: 'Flat'}]}></Issue></h4>
             <p>
                 Fixed some bugs with primtive overloads <Issue values={[{number: 367, repo: 'Flat'}]}></Issue>.
@@ -80,5 +80,5 @@ void my_external_func(funcReference ref) {
 <script>
     import Issue from '/src/components/Issue.svelte';
 
-    import {highlightCodeElement} from '/src/util';
+    import { highlightCodeElement, anchorButton } from '/src/util';
 </script>
