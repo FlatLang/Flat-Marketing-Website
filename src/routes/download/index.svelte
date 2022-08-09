@@ -40,7 +40,8 @@
                     </div>
                 </div>
             </div>
-            <div use:slide id="installation" ng-if="currentOs" class="slide">
+            {#if currentOs}
+            <div use:slide id="installation" class="slide">
                 <div><h1 class="primary">INSTALLATION</h1></div>
                 <hr>
                 <h4>Pre-requisites</h4>
@@ -50,6 +51,7 @@
                 </ul>
                 <p>After the installer has finished, you are ready to <a href="/docs/getting-started/hello-world">write your first program</a>.</p>
             </div>
+            {/if}
         </div>
         <Footer></Footer>
     </div>
