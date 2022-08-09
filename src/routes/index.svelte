@@ -397,7 +397,7 @@ flat_Array* generate_array() {
           <p>The ability to compile and run the same program on multiple different devices and architectures allows more in-depth performance analysis to take place. Instead of strictly gauging the performance of the program based on the single language it was written in, you are able take a step back and compare the performance against all supported languages and the devices they can be run on. This capability changes the performance analysis from being focused on the specific language architecture to being focused on the performance of the algorithms used in the Flat program.</p>
       </div>
       <div class="component transition from-invisible time25 delay0" style="text-align: center;">
-          <img class="transition from-right time10 delay0" style="width: 90%; max-width: 400px;" src="/images/chart.svg" />
+          <img loading="lazy" class="transition from-right time10 delay0" style="width: 90%; max-width: 400px;" src="/images/chart.svg" />
       </div>
   </div>
   <div class="component-container">
@@ -406,7 +406,7 @@ flat_Array* generate_array() {
           <p>The potential to compile to multiple target languages eliminates much of the need to learn a new language and/or environment when tackling new devices for your software. Any libraries that are written in Flat are available for any device and architecture that you are focusing on for your product. Not only does this make it easier for existing developers of the product, it also makes it easier to integrate new developers into the workflow without needing to expose a whole new environment to them.</p>
       </div>
       <div class="component transition from-invisible time25 delay02" style="text-align: center;">
-          <img class="transition from-left time10 delay02" style="width: 90%; max-width: 400px;;" src="/images/compatibility.svg" />
+          <img loading="lazy" class="transition from-left time10 delay02" style="width: 90%; max-width: 400px;;" src="/images/compatibility.svg" />
       </div>
   </div>
 </div>
