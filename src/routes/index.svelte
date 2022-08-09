@@ -1,9 +1,8 @@
 <svelte:head>
   <link rel="stylesheet" type="text/css" href="/styles/home.css" />
-  <script src="/js/slide.js"></script>
 </svelte:head>
 
-<slide id="splashscreen" class="full">
+<div use:slide id="splashscreen" class="full">
   <a href="/">
       <h1 class="flat-text" style="color: rgba(0,0,0,0);">FLAT</h1>
       <h1 class="flat-text">FLAT</h1>
@@ -26,9 +25,9 @@
           </a>
       </div>
   </div>
-</slide>
+</div>
 {#if false}
-<slide id="aspects">
+<div use:slide id="aspects">
   <div>
       <div class="section primary primary-border">
           <table>
@@ -114,9 +113,9 @@
           </table>
       </div>
   </div>
-</slide>
+</div>
 {/if}
-<slide id="code-example">
+<div use:slide id="code-example">
   <h1 class="bold">FLAT SYNTAX</h1>
   <div class="example tree">
       <div class="description">
@@ -204,8 +203,8 @@ interface MyInterface {
       </div>
     </div>
   </div>
-</slide>
-<slide id="code-comparisons" class="dark-background">
+</div>
+<div use:slide id="code-comparisons" class="dark-background">
   <h1>FLAT COMPILATION TARGETS</h1>
   <div class="comparison">
       <div class="explanation transition from-left time08 delay0">
@@ -389,8 +388,8 @@ flat_Array* generate_array() {
           <div class="bracket-cover hack transition time08 delay04"></div>
       </div>
   </div>
-</slide>
-<slide id="target-benefits" class="white-background transparent">
+</div>
+<div use:slide id="target-benefits" class="white-background transparent">
   <h1>BENEFITS OF MULTIPLE COMPILATION TARGETS</h1>
   <div class="component-container">
       <div class="component">
@@ -410,9 +409,9 @@ flat_Array* generate_array() {
           <img class="transition from-left time10 delay02" style="width: 90%; max-width: 400px;;" src="/images/compatibility.svg" />
       </div>
   </div>
-</slide>
+</div>
 {#if false}
-<slide id="stay-up-to-date2" class="stay-up-to-date dark-background monospace">
+<div use:slide id="stay-up-to-date2" class="stay-up-to-date dark-background monospace">
   <div class="content primary-border">
       <p class="header indent bold"><span class="secondary5">public</span> <span class="secondary4">stayUpToDate</span>(<span class="nowrap secondary1">String <span class="secondary4">name</span></span>, <span class="nowrap secondary1">String <span class="secondary4">email</span></span>) <span class="nowrap">-> <span class="secondary1">Email</span></span></p>
 
@@ -421,19 +420,13 @@ flat_Array* generate_array() {
       <p class="indent"><span class="secondary4">stayUpToDate</span>(<span class="nowrap"><span class="secondary4">name</span>: <span class="secondary3">"<span contenteditable="true" placeholder="your name" class="secondary3 secondary3-border"></span>"</span>,</span> <span class="nowrap"><span class="secondary4">email</span>: <span class="secondary3">"<span contenteditable="true" placeholder="your@email.com" class="secondary3 secondary3-border"></span>"</span></span>)</p>
       <p class="comment bold">// hit enter to submit</p>
   </div>
-</slide>
+</div>
 {/if}
 <Footer></Footer>
 
 <script>
     import Footer from '/src/components/Footer.svelte';
 
-    import {onMount} from 'svelte';
-    import {highlightCodeElement} from '/src/util';
-
-    onMount(async () => {
-      if (typeof initSlide === 'function') {
-        initSlide();
-      }
-    });
+    import { highlightCodeElement } from '/src/util';
+    import { slide } from '/src/slide';
 </script>

@@ -1,13 +1,12 @@
 <svelte:head>
   <link rel="stylesheet" type="text/css" href="/styles/download.css" />
-  <script src="/js/slide.js"></script>
 </svelte:head>
 
 <div class="white-background">
     <div class="page-container">
         <Header></Header>
         <div class="content-container">
-            <slide id="downloads">
+            <div use:slide id="downloads">
                 <div><h1 class="primary">DOWNLOAD</h1></div>
                 <hr>
                 <h4 class="gray">We think you are running { osHeader }</h4>
@@ -40,8 +39,8 @@
                         </a>
                     </div>
                 </div>
-            </slide>
-            <slide id="installation" ng-if="currentOs">
+            </div>
+            <div use:slide id="installation" ng-if="currentOs">
                 <div><h1 class="primary">INSTALLATION</h1></div>
                 <hr>
                 <h4>Pre-requisites</h4>
@@ -50,7 +49,7 @@
                     <li>GCC compiler <span class="why-java gray" ng-init="whyGcc = false" ng-click="whyGcc = true"><span ng-if="!whyGcc">why gcc?</span><span ng-if="whyGcc">C is the most mature compilation target currently, and is the only language that comes pre-packaged with the installation.</span></span></li>
                 </ul>
                 <p>After the installer has finished, you are ready to <a href="/docs/getting-started/hello-world">write your first program</a>.</p>
-            </slide>
+            </div>
         </div>
         <Footer></Footer>
     </div>
@@ -60,8 +59,8 @@
     import Header from '/src/components/Header.svelte';
     import Footer from '/src/components/Footer.svelte';
 
-    import {onMount} from 'svelte';
-    import {highlightCodeElement, jscd} from '/src/util';
+    import { jscd } from '/src/util';
+    import { slide } from '/src/slide';
 
     let buildVersion;
     let disabled = false;
@@ -108,11 +107,5 @@
 
     let osArray = Object.keys(oses).map((key) => {
         return oses[key];
-    });
-
-    onMount(async () => {
-    if (typeof initSlide === 'function') {
-        initSlide();
-    }
     });
 </script>
