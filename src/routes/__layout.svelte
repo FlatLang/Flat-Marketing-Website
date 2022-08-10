@@ -15,5 +15,3 @@
 </script>
 
 <slot></slot>
-<link type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet" />
-<link type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
