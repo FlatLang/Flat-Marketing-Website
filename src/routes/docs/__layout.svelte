@@ -25,6 +25,8 @@
 </script>
 
 <svelte:head>
+  <title>Docs | Flat Programming Language</title>
+
   <link href="/styles/docs.css" rel="preload" as="style" />
   <link href="/styles/docs.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
   <link href="/styles/blog-styles.css" rel="preload" as="style" />

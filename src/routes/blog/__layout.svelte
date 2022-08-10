@@ -101,6 +101,8 @@
 </script>
 
 <svelte:head>
+  <title>Blog | Flat Programming Language</title>
+
   <link href="/styles/docs.css" rel="preload" as="style" />
   <link href="/styles/docs.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
   <link href="/styles/blog.css" rel="preload" as="style" />
