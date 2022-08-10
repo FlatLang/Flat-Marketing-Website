@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: monospace;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -55,7 +55,7 @@ input {
     border-bottom: 2px solid;
     width: 200px;
     font-size: 25px;
-    font-family: 'Roboto Mono', sans-serif;
+    font-family: monospace;
 }
 
 @-webkit-keyframes blinking {
@@ -183,7 +183,7 @@ a {
 }
 
 .monospace {
-    font-family: 'Roboto Mono', sans-serif;
+    font-family: monospace;
 }
 
 .home-navigation {
@@ -259,7 +259,7 @@ pre {
 }
 
 code.hljs {
-    font-family: 'Roboto Mono', sans-serif;
+    font-family: monospace;
 
     word-break: break-word;
 
@@ -717,7 +717,7 @@ tree-browser {
 }
 
 .tree-browser .arrow {
-    margin-top: 5px;
+    margin-top: 1px;
 }
 
 .arrow {
