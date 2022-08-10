@@ -25,8 +25,10 @@
 </script>
 
 <svelte:head>
-  <link rel="stylesheet" type="text/css" href="/styles/docs.css" />
-  <link rel="stylesheet" type="text/css" href="/styles/blog-styles.css" />
+  <link href="/styles/docs.css" rel="preload" as="style" />
+  <link href="/styles/docs.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
+  <link href="/styles/blog-styles.css" rel="preload" as="style" />
+  <link href="/styles/blog-styles.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
 <style>
