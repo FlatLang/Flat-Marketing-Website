@@ -24,7 +24,12 @@
       <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold">versatility</span> and <span class="bold">rapid development</span></h4>
       <div class="download">
           <a href="/download">
-              <img src="/images/download-square.svg" /><!--
+              <img
+                src="/images/download-square.svg"
+                alt="Download Page"
+                width="100%"
+                height="100%"
+              /><!--
               --><div>
                   <p>DOWNLOAD</p>
                   <p><span class="bold">BETA BUILD</span></p>
