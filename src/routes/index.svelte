@@ -14,7 +14,7 @@
   <div class="centered">
       <img id="logo-main" class="glow-logo" src="/images/hex-transparent-white.svg" />
       <h2 class="bold" style="margin: 60px 0 30px 0;">FLAT PROGRAMMING LANGUAGE</h2>
-      <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold">speed</span> and <span class="bold">ease of use</span></h4>
+      <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold">versatility</span> and <span class="bold">rapid development</span></h4>
       <div class="download">
           <a href="/download">
               <img src="/images/download-square.svg" /><!--
