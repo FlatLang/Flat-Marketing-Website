@@ -8,18 +8,7 @@ html, body {
 
 body {
     font-family: monospace;
-}
-
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
-}
-
-[ng-click] {
-    cursor: pointer;
-}
-
-a[ng-click] {
-    text-decoration: underline;
+    font-size: 16px;
 }
 
 #main-view {
@@ -33,6 +22,30 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 34px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 25px;
+}
+
+h5 {
+    font-size: 24px;
+}
+
+h6 {
+    font-size: 23px;
 }
 
 p {
