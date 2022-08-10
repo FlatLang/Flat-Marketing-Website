@@ -1,11 +1,3 @@
-export const highlightCode = async () => {
-  if (typeof document !== 'undefined') {
-    document.querySelectorAll("pre code").forEach((code) => {
-      hljs.highlightElement(code);
-    });
-  }
-};
-
 export const highlightCodeElement = async (element) => {
   let html = element.innerHTML.trim();
 
