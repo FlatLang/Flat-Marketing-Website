@@ -14,7 +14,7 @@
 	-ms-filter: blur(5px);
 	filter: blur(5px);
 
-	background-image: url(/images/code.jpg);
+	background-image: url(/images/code.webp);
 	background-size: cover;
 	background-position: left;
 
@@ -309,7 +309,7 @@
 
 	background-color: #fff;
 
-	background-image: url(/images/code2.png);
+	background-image: url(/images/code2.webp);
 	background-size: cover;
 	background-position: left;
 }
