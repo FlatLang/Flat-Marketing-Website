@@ -12,7 +12,14 @@
       <a class="documentation-link" href="/docs">DOCUMENTATION</a>
   </div>
   <div class="centered">
-      <img id="logo-main" class="glow-logo" src="/images/hex-transparent-white.svg" />
+      <img
+        id="logo-main"
+        class="glow-logo"
+        src="/images/hex-transparent-white.svg"
+        alt="Flat Logo"
+        width="100%"
+        height="100%"
+      />
       <h2 class="bold" style="margin: 60px 0 30px 0;">FLAT PROGRAMMING LANGUAGE</h2>
       <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold">versatility</span> and <span class="bold">rapid development</span></h4>
       <div class="download">
@@ -397,7 +404,15 @@ flat_Array* generate_array() {
           <p>The ability to compile and run the same program on multiple different devices and architectures allows more in-depth performance analysis to take place. Instead of strictly gauging the performance of the program based on the single language it was written in, you are able take a step back and compare the performance against all supported languages and the devices they can be run on. This capability changes the performance analysis from being focused on the specific language architecture to being focused on the performance of the algorithms used in the Flat program.</p>
       </div>
       <div class="component transition from-invisible time25 delay0" style="text-align: center;">
-          <img loading="lazy" class="transition from-right time10 delay0" style="width: 90%; max-width: 400px;" src="/images/chart.svg" />
+          <img
+            loading="lazy"
+            class="transition from-right time10 delay0"
+            style="width: 90%; max-width: 400px;"
+            src="/images/chart.svg"
+            alt="Chart"
+            width="100%"
+            height="100%"
+          />
       </div>
   </div>
   <div class="component-container">
@@ -406,7 +421,15 @@ flat_Array* generate_array() {
           <p>The potential to compile to multiple target languages eliminates much of the need to learn a new language and/or environment when tackling new devices for your software. Any libraries that are written in Flat are available for any device and architecture that you are focusing on for your product. Not only does this make it easier for existing developers of the product, it also makes it easier to integrate new developers into the workflow without needing to expose a whole new environment to them.</p>
       </div>
       <div class="component transition from-invisible time25 delay02" style="text-align: center;">
-          <img loading="lazy" class="transition from-left time10 delay02" style="width: 90%; max-width: 400px;;" src="/images/compatibility.svg" />
+          <img
+            loading="lazy"
+            class="transition from-left time10 delay02"
+            style="width: 90%; max-width: 400px;"
+            src="/images/compatibility.svg"
+            alt="Compatibility"
+            width="100%"
+            height="100%"
+        />
       </div>
   </div>
 </div>
