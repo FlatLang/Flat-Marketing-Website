@@ -21,7 +21,8 @@
 </div>
 
 <svelte:head>
-    <link rel="stylesheet" type="text/css" href="/styles/blog-home.css" />
+  <link href="/styles/blog-home.css" rel="preload" as="style" />
+  <link href="/styles/blog-home.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
 <script>

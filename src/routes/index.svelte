@@ -1,5 +1,6 @@
 <svelte:head>
-  <link rel="stylesheet" type="text/css" href="/styles/home.css" />
+  <link href="/styles/home.css" rel="preload" as="style" />
+  <link href="/styles/home.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
 <div use:slide id="splashscreen" class="full slide">
