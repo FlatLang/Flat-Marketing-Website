@@ -1,4 +1,6 @@
 <svelte:head>
+  <title>Flat Programming Language</title>
+
   <link href="/styles/home.css" rel="preload" as="style" />
   <link href="/styles/home.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>

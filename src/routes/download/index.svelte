@@ -1,4 +1,6 @@
 <svelte:head>
+  <title>Download | Flat Programming Language</title>
+
   <link href="/styles/download.css" rel="preload" as="style" />
   <link href="/styles/download.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
