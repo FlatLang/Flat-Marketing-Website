@@ -14,7 +14,7 @@
         <p style="white-space: nowrap;">EXECUTABLE or SHARED LIBRARY</p>
     </div>
     <p>
-        You feed your source code into a compiler, and that compiler transforms it into an executable or shared library of some sort. You go from a high-level source code file, to a binary executable or shared library <FootnoteRef id="gcc-asm"></FootnoteRef>. Generally, this is how it has been done for a long time.
+        You feed your source code into a compiler, and that compiler transforms it into an executable or shared library of some sort. You go from a high-level source code file, to a binary executable or shared library<FootnoteRef id="gcc-asm"></FootnoteRef>. Generally, this is how it has been done for a long time.
     </p>
     <p>
         The Flat compiler works a little different. It supports outputting to any of the implemented output sources. For example: C, Java, and C# are depicted in the chart below.
