@@ -386,7 +386,7 @@
         </p>
         <pre><code use:highlightCodeElement class="language-flat" style="margin-top: 40px;">{`
 class SomeLibrary {
-    public static distance(Point a, Point b) -&gt; Double {
+    public static distance(Point a, Point b) -> Double {
         // ... calculate distance ...
     }
 }
