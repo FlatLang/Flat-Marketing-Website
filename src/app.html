@@ -14,11 +14,28 @@
 		<link rel="stylesheet" type="text/css" href="/styles/slide.css"></link>
 		<link rel="stylesheet" type="text/css" href="/styles/global-mobile.css" media="screen and (orientation: portrait)"></link>
 		<link rel="stylesheet" type="text/css" href="/styles/flow-boxes.css" />
-		<script src="%sveltekit.assets%/js/highlight.min.js"></script>
-		<script src="%sveltekit.assets%/js/flat.js"></script>
 		<script>
-			hljs.registerLanguage('flat', hljsFlat);
+			(() => {
+				var listeners = [];
+
+				window.hljsLoaded = false;
+				window.onHljsLoaded = function (listener) {
+					if (window.hljsLoaded) {
+						listener();
+					} else {
+						listeners.push(listener);
+					}
+				};
+				window.triggerHljsLoaded = function () {
+					window.hljsLoaded = true;
+					hljs.registerLanguage('flat', hljsFlat);
+					listeners.forEach(function (l) { l(); });
+					listeners = [];
+				};
+			})();
 		</script>
+		<script src="%sveltekit.assets%/js/highlight.min.js" defer></script>
+		<script src="%sveltekit.assets%/js/flat.js" defer onload="window.triggerHljsLoaded();"></script>
 		%sveltekit.head%
 	</head>
 	<body>

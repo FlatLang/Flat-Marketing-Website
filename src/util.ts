@@ -1,34 +1,32 @@
 export const highlightCodeElement = async (element) => {
   let html = element.innerHTML.trim();
 
-  hljs.highlightElement(element);
+  window.onHljsLoaded(() => {
+    hljs.highlightElement(element);
 
-  html = element.innerHTML.trim();
+    html = element.innerHTML.trim();
 
-  const ahtml = html.split(/\n/g).map((line: string) => {
-    const content = line.trim();
+    const ahtml = html.split(/\n/g).map((line: string) => {
+      const content = line.trim();
 
-    if (content.length > 0) {
-      const whitespace = line.substring(0, line.indexOf(content[0]));
-      const contentElement = `<p class="indent" style="white-space: pre-wrap;">${whitespace}${content}</p>`;
+      if (content.length > 0) {
+        const whitespace = line.substring(0, line.indexOf(content[0]));
+        const contentElement = `<p class="indent" style="white-space: pre-wrap;">${whitespace}${content}</p>`;
 
-      // if (whitespace) {
-      //   return `<span style="white-space: pre-wrap;">${whitespace}</span>${contentElement}`;
-      // } else {
         return contentElement;
-      // }
-    } else {
-      return `<p></p>`;
+      } else {
+        return `<p></p>`;
+      }
+    }).join("");
+
+    element.innerHTML = html;
+
+    const last = element.children[element.children.length - 1];
+
+    if (last) {
+      last.innerHTML = last.innerHTML.trimEnd();
     }
-  }).join("");
-
-  element.innerHTML = html;
-
-  const last = element.children[element.children.length - 1];
-
-  if (last) {
-    last.innerHTML = last.innerHTML.trimEnd();
-  }
+  });
 };
 
 export function anchorButton(element: HTMLElement) {
