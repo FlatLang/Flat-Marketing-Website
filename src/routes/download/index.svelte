@@ -64,8 +64,7 @@
     import Header from '/src/components/Header.svelte';
     import Footer from '/src/components/Footer.svelte';
 
-    import { jscd } from '/src/util';
-    import { slide } from '/src/slide';
+    import { jscd, slide } from '/src/util';
 
     let buildVersion;
     let disabled = false;

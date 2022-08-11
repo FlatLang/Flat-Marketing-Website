@@ -1,8 +1,7 @@
 <script>
   import { checkHash } from '/src/flash'
   import { afterNavigate, beforeNavigate } from '$app/navigation';
-  import { clearFootnotes } from '/src/components/footnotes';
-  import { resetSlides } from '/src/slide';
+  import { clearFootnotes, resetSlides } from '/src/util';
 
   beforeNavigate(()=> {
     resetSlides();

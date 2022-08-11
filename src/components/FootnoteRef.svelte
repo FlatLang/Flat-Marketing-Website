@@ -1,7 +1,7 @@
 <a href="#{id}" class="footnote">{footnote.number}</a>
 
 <script>
-  import { getFootnote } from './footnotes';
+  import { getFootnote } from '/src/util';
 
   export let id;
 

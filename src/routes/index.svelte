@@ -458,6 +458,5 @@ flat_Array* generate_array() {
 <script>
     import Footer from '/src/components/Footer.svelte';
 
-    import { highlightCodeElement } from '/src/util';
-    import { slide } from '/src/slide';
+    import { highlightCodeElement, slide } from '/src/util';
 </script>
