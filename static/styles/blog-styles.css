@@ -123,3 +123,8 @@ div.hljs {
         font-size: 38px;
     }
 }
+
+.blog .default-view {
+    width: 1000px;
+    max-width: 80vw;
+}
