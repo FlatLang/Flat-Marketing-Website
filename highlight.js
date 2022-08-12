@@ -81,7 +81,12 @@ export default async function ({content}) {
     const trimmedValue = trimPrecedingTabs(rawContent, value);
 
     content = content.substring(0, start) + escapeHTML(hljs.highlight(trimmedValue, {language}).value) + content.substring(end);
-    content = content.substring(0, index).trimEnd() + content.substring(index);
+
+    const prevTagIndex = content.lastIndexOf("<", index - 2);
+
+    if (prevTagIndex !== -1 && content.substring(prevTagIndex, prevTagIndex + 4) === "<pre") {
+      content = content.substring(0, index).trimEnd() + content.substring(index);
+    }
   }
 
   return {code: content};
