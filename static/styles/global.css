@@ -887,6 +887,18 @@ pre:not(.full) > code {
     color:rgba(241, 93, 59);
 }
 
+.hljs-comment {
+    color: #c9c0c0;
+}
+
+.hljs-operator {
+    color: inherit;
+}
+
+.hljs-variable {
+    color: #9bcb3c;
+}
+
 [id] {
     scroll-margin-top: 20px;
 }
