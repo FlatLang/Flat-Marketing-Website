@@ -175,7 +175,7 @@ class AssignmentParser extends NodeParser {
         if (assignmentIndex > 0) {
             let node = new Assignment(parent, location)
 
-            if (node.parseAssignedNode(findAssigned(input, assignmentIndex)) &amp;&amp;
+            if (node.parseAssignedNode(findAssigned(input, assignmentIndex)) &&
                 node.parseAssignment(findAssignment(input, assignmentIndex))) {
                 node.operators.add(new Operator(parent: node, value: "="))
 
