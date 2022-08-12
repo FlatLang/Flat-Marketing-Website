@@ -15,7 +15,7 @@
       <a class="blog-link" href="/blog">BLOG</a>
       <a class="documentation-link" href="/docs">DOCUMENTATION</a>
   </div>
-  <div class="centered">
+  <div class="centered logo-container">
       <img
         id="logo-main"
         class="glow-logo"

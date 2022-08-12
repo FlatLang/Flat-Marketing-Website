@@ -286,6 +286,11 @@
 	padding: 0;
 }
 
+.logo-container {
+	max-width: 600px;
+	width: 90%;
+}
+
 .stay-up-to-date .header {
 	margin-top: 12px;
 	margin-bottom: 15px;
