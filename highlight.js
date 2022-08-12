@@ -37,7 +37,7 @@ export default async function ({content}) {
   for (let i = matches.length - 1; i >= 0; i--) {
     const start = matches[i].start;
     const end = matches[i].end;
-    const trimmed = content.substring(start, end).trim();
+    const trimmed = content.substring(start, end + 1).trim();
     const value = trimmed[0] === '{' && trimmed[1] === '`' ? trimmed.substring(2, trimmed.length - 2 - 1).trim() : trimmed;
     content = content.substring(0, start) + escapeHTML(hljs.highlight(value, {language: 'flat'}).value) + content.substring(end);
   }
