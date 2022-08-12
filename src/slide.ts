@@ -11,8 +11,6 @@ export function slide(element: HTMLElement) {
 		slideElements.push(element);
 	}
 
-	toggleClass(element, "slide", true);
-
 	onScroll(element);
 }
 
