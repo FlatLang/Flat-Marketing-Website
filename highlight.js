@@ -11,6 +11,24 @@ function escapeHTML(str) {
     }[tag]));
 }
 
+function regexIndexOf(text, re, i) {
+  var indexInSuffix = text.slice(i).search(re);
+  return indexInSuffix < 0 ? indexInSuffix : indexInSuffix + i;
+}
+
+function getLanguageFromAttributes(attributes) {
+  const prefix = "language-";
+  const start = attributes.indexOf(prefix) + prefix.length;
+
+  if (start === prefix.length - 1) {
+    return "flat";
+  }
+
+  const end = regexIndexOf(attributes, /\W/g, start);
+
+  return attributes.substring(start, end);
+}
+
 export default async function ({content}) {
   let matches = [];
 
@@ -29,7 +47,10 @@ export default async function ({content}) {
       break;
     }
 
-    matches.push({start, end});
+    const elementAttributes = content.substring(index, start);
+    const language = getLanguageFromAttributes(elementAttributes);
+
+    matches.push({start, end, language});
 
     index = content.indexOf(`<code`, end + "</code>".length);
   }
@@ -37,9 +58,10 @@ export default async function ({content}) {
   for (let i = matches.length - 1; i >= 0; i--) {
     const start = matches[i].start;
     const end = matches[i].end;
+    const language = matches[i].language;
     const trimmed = content.substring(start, end).trim();
     const value = trimmed[0] === '{' && trimmed[1] === '`' ? trimmed.substring(2, trimmed.length - 2).trim() : trimmed;
-    content = content.substring(0, start) + escapeHTML(hljs.highlight(value, {language: 'flat'}).value) + content.substring(end);
+    content = content.substring(0, start) + escapeHTML(hljs.highlight(value, {language}).value) + content.substring(end);
   }
 
   return {code: content};
