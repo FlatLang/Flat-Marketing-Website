@@ -17,6 +17,18 @@ export default async function ({content}) {
       ...img.attributes
     });
 
+    const altText = img.getAttribute("alt");
+
+    if (altText) {
+      const titleElement = svgElement.querySelector("title");
+
+      if (titleElement) {
+        titleElement.set_content(altText);
+      } else {
+        svgElement.appendChild(parse(`<title>${altText}</title>`));
+      }
+    }
+
     svgElement.querySelectorAll("metadata").forEach(element => element.remove());
     svgElement.querySelectorAll("[id]").forEach(element => element.removeAttribute("id"));
 
