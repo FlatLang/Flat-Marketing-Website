@@ -2,7 +2,9 @@
 <div use:anchorButton id="windows">
     <h1>Configuring a Windows environment</h1>
     <h3>If you used the installer, then you should already have these configurations set up.</h3>
-    <h4 ng-if="lowerOs == 'windows'" class="gray">We think you are running { osHeader }</h4>
+    {#if lowerOs === 'windows'}
+    <h4 class="gray">We think you are running { osHeader }</h4>
+    {/if}
 
     <p>From the start menu, click the settings gear:</p>
     <img style="max-width: 450px;" class="dark-background" src="/images/windows-step1.png" />
@@ -31,15 +33,17 @@
 <hr>
 <div use:anchorButton id="mac">
     <h1>Configuring a Mac OS X environment</h1>
-    <h4 ng-if="lowerOs == 'mac'" class="gray">We think you are running { osHeader }</h4>
-
+    {#if lowerOs === 'mac'}
+    <h4 class="gray">We think you are running { osHeader }</h4>
+    {/if}
 
 </div>
 <hr>
 <div use:anchorButton id="linux">
     <h1>Configuring a Linux environment</h1>
-    <h4 ng-if="lowerOs == 'linux'" class="gray">We think you are running { osHeader }</h4>
-
+    {#if lowerOs === 'linux'}
+    <h4 class="gray">We think you are running { osHeader }</h4>
+    {/if}
 
 </div>
 

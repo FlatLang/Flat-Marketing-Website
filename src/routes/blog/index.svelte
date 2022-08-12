@@ -1,4 +1,4 @@
-<div ng-if="!page" class="default-view">
+<div class="default-view">
     <table class="recent-posts-header">
         <tr>
             <td>

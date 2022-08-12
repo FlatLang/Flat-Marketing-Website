@@ -1,4 +1,4 @@
-<div ng-if="!page" class="default-view">
+<div class="default-view">
     <h1>DOCUMENTATION</h1>
     <hr>
     <h2>QUICK LINKS</h2>
