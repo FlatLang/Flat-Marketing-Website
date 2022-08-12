@@ -49,6 +49,7 @@
 
 .content-view-container {
     display: flex;
+    margin: auto;
 }
 
 .content-view {
