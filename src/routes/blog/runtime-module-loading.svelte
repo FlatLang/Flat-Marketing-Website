@@ -21,21 +21,21 @@
         Let's say that we have an external library in that is contained within a packaged named "com/myproject" and contains a single class that is named "MySpecialClass". And also imagine that the source code of this class looks like this:
     </p>
     <pre><code class="language-flat">{`
-package "com/myproject"
+        package "com/myproject"
 
-class MySpecialClass {
-    public static var Int fieldName = 10
+        class MySpecialClass {
+            public static var Int fieldName = 10
 
-    public static funcName() {
-        Console.writeLine("This came from com/myproject/MySpecialClass.funcName")
-    }
-}
+            public static funcName() {
+                Console.writeLine("This came from com/myproject/MySpecialClass.funcName")
+            }
+        }
     `}</code></pre>
     <p>
         To load modules at runtime with the Flat standard library you use the flat/meta/Library class. You load a library like this:
     </p>
     <pre><code class="language-flat">{`
-let myLibrary = new Library("path/to/project/folder").load()
+        let myLibrary = new Library("path/to/project/folder").load()
     `}</code></pre>
     <p>
         It is extremely simple to load a library. As side note about how the modules are loaded, if a shared library in the specific target languages is not existent at the time that the Library is loaded from the code, the Library class will try to compile the project folder and output a shared library to use.
@@ -44,15 +44,15 @@ let myLibrary = new Library("path/to/project/folder").load()
         Now that we have the library loaded into our code, you can access fields and functions from the code like this:
     </p>
     <pre><code class="language-flat">{`
-let myLibrary = new Library("path/to/project/folder").load()
+        let myLibrary = new Library("path/to/project/folder").load()
 
-let func = myLibrary.getFunction("funcName", "com/myproject/MySpecialClass")
+        let func = myLibrary.getFunction("funcName", "com/myproject/MySpecialClass")
 
-func()
+        func()
 
-let Int field = myLibrary.getField("fieldName", "com/myproject/MySpecialClass")
+        let Int field = myLibrary.getField("fieldName", "com/myproject/MySpecialClass")
 
-Console.writeLine("Received field with value: #field")
+        Console.writeLine("Received field with value: #field")
     `}</code></pre>
     <p>
         Looking back on the MySpecialClass.funcName implementation, we can expect that "This came from com/myproject/MySpecialClass.funcName" to be outputted to the console after invoking <span class="pre">func()</span>. Furthermore, we can expect that the console outputted the string "Received field with value: 10" when outputting the field's value.
@@ -61,35 +61,35 @@ Console.writeLine("Received field with value: #field")
         Now lets add some more complex types to our class:
     </p>
     <pre><code class="language-flat">{`
-package "com/myproject"
+        package "com/myproject"
 
-class MySpecialClass {
-    public static var Int fieldName = 10
+        class MySpecialClass {
+            public static var Int fieldName = 10
 
-    public static funcName() {
-        Console.writeLine("This came from com/myproject/MySpecialClass.funcName")
-    }
+            public static funcName() {
+                Console.writeLine("This came from com/myproject/MySpecialClass.funcName")
+            }
 
-    public static complexFunc(String x, Int y) -> String {
-        var String outputValue = ""
+            public static complexFunc(String x, Int y) -> String {
+                var String outputValue = ""
 
-        for (i in 0..y) {
-            outputValue += x
+                for (i in 0..y) {
+                    outputValue += x
+                }
+
+                return outputValue
+            }
         }
-
-        return outputValue
-    }
-}
     `}</code></pre>
     <p>
         If you need to access a more complicated function type, you can declare the type parameters and return type of the function when accessing the function from the getFunction function:
     </p>
     <pre><code class="language-flat">{`
-let myLibrary = new Library("path/to/project/folder").load()
+        let myLibrary = new Library("path/to/project/folder").load()
 
-let func(String, Int) -> String = myLibrary.getFunction("complexFunc", "com/myproject/MySpecialClass")
+        let func(String, Int) -> String = myLibrary.getFunction("complexFunc", "com/myproject/MySpecialClass")
 
-Console.writeLine("Result from func: " + func("hi", 3))
+        Console.writeLine("Result from func: " + func("hi", 3))
     `}</code></pre>
     <p>
         The output of this code would be "Result from func: hihihi".
@@ -98,74 +98,74 @@ Console.writeLine("Result from func: " + func("hi", 3))
         So this is all great and all, but what if you want to call a non-static function or access a non-static field? To do this we would have to have an instance of the MySpecialClass class. But first, let's add some non-static components to the class:
     </p>
     <pre><code class="language-flat">{`
-package "com/myproject"
+        package "com/myproject"
 
-class MySpecialClass {
-    public static var Int fieldName = 10
+        class MySpecialClass {
+            public static var Int fieldName = 10
 
-    public Int memberField
+            public Int memberField
 
-    public static funcName() {
-        Console.writeLine("This came from com/myproject/MySpecialClass.funcName")
-    }
+            public static funcName() {
+                Console.writeLine("This came from com/myproject/MySpecialClass.funcName")
+            }
 
-    public static complexFunc(String x, Int y) -> String {
-        var String outputValue = ""
+            public static complexFunc(String x, Int y) -> String {
+                var String outputValue = ""
 
-        for (i in 0..y) {
-            outputValue += x
+                for (i in 0..y) {
+                    outputValue += x
+                }
+
+                return outputValue
+            }
+
+            public incrementMemberField() {
+                memberField++
+            }
+
+            public toString() => "This is a MySpecialClass!!"
         }
-
-        return outputValue
-    }
-
-    public incrementMemberField() {
-        memberField++
-    }
-
-    public toString() => "This is a MySpecialClass!!"
-}
     `}</code></pre>
     <p>
         Now to access these non-static members, we have to create an instance of the MySpecialClass by calling its constructor:
     </p>
     <pre><code class="language-flat">{`
-let myLibrary = new Library("path/to/project/folder").load()
+        let myLibrary = new Library("path/to/project/folder").load()
 
-let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
+        let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
 
-Console.writeLine("Received instance: #instance")
+        Console.writeLine("Received instance: #instance")
     `}</code></pre>
     <p>
         This would output "Received instance: This is a MySpecialClass!!". Now you can access non-static fields and functions using the instance like this:
     </p>
     <pre><code class="language-flat">{`
-let myLibrary = new Library("path/to/project/folder").load()
+        let myLibrary = new Library("path/to/project/folder").load()
 
-let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
+        let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
 
-let Int memberField = myLibrary.getField("memberField", instance)
+        let Int memberField = myLibrary.getField("memberField", instance)
 
-let incrementFunc = myLibrary.getFunction("incrementMemberField", instance)
+        let incrementFunc = myLibrary.getFunction("incrementMemberField", instance)
 
-Console.writeLine("Unmodified memberField: #memberField")
+        Console.writeLine("Unmodified memberField: #memberField")
 
-incrementFunc()
+        incrementFunc()
 
-Console.writeLine("Incremented memberField: #memberField")
+        Console.writeLine("Incremented memberField: #memberField")
 
-incrementFunc()
-incrementFunc()
+        incrementFunc()
+        incrementFunc()
 
-Console.writeLine("Incremented memberField: #memberField")
+        Console.writeLine("Incremented memberField: #memberField")
     `}</code></pre>
     <p>
         The resulting output of running this code would yield:
     </p>
     <pre><code class="language-bash">{`
-Unmodified memberField: 0
-Incremented memberField: 1
-Incremented memberField: 3
+        Unmodified memberField: 0
+        Incremented memberField: 1
+        Incremented memberField: 3
     `}</code></pre>
     <p>
         This gives you full control over all the aspects of the MySpecialClass class that you would have had if you were to have access to the class at the time of compilation.

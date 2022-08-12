@@ -10,26 +10,26 @@
             Here is an example in C# of the yield keyword:
         </p>
         <pre><code class="language-csharp" style="margin: 40px 0;">{`
-static void Main(string[] args)
-{
-    foreach (int fib in Fibs(6))
-    {
-        Console.WriteLine(fib + " ");
-    }
-}
+            static void Main(string[] args)
+            {
+                foreach (int fib in Fibs(6))
+                {
+                    Console.WriteLine(fib + " ");
+                }
+            }
 
-static IEnumerable<int> Fibs(int fibCount)
-{
-    for (int i = 0, prevFib = 0, currFib = 1; i < fibCount; i++)
-    {
-        yield return prevFib;
+            static IEnumerable<int> Fibs(int fibCount)
+            {
+                for (int i = 0, prevFib = 0, currFib = 1; i < fibCount; i++)
+                {
+                    yield return prevFib;
 
-        int newFib = prevFib + currFib;
+                    int newFib = prevFib + currFib;
 
-        prevFib = currFib;
-        currFib = newFib;
-    }
-}
+                    prevFib = currFib;
+                    currFib = newFib;
+                }
+            }
         `}</code></pre>
         <p>
             In this example, the foreach loop uses the <span class="pre">IEnumerable</span> returned from the <span class="pre">Fibs</span> function to iterate a specified number of Fibonacci numbers.
@@ -38,97 +38,97 @@ static IEnumerable<int> Fibs(int fibCount)
             In Flat, you can achieve the same result with the following code:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-public static main(String[] args) {
-    for (fib in fibs(6)) {
-        Console.writeLine("#fib ")
-    }
-}
+            public static main(String[] args) {
+                for (fib in fibs(6)) {
+                    Console.writeLine("#fib ")
+                }
+            }
 
-static fibs(Int fibCount) -> Int[] {
-    var prevFib = 0
-    var currFib = 1
+            static fibs(Int fibCount) -> Int[] {
+                var prevFib = 0
+                var currFib = 1
 
-    return new Int[fibCount].map({
-        let value = prevFib
+                return new Int[fibCount].map({
+                    let value = prevFib
 
-        prevFib = currFib
-        currFib += value
+                    prevFib = currFib
+                    currFib += value
 
-        return value
-    })
-}
+                    return value
+                })
+            }
         `}</code></pre>
         <p>
             The difference between the two code examples is that in the C# example, no data structure is allocated to iterate over the Fibonacci numbers. The implementation of the yield keyword under the hood is essentially a complex state-machine that waits to be iterated over. The back-end code can be visualized as something comparable to the next code example. This is a vast over-simplification of the state-machine, but it gets the point across<FootnoteRef id="csharp-yield-backend"></FootnoteRef>:
         </p>
         <pre><code class="language-csharp" style="margin: 40px 0;">{`
-static void Main(string[] args)
-{
-    foreach (int fib in Fibs(6))
-    {
-        Console.WriteLine(fib + " ");
-    }
-}
-
-private static sealed class MyStateMachine :
-    IEnumerable<int>, IEnumerator<int>
-{
-    int current;
-    int state;
-
-    int i = 0;
-    int prevFib = 0;
-    int currFib = 1;
-    int fibCount = 6;
-
-    public MyStateMachine(int fibCount)
-    {
-        state = 0;
-
-        this.fibCount = fibCount;
-    }
-
-    public bool MoveNext()
-    {
-        switch (state)
-        {
-            case 0:
-                state = 1;
-
-                while (i < fibCount)
+            static void Main(string[] args)
+            {
+                foreach (int fib in Fibs(6))
                 {
-                    current = prevFib;
+                    Console.WriteLine(fib + " ");
+                }
+            }
 
-                    int newFib = prevFib + currFib;
+            private static sealed class MyStateMachine :
+                IEnumerable<int>, IEnumerator<int>
+            {
+                int current;
+                int state;
 
-                    prevFib = currFib;
-                    currFib = newFib;
+                int i = 0;
+                int prevFib = 0;
+                int currFib = 1;
+                int fibCount = 6;
 
-                    state = 2;
-                    return true;
-                Label_1:
-                    state = 1;
-                    i++;
+                public MyStateMachine(int fibCount)
+                {
+                    state = 0;
+
+                    this.fibCount = fibCount;
                 }
 
-                break;
-            case 2:
-                goto Label_1;
-        }
+                public bool MoveNext()
+                {
+                    switch (state)
+                    {
+                        case 0:
+                            state = 1;
 
-        return false;
-    }
+                            while (i < fibCount)
+                            {
+                                current = prevFib;
 
-    public int Next()
-    {
-        return current;
-    }
-}
+                                int newFib = prevFib + currFib;
 
-static MyStateMachine Fibs(int fibCount)
-{
-    return new MyStateMachine(6);
-}
+                                prevFib = currFib;
+                                currFib = newFib;
+
+                                state = 2;
+                                return true;
+                            Label_1:
+                                state = 1;
+                                i++;
+                            }
+
+                            break;
+                        case 2:
+                            goto Label_1;
+                    }
+
+                    return false;
+                }
+
+                public int Next()
+                {
+                    return current;
+                }
+            }
+
+            static MyStateMachine Fibs(int fibCount)
+            {
+                return new MyStateMachine(6);
+            }
         `}</code></pre>
         <p>
             I trimmed the state-machine down to it's conceptual essence, so this example does not have all the components necessary to compile and run. The whole state-machine revolves around the <span class="pre">state</span> field, and the switch in the <span class="pre type">MoveNext</span> method. This example of a state-machine contains 3 different states:
@@ -164,121 +164,121 @@ static MyStateMachine Fibs(int fibCount)
         If the compiler were able to somehow know that the list of Fibonacci numbers generated from the Fib function were only used in place at that one location, then you wouldn't need to use the yield keyword to gain this performance, the compiler could optimize the map and filter functions to run in place. This is the solution that Flat will use. Take a look at the use of the <span class="pre">map</span> function in the Flat example again:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-public static main(String[] args) {
-    for (fib in fibs(6)) {
-        Console.writeLine("#fib ")
-    }
-}
+            public static main(String[] args) {
+                for (fib in fibs(6)) {
+                    Console.writeLine("#fib ")
+                }
+            }
 
-static fibs(Int fibCount) -> Int[] {
-    var prevFib = 0
-    var currFib = 1
+            static fibs(Int fibCount) -> Int[] {
+                var prevFib = 0
+                var currFib = 1
 
-    return new Int[fibCount].map({
-        let value = prevFib
+                return new Int[fibCount].map({
+                    let value = prevFib
 
-        prevFib = currFib
-        currFib += value
+                    prevFib = currFib
+                    currFib += value
 
-        return value
-    })
-}
+                    return value
+                })
+            }
     `}</code></pre>
     <p>
         Now lets focus on the following section of the code:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-return new Int[fibCount].map({
-    let value = prevFib
+            return new Int[fibCount].map({
+                let value = prevFib
 
-    prevFib = currFib
-    currFib += value
+                prevFib = currFib
+                currFib += value
 
-    return value
-})
+                return value
+            })
     `}</code></pre>
     <p>
         First off, that there is an explicit Int[] allocation, yet none of the values of the array are ever accessed or set. It is just used to specify the size of the returning list, and to call the map function that generates the list of Fibonacci numbers. This can be optimized out by inlining the contents of the map function from the Array class and replacing the foreach constraint with the size-constraint. The resulting code could look something like:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-let array = new Int[fibCount]
+        let array = new Int[fibCount]
 
-// Replaced with size constraint instead of "for (element in this)"
-for (i in 0..fibCount) {
-    let value = prevFib
-
-    prevFib = currFib
-    currFib += value
-
-    array.add(value)
-}
-
-return array
-    `}</code></pre>
-    <p>
-        Now lets see it all together again:
-    </p>
-    <pre><code class="language-flat" style="margin: 40px 0;">{`
-public static main(String[] args) {
-    for (fib in fibs(6)) {
-        Console.writeLine("#fib ")
-    }
-}
-
-static fibs(Int fibCount) -> Int[] {
-    var prevFib = 0
-    var currFib = 1
-
-    let array = new Int[fibCount]
-
-    // Replaced with size constraint instead of "for (element in this)"
-    for (i in 0..fibCount) {
-        let value = prevFib
-
-        prevFib = currFib
-        currFib += value
-
-        array.add(value)
-    }
-
-    return array
-}
-    `}</code></pre>
-    <p>
-        This took care of the first Int[] allocation and inlined the map lambda, but there is still one Int[] allocation left remaining. At this point, if we remove the remaining array, we loose the return value and thus change the meaning of the function. What if someone wanted to actually receive an array from the fibs function? To address this, Flat will create an Iterator not too different than how the state-machine is built. This iterator will be used in place of calling the fibs function.
-    </p>
-    <pre><code class="language-flat" style="margin: 40px 0;">{`
-public static main(String[] args) {
-    for (fib in new FibsIterator(6)) {
-        Console.writeLine("#fib ")
-    }
-}
-
-class FibsIterator implements Iterator<Int> {
-    var Int prevFib = 0
-    var Int currFib = 1
-
-    Int fibCount
-
-    public construct(Int fibCount) {
-        this.fibCount = fibCount
-    }
-
-    visible Bool hasNext => i < fibCount
-
-    visible Int next {
-        get {
+        // Replaced with size constraint instead of "for (element in this)"
+        for (i in 0..fibCount) {
             let value = prevFib
 
             prevFib = currFib
             currFib += value
 
-            i++
-
-            return value
+            array.add(value)
         }
-    }
-}
+
+        return array
+    `}</code></pre>
+    <p>
+        Now lets see it all together again:
+    </p>
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
+        public static main(String[] args) {
+            for (fib in fibs(6)) {
+                Console.writeLine("#fib ")
+            }
+        }
+
+        static fibs(Int fibCount) -> Int[] {
+            var prevFib = 0
+            var currFib = 1
+
+            let array = new Int[fibCount]
+
+            // Replaced with size constraint instead of "for (element in this)"
+            for (i in 0..fibCount) {
+                let value = prevFib
+
+                prevFib = currFib
+                currFib += value
+
+                array.add(value)
+            }
+
+            return array
+        }
+    `}</code></pre>
+    <p>
+        This took care of the first Int[] allocation and inlined the map lambda, but there is still one Int[] allocation left remaining. At this point, if we remove the remaining array, we loose the return value and thus change the meaning of the function. What if someone wanted to actually receive an array from the fibs function? To address this, Flat will create an Iterator not too different than how the state-machine is built. This iterator will be used in place of calling the fibs function.
+    </p>
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
+        public static main(String[] args) {
+            for (fib in new FibsIterator(6)) {
+                Console.writeLine("#fib ")
+            }
+        }
+
+        class FibsIterator implements Iterator<Int> {
+            var Int prevFib = 0
+            var Int currFib = 1
+
+            Int fibCount
+
+            public construct(Int fibCount) {
+                this.fibCount = fibCount
+            }
+
+            visible Bool hasNext => i < fibCount
+
+            visible Int next {
+                get {
+                    let value = prevFib
+
+                    prevFib = currFib
+                    currFib += value
+
+                    i++
+
+                    return value
+                }
+            }
+        }
     `}</code></pre>
     <p>
         As how functions that make use of the yield keyword in C# are used, The FibsIterator call will only replace the calls to fibs that are strictly used to <i>iterate over the values</i> and not to store them in a data structure.

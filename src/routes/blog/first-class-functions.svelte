@@ -19,36 +19,36 @@
             This functionality is already available in Flat, and has been since the first Beta release. Defining a function that takes a function as an argument looks like:
         </p>
         <pre><code class="language-flat">{`
-func1(myFirstClassFunc(String, Int)) {
-    for (i in 0..10) {
-        myFirstClassFunc("iteration #i", i)
-    }
-}
+            func1(myFirstClassFunc(String, Int)) {
+                for (i in 0..10) {
+                    myFirstClassFunc("iteration #i", i)
+                }
+            }
         `}</code></pre>
         <p>
             This function requires a function that takes at most String and Int as a parameter. I say <i>at most</i> because the functions that are passed to func1 are not required to take all of the parameters that the myFirstClassFunc parameter has. For example, you could match the myFirstClassFunc parameter definition exactly like:
         </p>
         <pre><code class="language-flat">{`
-exactFunc(String s, Int x) {
-    Console.writeLine("String count * x == #{s.count * x}")
-}
+            exactFunc(String s, Int x) {
+                Console.writeLine("String count * x == #{s.count * x}")
+            }
 
-func1(exactFunc) // valid
+            func1(exactFunc) // valid
         `}</code></pre>
         <p>
             Or you could give it a function that only contains 1 or even 0 parameters:
         </p>
         <pre><code class="language-flat">{`
-zeroFunc() {
-    Console.writeLine("Im pretty useless, but thats ok")
-}
+            zeroFunc() {
+                Console.writeLine("Im pretty useless, but thats ok")
+            }
 
-oneFunc(String s) {
-    Console.writeLine("I only took the String parameter: #s")
-}
+            oneFunc(String s) {
+                Console.writeLine("I only took the String parameter: #s")
+            }
 
-func1(zeroFunc) // valid
-func1(oneFunc) // valid
+            func1(zeroFunc) // valid
+            func1(oneFunc) // valid
         `}</code></pre>
         <p>
             Passing functions as arguments to functions is one of the core aspects of the mapping and filtering functionality of the List framework.
@@ -60,31 +60,31 @@ func1(oneFunc) // valid
            Returning functions from functions looks like this:
         </p>
         <pre><code class="language-flat">{`
-otherFunc(String x, Int y) {
-    Console.writeLine("Received #x and #y")
-}
+            otherFunc(String x, Int y) {
+                Console.writeLine("Received #x and #y")
+            }
 
-func1() -> myFirstClassFunc(String, Int) {
-    return otherFunc
-}
+            func1() -> myFirstClassFunc(String, Int) {
+                return otherFunc
+            }
         `}</code></pre>
         <p>
             The func1 returns a function that takes a String and Int as parameters. In this case, it just returns otherFunc, but you can also do some more interesting things like this:
         </p>
         <pre><code class="language-flat">{`
-otherFunc(String x, Int y) {
-    Console.writeLine("Received #x and #y")
-}
+            otherFunc(String x, Int y) {
+                Console.writeLine("Received #x and #y")
+            }
 
-func1(String input) -> myFirstClassFunc(String, Int) {
-    return (x, y) => {
-        for (i in 0..5) {
-            Console.writeLine("Parameter: #input")
+            func1(String input) -> myFirstClassFunc(String, Int) {
+                return (x, y) => {
+                    for (i in 0..5) {
+                        Console.writeLine("Parameter: #input")
 
-            otherFunc(x, y * i)
-        }
-    }
-}
+                        otherFunc(x, y * i)
+                    }
+                }
+            }
         `}</code></pre>
         <p>
             This func1 returns a lambda (aka anonymous function) that takes a String and Int. The types of the parameters for the lambda are deduced from the return type of the func1 function. Calling the function that is returned from the function would write func1's input parameter to the console 5 times, as well as calling 'otherFunc' 5 times.
@@ -96,26 +96,26 @@ func1(String input) -> myFirstClassFunc(String, Int) {
            Assigning functions to variables looks like this:
         </p>
         <pre><code class="language-flat">{`
-func1(String input) -> myFirstClassFunc(String, Int) {
-    return (x, y) => {
-        for (i in 0..5) {
-            Console.writeLine("Parameter: #input")
+            func1(String input) -> myFirstClassFunc(String, Int) {
+                return (x, y) => {
+                    for (i in 0..5) {
+                        Console.writeLine("Parameter: #input")
 
-            otherFunc(x, y * i)
-        }
-    }
-}
+                        otherFunc(x, y * i)
+                    }
+                }
+            }
 
-var x = func1
+            var x = func1
         `}</code></pre>
         <p>
             This saves the func1 reference into the variable variable x. You can then invoke the x function reference like this:
         </p>
         <pre><code class="language-flat">{`
-x("pass string") // valid
-x("pass string", 1) // valid
-x("pass string", 1, "asdfasdf") // valid
-x("pass string", null, 90.0, 100) // valid
+            x("pass string") // valid
+            x("pass string", 1) // valid
+            x("pass string", 1, "asdfasdf") // valid
+            x("pass string", null, 90.0, 100) // valid
         `}</code></pre>
         <p>
             You can pass as many arguments to the function as you want, as long as you fulfill the original functions parameters. The original parameters, in this instance, are a single String. However, the extra parameters that are passed to the function will be never used.
@@ -127,40 +127,40 @@ x("pass string", null, 90.0, 100) // valid
             Storing functions in collections extends upon the ability to assign to them variables. For instance, when able to store functions in collections, this is possible:
         </p>
         <pre><code class="language-flat">{`
-func1(String input) -> myFirstClassFunc(String, Int) {
-    return (String x, Int y) => {
-        for (i in 0..5) {
-            Console.writeLine("Parameter: #input")
+            func1(String input) -> myFirstClassFunc(String, Int) {
+                return (String x, Int y) => {
+                    for (i in 0..5) {
+                        Console.writeLine("Parameter: #input")
 
-            otherFunc(x, y * i)
-        }
-    }
-}
+                        otherFunc(x, y * i)
+                    }
+                }
+            }
 
-let array = new function(String)[]
+            let array = new function(String)[]
 
-array.add(func1)
-array.add(x => {
-    Console.writeLine("In lambda that was passed #x")
-})
-array.add({
-    Console.writeLine("In lambda that takes no parameters")
-})
+            array.add(func1)
+            array.add(x => {
+                Console.writeLine("In lambda that was passed #x")
+            })
+            array.add({
+                Console.writeLine("In lambda that takes no parameters")
+            })
         `}</code></pre>
         <p>
             The <span class="pre">array</span> array stores functions that, at most, take a String as a parameter. You could later call the functions that are contained in this array like this:
         </p>
         <pre><code class="language-flat">{`
-array.forEach(func => {
-    func("say something")
-})
+            array.forEach(func => {
+                func("say something")
+            })
         `}</code></pre>
         <p>
             This would output:
         </p>
         <pre><code class="language-bash">{`
-In lambda that was passed say something
-In lambda that takes no parameters
+            In lambda that was passed say something
+            In lambda that takes no parameters
         `}</code></pre>
         <p>
             The first <span class="pre">func1</span> value does not output anything because the function that it <i>returned</i> was not invoked.
@@ -191,75 +191,75 @@ In lambda that takes no parameters
             This can be demonstrated with the <a target="_blank" href="https://en.wikipedia.org/wiki/Strategy_pattern">strategy pattern</a> design pattern. This pattern is used when you want to run different algorithms based off of different conditions, <i>at runtime</i>. To illustrate this, lets suppose that you want to enforce a specific pricing algorithm depending on the type of the day. With the strategy pattern you could do this:
         </p>
         <pre><code class="language-flat">{`
-interface Billable {
-    calculatePrice(Double originalPrice)
-}
+            interface Billable {
+                calculatePrice(Double originalPrice)
+            }
 
-class NormalHours implements Billable {
-    calculatePrice(Double originalPrice) => originalPrice
-}
+            class NormalHours implements Billable {
+                calculatePrice(Double originalPrice) => originalPrice
+            }
 
-class HappyHour implements Billable {
-    calculatePrice(Double originalPrice) => originalPrice / 2
-}
+            class HappyHour implements Billable {
+                calculatePrice(Double originalPrice) => originalPrice / 2
+            }
 
-class SurgeHour implements Billable {
-    calculatePrice(Double originalPrice) => originalPrice * 2
-}
+            class SurgeHour implements Billable {
+                calculatePrice(Double originalPrice) => originalPrice * 2
+            }
 
-class Customer {
-    Billable billStrategy = new NormalHours()
+            class Customer {
+                Billable billStrategy = new NormalHours()
 
-    Double sum = 0
+                Double sum = 0
 
-    public charge() {
-        sum += billStrategy.calculatePrice(5)
-    }
-}
+                public charge() {
+                    sum += billStrategy.calculatePrice(5)
+                }
+            }
 
-public static main(String[] args) {
-    let c1 = new Customer()
+            public static main(String[] args) {
+                let c1 = new Customer()
 
-    c1.charge() // 5
+                c1.charge() // 5
 
-    //surge hour
-    c1.billStrategy = new SurgeHour()
-    c1.charge() // 10
+                //surge hour
+                c1.billStrategy = new SurgeHour()
+                c1.charge() // 10
 
-    // happy hour
-    c1.billStrategy = new HappyHour()
-    c1.charge() // 2.5
-    c1.charge() // 2.5
-}
+                // happy hour
+                c1.billStrategy = new HappyHour()
+                c1.charge() // 2.5
+                c1.charge() // 2.5
+            }
         `}</code></pre>
         <p>
             The customer would leave with a bill of $20. This same process could be done with first-class functions like this:
         </p>
         <pre><code class="language-flat">{`
-class Customer {
-    var billStrategy(Double) -> Double = x => x
+            class Customer {
+                var billStrategy(Double) -> Double = x => x
 
-    Double sum = 0
+                Double sum = 0
 
-    public charge() {
-        sum += billStrategy(5)
-    }
-}
+                public charge() {
+                    sum += billStrategy(5)
+                }
+            }
 
-public static main(String[] args) {
-    let c1 = new Customer()
+            public static main(String[] args) {
+                let c1 = new Customer()
 
-    c1.charge() // 5
+                c1.charge() // 5
 
-    //surge hour
-    c1.billStrategy = x => x * 2
-    c1.charge() // 10
+                //surge hour
+                c1.billStrategy = x => x * 2
+                c1.charge() // 10
 
-    // happy hour
-    c1.billStrategy = x => x / 2
-    c1.charge() // 2.5
-    c1.charge() // 2.5
-}
+                // happy hour
+                c1.billStrategy = x => x / 2
+                c1.charge() // 2.5
+                c1.charge() // 2.5
+            }
         `}</code></pre>
         <p>
             This code is much shorter and accomplishes the same result. The first-class function method reduces the amount of allocation required to complete the task, as well as the amount of code. However, some people might argue that the strategy pattern is more readable and scalable. If you are well versed with first-class functions, then the first implication of the argument is false, however the the scalability of the strategy pattern is a valid point. If you need to add extra fields to a specific billing algorithm, then the strategy pattern might be best. But for simple routine function abstract algorithms, first-class functions is often a better choice.

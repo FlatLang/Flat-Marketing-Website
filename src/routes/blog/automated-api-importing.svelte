@@ -14,56 +14,56 @@
             The quickest (and dirtiest) way of working with external libraries is to call the external code directly. Flat provides external blocks that are used to achieve this functionality:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-myFunc() {
-    external c {
-        printf("IN EXTERNAL C!\\n");
-    }
-}
+            myFunc() {
+                external c {
+                    printf("IN EXTERNAL C!\\n");
+                }
+            }
         `}</code></pre>
         <p>
             This is really only helpful if you can pass variables and functions to and from the external code. This example shows how to pass a variable to the external code:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-myFunc() {
-    Int myInt = 100
+            myFunc() {
+                Int myInt = 100
 
-    external c {
-        // The number is 100!
-        printf("The number is %d!\\n", #{myInt});
-    }
-}
+                external c {
+                    // The number is 100!
+                    printf("The number is %d!\\n", #{myInt});
+                }
+            }
         `}</code></pre>
         <p>
             Passing variables from external code to Flat is done by assigning the Flat variable inside the external code:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-myFunc() {
-    Int myInt
+            myFunc() {
+                Int myInt
 
-    external c {
-        #{myInt} = 100;
+                external c {
+                    #{myInt} = 100;
 
-        // The number is 100!
-        printf("The number is %d!\\n", #{myInt});
-    }
+                    // The number is 100!
+                    printf("The number is %d!\\n", #{myInt});
+                }
 
-    // The number is 100 in Flat too!
-    Console.writeLine("The number is #myInt in Flat too!")
-}
+                // The number is 100 in Flat too!
+                Console.writeLine("The number is #myInt in Flat too!")
+            }
         `}</code></pre>
         <p>
             You can also run Flat statements inside external code:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-getMyInt() -> Int {
-    Int myInt
+            getMyInt() -> Int {
+                Int myInt
 
-    external c {
-        #{myInt} = 100
+                external c {
+                    #{myInt} = 100
 
-        #{return myInt * 2};
-    }
-}
+                    #{return myInt * 2};
+                }
+            }
         `}</code></pre>
     </div>
     <div use:anchorButton id="binding-apis">
@@ -72,23 +72,23 @@ getMyInt() -> Int {
             Calling external code through external blocks is the basis of how creating bindings to an API works in Flat. When creating an API for a language, you typically do it by hand. For example, if you were to create bindings for some std output functions in C, you could do it like:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-public atoi(String s) -> Int {
-    external c {
-        return atoi(#{s.chars.data});
-    }
-}
+            public atoi(String s) -> Int {
+                external c {
+                    return atoi(#{s.chars.data});
+                }
+            }
 
-public random() -> Long {
-    external c {
-        return rand();
-    }
-}
+            public random() -> Long {
+                external c {
+                    return rand();
+                }
+            }
 
-public currentTimeMillis() -> Long {
-    external c {
-        return current_time_millis();
-    }
-}
+            public currentTimeMillis() -> Long {
+                external c {
+                    return current_time_millis();
+                }
+            }
         `}</code></pre>
         <p>
             This creates bindings to the <span class="pre">atoi</span>, <span class="pre">random</span>, and <span class="pre">current_time_millis</span> functions in C. Doing this by hand can be very tedious and susceptible to errors. Because of this, automated importing of APIs would be immensely useful.
@@ -107,17 +107,17 @@ public currentTimeMillis() -> Long {
         This would output the translated API binding for the c stdlib into a folder named flat-c-stdlib. You could then reference this binding in your project like the following:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-import static "stdlib"
+        import static "stdlib"
 
-class MyClass {
-    public static main(String[] args) {
-        let path = getenv("PATH")
+        class MyClass {
+            public static main(String[] args) {
+                let path = getenv("PATH")
 
-        let myStringPath = new String(path)
+                let myStringPath = new String(path)
 
-        Console.writeLine("Path: #myStringPath")
-    }
-}
+                Console.writeLine("Path: #myStringPath")
+            }
+        }
     `}</code></pre>
     <p>
         The first line <span class="pre modifier">import static <span class="text">"stdlib"</span></span> imports our API generated binding's static functions (all C functions are considered static in the context of Flat). Then we use the external binding at <span class="pre">let path = getenv(<span class="text">"PATH"</span>)</span>. Because getenv returns a native char array, you have to convert it to a String before you can output it as one at <span class="pre">Console.writeLine(<span class="text">"Path: #myStringPath"</span>)</span>.

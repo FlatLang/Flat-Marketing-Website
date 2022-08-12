@@ -386,11 +386,11 @@
             You gain the ability to integrate all of your Flat code with the target language. This is extremely powerful when it comes to writing general libraries in Flat. Any library you write is accessible from any of the available target languages. Here is an illustration of this point:
         </p>
         <pre><code class="language-flat" style="margin-top: 40px;">{`
-class SomeLibrary {
-    public static distance(Point a, Point b) -> Double {
-        // ... calculate distance ...
-    }
-}
+            class SomeLibrary {
+                public static distance(Point a, Point b) -> Double {
+                    // ... calculate distance ...
+                }
+            }
         `}</code></pre>
         <table class="flow-container" style="margin: 40px auto; margin-top: 0;">
             <tr>
@@ -418,26 +418,26 @@ class SomeLibrary {
             After compiling <span class="pre type">SomeLibrary</span> to each of the target languages, you are able to access the functionality from that target language:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-// ======================= C ===========================
+            // ======================= C ===========================
 
-Point* a = Point_construct(5, 6);
-Point* b = Point_construct(10, 6);
+            Point* a = Point_construct(5, 6);
+            Point* b = Point_construct(10, 6);
 
-double distance = SomeLibrary_distance(a, b); // 5.0
+            double distance = SomeLibrary_distance(a, b); // 5.0
 
-// ====================== JAVA =========================
+            // ====================== JAVA =========================
 
-Point a = new Point(5, 6);
-Point b = new Point(10, 6);
+            Point a = new Point(5, 6);
+            Point b = new Point(10, 6);
 
-double distance = SomeLibrary.distance(a, b); // 5.0
+            double distance = SomeLibrary.distance(a, b); // 5.0
 
-// ======================= C# ==========================
+            // ======================= C# ==========================
 
-var a = new Point(5, 6);
-var b = new Point(10, 6);
+            var a = new Point(5, 6);
+            var b = new Point(10, 6);
 
-var distance = SomeLibrary.distance(a, b); // 5.0
+            var distance = SomeLibrary.distance(a, b); // 5.0
         `}</code></pre>
         <p>
             This means that any code you write in Flat is reusable in any of the languages that you can compile to. This makes programming something in Flat risk-free. You can export the code you have writtin in Flat to any of the available target languages and continue on with the software without having to manually translate any of the codebase.

@@ -3,21 +3,21 @@
 <p>After having <a href="/download">downloaded</a> and installed Flat, enter the following code into a file named HelloWorld.flat</p>
 
 <pre>
-<code class="language-flat">{`
-class {
-    public static main(String[] args) {
-        Console.writeLine("Hello, world!")
-    }
-}
-`}</code>
+    <code class="language-flat">{`
+        class {
+            public static main(String[] args) {
+                Console.writeLine("Hello, world!")
+            }
+        }
+    `}</code>
 </pre>
 
 <p>Then from command line, or terminal, navigate to the directory that you created the file in and run the following command:</p>
 
 <pre>
-<code class="language-bash">
-flatc HelloWorld.flat -o HelloWorld
-</code>
+    <code class="language-bash">
+        flatc HelloWorld.flat -o HelloWorld
+    </code>
 </pre>
 
 <p class="note" style="margin-top: 20px;">If you see an error that looks something like: "<i>'flatc' is not recognized as an internal or external command, operable program or batch file.</i>", follow the instructions explained <a href="/docs/getting-started/configure-environment">here</a>.</p>
@@ -26,40 +26,40 @@ flatc HelloWorld.flat -o HelloWorld
 <p>From the same command prompt window, you can run the HelloWorld program:</p>
 
 <pre>
-<code class="language-bash">
-    HelloWorld
-</code>
+    <code class="language-bash">
+        HelloWorld
+    </code>
 </pre>
 
 <p>or on non-windows platforms:</p>
 
 <pre>
-<code class="language-bash">
-    ./HelloWorld
-</code>
+    <code class="language-bash">
+        ./HelloWorld
+    </code>
 </pre>
 
 <p>And you should see:</p>
 
 <pre>
-<code class="language-bash">
-    Hello, world!
-</code>
+    <code class="language-bash">
+        Hello, world!
+    </code>
 </pre>
 
 <div class="note" style="margin-top: 20px;">
     <p>If you try to run the program by double click the executable, you will need to add the following line to your program to make it wait for user input before closing the window.</p>
 
 <pre>
-<code class="language-flat">{`
-class HelloWorld {
-    public static main(String[] args) {
-        Console.writeLine("Hello, world!")
+    <code class="language-flat">{`
+        class HelloWorld {
+            public static main(String[] args) {
+                Console.writeLine("Hello, world!")
 
-        Console.waitForEnter()
-    }
-}
-`}</code>
-</pre>
+                Console.waitForEnter()
+            }
+        }
+    `}</code>
+    </pre>
 </div>
 </template>

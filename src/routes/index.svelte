@@ -147,23 +147,23 @@
       <div class="code-container">
         <pre class="full">
           <code class="language-flat code dark-background indent-children">{`
-let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
+            let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
 
-Console.writeLine("Preorder: #{tree.preorder().join(", ")}")
+            Console.writeLine("Preorder: #{tree.preorder().join(", ")}")
 
-// Preorder: [F, B, A, D, C, E, G, I, H]
+            // Preorder: [F, B, A, D, C, E, G, I, H]
 
-Console.writeLine("Inorder: #{tree.inorder().join(", ")}")
+            Console.writeLine("Inorder: #{tree.inorder().join(", ")}")
 
-// Inorder: [A, B, C, D, E, F, G, H, I]
+            // Inorder: [A, B, C, D, E, F, G, H, I]
 
-Console.writeLine("Postorder: #{tree.postorder().join(", ")}")
+            Console.writeLine("Postorder: #{tree.postorder().join(", ")}")
 
-// Postorder: [A, C, E, D, B, H, I, G, F]
+            // Postorder: [A, C, E, D, B, H, I, G, F]
 
-Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
+            Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
 
-// Levelorder: [F, B, G, A, D, I, C, E, H]
+            // Levelorder: [F, B, G, A, D, I, C, E, H]
         `}</code>
         </pre>
       </div>
@@ -193,27 +193,27 @@ Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
       <div class="dark-background indent-children">
         <pre class="full">
           <code class="language-flat code dark-background indent-children">{`
-class MyClass implements MyTrait, MyInterface {
-  public calculateValue() => "my value"
+            class MyClass implements MyTrait, MyInterface {
+              public calculateValue() => "my value"
 
-  public saySomething() {
-    Console.writeLine("My value is: '#calculateValue()'")
-  }
-}
+              public saySomething() {
+                Console.writeLine("My value is: '#calculateValue()'")
+              }
+            }
 
-trait MyTrait implements PlusOperator<Int, MyTrait> {
-  visible Int id
+            trait MyTrait implements PlusOperator<Int, MyTrait> {
+              visible Int id
 
-  public plus(Int num) -> MyTrait {
-    id += num
+              public plus(Int num) -> MyTrait {
+                id += num
 
-    return this
-  }
-}
+                return this
+              }
+            }
 
-interface MyInterface {
-  public calculateValue() -> String
-}
+            interface MyInterface {
+              public calculateValue() -> String
+            }
         `}</code>
         </pre>
       </div>
@@ -239,13 +239,13 @@ interface MyInterface {
                       <h4>FLAT CODE:</h4>
                       <pre>
                         <code class="language-flat code dark-background indent-children">{`
-public static main() {
-  let names = ["Braden", "Ethan", "George"]
+                            public static main() {
+                              let names = ["Braden", "Ethan", "George"]
 
-  for (name in names) {
-    Console.writeLine("Hello, #name!")
-  }
-}
+                              for (name in names) {
+                                Console.writeLine("Hello, #name!")
+                              }
+                            }
                       `}</code>
                       </pre>
                   </div>
@@ -258,14 +258,14 @@ public static main() {
                       <h4>GENERATED JAVASCRIPT CODE:</h4>
                       <pre>
                         <code class="language-js code dark-background indent-children">{`
-let names = new FlatArray(["Braden", "Ethan", "George"]);
+                            let names = new FlatArray(["Braden", "Ethan", "George"]);
 
-let iterator = names.iterator();
+                            let iterator = names.iterator();
 
-while (iterator.hasNext()) {
-  let name = iterator.next();
-  console.log("Hello, " + name + "!");
-}
+                            while (iterator.hasNext()) {
+                              let name = iterator.next();
+                              console.log("Hello, " + name + "!");
+                            }
                       `}</code>
                       </pre>
                   </div>
@@ -294,13 +294,13 @@ while (iterator.hasNext()) {
                       <h4>FLAT CODE:</h4>
                       <pre>
                         <code class="language-flat code dark-background indent-children">{`
-public static main() {
-  let names = ["Braden", "Ethan", "George"]
+                            public static main() {
+                              let names = ["Braden", "Ethan", "George"]
 
-  for (name in names) {
-    Console.writeLine("Hello, #name!")
-  }
-}
+                              for (name in names) {
+                                Console.writeLine("Hello, #name!")
+                              }
+                            }
                       `}</code>
                       </pre>
                   </div>
@@ -313,16 +313,16 @@ public static main() {
                       <h4>GENERATED JAVA CODE:</h4>
                       <pre>
                         <code class="language-java code dark-background indent-children">{`
-public static void main(String[] args) {
-  Array<String> names = new Array<>(new String[] { "Braden", "Ethan", "George" });
+                            public static void main(String[] args) {
+                              Array<String> names = new Array<>(new String[] { "Braden", "Ethan", "George" });
 
-  Iterator<String> iterator = names.iterator();
+                              Iterator<String> iterator = names.iterator();
 
-  while (iterator.hasNext()) {
-    String name = iterator.next();
-    System.out.println("Hello, " + name + "!");
-  }
-}
+                              while (iterator.hasNext()) {
+                                String name = iterator.next();
+                                System.out.println("Hello, " + name + "!");
+                              }
+                            }
                       `}</code>
                       </pre>
                   </div>
@@ -351,13 +351,13 @@ public static void main(String[] args) {
                       <h4>FLAT CODE:</h4>
                       <pre>
                         <code class="language-flat code dark-background indent-children">{`
-public static main() {
-  let names = ["Braden", "Ethan", "George"]
+                            public static main() {
+                              let names = ["Braden", "Ethan", "George"]
 
-  for (name in names) {
-    Console.writeLine("Hello, #name!")
-  }
-}
+                              for (name in names) {
+                                Console.writeLine("Hello, #name!")
+                              }
+                            }
                       `}</code>
                       </pre>
                   </div>
@@ -370,29 +370,29 @@ public static main() {
                       <h4>GENERATED C CODE:</h4>
                       <pre>
                         <code class="language-c code dark-background indent-children">{`
-int main(int argc, char** argvs) {
-  flat_Array* names = generate_array();
+                            int main(int argc, char** argvs) {
+                              flat_Array* names = generate_array();
 
-  flat_ArrayIterator* iterator = flat_Array_iterator(names, exceptionData);
+                              flat_ArrayIterator* iterator = flat_Array_iterator(names, exceptionData);
 
-  while (flat_ArrayIterator_hasNext(iterator, exceptionData)) {
-    flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator, exceptionData);
+                              while (flat_ArrayIterator_hasNext(iterator, exceptionData)) {
+                                flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator, exceptionData);
 
-    flat_Console_writeLine(flat_String_concat(flat_String_concat(flat_String_construct(0, exceptionData, "Hello, "), exceptionData, name), flat_String_construct(0, exceptionData, "!")));
-  }
+                                flat_Console_writeLine(flat_String_concat(flat_String_concat(flat_String_construct(0, exceptionData, "Hello, "), exceptionData, name), flat_String_construct(0, exceptionData, "!")));
+                              }
 
-  return 0;
-}
+                              return 0;
+                            }
 
-flat_Array* generate_array() {
-  flat_String** temp = (flat_String**)FLAT_MALLOC(sizeof(flat_String*) * 3);
+                            flat_Array* generate_array() {
+                              flat_String** temp = (flat_String**)FLAT_MALLOC(sizeof(flat_String*) * 3);
 
-  temp[0] = flat_String_construct(0, exceptionData, "Braden");
-  temp[1] = flat_String_construct(0, exceptionData, "Ethan");
-  temp[2] = flat_String_construct(0, exceptionData, "George");
+                              temp[0] = flat_String_construct(0, exceptionData, "Braden");
+                              temp[1] = flat_String_construct(0, exceptionData, "Ethan");
+                              temp[2] = flat_String_construct(0, exceptionData, "George");
 
-  return flat_Array_construct(0, exceptionData, (flat_Object**)temp, 3);
-}
+                              return flat_Array_construct(0, exceptionData, (flat_Object**)temp, 3);
+                            }
                       `}</code>
                       </pre>
                   </div>

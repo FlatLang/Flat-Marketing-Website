@@ -30,40 +30,40 @@
                 With the following Flat function definition:
             </p>
             <pre><code class="language-flat">{`
-class FancyClass {
-    public static myFancyFunc(String something) {
-        Console.writeLine(something)
-    }
-}
+                class FancyClass {
+                    public static myFancyFunc(String something) {
+                        Console.writeLine(something)
+                    }
+                }
             `}</code></pre>
             <p>
                 And external C code:
             </p>
             <pre><code class="language-c">{`
-typedef void (*funcReference)(void*, flat_exception_Flat_ExceptionData*, flat_Flat_String*);
+                typedef void (*funcReference)(void*, flat_exception_Flat_ExceptionData*, flat_Flat_String*);
 
-void my_external_func(funcReference ref) {
-    // Passing 0 as first argument for the 'this' parameter of the function because
-    // the myFancyFunc is static and does not use the reference parameter.
+                void my_external_func(funcReference ref) {
+                    // Passing 0 as first argument for the 'this' parameter of the function because
+                    // the myFancyFunc is static and does not use the reference parameter.
 
-    // Passing 0 as second argument because there is no ExceptionData in this context
-    // available to pass! This is what has been fixed...
-    ref(0, 0, flat_Flat_String_1_Flat_construct(0, 0, "Hello, world"));
+                    // Passing 0 as second argument because there is no ExceptionData in this context
+                    // available to pass! This is what has been fixed...
+                    ref(0, 0, flat_Flat_String_1_Flat_construct(0, 0, "Hello, world"));
 
-    // The first and second argument of flat_Flat_String_1_Flat_construct are 0
-    // for the same reasons as stated above.
-}
+                    // The first and second argument of flat_Flat_String_1_Flat_construct are 0
+                    // for the same reasons as stated above.
+                }
             `}</code></pre>
             <p>
                 This is the general idea of the code that was required to call a function reference that was passed from Flat. Now, the second parameter of type flat_exception_Flat_ExceptionData* has been removed. The function implementation would now look like:
             </p>
             <pre><code class="language-c">{`
-typedef void (*funcReference)(void*, flat_Flat_String*);
+                typedef void (*funcReference)(void*, flat_Flat_String*);
 
-void my_external_func(funcReference ref) {
-    // No need for passing a second 0
-    ref(0, flat_Flat_String_1_Flat_construct(0, "Hello, world"));
-}
+                void my_external_func(funcReference ref) {
+                    // No need for passing a second 0
+                    ref(0, flat_Flat_String_1_Flat_construct(0, "Hello, world"));
+                }
             `}</code></pre>
             <p>
                 This approach is cleaner and <b>safer</b>. Because the exceptionData variable is referenced from TLS by Flat generated code, in instances such as the previous code where external code is calling Flat generated code, the ExceptionData is always available. In the previous code, if an exception was thrown somewhere insided the funcReference function call, there would have been a segmentation fault. This is because we were passing in 0 as the ExceptionData. Referencing it from TLS removes the responsibility from the user to pass ExceptionData in external code.

@@ -6,18 +6,18 @@
 <p>So how do you use these Lists? Here is an example of creating a list of letters, sorting them, then mapping them to their corresponding index in the English alphabet.</p>
 
 <pre>
-<code class="language-flat">{`
-let myLetters = ["X", "W", "Z", "C", "B", "A", "Y", "D"]
+  <code class="language-flat">{`
+    let myLetters = ["X", "W", "Z", "C", "B", "A", "Y", "D"]
 
-Console.writeLine(myLetters) // [X, W, Z, C, B, A, Y, D]
+    Console.writeLine(myLetters) // [X, W, Z, C, B, A, Y, D]
 
-myList.sort()
+    myList.sort()
 
-Console.writeLine(myLetters) // [A, B, C, D, W, X, Y, Z]
+    Console.writeLine(myLetters) // [A, B, C, D, W, X, Y, Z]
 
-let myNumbers = myLetters.map(x => ((Int)x.chars[0] - 'A') + 1)
+    let myNumbers = myLetters.map(x => ((Int)x.chars[0] - 'A') + 1)
 
-Console.writeLine(myNumbers) // [1, 2, 3, 4, 23, 24, 25, 26]
-`}</code>
+    Console.writeLine(myNumbers) // [1, 2, 3, 4, 23, 24, 25, 26]
+  `}</code>
 </pre>
 </template>

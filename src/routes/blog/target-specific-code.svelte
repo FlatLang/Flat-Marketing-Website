@@ -18,78 +18,78 @@
         Building off of the mobile app plotline, lets lay out a package structure for this app:
     </p>
     <pre><code class="language-bash" style="margin: 40px 0;">
-MyApp/
-|----> com/
-    |----> myapp/
-        |----> ui/
-            |----> MessageBox.flat
-            |----> MessageBox.swift.flat
-            |----> MessageBox.java.flat
-            |----> Table.flat
-            |----> Table.swift.flat
-            |----> Table.java.flat
-            |----> Photo.flat
-            |----> Photo.swift.flat
-            |----> Photo.java.flat
-        |----> notifications/
-            |----> Notification.flat
-            |----> Notification.swift.flat
-            |----> Notification.java.flat
-            |----> PushNotification.flat
-            |----> PushNotification.swift.flat
-            |----> PushNotification.java.flat
-        |----> audio/
-            |----> Sound.flat
-            |----> Sound.swift.flat
-            |----> Sound.java.flat
-            |----> Song.flat
-            |----> Song.swift.flat
-            |----> Song.java.flat
-        |----> ClassA.flat
-        |----> ClassB.flat
-        |----> Main.flat
+        MyApp/
+        |----> com/
+            |----> myapp/
+                |----> ui/
+                    |----> MessageBox.flat
+                    |----> MessageBox.swift.flat
+                    |----> MessageBox.java.flat
+                    |----> Table.flat
+                    |----> Table.swift.flat
+                    |----> Table.java.flat
+                    |----> Photo.flat
+                    |----> Photo.swift.flat
+                    |----> Photo.java.flat
+                |----> notifications/
+                    |----> Notification.flat
+                    |----> Notification.swift.flat
+                    |----> Notification.java.flat
+                    |----> PushNotification.flat
+                    |----> PushNotification.swift.flat
+                    |----> PushNotification.java.flat
+                |----> audio/
+                    |----> Sound.flat
+                    |----> Sound.swift.flat
+                    |----> Sound.java.flat
+                    |----> Song.flat
+                    |----> Song.swift.flat
+                    |----> Song.java.flat
+                |----> ClassA.flat
+                |----> ClassB.flat
+                |----> Main.flat
     </code></pre>
     <p>
         Notice how there are some files with .swift and .java extensions paired with the original .flat files. Whenever a <i>Filename.flat</i> file has a <i>Filename.target.flat</i> file paired with it in the same package, the contents of the <i>Filename.target.flat</i> file overrides the contents of the <i>Filename.flat</i> file. Lets see an example of this:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-// MessageBox.flat
-class MessageBox {
-    visible String message
+        // MessageBox.flat
+        class MessageBox {
+            visible String message
 
-    public construct(visible String message) {}
+            public construct(visible String message) {}
 
-    public show() {
-        throw new Exception("A target implementation needs to override this function!")
-    }
+            public show() {
+                throw new Exception("A target implementation needs to override this function!")
+            }
 
-    public close() {
-        throw new Exception("A target implementation needs to override this function!")
-    }
-}
+            public close() {
+                throw new Exception("A target implementation needs to override this function!")
+            }
+        }
     `}</code></pre>
     <p>
         This is our MessageBox base implementation. It expects one of the paired files to override the show and close functions. This is done like the following:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-// MessageBox.swift.flat
-class MessageBox {
-    public show() {
-        // do some swift message box showing code here
-        external swift {
-            let alert = UIAlertController(
-                    title: "Alert",
-                    message: #{message},
-                    preferredStyle: UIAlertControllerStyle.Alert)
+        // MessageBox.swift.flat
+        class MessageBox {
+            public show() {
+                // do some swift message box showing code here
+                external swift {
+                    let alert = UIAlertController(
+                            title: "Alert",
+                            message: #{message},
+                            preferredStyle: UIAlertControllerStyle.Alert)
 
-            self.present(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+
+            public close() {
+                // do some swift message box closing code here
+            }
         }
-    }
-
-    public close() {
-        // do some swift message box closing code here
-    }
-}
     `}</code></pre>
     <p>
         When creating a target-specific file override, you only need to add the functions that you are overriding (e.g. no need to override the constructor). It is in the target-specific functions above that you will call the corresponding swift code necessary to <i>show</i> and <i>close</i> the MessageBox.
@@ -105,11 +105,11 @@ class MessageBox {
         When you want to compile your code to the specific target (Swift or Java in this case), you need to tell the compiler which target to output as. Assuming you have the required compilation targets included in your Flat compiler package, you can use the following commands:
     </p>
     <code class="language-bash" style="margin: 40px 0;">{`
-flatc MyApp -target swift -d MySwiftApp
+        flatc MyApp -target swift -d MySwiftApp
     `}</code>
     <p>and</p>
     <code class="language-bash" style="margin: 40px 0;">{`
-flatc MyApp -target java -d MyJavaApp
+        flatc MyApp -target java -d MyJavaApp
     `}</code>
     <p>
         will do the trick. After running these commands, you will have a MySwiftApp and MyJavaApp directory created that contains the swift and java code respectively available to use for your iOS and Android app!

@@ -5,50 +5,50 @@
         Before getting into what <i>zero-cost primitive</i> generic types are, lets cover what regular generic data types are. Generic data types are parameters you can specify for a class that are used to generalize some data types used within the class. To better understand this, consider an example:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-class Barrel<Type> {
-    visible Type[] contents
+        class Barrel<Type> {
+            visible Type[] contents
 
-    public add(Type element) {
-        contents.add(element)
-    }
+            public add(Type element) {
+                contents.add(element)
+            }
 
-    public remove(Type element) {
-        contents.remove(element)
-    }
-}
+            public remove(Type element) {
+                contents.remove(element)
+            }
+        }
     `}</code></pre>
     <p>
         In the above code example, <span class="pre">&lt;<span class="type">Type</span>&gt;</span> is the generic parameter declaration. Adding this to the class declaration allows you to use <span class="pre type">Type</span> in place of any regular type. And with this class you can create Barrels of various types:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-// A barrel containing elements of type Bottle
-let barrelOfBottles = new Barrel<Bottle>()
+        // A barrel containing elements of type Bottle
+        let barrelOfBottles = new Barrel<Bottle>()
 
-// A barrel containing elements of type Monkey
-let monkeysInABarrel = new Barrel<Monkey>()
+        // A barrel containing elements of type Monkey
+        let monkeysInABarrel = new Barrel<Monkey>()
 
-// A barrel containing elements of type Shell
-let barrelOfShells = new Barrel<Shell>()
+        // A barrel containing elements of type Shell
+        let barrelOfShells = new Barrel<Shell>()
 
-// A barrel containing elements of type Int
-let barrelOfNumbers = new Barrel<Int>()
+        // A barrel containing elements of type Int
+        let barrelOfNumbers = new Barrel<Int>()
     `}</code></pre>
     <p>
         Using generic types in your class ensures that there is type safety whenever you create an instance of the class. For instance, if you try to add a number to the <span class="pre">barrelOfBottles</span> you will get a compile error telling you that the barrelOfBottles only accepts type <span class="pre">Bottle</span>.
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-// COMPILE ERROR: Expected type Bottle, but was given Int
-barrelOfBottles.add(4)
+        // COMPILE ERROR: Expected type Bottle, but was given Int
+        barrelOfBottles.add(4)
     `}</code></pre>
     <p>
         Generic parameters can also be declared for functions:
     </p>
     <pre><code class="language-flat" style="margin: 40px 0;">{`
-public myGenericFunc<X, Y>(Int paramA, X paramB, Y paramC) {
+        public myGenericFunc<X, Y>(Int paramA, X paramB, Y paramC) {
 
-}
+        }
 
-myGenericFunc<Shell, Monkey>(5, new Shell(), new Monkey())
+        myGenericFunc<Shell, Monkey>(5, new Shell(), new Monkey())
     `}</code></pre>
 </div>
 
@@ -60,19 +60,19 @@ myGenericFunc<Shell, Monkey>(5, new Shell(), new Monkey())
             In the case of <i>zero-cost primitive</i> generic types, I will focus on this example:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-// A barrel containing elements of type Int
-let barrelOfNumbers = new Barrel<Int>()
+            // A barrel containing elements of type Int
+            let barrelOfNumbers = new Barrel<Int>()
 
-barrelOfNumbers.add(5) // valid
+            barrelOfNumbers.add(5) // valid
         `}</code></pre>
         <p>
             In most programming languages, when you use a primitive type in place of a generic argument, it will autobox the primitive type into a wrapper class of some sort. Usually representing something like:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-// A barrel containing elements of type Int
-let barrelOfNumbers = new Barrel<IntWrapperClass>()
+            // A barrel containing elements of type Int
+            let barrelOfNumbers = new Barrel<IntWrapperClass>()
 
-barrelOfNumbers.add(new IntWrapperClass(5))
+            barrelOfNumbers.add(new IntWrapperClass(5))
         `}</code></pre>
         <p>
             This is required because you cannot abstract between <i>reference</i> types and <i>value</i> types. If you are not familiar with the difference between reference and value types, <a target="_blank" href="https://msdn.microsoft.com/en-us/library/t63sy5hs.aspx">this page</a> does a pretty good job explaining the difference. But in short, Object types are reference types, and primitive types are value types.
@@ -81,17 +81,17 @@ barrelOfNumbers.add(new IntWrapperClass(5))
             This poses a performance issue for code that heavily relies on primitive types in place of generic arguments. When you create a new instance of a primtive wrapper class, it's not free. The common way to work around this is to create a separate class that has the same fields and functions, but instead of using that generic parameter, hardcode that primitive type instead. Something comparable to:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-class IntBarrel {
-    visible Int[] contents
+            class IntBarrel {
+                visible Int[] contents
 
-    public add(Int element) {
-        contents.add(element)
-    }
+                public add(Int element) {
+                    contents.add(element)
+                }
 
-    public remove(Int element) {
-        contents.remove(element)
-    }
-}
+                public remove(Int element) {
+                    contents.remove(element)
+                }
+            }
         `}</code></pre>
         <p>
             Then you would create the barrelOfNumbers like: <span class="pre">let barrelOfNumbers = new IntBarrel()</span>
@@ -100,16 +100,16 @@ class IntBarrel {
             This has some obvious drawbacks. What if you want to add some functionality to the original Barrel class? Then you would have to add that same function/field to the <i>IntBarrel</i> class as well! What if you have a general function that takes in a Barrel, but you want to pass in your IntBarrel like:
         </p>
         <pre><code class="language-flat" style="margin: 40px 0;">{`
-public myFunBarrelFunction(Barrel barrel) {
-    ... do something really cool with a barrel ...
-}
+            public myFunBarrelFunction(Barrel barrel) {
+                ... do something really cool with a barrel ...
+            }
 
-...
+            ...
 
-let barrelOfNumbers = new IntBarrel()
+            let barrelOfNumbers = new IntBarrel()
 
-// COMPILE ERROR: Expected type Barrel, but was given IntBarrel
-myFunBarrelFunction(barrelOfNumbers)
+            // COMPILE ERROR: Expected type Barrel, but was given IntBarrel
+            myFunBarrelFunction(barrelOfNumbers)
         `}</code></pre>
         <p>
             Short answer: you can't (slightly less short answer: you have to create a duplicate function that takes IntBarrel instead of Barrel).
@@ -124,31 +124,31 @@ myFunBarrelFunction(barrelOfNumbers)
             In C++ this is a common code structure that you use when you are doing generic programming: <a target="_blank" href="https://www.tutorialspoint.com/cplusplus/cpp_templates.htm">templates</a>. When you use a template in C++, a unique set of code is compiled for each of the different types that is used with the template. For instance:
         </p>
         <pre><code class="language-cpp" style="margin: 40px 0;">{`
-template<typename T> void f(T s)
-{
-    std::cout << s << '\\n';
-}
+            template<typename T> void f(T s)
+            {
+                std::cout << s << '\\n';
+            }
 
-...
+            ...
 
-f(5.0);
-f("hey");
+            f(5.0);
+            f("hey");
         `}</code></pre>
         <p>
             Both of those function calls create separate f() function declarations that correspond with the datatype that is given to it in place of <span class="pre"><span class="modifier">typename</span> T</span>.
         </p>
         <pre><code class="language-cpp" style="margin: 40px 0;">{`
-// f(5.0) creates:
-void f(double s)
-{
-    std::cout << s << '\\n';
-}
+            // f(5.0) creates:
+            void f(double s)
+            {
+                std::cout << s << '\\n';
+            }
 
-// f("hey") creates:
-void f(const char* s)
-{
-    std::cout << s << '\\n';
-}
+            // f("hey") creates:
+            void f(const char* s)
+            {
+                std::cout << s << '\\n';
+            }
         `}</code></pre>
         <p>
             The solution to the primitive generic problem in Flat resembles some of the aspects of C++ templates. In most cases, when you are not using primitive datatypes as generic arguments, you are safe to resort to the standard method of how generic datatypes work by using <a target="_blank" href="http://code.stephenmorley.org/articles/java-generics-type-erasure">type erasure</a>. But for when primitive datatypes are used in place of generic arguments, you have to do a process much like what templates do with each datatype.

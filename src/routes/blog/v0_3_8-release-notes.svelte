@@ -23,31 +23,31 @@
                 Used to assign passed parameter value to field in parent class with same name as parameter. Example:
             </p>
             <pre><code class="language-flat">{`
-class MyClass {
-    visible Int myField
+                class MyClass {
+                    visible Int myField
 
-    public construct(this Int myField) {}
-}
+                    public construct(this Int myField) {}
+                }
 
-let myClass = new MyClass(10)
+                let myClass = new MyClass(10)
 
-Console.writeLine(myClass.myField) // outputs 10
+                Console.writeLine(myClass.myField) // outputs 10
             `}</code></pre>
             <p>
                 This code is essentially the same as this:
             </p>
             <pre><code class="language-flat">{`
-class MyClass {
-    visible Int myField
+                class MyClass {
+                    visible Int myField
 
-    public construct(Int myField) {
-        this.myField = myField
-    }
-}
+                    public construct(Int myField) {
+                        this.myField = myField
+                    }
+                }
 
-let myClass = new MyClass(10)
+                let myClass = new MyClass(10)
 
-Console.writeLine(myClass.myField) // outputs 10
+                Console.writeLine(myClass.myField) // outputs 10
             `}</code></pre>
             <p>
                 But reduces code duplication.
@@ -60,31 +60,31 @@ Console.writeLine(myClass.myField) // outputs 10
             </p>
             <h5 style="margin-bottom: 5px;">Previous</h5>
             <pre><code class="language-flat">{`
-Int x = 10
+                Int x = 10
 
-x = 50 // valid
+                x = 50 // valid
             `}</code></pre>
             <h5 style="margin-bottom: 5px;">Current</h5>
             <pre><code class="language-flat" style="margin-bottom: 35px;">{`
-Int x = 10
+                Int x = 10
 
-x = 50 // Compiler error, cannot modify final variable x
+                x = 50 // Compiler error, cannot modify final variable x
             `}</code></pre>
             <p>
                 To declare a mutable variable you do this:
             </p>
             <pre><code class="language-flat">{`
-var Int x = 10
+                var Int x = 10
 
-x = 50 // valid
+                x = 50 // valid
             `}</code></pre>
             <p>
                 Or, if you the type can be inferred from its assignment, you do not have to speficy the type:
             </p>
             <pre><code class="language-flat">{`
-var x = 10
+                var x = 10
 
-x = 50 // valid
+                x = 50 // valid
             `}</code></pre>
         </div>
         <div use:anchorButton id="unit-testing" class="release-note">

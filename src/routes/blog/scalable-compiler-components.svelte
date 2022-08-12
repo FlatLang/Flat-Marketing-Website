@@ -154,38 +154,38 @@
             Let's look at an example Parser component to help illustrate this. When searching for a parser, the compiler searches for classes that extend the class "NodeParser". The NodeParser class contains function definitions used to parse statements that are iterated over. The base NodeParser class looks like this:
         </p>
         <pre><code class="language-flat">{`
-class NodeParser {
-    public static parse(String input, Node parent = null, Location location = Location.INVALID) -> Node => null {
-        ...
-    }
-}
+            class NodeParser {
+                public static parse(String input, Node parent = null, Location location = Location.INVALID) -> Node => null {
+                    ...
+                }
+            }
         `}</code></pre>
         <p>
             Parser components build their parsing framework on top of this class. For instance, an Assignment parser might look something like this:
         </p>
         <pre><code class="language-flat">{`
-// Import the findOperatorOnTopLevel extension function, as well
-// as many other useful extension functions for parsing.
-import "novex/astro/util/CompilerStringFunctions"
+            // Import the findOperatorOnTopLevel extension function, as well
+            // as many other useful extension functions for parsing.
+            import "novex/astro/util/CompilerStringFunctions"
 
-class AssignmentParser extends NodeParser {
-    public static parse(String input, Node parent = null, Location location = Location.INVALID) -> Assignment => null {
-        let assignmentIndex = input.findOperatorOnTopLevel('=')
+            class AssignmentParser extends NodeParser {
+                public static parse(String input, Node parent = null, Location location = Location.INVALID) -> Assignment => null {
+                    let assignmentIndex = input.findOperatorOnTopLevel('=')
 
-        if (assignmentIndex > 0) {
-            let node = new Assignment(parent, location)
+                    if (assignmentIndex > 0) {
+                        let node = new Assignment(parent, location)
 
-            if (node.parseAssignedNode(findAssigned(input, assignmentIndex)) &&
-                node.parseAssignment(findAssignment(input, assignmentIndex))) {
-                node.operators.add(new Operator(parent: node, value: "="))
+                        if (node.parseAssignedNode(findAssigned(input, assignmentIndex)) &&
+                            node.parseAssignment(findAssignment(input, assignmentIndex))) {
+                            node.operators.add(new Operator(parent: node, value: "="))
 
-                return node
+                            return node
+                        }
+                    }
+                }
+
+                ...
             }
-        }
-    }
-
-    ...
-}
         `}</code></pre>
         <p>
             This AssignmentWriter example first searches for the index of the equals sign in the assignment. If the index exists at a valid position (the index must be > 0 for it to be valid), then it tries to parse the assigned node (the left-hand side of the assignment) <i>and</i> the assignment node (the right-hand side of the assignment) using their own parsers. If all of that is successful, then it returns the parsed Assignment node.
@@ -203,48 +203,48 @@ class AssignmentParser extends NodeParser {
             A simple example is a spell checker. This spell checker just looks at identifiers to validate that they are spelled correctly. As with the Parsers, code inspectors has a base class that is required to be extended from in order for the foundational compiler framework to find it. The class's name is "CodeInspector".
         </p>
         <pre><code class="language-flat">{`
-class CodeInspector {
-    visible Class[] targetTypes => []
+            class CodeInspector {
+                visible Class[] targetTypes => []
 
-    public inspect(Node node) {
-        ...
-    }
-}
+                public inspect(Node node) {
+                    ...
+                }
+            }
         `}</code></pre>
         <p>
             Extending the CodeInspector class, the spell checker example looks like this:
         </p>
         <pre><code class="language-flat">{`
-class SpellChecker extends CodeInspector {
-    public Class[] targetTypes => [Identifier]
+            class SpellChecker extends CodeInspector {
+                public Class[] targetTypes => [Identifier]
 
-    public inspect(Node node) {
-        // We know it's an Identifier because that is the only
-        // class type allowed in the targetTypes array
-        let identifier = (Identifier)node
+                public inspect(Node node) {
+                    // We know it's an Identifier because that is the only
+                    // class type allowed in the targetTypes array
+                    let identifier = (Identifier)node
 
-        if (SomeFancyDictionary.isSpellingError(identifier.name)) {
-            let suggestions = SomeFancyDictionary.getSuggestions(identifier.name)
-            let suggestionsText = suggestions.count > 0 ?
-                "Some suggestions include: " + suggestions.join(", ") : ""
+                    if (SomeFancyDictionary.isSpellingError(identifier.name)) {
+                        let suggestions = SomeFancyDictionary.getSuggestions(identifier.name)
+                        let suggestionsText = suggestions.count > 0 ?
+                            "Some suggestions include: " + suggestions.join(", ") : ""
 
-            toss new SpellCheckWarning(
-                "Identifier '#identifier.name' is not spelled correctly. #suggestionsText",
-                identifier
-            )
-        }
-    }
-}
+                        toss new SpellCheckWarning(
+                            "Identifier '#identifier.name' is not spelled correctly. #suggestionsText",
+                            identifier
+                        )
+                    }
+                }
+            }
         `}</code></pre>
         <p>
             This code checks a class called "SomeFancyDictionary" for the word, and if it is not spelled correctly, it offers some suggestions to fix it in the warning. The warning itself is generated by tossing a SpellCheckWarning which is a class that the SpellChecker component contains that extends CompilerWarning. The implementation looks like this:
         </p>
         <pre><code class="language-flat">{`
-class SpellCheckWarning extends CompilerWarning {
-    public construct(String message, Node cause) {
-        super(message, cause)
-    }
-}
+            class SpellCheckWarning extends CompilerWarning {
+                public construct(String message, Node cause) {
+                    super(message, cause)
+                }
+            }
         `}</code></pre>
         <p>
             It is essentially an extension of the CompilerWarning. It is good to create distinct warning and error classes for different types of errors in order to add more helpful information for when the user sees it.
@@ -262,62 +262,62 @@ class SpellCheckWarning extends CompilerWarning {
             Code optimizer components extend the TreeTransformer class that looks like this:
         </p>
         <pre><code class="language-flat">{`
-class TreeTransformer {
-    visible Class[] targetTypes => []
+            class TreeTransformer {
+                visible Class[] targetTypes => []
 
-    public transform(Node node) {
-        ...
-    }
-}
+                public transform(Node node) {
+                    ...
+                }
+            }
         `}</code></pre>
         <p>
             This class has the targetTypes array just like the CodeInspector class. The method used to perform the transformation is called "transform". An example optimizer for <a target="_blank" href="https://en.wikipedia.org/wiki/Loop_unrolling">unrolling simple loops</a> might look like this:
         </p>
         <pre><code class="language-flat">{`
-class LoopUnrollTransformer extends TreeTransformer {
-    visible Class[] targetTypes => [ForEachLoop]
+            class LoopUnrollTransformer extends TreeTransformer {
+                visible Class[] targetTypes => [ForEachLoop]
 
-    public transform(Node node) {
-        let loop = (ForEachLoop)node
+                public transform(Node node) {
+                    let loop = (ForEachLoop)node
 
-        if (!loop.iterator.class.isOfType(IntegerRange)) {
-            // Don't transform if it is not iterating over an integer range
-            return
-        }
+                    if (!loop.iterator.class.isOfType(IntegerRange)) {
+                        // Don't transform if it is not iterating over an integer range
+                        return
+                    }
 
-        let range = (IntegerRange)loop.iterator
-        let start = range.start
-        let end = range.end
+                    let range = (IntegerRange)loop.iterator
+                    let start = range.start
+                    let end = range.end
 
-        if (!start.class.isOfType(Literal) ||
-            !start.type.typeClass.extends("flat/primitive/number/Integer") ||
-            !end.class.isOfType(Literal) ||
-            !end.type.typeClass.extends("flat/primitive/number/Integer") ) {
-            // Don't transform if the integer range doesn't use literal
-            // integer values as it's bounds. Can't unroll loops with
-            // variable bounds.
-            return
-        }
+                    if (!start.class.isOfType(Literal) ||
+                        !start.type.typeClass.extends("flat/primitive/number/Integer") ||
+                        !end.class.isOfType(Literal) ||
+                        !end.type.typeClass.extends("flat/primitive/number/Integer") ) {
+                        // Don't transform if the integer range doesn't use literal
+                        // integer values as it's bounds. Can't unroll loops with
+                        // variable bounds.
+                        return
+                    }
 
-        let startLiteral = (Literal)start
-        let endLiteral = (Literal)end
+                    let startLiteral = (Literal)start
+                    let endLiteral = (Literal)end
 
-        let startValue = Int.parse(startLiteral.value)
-        let endValue = Int.parse(endLiteral.value)
+                    let startValue = Int.parse(startLiteral.value)
+                    let endValue = Int.parse(endLiteral.value)
 
-        let replacementScope = new Scope(node.parent, node.location)
+                    let replacementScope = new Scope(node.parent, node.location)
 
-        // Unroll the contents of the foreach loop into a replacementScope
-        // buffer before replacing the foreach loop with the scope.
-        for (var i in startValue..endValue) {
-            let clonedContents = loop.scope.clone()
+                    // Unroll the contents of the foreach loop into a replacementScope
+                    // buffer before replacing the foreach loop with the scope.
+                    for (var i in startValue..endValue) {
+                        let clonedContents = loop.scope.clone()
 
-            replacementScope.addChild(clonedContents)
-        }
+                        replacementScope.addChild(clonedContents)
+                    }
 
-        node.replaceWith(replacementScope)
-    }
-}
+                    node.replaceWith(replacementScope)
+                }
+            }
         `}</code></pre>
         <p>
             This is an extremely basic implementation, but it should get the point across of how optimizer components are implemented.
@@ -329,23 +329,23 @@ class LoopUnrollTransformer extends TreeTransformer {
             The code generator components are designed similarly to the parsers. The writer components extend a "NodeWriter" class that takes a Node and writes it to an output stream. The definition of the NodeWriter class looks like this:
         </p>
         <pre><code class="language-flat">{`
-class NodeWriter {
-    public static write(Node node, OutputStream writer) => writer {
-        ...
-    }
-}
+            class NodeWriter {
+                public static write(Node node, OutputStream writer) => writer {
+                    ...
+                }
+            }
         `}</code></pre>
         <p>
             And an implementation of an AssignmentWriter might look like this:
         </p>
         <pre><code class="language-flat">{`
-class AssignmentWriter extends NodeWriter {
-    public static write(Assignment node, OutputStream writer) => writer {
-        ValueWriter.write(node.assigned)
-        writer.write(" = ")
-        ValueWriter.write(node.assignment)
-    }
-}
+            class AssignmentWriter extends NodeWriter {
+                public static write(Assignment node, OutputStream writer) => writer {
+                    ValueWriter.write(node.assigned)
+                    writer.write(" = ")
+                    ValueWriter.write(node.assignment)
+                }
+            }
         `}</code></pre>
         <p>
             Again, this uses the divide and conquer philosophy to accomplish the task. The assignment simply makes use of the ValueWriter to output the assigned and assignment parts of the assignment.
