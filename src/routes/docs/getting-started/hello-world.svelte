@@ -3,13 +3,13 @@
 <p>After having <a href="/download">downloaded</a> and installed Flat, enter the following code into a file named HelloWorld.flat</p>
 
 <pre>
-<code class="language-flat">
-class {`{`}
-    public static main(String[] args) {`{`}
+<code class="language-flat">{`
+class {
+    public static main(String[] args) {
         Console.writeLine("Hello, world!")
-    {`}`}
-{`}`}
-</code>
+    }
+}
+`}</code>
 </pre>
 
 <p>Then from command line, or terminal, navigate to the directory that you created the file in and run the following command:</p>
@@ -51,15 +51,15 @@ flatc HelloWorld.flat -o HelloWorld
     <p>If you try to run the program by double click the executable, you will need to add the following line to your program to make it wait for user input before closing the window.</p>
 
 <pre>
-<code class="language-flat">
-class HelloWorld {`{`}
-    public static main(String[] args) {`{`}
+<code class="language-flat">{`
+class HelloWorld {
+    public static main(String[] args) {
         Console.writeLine("Hello, world!")
 
         Console.waitForEnter()
-    {`}`}
-{`}`}
-</code>
+    }
+}
+`}</code>
 </pre>
 </div>
 </template>

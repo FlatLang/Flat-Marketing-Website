@@ -4,7 +4,7 @@ import { hljsFlat } from "./static/js/flat.js";
 hljs.registerLanguage('flat', hljsFlat);
 
 function escapeHTML(str) {
-  return str.replaceAll(/[}{]/g, 
+  return str.replaceAll(/[}{]/g,
     tag => ({
       '{': '{`{`}',
       '}': '{`}`}'
@@ -15,7 +15,7 @@ export default async function ({content}) {
   let matches = [];
 
   let index = content.indexOf(`<code`);
-  
+
   while (index > 0) {
     const start = content.indexOf(">", index + "<code".length) + 1;
 
@@ -38,7 +38,7 @@ export default async function ({content}) {
     const start = matches[i].start;
     const end = matches[i].end;
     const trimmed = content.substring(start, end).trim();
-    const value = trimmed.substring(2, trimmed.length - 2 - 1).trim();
+    const value = trimmed[0] === '{' && trimmed[1] === '`' ? trimmed.substring(2, trimmed.length - 2 - 1).trim() : trimmed;
     content = content.substring(0, start) + escapeHTML(hljs.highlight(value, {language: 'flat'}).value) + content.substring(end);
   }
 
