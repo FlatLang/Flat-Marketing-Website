@@ -3,7 +3,7 @@
 }
 
 #downloads {
-    
+
 }
 
 #downloads a.download-button {
@@ -13,7 +13,11 @@
     margin-bottom: 12px;
 }
 
-.content-container .slide {
+.download #content-container {
+    display: block;
+}
+
+#content-container .slide {
     max-width: 1000px;
     margin: auto;
     padding: 0 20px;
@@ -27,63 +31,67 @@
 #beta .download-button button {
     background-color: #f15d3b;
     border-color: #c12d0b;
-    
+
     outline: none;
 }
 
 .download-button.disabled button {
     /*background-color: #ccc !important;
     border-color: #aaa !important;*/
-    
+
     opacity: 0.5;
-    
+
     cursor: default;
 }
 
 .download-button button {
     cursor: pointer;
-    
+
     border: 2px solid;
-    
+
     border-radius: 125px;
-    
+
     padding-right: 10px;
-    
+
     outline: none;
 }
 
 .download-button button .icon-container {
     width: 25px;
     height: 25px;
-    
+
     border-radius: 50%;
-    
+
     display: inline-block;
-    
+
     /*background-color: #ccc;*/
-    
+
     overflow: hidden;
 }
 
 .download-button button img {
     width: 70%;
-    
+
     position: relative;
-    
+
     left: 50%;
     top: 50%;
-    
+
     transform: translate(-50%, -50%);
 }
 
 .show-all {
     font-size: 12px;
-    
+
     cursor: pointer;
 }
 
-.why-java {
+.why {
     font-size: 12px;
+}
+
+.why .tooltip {
+    cursor: pointer;
 }
 
 #installation {
