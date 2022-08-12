@@ -54,12 +54,12 @@
                         </div>
                     </div>
                     {#if $currentPage && $currentPage.references && $currentPage.references.length > 0}
-                    <div class="references dark-border">
+                    <div use:anchorButton id="references" class="references dark-border">
                         <h2>References</h2>
                         <ul class="references-list">
                             {#each $currentPage.references as ref}
                             <li>
-                                <a href="{ref.url}" ng-bind="ref.header" title="{ ref.tooltip }"></a>
+                                <a href="{ref.url}" title="{ ref.tooltip }">{ref.header}</a>
                             </li>
                             {/each}
                         </ul>
@@ -82,6 +82,7 @@
     import { currentPage, blogPages } from './blog';
     import { page } from '$app/stores';
     import { writable } from 'svelte/store';
+    import { anchorButton } from '/src/util';
 
     let share = writable(false);
 
