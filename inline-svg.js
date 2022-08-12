@@ -16,7 +16,8 @@ export default async function ({content}) {
       ...img.attributes
     });
 
-    svgElement.querySelectorAll("metadata").forEach(metadata => metadata.remove());
+    svgElement.querySelectorAll("metadata").forEach(element => element.remove());
+    svgElement.querySelectorAll("[id]").forEach(element => element.removeAttribute("id"));
 
     img.replaceWith(svgElement);
   });
