@@ -29,6 +29,20 @@ function getLanguageFromAttributes(attributes) {
   return attributes.substring(start, end);
 }
 
+function trimPrecedingTabs(rawContent, trimmedValue) {
+  const firstContentIndex = rawContent.indexOf(trimmedValue);
+  const precedingContent = rawContent.substring(0, firstContentIndex);
+  const lastNewLineIndex = precedingContent.lastIndexOf("\n");
+
+  if (lastNewLineIndex === -1) {
+    return trimmedValue;
+  }
+
+  const precedingTabs = precedingContent.substring(lastNewLineIndex + 1);
+
+  return trimmedValue.replaceAll("\n" + precedingTabs, "\n");
+}
+
 export default async function ({content}) {
   let matches = [];
 
@@ -59,9 +73,12 @@ export default async function ({content}) {
     const start = matches[i].start;
     const end = matches[i].end;
     const language = matches[i].language;
-    const trimmed = content.substring(start, end).trim();
+    const rawContent = content.substring(start, end);
+    const trimmed = rawContent.trim();
     const value = trimmed[0] === '{' && trimmed[1] === '`' ? trimmed.substring(2, trimmed.length - 2).trim() : trimmed;
-    content = content.substring(0, start) + escapeHTML(hljs.highlight(value, {language}).value) + content.substring(end);
+    const trimmedValue = trimPrecedingTabs(rawContent, value);
+
+    content = content.substring(0, start) + escapeHTML(hljs.highlight(trimmedValue, {language}).value) + content.substring(end);
   }
 
   return {code: content};
