@@ -2,7 +2,7 @@
     <table class="recent-posts-header">
         <tr>
             <td>
-                <h1>{ limit ? 'RECENT' : 'ALL' } POSTS {#if limit && limited}<span class="show-all" on:click={() => toggleLimit()}>Show all</span>{/if}</h1>
+                <h1>{ limit ? 'RECENT POSTS' : 'ALL POSTS' } {#if limit && limited}<span class="show-all" on:click={() => toggleLimit()}>Show all</span>{/if}</h1>
             </td>
             <td class="search">
                 <input type="text" bind:value={searchValue} on:input={() => updateSearch()} placeholder="SEARCH POSTS" />
