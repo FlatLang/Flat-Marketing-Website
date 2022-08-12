@@ -75,7 +75,13 @@ const blogPages = [{
     header: "v0.3.8 Release Notes",
     url: "v0_3_8-release-notes",
     date: "3/12/2017",
-    author: "Braden Steffaniak"
+    author: "Braden Steffaniak",
+    references: [
+        {
+            header: "First-class Functions",
+            url: "/blog/first-class-functions"
+        }
+    ]
 }, {
     header: "v0.3.9 Release Notes",
     url: "v0_3_9-release-notes",
