@@ -1,8 +1,8 @@
-<div ng-if="!page" class="default-view" ng-init="limit = 50">
+<div ng-if="!page" class="default-view">
     <table class="recent-posts-header">
         <tr>
             <td>
-                <h1>{ limit ? 'RECENT' : 'ALL' } POSTS {#if limit}<span ng-show="limit" class="show-all" on:click={() => toggleLimit()}>Show all</span>{/if}</h1>
+                <h1>{ limit ? 'RECENT' : 'ALL' } POSTS {#if limit && limited}<span class="show-all" on:click={() => toggleLimit()}>Show all</span>{/if}</h1>
             </td>
             <td class="search">
                 <input type="text" bind:value={searchValue} on:input={() => updateSearch()} placeholder="SEARCH POSTS" />
@@ -17,6 +17,7 @@
             <h6><span class="date">{page.date}</span></h6>
         </div>
         {/each}
+        {#if limit && limited}<h3 class="show-all" on:click={() => toggleLimit()}>Show all</h3>{/if}
     </div>
 </div>
 
@@ -37,13 +38,9 @@
     currentPage.set(null);
 
     let limit;
+    let limited = false;
     let pages = [];
     let searchValue;
-
-    page.subscribe(() => {
-        searchValue = typeof searchValue === 'undefined' ? $page.url.searchParams.get("search") : searchValue;
-        limit = typeof limit === 'undefined' ? !$page.url.searchParams.get("showAll") : limit;
-    });
 
     const toggleLimit = () => {
         limit = !limit;
@@ -70,15 +67,24 @@
     }
 
     const updateResults = () => {
+        limited = false;
         pages = [...blogPages]
             .filter(p => p.visible !== false)
             .filter(p => !searchValue || p.header.toLocaleLowerCase().indexOf(searchValue.toLocaleLowerCase()) !== -1)
             .sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
-        if (limit) {
+        if (limit && pages.length > 10) {
             pages = pages.slice(0, 10);
+            limited = true;
         }
     }
+
+    page.subscribe(() => {
+        searchValue = $page.url.searchParams.get("search") || "";
+        limit = !$page.url.searchParams.get("showAll");
+
+        updateResults();
+    });
 
     updateResults();
 </script>

@@ -7,8 +7,12 @@ li {
 }
 
 .show-all {
-    font-size: 14px;
     cursor: pointer;
+    text-decoration: underline;
+}
+
+span.show-all {
+    font-size: 14px;
 }
 
 .recent-posts-header {
