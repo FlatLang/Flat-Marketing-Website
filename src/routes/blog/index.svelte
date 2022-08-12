@@ -26,11 +26,9 @@
   <link href="/styles/blog-home.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
-<script context="module">
-    export const prerender = false;
-</script>
-
 <script>
+import { browser } from '$app/env';
+
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import { blogPages, currentPage } from './blog';
@@ -80,8 +78,12 @@
     }
 
     page.subscribe(() => {
-        searchValue = $page.url.searchParams.get("search") || "";
-        limit = !$page.url.searchParams.get("showAll");
+        if (browser) {
+            searchValue = $page.url.searchParams.get("search") || "";
+            limit = !$page.url.searchParams.get("showAll");
+        } else {
+            limit = true;
+        }
 
         updateResults();
     });
