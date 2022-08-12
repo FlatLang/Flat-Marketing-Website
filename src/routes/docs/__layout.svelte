@@ -60,35 +60,6 @@
                   <h1 class="return-home">RETURN HOME</h1>
               </a>
               <TreeBrowser class="page-browser" data={docPages} urlPrefix="/docs"></TreeBrowser>
-
-              <div class="tree-browser root">
-                <div ng-repeat="item in data | orderBy:'-children.length'" class="tree-item">
-                    <table ng-click="toggle(item, false)">
-                        <tr>
-                            <td class="arrow-container">
-                                <div class="arrow"></div>
-                            </td>
-                            <td class="link-container">
-                                <a ng-click="toggle(item, true); $event.stopPropagation();" class="link" href="/docs/data-structures/lists">Lists</a>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="tree-browser">
-                      <div ng-repeat="item in data | orderBy:'-children.length'" class="tree-item">
-                          <table ng-click="toggle(item, false)">
-                              <tr>
-                                  <td class="arrow-container">
-                                      <div class="arrow"></div>
-                                  </td>
-                                  <td class="link-container">
-                                      <a ng-click="toggle(item, true); $event.stopPropagation();" class="link" href="/docs/class-types">Class Types</a>
-                                  </td>
-                              </tr>
-                          </table>
-                      </div>
-                  </div>
-                </div>
-            </div>
           </div>
       </div>
       <div class="content white-background">
