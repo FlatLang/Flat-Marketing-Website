@@ -228,9 +228,10 @@ class SpellChecker extends CodeInspector {
             let suggestionsText = suggestions.count > 0 ?
                 "Some suggestions include: " + suggestions.join(", ") : ""
 
-            toss new SpellCheckWarning("Identifier '#identifier.name' is not spelled correctly. " +
-                suggestionsText,
-                identifier)
+            toss new SpellCheckWarning(
+                "Identifier '#identifier.name' is not spelled correctly. #suggestionsText",
+                identifier
+            )
         }
     }
 }
