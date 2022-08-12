@@ -41,7 +41,7 @@
 </style>
 
 <template lang="flat-html">
-<main>
+<main class="docs">
   <div class="container">
       <div class="navigation dark-background">
           <div class="logo-container">

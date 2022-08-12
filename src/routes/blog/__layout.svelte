@@ -1,5 +1,5 @@
 <template lang="flat-html">
-<div class="white-background">
+<div class="white-background blog">
     <div class="page-container">
         <Header></Header>
         <div id="content-container">

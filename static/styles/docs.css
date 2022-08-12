@@ -16,15 +16,12 @@ h1 {
 
 .container {
   display: flex;
-
-  height: 100%;
 }
 
 .navigation {
   order: 1;
 
   width: 320px;
-  height: 100%;
 
   max-width: 35vw;
 
@@ -68,14 +65,19 @@ h1 {
 .content {
   order: 2;
 
-  width: 100%;
   min-height: 100%;
 
   padding: 50px 40px;
 
   box-sizing: border-box;
+}
 
-  overflow: auto;
+.docs .content {
+  width: 100%;
+}
+
+.docs .container {
+  min-height: 100vh;
 }
 
 .content-view-container > .content-view > .view {

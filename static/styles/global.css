@@ -1,6 +1,5 @@
 html, body {
     width: 100%;
-    height: 100%;
 
     margin: 0;
     padding: 0;
@@ -13,7 +12,6 @@ body {
 
 #main-view {
     width: 100%;
-    min-height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -230,8 +228,8 @@ a {
     transform: translate(-50%, -50%);
 }
 
-.full {
-    height: 100%;
+.slide.full {
+    height: 100vh;
 }
 
 .pre {
@@ -309,15 +307,6 @@ code *:not(span) {
     text-indent: -38px;
 }
 
-pre code,
-.code,
-.code p,
-.example-code,
-.example-code p,
-.pre {
-    font-size: 12px;
-}
-
 .code-container {
     display: inline-block;
 }
@@ -336,12 +325,13 @@ pre code {
 
     box-sizing: border-box;
 
-    min-width: 550px
+    min-width: 550px;
+
+    white-space: pre-wrap;
 }
 
 main {
     width: 100%;
-    height: 100%;
 }
 
 pre .skinny code {
@@ -354,7 +344,23 @@ pre .skinny code {
 
 .page-container {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container > #header {
+    order: 1;
+}
+
+.page-container > #content-container {
+    flex-grow: 10;
+    order: 2;
+}
+
+.page-container > #footer {
+    order: 3;
 }
 
 header, footer {
