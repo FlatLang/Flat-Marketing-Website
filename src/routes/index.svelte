@@ -25,7 +25,7 @@
         height="100%"
       />
       <h2 class="bold" style="margin: 60px 0 30px 0;">FLAT PROGRAMMING LANGUAGE</h2>
-      <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold">versatility</span> and <span class="bold">rapid development</span></h4>
+      <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold neon-shadow">versatility</span> and <span class="bold neon-shadow">rapid development</span></h4>
       <div class="download">
           <a href="/download">
               <img
