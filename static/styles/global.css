@@ -245,7 +245,8 @@ a {
     white-space: nowrap;
 }
 
-.code {
+.code,
+.example-code {
     background-color: #1f122d;
 }
 
@@ -271,7 +272,7 @@ pre {
     margin: 0;
 }
 
-code.hljs {
+code {
     font-family: monospace;
 
     word-break: break-word;
@@ -288,26 +289,31 @@ code.hljs {
     font-size: 14px;
 }
 
-pre code.hljs,
-div.code {
+pre code,
+div.code,
+div.example-code {
     padding: 8px 20px;
 
     border-radius: 10px;
 }
 
 div.code div,
-div.code pre {
+div.code pre,
+div.example-code div,
+div.example-code pre {
     display: grid;
 }
 
-code.hljs *:not(span) {
+code *:not(span) {
     margin-left: 38px;
     text-indent: -38px;
 }
 
-pre code.hljs,
+pre code,
 .code,
 .code p,
+.example-code,
+.example-code p,
 .pre {
     font-size: 12px;
 }
@@ -318,11 +324,12 @@ pre code.hljs,
 
 .code-container,
 .code,
-pre .hljs {
+.example-code,
+pre code {
     max-width: 100%;
 }
 
-pre .hljs {
+pre code {
     display: inline-block;
 
     margin: 0px;
@@ -337,7 +344,7 @@ main {
     height: 100%;
 }
 
-pre .skinny .hljs {
+pre .skinny code {
     min-width: initial;
 }
 
@@ -388,7 +395,7 @@ header, footer {
     white-space: nowrap;
 }
 
-.note .hljs {
+.note code {
     min-width: initial;
     width: 100%;
 }
@@ -454,7 +461,7 @@ header, footer {
     color: #f5f5f5;
 }
 
-.hljs,
+code,
 .pure-white {
     color: #fff;
 }

@@ -1,5 +1,5 @@
 /** @type LanguageFn */
-function hljsFlat(hljs) {
+export function hljsFlat(hljs) {
   const BUILT_IN_KEYWORDS = [
     'bool',
     'byte',

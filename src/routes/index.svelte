@@ -5,6 +5,7 @@
   <link href="/styles/home.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
+<template lang="flat-html">
 <div use:slide id="splashscreen" class="full slide">
   <a href="/">
       <h1 class="flat-text" style="color: rgba(0,0,0,0);">FLAT</h1>
@@ -145,7 +146,7 @@
       </div>
       <div class="code-container">
         <pre class="full">
-          <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+          <code class="language-flat code dark-background indent-children">{`
 let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
 
 Console.writeLine("Preorder: #{tree.preorder().join(", ")}")
@@ -191,7 +192,7 @@ Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
     <div class="code-container">
       <div class="dark-background indent-children">
         <pre class="full">
-          <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+          <code class="language-flat code dark-background indent-children">{`
 class MyClass implements MyTrait, MyInterface {
   public calculateValue() => "my value"
 
@@ -228,7 +229,7 @@ interface MyInterface {
               The Flat compiler generates Javascript code with a similar syntactical structure to the original source code. When using Flat to write Javascript code you get the benefit of a statically typed language with compile-time optimizations without losing the versatility of Javascript. This makes it safe and natural to write libraries in Flat and use them as libraries in plain Javascript.
           </p>
       </div>
-      <div class="code">
+      <div class="example-code">
           <div class="l bracket-container hack transition time08 delay0">
               <div class="l bracket"></div>
           </div>
@@ -237,7 +238,7 @@ interface MyInterface {
                   <div class="transition from-bottom time08 delay05">
                       <h4>FLAT CODE:</h4>
                       <pre>
-                        <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+                        <code class="language-flat code dark-background indent-children">{`
 public static main() {
   let names = ["Braden", "Ethan", "George"]
 
@@ -256,7 +257,7 @@ public static main() {
                   <div class="transition from-top time08 delay05">
                       <h4>GENERATED JAVASCRIPT CODE:</h4>
                       <pre>
-                        <code class="language-js code dark-background indent-children" use:highlightCodeElement>{`
+                        <code class="language-js code dark-background indent-children">{`
 let names = new FlatArray(["Braden", "Ethan", "George"]);
 
 let iterator = names.iterator();
@@ -283,7 +284,7 @@ while (iterator.hasNext()) {
               Flat's syntax takes a lot from Java's syntax. Because of this, the generated Java code is readable and works with existing Java libraries seamlessly. This allows for writing libraries for anything that deals with Java code (e.g., servers and mobile development). For instance, you can write Android compatible code in Flat. A benefit of writing Android compatible code in Flat is that when the Swift compilation target is written, you will be able to compile existing compatible code to both Android and Swift. Essentially you get the best of both worlds.
           </p>
       </div>
-      <div class="code">
+      <div class="example-code">
           <div class="l bracket-container hack transition time08 delay02">
               <div class="l bracket"></div>
           </div>
@@ -292,7 +293,7 @@ while (iterator.hasNext()) {
                   <div class="transition from-bottom time08 delay05">
                       <h4>FLAT CODE:</h4>
                       <pre>
-                        <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+                        <code class="language-flat code dark-background indent-children">{`
 public static main() {
   let names = ["Braden", "Ethan", "George"]
 
@@ -311,7 +312,7 @@ public static main() {
                   <div class="transition from-top time08 delay05">
                       <h4>GENERATED JAVA CODE:</h4>
                       <pre>
-                        <code class="language-java code dark-background indent-children" use:highlightCodeElement>{`
+                        <code class="language-java code dark-background indent-children">{`
 public static void main(String[] args) {
   Array<String> names = new Array<>(new String[] { "Braden", "Ethan", "George" });
 
@@ -340,7 +341,7 @@ public static void main(String[] args) {
               Despite being a notably different paradigm, the Flat C compiler is currently the most mature of the compiler targets. The ability to compile to C allows compilation on a vast amount of high-level and low-level devices. All that is required is a C99 compiler to compile the generated C code.
           </p>
       </div>
-      <div class="code">
+      <div class="example-code">
           <div class="l bracket-container hack transition time08 delay04">
               <div class="l bracket"></div>
           </div>
@@ -349,7 +350,7 @@ public static void main(String[] args) {
                   <div class="transition from-bottom time08 delay05">
                       <h4>FLAT CODE:</h4>
                       <pre>
-                        <code class="language-flat code dark-background indent-children" use:highlightCodeElement>{`
+                        <code class="language-flat code dark-background indent-children">{`
 public static main() {
   let names = ["Braden", "Ethan", "George"]
 
@@ -368,7 +369,7 @@ public static main() {
                   <div class="transition from-top time08 delay05">
                       <h4>GENERATED C CODE:</h4>
                       <pre>
-                        <code class="language-c code dark-background indent-children" use:highlightCodeElement>{`
+                        <code class="language-c code dark-background indent-children">{`
 int main(int argc, char** argvs) {
   flat_Array* names = generate_array();
 
@@ -454,10 +455,10 @@ flat_Array* generate_array() {
 </div>
 {/if}
 <Footer></Footer>
+</template>
 
 <script>
     import Footer from '/src/components/Footer.svelte';
 
-    import { highlightCodeElement } from '/src/util';
     import { slide } from '/src/slide';
 </script>

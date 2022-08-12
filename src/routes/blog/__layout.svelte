@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div class="white-background">
     <div class="page-container">
         <Header></Header>
@@ -71,6 +72,7 @@
         <Share active={share}></Share>
     </div>
 </div>
+</template>
 
 <script>
     import Header from '/src/components/Header.svelte';

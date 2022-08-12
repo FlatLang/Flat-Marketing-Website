@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="meaning">
     <h1>WHAT DOES COMPILING TO MULTIPLE TARGETS REALLY MEAN?</h1>
     <p>
@@ -384,7 +385,7 @@
         <p>
             You gain the ability to integrate all of your Flat code with the target language. This is extremely powerful when it comes to writing general libraries in Flat. Any library you write is accessible from any of the available target languages. Here is an illustration of this point:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin-top: 40px;">{`
+        <pre><code class="language-flat" style="margin-top: 40px;">{`
 class SomeLibrary {
     public static distance(Point a, Point b) -> Double {
         // ... calculate distance ...
@@ -416,7 +417,7 @@ class SomeLibrary {
         <p>
             After compiling <span class="pre type">SomeLibrary</span> to each of the target languages, you are able to access the functionality from that target language:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 // ======================= C ===========================
 
 Point* a = Point_construct(5, 6);
@@ -465,10 +466,11 @@ var distance = SomeLibrary.distance(a, b); // 5.0
     <h4>Footnotes:</h4>
     <Footnote id="gcc-asm">Some compilers, <a target="_blank" href="http://stackoverflow.com/questions/137038/how-do-you-get-assembler-output-from-c-c-source-in-gcc">like GCC</a>, allow output of equivalent assembly code.</Footnote>
 </div>
+</template>
 
 <script>
     import Footnote from '/src/components/Footnote.svelte';
     import FootnoteRef from '/src/components/FootnoteRef.svelte';
 
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import { anchorButton } from '/src/util';
 </script>

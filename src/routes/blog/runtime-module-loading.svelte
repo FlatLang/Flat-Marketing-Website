@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="why">
     <h1>WHY LOAD MODULES AT RUNTIME?</h1>
     <p>
@@ -19,7 +20,7 @@
     <p>
         Let's say that we have an external library in that is contained within a packaged named "com/myproject" and contains a single class that is named "MySpecialClass". And also imagine that the source code of this class looks like this:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 package "com/myproject"
 
 class MySpecialClass {
@@ -33,7 +34,7 @@ class MySpecialClass {
     <p>
         To load modules at runtime with the Flat standard library you use the flat/meta/Library class. You load a library like this:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 let myLibrary = new Library("path/to/project/folder").load()
     `}</code></pre>
     <p>
@@ -42,7 +43,7 @@ let myLibrary = new Library("path/to/project/folder").load()
     <p>
         Now that we have the library loaded into our code, you can access fields and functions from the code like this:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 let myLibrary = new Library("path/to/project/folder").load()
 
 let func = myLibrary.getFunction("funcName", "com/myproject/MySpecialClass")
@@ -59,7 +60,7 @@ Console.writeLine("Received field with value: #field")
     <p>
         Now lets add some more complex types to our class:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 package "com/myproject"
 
 class MySpecialClass {
@@ -83,7 +84,7 @@ class MySpecialClass {
     <p>
         If you need to access a more complicated function type, you can declare the type parameters and return type of the function when accessing the function from the getFunction function:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 let myLibrary = new Library("path/to/project/folder").load()
 
 let func(String, Int) -> String = myLibrary.getFunction("complexFunc", "com/myproject/MySpecialClass")
@@ -96,7 +97,7 @@ Console.writeLine("Result from func: " + func("hi", 3))
     <p>
         So this is all great and all, but what if you want to call a non-static function or access a non-static field? To do this we would have to have an instance of the MySpecialClass class. But first, let's add some non-static components to the class:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 package "com/myproject"
 
 class MySpecialClass {
@@ -128,7 +129,7 @@ class MySpecialClass {
     <p>
         Now to access these non-static members, we have to create an instance of the MySpecialClass by calling its constructor:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 let myLibrary = new Library("path/to/project/folder").load()
 
 let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
@@ -138,7 +139,7 @@ Console.writeLine("Received instance: #instance")
     <p>
         This would output "Received instance: This is a MySpecialClass!!". Now you can access non-static fields and functions using the instance like this:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat">{`
+    <pre><code class="language-flat">{`
 let myLibrary = new Library("path/to/project/folder").load()
 
 let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
@@ -161,7 +162,7 @@ Console.writeLine("Incremented memberField: #memberField")
     <p>
         The resulting output of running this code would yield:
     </p>
-    <pre><code use:highlightCodeElement class="language-bash">{`
+    <pre><code class="language-bash">{`
 Unmodified memberField: 0
 Incremented memberField: 1
 Incremented memberField: 3
@@ -177,7 +178,8 @@ Incremented memberField: 3
         I will release a more in-depth blog post on this topic tomorrow <a href="/blog/scalable-compiler-components">here</a>. It will pertain to how dynamic loading of modules will be used in the Flat compiler to achieve the ultra-scalability that is necessary to expedite the development of the Flat language.
     </p>
 </div>
+</template>
 
 <script>
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import {anchorButton } from '/src/util';
 </script>

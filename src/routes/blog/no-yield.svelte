@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="what-is-yield">
     <h1>WHAT IS YIELD?</h1>
     <p>
@@ -8,7 +9,7 @@
         <p>
             Here is an example in C# of the yield keyword:
         </p>
-        <pre><code use:highlightCodeElement class="language-csharp" style="margin: 40px 0;">{`
+        <pre><code class="language-csharp" style="margin: 40px 0;">{`
 static void Main(string[] args)
 {
     foreach (int fib in Fibs(6))
@@ -36,7 +37,7 @@ static IEnumerable<int> Fibs(int fibCount)
         <p>
             In Flat, you can achieve the same result with the following code:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 public static main(String[] args) {
     for (fib in fibs(6)) {
         Console.writeLine("#fib ")
@@ -60,7 +61,7 @@ static fibs(Int fibCount) -> Int[] {
         <p>
             The difference between the two code examples is that in the C# example, no data structure is allocated to iterate over the Fibonacci numbers. The implementation of the yield keyword under the hood is essentially a complex state-machine that waits to be iterated over. The back-end code can be visualized as something comparable to the next code example. This is a vast over-simplification of the state-machine, but it gets the point across<FootnoteRef id="csharp-yield-backend"></FootnoteRef>:
         </p>
-        <pre><code use:highlightCodeElement class="language-csharp" style="margin: 40px 0;">{`
+        <pre><code class="language-csharp" style="margin: 40px 0;">{`
 static void Main(string[] args)
 {
     foreach (int fib in Fibs(6))
@@ -162,7 +163,7 @@ static MyStateMachine Fibs(int fibCount)
     <p>
         If the compiler were able to somehow know that the list of Fibonacci numbers generated from the Fib function were only used in place at that one location, then you wouldn't need to use the yield keyword to gain this performance, the compiler could optimize the map and filter functions to run in place. This is the solution that Flat will use. Take a look at the use of the <span class="pre">map</span> function in the Flat example again:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 public static main(String[] args) {
     for (fib in fibs(6)) {
         Console.writeLine("#fib ")
@@ -186,7 +187,7 @@ static fibs(Int fibCount) -> Int[] {
     <p>
         Now lets focus on the following section of the code:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 return new Int[fibCount].map({
     let value = prevFib
 
@@ -199,7 +200,7 @@ return new Int[fibCount].map({
     <p>
         First off, that there is an explicit Int[] allocation, yet none of the values of the array are ever accessed or set. It is just used to specify the size of the returning list, and to call the map function that generates the list of Fibonacci numbers. This can be optimized out by inlining the contents of the map function from the Array class and replacing the foreach constraint with the size-constraint. The resulting code could look something like:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 let array = new Int[fibCount]
 
 // Replaced with size constraint instead of "for (element in this)"
@@ -217,7 +218,7 @@ return array
     <p>
         Now lets see it all together again:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 public static main(String[] args) {
     for (fib in fibs(6)) {
         Console.writeLine("#fib ")
@@ -246,7 +247,7 @@ static fibs(Int fibCount) -> Int[] {
     <p>
         This took care of the first Int[] allocation and inlined the map lambda, but there is still one Int[] allocation left remaining. At this point, if we remove the remaining array, we loose the return value and thus change the meaning of the function. What if someone wanted to actually receive an array from the fibs function? To address this, Flat will create an Iterator not too different than how the state-machine is built. This iterator will be used in place of calling the fibs function.
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 public static main(String[] args) {
     for (fib in new FibsIterator(6)) {
         Console.writeLine("#fib ")
@@ -302,10 +303,11 @@ class FibsIterator implements Iterator<Int> {
     <Footnote id="csharp-yield-backend">A more in-depth explanation of the back-end implementation of the C# yield return state machine can be found <a target="_blank" href="https://startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword">here</a>.</Footnote>
     <Footnote id="obscure-behavior"><a target="_blank" href="http://www.daedtech.com/getting-too-cute-with-c-yield-return">Obscure behavior</a> with C# yield return.</Footnote>
 </div>
+</template>
 
 <script>
     import Footnote from '/src/components/Footnote.svelte';
     import FootnoteRef from '/src/components/FootnoteRef.svelte'
 
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import {anchorButton } from '/src/util';
 </script>

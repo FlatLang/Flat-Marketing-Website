@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="core-principles" style="margin-bottom: 40px;">
     <h1>CORE DESIGN PRINCIPLES</h1>
 
@@ -120,6 +121,7 @@
         This is only the first evolution of the compiler and I expect a lot to change in the future when there are more components built on it, as well as more different perspectives on it from the community.
     </p>
 </div>
+</template>
 
 <script>
     import { anchorButton } from '/src/util';

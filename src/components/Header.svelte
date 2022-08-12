@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <table id="header">
   <tr>
       <td>
@@ -21,3 +22,4 @@
       </td>
   </tr>
 </table>
+</template>

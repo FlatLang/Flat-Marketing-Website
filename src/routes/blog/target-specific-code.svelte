@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="when">
     <h1>WHEN DO YOU NEED TO WRITE TARGET SPECIFIC CODE?</h1>
     <p>
@@ -16,7 +17,7 @@
     <p>
         Building off of the mobile app plotline, lets lay out a package structure for this app:
     </p>
-    <pre><code use:highlightCodeElement class="language-bash" style="margin: 40px 0;">
+    <pre><code class="language-bash" style="margin: 40px 0;">
 MyApp/
 |----> com/
     |----> myapp/
@@ -51,7 +52,7 @@ MyApp/
     <p>
         Notice how there are some files with .swift and .java extensions paired with the original .flat files. Whenever a <i>Filename.flat</i> file has a <i>Filename.target.flat</i> file paired with it in the same package, the contents of the <i>Filename.target.flat</i> file overrides the contents of the <i>Filename.flat</i> file. Lets see an example of this:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 // MessageBox.flat
 class MessageBox {
     visible String message
@@ -70,7 +71,7 @@ class MessageBox {
     <p>
         This is our MessageBox base implementation. It expects one of the paired files to override the show and close functions. This is done like the following:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 // MessageBox.swift.flat
 class MessageBox {
     public show() {
@@ -103,11 +104,11 @@ class MessageBox {
     <p>
         When you want to compile your code to the specific target (Swift or Java in this case), you need to tell the compiler which target to output as. Assuming you have the required compilation targets included in your Flat compiler package, you can use the following commands:
     </p>
-    <code use:highlightCodeElement class="language-bash" style="margin: 40px 0;">{`
+    <code class="language-bash" style="margin: 40px 0;">{`
 flatc MyApp -target swift -d MySwiftApp
     `}</code>
     <p>and</p>
-    <code use:highlightCodeElement class="language-bash" style="margin: 40px 0;">{`
+    <code class="language-bash" style="margin: 40px 0;">{`
 flatc MyApp -target java -d MyJavaApp
     `}</code>
     <p>
@@ -124,12 +125,8 @@ flatc MyApp -target java -d MyJavaApp
         It makes sense to write the code for a single app in a single codebase, regardless of the device that it runs on. Target-specific files is Flat's answer to the small percentage of target-specific code needed between each target.
     </p>
 </div>
-
-<!--<div use:anchorButton id="footnotes">
-    <h4>Footnotes:</h4>
-    <Footnote id="abstraction-layer">Abstraction layer</Footnote>
-</div>-->
+</template>
 
 <script>
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import {anchorButton } from '/src/util';
 </script>

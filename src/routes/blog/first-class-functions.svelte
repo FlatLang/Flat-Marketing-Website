@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="how-they-work">
     <h1>HOW FIRST-CLASS FUNCTIONS WORK</h1>
     <p>
@@ -17,7 +18,7 @@
         <p>
             This functionality is already available in Flat, and has been since the first Beta release. Defining a function that takes a function as an argument looks like:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 func1(myFirstClassFunc(String, Int)) {
     for (i in 0..10) {
         myFirstClassFunc("iteration #i", i)
@@ -27,7 +28,7 @@ func1(myFirstClassFunc(String, Int)) {
         <p>
             This function requires a function that takes at most String and Int as a parameter. I say <i>at most</i> because the functions that are passed to func1 are not required to take all of the parameters that the myFirstClassFunc parameter has. For example, you could match the myFirstClassFunc parameter definition exactly like:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 exactFunc(String s, Int x) {
     Console.writeLine("String count * x == #{s.count * x}")
 }
@@ -37,7 +38,7 @@ func1(exactFunc) // valid
         <p>
             Or you could give it a function that only contains 1 or even 0 parameters:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 zeroFunc() {
     Console.writeLine("Im pretty useless, but thats ok")
 }
@@ -58,7 +59,7 @@ func1(oneFunc) // valid
         <p>
            Returning functions from functions looks like this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 otherFunc(String x, Int y) {
     Console.writeLine("Received #x and #y")
 }
@@ -70,7 +71,7 @@ func1() -> myFirstClassFunc(String, Int) {
         <p>
             The func1 returns a function that takes a String and Int as parameters. In this case, it just returns otherFunc, but you can also do some more interesting things like this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 otherFunc(String x, Int y) {
     Console.writeLine("Received #x and #y")
 }
@@ -94,7 +95,7 @@ func1(String input) -> myFirstClassFunc(String, Int) {
         <p>
            Assigning functions to variables looks like this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 func1(String input) -> myFirstClassFunc(String, Int) {
     return (x, y) => {
         for (i in 0..5) {
@@ -110,7 +111,7 @@ var x = func1
         <p>
             This saves the func1 reference into the variable variable x. You can then invoke the x function reference like this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 x("pass string") // valid
 x("pass string", 1) // valid
 x("pass string", 1, "asdfasdf") // valid
@@ -125,7 +126,7 @@ x("pass string", null, 90.0, 100) // valid
         <p>
             Storing functions in collections extends upon the ability to assign to them variables. For instance, when able to store functions in collections, this is possible:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 func1(String input) -> myFirstClassFunc(String, Int) {
     return (String x, Int y) => {
         for (i in 0..5) {
@@ -149,7 +150,7 @@ array.add({
         <p>
             The <span class="pre">array</span> array stores functions that, at most, take a String as a parameter. You could later call the functions that are contained in this array like this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 array.forEach(func => {
     func("say something")
 })
@@ -157,7 +158,7 @@ array.forEach(func => {
         <p>
             This would output:
         </p>
-        <pre><code use:highlightCodeElement class="language-bash">{`
+        <pre><code class="language-bash">{`
 In lambda that was passed say something
 In lambda that takes no parameters
         `}</code></pre>
@@ -189,7 +190,7 @@ In lambda that takes no parameters
         <p>
             This can be demonstrated with the <a target="_blank" href="https://en.wikipedia.org/wiki/Strategy_pattern">strategy pattern</a> design pattern. This pattern is used when you want to run different algorithms based off of different conditions, <i>at runtime</i>. To illustrate this, lets suppose that you want to enforce a specific pricing algorithm depending on the type of the day. With the strategy pattern you could do this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 interface Billable {
     calculatePrice(Double originalPrice)
 }
@@ -234,7 +235,7 @@ public static main(String[] args) {
         <p>
             The customer would leave with a bill of $20. This same process could be done with first-class functions like this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat">{`
+        <pre><code class="language-flat">{`
 class Customer {
     var billStrategy(Double) -> Double = x => x
 
@@ -268,7 +269,8 @@ public static main(String[] args) {
         </p>
     </div>
 </div>
+</template>
 
 <script>
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import {anchorButton } from '/src/util';
 </script>

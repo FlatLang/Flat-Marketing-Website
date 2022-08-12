@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div>
     <h3><a href="/download">DOWNLOAD BETA v0.3.7</a></h3>
     <h1>NOTABLE CHANGES</h1>
@@ -28,7 +29,7 @@
             <p>
                 With the following Flat function definition:
             </p>
-            <pre><code use:highlightCodeElement class="language-flat">{`
+            <pre><code class="language-flat">{`
 class FancyClass {
     public static myFancyFunc(String something) {
         Console.writeLine(something)
@@ -38,7 +39,7 @@ class FancyClass {
             <p>
                 And external C code:
             </p>
-            <pre><code use:highlightCodeElement class="language-c">{`
+            <pre><code class="language-c">{`
 typedef void (*funcReference)(void*, flat_exception_Flat_ExceptionData*, flat_Flat_String*);
 
 void my_external_func(funcReference ref) {
@@ -56,7 +57,7 @@ void my_external_func(funcReference ref) {
             <p>
                 This is the general idea of the code that was required to call a function reference that was passed from Flat. Now, the second parameter of type flat_exception_Flat_ExceptionData* has been removed. The function implementation would now look like:
             </p>
-            <pre><code use:highlightCodeElement class="language-c">{`
+            <pre><code class="language-c">{`
 typedef void (*funcReference)(void*, flat_Flat_String*);
 
 void my_external_func(funcReference ref) {
@@ -76,9 +77,10 @@ void my_external_func(funcReference ref) {
         </div>
     </div>
 </div>
+</template>
 
 <script>
     import Issue from '/src/components/Issue.svelte';
 
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import {anchorButton } from '/src/util';
 </script>

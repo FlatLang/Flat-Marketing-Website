@@ -1,3 +1,4 @@
+<template lang="flat-html">
 {#if $active}<div class="share-modal-background"></div>{/if}
 <div
   class="share-modal neon-shadow"
@@ -54,6 +55,7 @@
       {/if}
   </table>
 </div>
+</template>
 
 <script>
     import { page } from '$app/stores';

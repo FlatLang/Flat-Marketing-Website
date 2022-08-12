@@ -5,6 +5,7 @@
   <link href="/styles/path-forward.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
+<template lang="flat-html">
 <div use:anchorButton id="road-map">
     <h1>FLAT'S ROAD MAP</h1>
     <p>
@@ -238,6 +239,7 @@
         I would hope to have more contributers within the year of 2017 also. The addition of contributers could affect these time estimates.
     </p>
 </div>
+</template>
 
 <script>
     import { anchorButton } from '/src/util';

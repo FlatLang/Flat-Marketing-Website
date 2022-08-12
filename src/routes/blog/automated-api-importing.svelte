@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="working-with-external-apis">
     <h1>WORKING WITH EXTERNAL APIS</h1>
     <p>
@@ -12,7 +13,7 @@
         <p>
             The quickest (and dirtiest) way of working with external libraries is to call the external code directly. Flat provides external blocks that are used to achieve this functionality:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 myFunc() {
     external c {
         printf("IN EXTERNAL C!\\n");
@@ -22,7 +23,7 @@ myFunc() {
         <p>
             This is really only helpful if you can pass variables and functions to and from the external code. This example shows how to pass a variable to the external code:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 myFunc() {
     Int myInt = 100
 
@@ -35,7 +36,7 @@ myFunc() {
         <p>
             Passing variables from external code to Flat is done by assigning the Flat variable inside the external code:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 myFunc() {
     Int myInt
 
@@ -53,7 +54,7 @@ myFunc() {
         <p>
             You can also run Flat statements inside external code:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 getMyInt() -> Int {
     Int myInt
 
@@ -70,7 +71,7 @@ getMyInt() -> Int {
         <p>
             Calling external code through external blocks is the basis of how creating bindings to an API works in Flat. When creating an API for a language, you typically do it by hand. For example, if you were to create bindings for some std output functions in C, you could do it like:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 public atoi(String s) -> Int {
     external c {
         return atoi(#{s.chars.data});
@@ -99,13 +100,13 @@ public currentTimeMillis() -> Long {
     <p>
         Because you can <a href="/blog/compiler-design#parser-uses">write custom parsers</a>, adding API importing functionality will be surprisingly simple. If a parser for a language is available, instead of translating it to Flat, you could pass an -api argument to the compiler to have it generate the API binding for the functions in the input library. For example, say you want to import the C standard library. Using a C header file parser, you could import all stdlib functions with this command:
     </p>
-    <code use:highlightCodeElement class="language-bash" style="margin: 40px 0;">{`
+    <code class="language-bash" style="margin: 40px 0;">{`
         flatc path/to/c/stdlib -input c-header -api -d flat-c-stdlib
     `}</code>
     <p>
         This would output the translated API binding for the c stdlib into a folder named flat-c-stdlib. You could then reference this binding in your project like the following:
     </p>
-    <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+    <pre><code class="language-flat" style="margin: 40px 0;">{`
 import static "stdlib"
 
 class MyClass {
@@ -124,7 +125,7 @@ class MyClass {
     <p>
         To include the API binding in your project's compilation process, you would simply include flat-c-stdlib as one of your compilation sources:
     </p>
-    <code use:highlightCodeElement class="language-bash" style="margin: 40px 0;">{`
+    <code class="language-bash" style="margin: 40px 0;">{`
         flatc MyProject flat-c-stdlib -o MyExecutable
     `}</code>
     <p>
@@ -138,7 +139,8 @@ class MyClass {
         Automated importing of external APIs plays an integral part in making compilation to multiple-targets more powerful. It alleviates many of the issues that normally come up when writing programs that interface with multiple different languages. Automated importing of external APIs <b>expidiates</b> the process of multi-target development, while making it <b>safe</b>. Both of which are fundamental to the design of the Flat language.
     </p>
 </div>
+</template>
 
 <script>
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import { anchorButton } from '/src/util';
 </script>

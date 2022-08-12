@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="what-are-generic-types">
     <h1>WHAT IS THREAD-LOCAL STORAGE (TLS)?</h1>
     <p>
@@ -24,7 +25,7 @@
         <p>
             <a target="_blank" href="http://stackoverflow.com/a/15101240/1305997">Pthread implementations in C</a> have <span class="pre">pthread_key_create</span> and <span class="pre">pthread_key_delete</span> to allocate and deallocate space on a thread, and <span class="pre">pthread_getspecific</span> and <span class="pre">pthread_setspecific</span> to retrieve and set the data.
         </p>
-        <pre><code use:highlightCodeElement class="language-c" style="margin: 40px 0;">{`
+        <pre><code class="language-c" style="margin: 40px 0;">{`
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -77,7 +78,7 @@ int main(void)
         <p>
             <a target="_blank" href="https://gist.github.com/kristopherjohnson/6f14a50006127424faf3">Swift's implementation</a> uses a dictionary called <span class="pre">threadDictionary</span>.
         </p>
-        <pre><code use:highlightCodeElement class="language-javascript" style="margin: 40px 0;">{`
+        <pre><code class="language-javascript" style="margin: 40px 0;">{`
 public func checkThreadLocal<T: AnyObject>(key: String, create: () -> T) -> T {
     let threadDictionary = NSThread.currentThread().threadDictionary
 
@@ -112,7 +113,7 @@ let x3 = getFormatter()
         <p>
             However, if you were to run <span class="pre">getFormatter()</span> once again in a new thread, you would create a separate instance of the NSDateFormatter:
         </p>
-        <pre><code use:highlightCodeElement class="language-javascript" style="margin: 40px 0;">{`
+        <pre><code class="language-javascript" style="margin: 40px 0;">{`
 let x1 = getFormatter() // NEW INSTANCE CREATED!!
 let x2 = getFormatter() // References the instance created by x1
 let x3 = getFormatter() // References the instance created by x1
@@ -134,7 +135,7 @@ let x7 = getFormatter() // References the instance created by x1
         <p>
             <a target="_blank" href="http://tutorials.jenkov.com/java-concurrency/threadlocal.html">Java's implementation</a> uses a data structure that is near identical to what Flat uses. Java uses a ThreadLocal object that takes a generic argument for the type of data that is being stored, and you use get/set/remove functions to manage that memory within the thread.
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 public class ThreadLocalExample {
     public static class MyRunnable extends Thread {
         private static ThreadLocal<Integer> threadLocal =
@@ -169,7 +170,7 @@ public class ThreadLocalExample {
         <p>
             The same code in Flat would look like:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 class ThreadLocalExample {
     static class MyRunnable extends Thread {
         static ThreadLocal<Int> threadLocal = new ThreadLocal()
@@ -198,7 +199,7 @@ class ThreadLocalExample {
         <p>
             They are nearly identical. However, this is not the only way that Flat allows you to declare thread locals. With a little syntax sugar from the <span class="pre">thread_local</span> modifier (or <span class="pre">[ThreadLocal]</span> annotation), you are able to achieve the same result with minimal change to how you would program it if it were not necessary to be local to the thread:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 class ThreadLocalExample {
     static class MyRunnable extends Thread {
         static thread_local Int threadLocal
@@ -241,10 +242,11 @@ class ThreadLocalExample {
     <Footnote id="tls">More information on thread-local storage can be found <a target="_blank" href="https://en.wikipedia.org/wiki/Thread-local_storage">here</a>.</Footnote>
     <Footnote id="types-of-memory">More information can be found <a target="_blank" href="https://en.wikipedia.org/wiki/Data_segment">here</a>.</Footnote>
 </div>
+</template>
 
 <script>
     import Footnote from '/src/components/Footnote.svelte';
     import FootnoteRef from '/src/components/FootnoteRef.svelte'
 
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import {anchorButton } from '/src/util';
 </script>

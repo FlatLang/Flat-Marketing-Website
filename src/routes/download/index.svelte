@@ -5,6 +5,7 @@
   <link href="/styles/download.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
+<template lang="flat-html">
 <div class="white-background">
     <div class="page-container">
         <Header></Header>
@@ -59,6 +60,7 @@
         <Footer></Footer>
     </div>
 </div>
+</template>
 
 <script>
     import Header from '/src/components/Header.svelte';

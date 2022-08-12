@@ -14,28 +14,6 @@
 		<link href="%sveltekit.assets%/styles/global-mobile.css" rel="stylesheet" type="text/css" onload="this.media='screen and (orientation: portrait)'; this.onload=null;" />
 		<link href="%sveltekit.assets%/styles/flow-boxes.css" rel="preload" as="style" />
 		<link href="%sveltekit.assets%/styles/flow-boxes.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
-		<script>
-			(() => {
-				var listeners = [];
-
-				window.hljsLoaded = false;
-				window.onHljsLoaded = function (listener) {
-					if (window.hljsLoaded) {
-						listener();
-					} else {
-						listeners.push(listener);
-					}
-				};
-				window.triggerHljsLoaded = function () {
-					window.hljsLoaded = true;
-					hljs.registerLanguage('flat', hljsFlat);
-					listeners.forEach(function (l) { l(); });
-					listeners = [];
-				};
-			})();
-		</script>
-		<script src="%sveltekit.assets%/js/highlight.min.js" defer></script>
-		<script src="%sveltekit.assets%/js/flat.js" defer onload="window.triggerHljsLoaded();"></script>
 		%sveltekit.head%
 	</head>
 	<body>

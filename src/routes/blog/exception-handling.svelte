@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div use:anchorButton id="introduction">
     <h1>INTRODUCTION OF EXCEPTION HANDLING</h1>
     <p>
@@ -15,7 +16,7 @@
         <p>
             Rust uses the Option data structure to declare that there might not be a result in some degenerative cases:
         </p>
-        <pre><code use:highlightCodeElement class="language-rust" style="margin: 40px 0;">{`
+        <pre><code class="language-rust" style="margin: 40px 0;">{`
 fn file_path_ext_explicit(file_path: &str) -> Option<&str> {
     match file_name(file_path) {
         None => None, // No result, so return None
@@ -29,7 +30,7 @@ fn file_path_ext_explicit(file_path: &str) -> Option<&str> {
         <p>
             There is also the Result data structure used to declare that there might be an <i>error</i> in some degenerative cases:
         </p>
-        <pre><code use:highlightCodeElement class="language-rust" style="margin: 40px 0;">{`
+        <pre><code class="language-rust" style="margin: 40px 0;">{`
 fn double_number(number_str: &str) -> Result<i32, ParseIntError> {
     match number_str.parse::<i32>() {
         Ok(n) => Ok(2 * n), // Return normal expected result
@@ -64,7 +65,7 @@ fn double_number(number_str: &str) -> Result<i32, ParseIntError> {
         <p>
             This method is also common within C programs. Many functions have the following design pattern:
         </p>
-        <pre><code use:highlightCodeElement language="c" style="margin: 40px 0;">{`
+        <pre><code language="c" style="margin: 40px 0;">{`
 int my_function(char* success) {
     ...
 
@@ -80,7 +81,7 @@ int my_function(char* success) {
         <p>
             With this design pattern, you have to be a little more verbose with how you call functions:
         </p>
-        <pre><code use:highlightCodeElement language="c" style="margin: 40px 0;">{`
+        <pre><code language="c" style="margin: 40px 0;">{`
 char successful;
 
 int returnValue = my_function(&successful);
@@ -98,7 +99,7 @@ if (!successful) {
         <p>
             Global variables are often to indicate the latest error in a program. An example of this is the errno library in C which is defined in the errno.h file. The errno library uses a single global integer variable <i>errno</i> to deal with errors in a program. The out parameter code we used before can be modified to follow this design pattern:
         </p>
-        <pre><code use:highlightCodeElement language="c" style="margin: 40px 0;">{`
+        <pre><code language="c" style="margin: 40px 0;">{`
 int my_function() {
     ...
 
@@ -115,7 +116,7 @@ int my_function() {
         <p>
             Instead of taking in a success out parameter, the function sets the global variable to a specific value <i>if</i> an error occurs. If no error occurs, then the errno global variable is not set. The function can be called without having to define a variable:
         </p>
-        <pre><code use:highlightCodeElement language="c" style="margin: 40px 0;">{`
+        <pre><code language="c" style="margin: 40px 0;">{`
 int returnValue = my_function();
 
 if (errno != 0) {
@@ -131,7 +132,7 @@ if (errno != 0) {
         <p>
             <a target="_blank" href="https://en.wikibooks.org/wiki/Computer_Programming/Design_by_Contract">Design by Contract</a> (DbC) handles errors by requiring correct input and correct output. A function does this by specifying <b>pre-condition</b> and <b>post-condition</b> states that the function must fulfill to be considered a success.
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 function myFunc(x: Float): Float
     pre-condition (x >= 0)
     post-condition (return >= 0)
@@ -145,7 +146,7 @@ end
         <p>
             Because DbC is often coupled with exception handling, it can be implemented in Flat. With annotations such as <span class="pre">[PreCondition <span class="type">&lt;Bool expression&gt;</span>]</span> and <span class="pre">[PostCondition <span class="type">&lt;Bool expression&gt;</span>]</span>, DbC could have a place in Flat's future.
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 [PreCondition x >= 0]
 [PostCondition return >= 0]
 myFunc(Float x) -> Float {
@@ -158,7 +159,7 @@ myFunc(Float x) -> Float {
         <p>
             The standard Java/C# style of handling errors in code is to throw exceptions. This is done by defining an area in the code to <i>catch</i> exceptions, and an area to <i>throw</i> exceptions. A catch without any corresponding throws is useless. The common design pattern for try/catch/throw looks something like this:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 myFunc() {
     try {
         sketchyFunction()
@@ -178,7 +179,7 @@ sketchyFunction() {
         <p>
             However, unlike Java, exceptions are not required to be caught in Flat, so the following code is also valid.
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 myFunc() {
     sketchyFunction()
 }
@@ -214,7 +215,7 @@ sketchyFunction() {
         <p>
             In addition to traditional try/catch/throw functionality, Flat also includes "toss" functionality. Tossing an exception is analogous to throwing an exception. The difference is that when you toss an exception, it only breaks the execution flow if there is a catch block waiting for that specific type of exception. For example, you can replace the throw keyword with toss:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 myFunc() {
     sketchyFunction()
 }
@@ -232,7 +233,7 @@ sketchyFunction() {
         <p>
             The difference that this has on the execution flow is that instead of stopping at the <span class="pre">toss new Exception("Bad thing happened")</span> as it would have with <span class="pre">throw new Exception("Bad thing happened")</span>, the code will continue to execute. Now if we were to catch the exception, you would have a different execution flow:
         </p>
-        <pre><code use:highlightCodeElement class="language-flat" style="margin: 40px 0;">{`
+        <pre><code class="language-flat" style="margin: 40px 0;">{`
 myFunc() {
     try {
         sketchyFunction()
@@ -256,7 +257,8 @@ sketchyFunction() {
         </p>
     </div>
 </div>
+</template>
 
 <script>
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import { anchorButton } from '/src/util';
 </script>

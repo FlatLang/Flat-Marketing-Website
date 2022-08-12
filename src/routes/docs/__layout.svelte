@@ -39,6 +39,7 @@
   }
 </style>
 
+<template lang="flat-html">
 <main>
   <div class="container">
       <div class="navigation dark-background">
@@ -141,3 +142,4 @@
       </div>
   </div>
 </main>
+</template>

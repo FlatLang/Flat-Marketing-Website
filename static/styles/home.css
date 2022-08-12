@@ -178,7 +178,7 @@
 	right: 1px;
 }
 
-.download img {
+.download svg {
 	height: 90px;
 	width: 90px;
 
@@ -322,7 +322,8 @@ pre {
 		/* display: flex; */
 }
 
-.code {
+.code,
+.example-code {
     color: #fff;
 }
 
@@ -331,7 +332,8 @@ pre {
 	font-size: 16px;
 }
 
-#code-example .code p {
+#code-example .code p,
+#code-example .example-code p {
 	padding-left: 5px;
 	padding-right: 5px;
 }
@@ -340,7 +342,8 @@ pre {
 	width: 50%;
 }
 
-#code-example .example .code {
+#code-example .example .code,
+#code-example .example .example-code {
 	padding: 30px;
 
 	line-height: 1.1;
@@ -368,18 +371,21 @@ pre {
 	margin-top: 0;
 }
 
-#code-example .tree .code {
+#code-example .tree .code,
+#code-example .tree .example-code {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 
 	margin-left: 50px;
 }
 
-.code {
+.code,
+.example-code {
 	white-space: pre-wrap;
 }
 
-#code-example .traits .code {
+#code-example .traits .code,
+#code-example .traits .example-code {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 
@@ -428,13 +434,15 @@ pre {
 	color: white;
 }
 
-#code-comparisons .code h4 {
+#code-comparisons .code h4,
+#code-comparisons .example-code h4 {
 	margin: 0;
 	margin-left: 18px;
 	margin-bottom: 0px;
 }
 
-#code-comparisons .code {
+#code-comparisons .code,
+#code-comparisons .example-code {
 	border-radius: 0;
 }
 
@@ -443,7 +451,8 @@ pre {
 	margin-right: 0;
 }
 
-#code-comparisons .code hr {
+#code-comparisons .code hr,
+#code-comparisons .example-code hr {
 	width: 80%;
 	margin: auto;
 }
@@ -551,7 +560,8 @@ pre {
     bottom: 0;
 }
 
-#code-comparisons div.code {
+#code-comparisons div.code,
+#code-comparisons div.example-code {
 	position: relative;
 
 	max-width: 50%;
@@ -561,19 +571,23 @@ pre {
 	overflow: hidden;
 }
 
-#code-comparisons .code .container > div:nth-of-type(1) {
+#code-comparisons .code .container > div:nth-of-type(1),
+#code-comparisons .example-code .container > div:nth-of-type(1) {
 	padding-bottom: 15px;
 }
 
-#code-comparisons .code .container > div:nth-of-type(3) {
+#code-comparisons .code .container > div:nth-of-type(3),
+#code-comparisons .example-code .container > div:nth-of-type(3) {
 	padding-top: 15px;
 }
 
-#code-comparisons .code .container > div {
+#code-comparisons .code .container > div,
+#code-comparisons .example-code .container > div {
 	overflow: hidden;
 }
 
-#code-comparisons .code p {
+#code-comparisons .code p,
+#code-comparisons .example-code p {
 	padding: 0 25px;
 
 	line-height: 1.3;
@@ -584,7 +598,8 @@ pre {
 	font-size: 13px;
 }
 
-#code-comparisons .code .indent {
+#code-comparisons .code .indent
+#code-comparisons .example-code .indent {
     margin-left: 31px;
     text-indent: -31px;
 }
@@ -619,7 +634,8 @@ pre {
 		width: 100%;
 	}
 
-	#code-comparisons div.code {
+	#code-comparisons div.code,
+	#code-comparisons div.example-code {
 		display: inline-block;
 		max-width: 90%;
 

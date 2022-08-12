@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <slide id="footer">
     <table>
         <tr>
@@ -16,3 +17,4 @@
         </tr>
     </table>
 </slide>
+</template>

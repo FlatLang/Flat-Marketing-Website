@@ -1,3 +1,4 @@
+<template lang="flat-html">
 <div>
     <h3><a href="/download">DOWNLOAD BETA v0.3.8</a></h3>
     <h1>NOTABLE CHANGES</h1>
@@ -21,7 +22,7 @@
             <p>
                 Used to assign passed parameter value to field in parent class with same name as parameter. Example:
             </p>
-            <pre><code use:highlightCodeElement class="language-flat">{`
+            <pre><code class="language-flat">{`
 class MyClass {
     visible Int myField
 
@@ -35,7 +36,7 @@ Console.writeLine(myClass.myField) // outputs 10
             <p>
                 This code is essentially the same as this:
             </p>
-            <pre><code use:highlightCodeElement class="language-flat">{`
+            <pre><code class="language-flat">{`
 class MyClass {
     visible Int myField
 
@@ -58,13 +59,13 @@ Console.writeLine(myClass.myField) // outputs 10
                 The default state of variable declarations is now final. Final variables are good practice when writing software, and the easier it is to make final variables the better.
             </p>
             <h5 style="margin-bottom: 5px;">Previous</h5>
-            <pre><code use:highlightCodeElement class="language-flat">{`
+            <pre><code class="language-flat">{`
 Int x = 10
 
 x = 50 // valid
             `}</code></pre>
             <h5 style="margin-bottom: 5px;">Current</h5>
-            <pre><code use:highlightCodeElement class="language-flat" style="margin-bottom: 35px;">{`
+            <pre><code class="language-flat" style="margin-bottom: 35px;">{`
 Int x = 10
 
 x = 50 // Compiler error, cannot modify final variable x
@@ -72,7 +73,7 @@ x = 50 // Compiler error, cannot modify final variable x
             <p>
                 To declare a mutable variable you do this:
             </p>
-            <pre><code use:highlightCodeElement class="language-flat">{`
+            <pre><code class="language-flat">{`
 var Int x = 10
 
 x = 50 // valid
@@ -80,7 +81,7 @@ x = 50 // valid
             <p>
                 Or, if you the type can be inferred from its assignment, you do not have to speficy the type:
             </p>
-            <pre><code use:highlightCodeElement class="language-flat">{`
+            <pre><code class="language-flat">{`
 var x = 10
 
 x = 50 // valid
@@ -100,9 +101,10 @@ x = 50 // valid
         </div>
     </div>
 </div>
+</template>
 
 <script>
     import Issue from '/src/components/Issue.svelte';
 
-    import { highlightCodeElement, anchorButton } from '/src/util';
+    import {anchorButton } from '/src/util';
 </script>

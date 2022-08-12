@@ -1,11 +1,22 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
+import inlineSvg from './inline-svg.js'
+import highlight from './highlight.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: preprocess({
+    'flat-html': async function (args) {
+      let code = args.content;
+      
+      code = (await inlineSvg(args)).code;
+      code = (await highlight({...args, content: code})).code;
+
+      return {code};
+    }
+  }),
 
 	kit: {
 		adapter: adapter({
