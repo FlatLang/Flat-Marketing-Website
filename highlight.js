@@ -64,7 +64,7 @@ export default async function ({content}) {
     const elementAttributes = content.substring(index, start);
     const language = getLanguageFromAttributes(elementAttributes);
 
-    matches.push({start, end, language});
+    matches.push({start, end, index, language});
 
     index = content.indexOf(`<code`, end + "</code>".length);
   }
@@ -72,13 +72,16 @@ export default async function ({content}) {
   for (let i = matches.length - 1; i >= 0; i--) {
     const start = matches[i].start;
     const end = matches[i].end;
+    const index = matches[i].index;
     const language = matches[i].language;
+
     const rawContent = content.substring(start, end);
     const trimmed = rawContent.trim();
     const value = trimmed[0] === '{' && trimmed[1] === '`' ? trimmed.substring(2, trimmed.length - 2).trim() : trimmed;
     const trimmedValue = trimPrecedingTabs(rawContent, value);
 
     content = content.substring(0, start) + escapeHTML(hljs.highlight(trimmedValue, {language}).value) + content.substring(end);
+    content = content.substring(0, index).trimEnd() + content.substring(index);
   }
 
   return {code: content};
