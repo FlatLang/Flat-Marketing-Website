@@ -10,11 +10,13 @@ export default async function ({content}) {
       .replace(/<\?xml.+\?>/g, "");
 
     const svgElement = parse(contents).querySelector("svg");
-    
+
     svgElement.setAttributes({
       ...svgElement.attributes,
       ...img.attributes
     });
+
+    svgElement.querySelectorAll("metadata").forEach(metadata => metadata.remove());
 
     img.replaceWith(svgElement);
   });
