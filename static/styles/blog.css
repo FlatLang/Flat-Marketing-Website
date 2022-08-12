@@ -5,4 +5,5 @@ div.container {
 .content {
     margin: auto;
     padding-top: 40px;
+    display: grid;
 }
