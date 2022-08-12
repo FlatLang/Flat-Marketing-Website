@@ -10,6 +10,7 @@ export default async function ({content}) {
       .replace(/<\?xml.+\?>/g, "");
 
     const svgElement = parse(contents).querySelector("svg");
+    svgElement.removeAttribute("id");
 
     svgElement.setAttributes({
       ...svgElement.attributes,
