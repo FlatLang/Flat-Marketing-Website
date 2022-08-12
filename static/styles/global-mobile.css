@@ -27,8 +27,9 @@
         font-size: 23px;
     }
 
+    pre > code,
     code {
-        font-size: 16px !important;
+        font-size: 20px;
     }
 
     .content-view-container {
