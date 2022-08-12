@@ -1,6 +1,6 @@
 <template lang="flat-html">
 <div use:anchorButton id="introduction">
-    <h1>INTRODUCTION OF EXCEPTION HANDLING</h1>
+    <h1>INTRODUCTION TO EXCEPTION HANDLING</h1>
     <p>
         Exception handling is the process of responding to the occurrence, during computation, of <i>exceptions</i>. Exception handling is one of the most common ways of dealing with errors within a program. Error handling is a big issue for programming languages. What do you do when a program doesn't act according to plan? Different languages have different answers to this problem.
     </p>
