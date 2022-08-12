@@ -55,16 +55,13 @@
     padding: 20px;
 
     order: 1;
+    flex-grow: 10;
 
     box-sizing: border-box;
 }
 
 .blog .content-view {
     max-width: 1000px;
-}
-
-#content-container {
-    display: flex;
 }
 
 .content-view.home {
