@@ -355,6 +355,7 @@ pre .skinny code {
 }
 
 .page-container > #content-container {
+    display: flex;
     flex-grow: 10;
     order: 2;
 }

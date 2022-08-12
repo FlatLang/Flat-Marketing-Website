@@ -60,3 +60,7 @@ span.show-all {
 .post a:hover {
     text-decoration: underline;
 }
+
+.page-container > #content-container {
+    display: block;
+}
