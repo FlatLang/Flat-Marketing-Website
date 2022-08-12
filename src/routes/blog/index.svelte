@@ -25,8 +25,11 @@
   <link href="/styles/blog-home.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
+<script context="module">
+    export const prerender = false;
+</script>
+
 <script>
-    import { browser } from '$app/env';
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import { blogPages, currentPage } from './blog';
@@ -38,10 +41,8 @@
     let searchValue;
 
     page.subscribe(() => {
-        if (browser) {
-            searchValue = typeof searchValue === 'undefined' ? $page.url.searchParams.get("search") : searchValue;
-            limit = typeof limit === 'undefined' ? !$page.url.searchParams.get("showAll") : limit;
-        }
+        searchValue = typeof searchValue === 'undefined' ? $page.url.searchParams.get("search") : searchValue;
+        limit = typeof limit === 'undefined' ? !$page.url.searchParams.get("showAll") : limit;
     });
 
     const toggleLimit = () => {
