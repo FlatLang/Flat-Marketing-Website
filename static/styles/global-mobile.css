@@ -37,6 +37,7 @@
 
     .content-view-container .references {
         border: none;
+        padding-left: 20px;
     }
 
     .share-modal {
