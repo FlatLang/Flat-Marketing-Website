@@ -3,8 +3,6 @@ div.container {
 }
 
 .content {
-    max-width: 1200px;
-
     margin: auto;
     padding-top: 40px;
 }
