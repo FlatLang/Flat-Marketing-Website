@@ -14,7 +14,7 @@
 <div use:anchorButton id="nest">
     <h1>FLAT'S UNIT TESTING LIBRARY</h1>
     <p>
-        Flat's unit testing library is named <a target="_blank" href="https://github.com/FlatLang/Nest">Nest</a>, which stands for <b>N</b>ova T<b>est</b>. Nest follows the xUnit paradigm of having test runners, test cases, test fixtures, and test suites.
+        Flat's unit testing library is named <a target="_blank" href="https://github.com/FlatLang/Nest">Nest</a>. Nest follows the xUnit paradigm of having test runners, test cases, test fixtures, and test suites.
     </p>
 </div>
 
