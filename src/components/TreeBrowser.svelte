@@ -37,11 +37,9 @@
     {#if item.children?.length > 0}
     <TreeBrowser
       isRoot={false}
-      selected={selectedItem === item}
       open={opened[item.path]}
       data={item.children}
       urlPrefix="{urlPrefix}/{item.url}"
-      parent={item}
     ></TreeBrowser>
     {/if}
   </div>
@@ -56,10 +54,8 @@
 
     export let isRoot = true;
     export let open = isRoot;
-    export let selected;
     export let data;
     export let urlPrefix = "";
-    export let parent;
 
     let selectedItem;
     let opened = {[urlPrefix]: open};
