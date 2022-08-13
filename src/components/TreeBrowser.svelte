@@ -48,7 +48,7 @@
 
 <script>
     import { page } from '$app/stores';
-    import { docPages, currentPage } from '/src/routes/docs/docs';
+    import { currentPage } from '/src/routes/docs/docs';
 
     import TreeBrowser from './TreeBrowser.svelte';
 
