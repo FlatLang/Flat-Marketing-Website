@@ -13,12 +13,48 @@
             <div use:slide id="downloads" class="slide">
                 <div><h1 class="primary">DOWNLOAD</h1></div>
                 <hr>
+                {#if currentOs}
                 <h4 class="gray">We think you are running { osHeader }</h4>
+                {/if}
                 {#if !currentOs}
                 <p>{ os } is not currently supported by Flat.</p>
                 {/if}
+                <p>
+                    {#await latestRequest}
+                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
+                    {:then latest}
+                        {#if lowerOs}
+                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
+                        {/if}
+                    {:catch error}
+                        {error}
+                    {/await}
+                    <br>
+                    {#await latestRequest}
+                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
+                    {:then latest}
+                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
+                    {:catch error}
+                        {error}
+                    {/await}
+                    <br>
+                    {#await latestRequest}
+                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
+                    {:then latest}
+                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
+                    {:catch error}
+                        {error}
+                    {/await}
+                    <br>
+                    {#await latestRequest}
+                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
+                    {:then latest}
+                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
+                    {:catch error}
+                        {error}
+                    {/await}
+                </p>
             </div>
-            {#if currentOs}
             <div use:slide id="installation" class="slide">
                 <div><h1 class="primary">INSTALLATION</h1></div>
                 <hr>
@@ -31,21 +67,39 @@
                         </span>
                     </li>
                 </ul>
+                <p>
+                </p>
                 <p>After the installer has finished, you are ready to <a href="/docs/getting-started/hello-world">write your first program</a>.</p>
             </div>
-            {/if}
         </div>
         <Footer></Footer>
     </div>
 </div>
 </template>
 
-<script>
+<script lang="ts">
     import Header from '/src/components/Header.svelte';
     import Footer from '/src/components/Footer.svelte';
 
     import { jscd } from '/src/util';
     import { slide } from '/src/slide';
+
+    interface Asset {
+        browser_download_url: string;
+        name: string;
+    }
+
+    const latestRequest: Promise<{[target: string]: Asset}> = fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
+        .then(resp => resp.json())
+        .then(data => data.assets)
+        .then(assets => {
+            return {
+                windows: assets.find(a => a.name.indexOf(".exe") !== -1),
+                mac: assets.find(a => a.name.indexOf("mac") !== -1),
+                linux: assets.find(a => a.name.indexOf("linux") !== -1),
+                node: assets.find(a => a.name.indexOf(".js") !== -1)
+            };
+        });
 
     let whyJava = false;
 
