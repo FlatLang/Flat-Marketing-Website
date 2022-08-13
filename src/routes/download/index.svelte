@@ -30,12 +30,6 @@
                             {#if whyJava}<span>The first iteration of the compiler is written in Java</span>{/if}
                         </span>
                     </li>
-                    <li>Node 16 or later
-                        <span class="why gray">
-                            {#if !whyNode}<span class="tooltip" on:click={() => whyNode = true}>why node?</span>{/if}
-                            {#if whyNode}<span>Flat's package manager <a target="_blank" href="https://github.com/FlatLang/Airship">Airship</a> runs on node</span>{/if}
-                        </span>
-                    </li>
                 </ul>
                 <p>After the installer has finished, you are ready to <a href="/docs/getting-started/hello-world">write your first program</a>.</p>
             </div>
@@ -54,7 +48,6 @@
     import { slide } from '/src/slide';
 
     let whyJava = false;
-    let whyNode = false;
 
     let buildVersion;
     let disabled = false;
