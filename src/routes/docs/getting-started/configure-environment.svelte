@@ -7,27 +7,61 @@
     {/if}
 
     <p>From the start menu, click the settings gear:</p>
-    <img style="max-width: 450px;" class="dark-background" src="/images/windows-step1.png" />
+    <img
+      style="max-width: 450px;"
+      class="dark-background"
+      src="/images/windows-step1.png"
+      alt="Settings gear"
+    />
 
     <p>Next, in the Settings search box, type in "environment variables" and select "Edit the system environment variables".</p>
-    <img style="max-width: 450px;" class="dark-background" src="/images/windows-step2.png" />
+    <img
+      style="max-width: 450px;"
+      class="dark-background"
+      src="/images/windows-step2.png"
+      alt="System environment variables"
+    />
 
     <p>A "System Properties dialog will pop up. Click the "Environment Variables..." button at the bottom.</p>
-    <img style="max-width: 450px;" src="/images/windows-step3.png" />
+    <img
+      style="max-width: 450px;"
+      src="/images/windows-step3.png"
+      alt="Environtment variables"
+    />
 
     <p>On the new dialog, click the "Edit..." button.</p>
-    <img style="max-width: 450px;" src="/images/windows-step4.png" />
+    <img
+      style="max-width: 450px;"
+      src="/images/windows-step4.png"
+      alt="Edit environment variables"
+    />
 
     <p>Next, click the "New" button in the top right corner.</p>
-    <img style="max-width: 450px;" src="/images/windows-step5.png" />
+    <img
+      style="max-width: 450px;"
+      src="/images/windows-step5.png"
+      alt="New environment variable"
+    />
 
     <p>After having clicked the "New" button, it will allow you to type the new environment variable value. Add the path to the bin folder where flat was installed.</p>
     <div class="note">If you don't know where it was installed, it was most likely installed to "C:\Program Files\Flat\bin" or "C:\Program Files (x86)\Flat\bin"</div>
-    <img style="max-width: 450px;" src="/images/windows-step6.png" />
+    <img
+      style="max-width: 450px;"
+      src="/images/windows-step6.png"
+      alt="Enter environment variable"
+    />
 
     <p>Finally, just click OK on all of the open dialogs to save the changes.</p>
-    <img style="max-width: 40%; margin-right: 5%" src="/images/windows-step7.png" />
-    <img style="max-width: 40%;" src="/images/windows-step8.png" />
+    <img
+      style="max-width: 40%; margin-right: 5%"
+      src="/images/windows-step7.png"
+      alt="Save environment variables changes"
+    />
+    <img
+      style="max-width: 40%;"
+      src="/images/windows-step8.png"
+      alt="Save system properties changes"
+    />
     <div class="note">After setting the environment variables, you will need to restart any open command prompts or IDEs for the changes to take effect.</div>
 </div>
 <hr>
@@ -44,7 +78,6 @@
     {#if lowerOs === 'linux'}
     <h4 class="gray">We think you are running { osHeader }</h4>
     {/if}
-
 </div>
 
 
