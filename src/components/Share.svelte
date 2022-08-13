@@ -11,7 +11,7 @@
           <td colspan="4">
               <h1 class="neon-shadow">SHARE THIS PAGE
                 <a
-                  href="#"
+                  href="/"
                   class="copy-link"
                   on:click|preventDefault={() => copyToClipboard()}
                 >
@@ -32,17 +32,17 @@
       {#if false}
       <tr>
           <td>
-            <a href="#" on:click={() => fbShare(url, '', '', 520, 350)}>
+            <a href="/" on:click={() => fbShare(url, '', '', 520, 350)}>
               <img src="/images/facebook.svg" />
             </a>
           </td>
           <td>
-            <a href="#" on:click={() => twitterShare(url, '', '', 520, 350)}>
+            <a href="/" on:click={() => twitterShare(url, '', '', 520, 350)}>
               <img src="/images/twitter.svg" />
             </a>
           </td>
           <td>
-            <a href="#" on:click={() => linkedinShare(url, '', '', 520, 350)}>
+            <a href="/" on:click={() => linkedinShare(url, '', '', 520, 350)}>
               <img src="/images/linkedin.svg" />
             </a>
           </td>
