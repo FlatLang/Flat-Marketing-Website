@@ -1,26 +1,16 @@
 /** @type LanguageFn */
 export function hljsFlat(hljs) {
   const BUILT_IN_KEYWORDS = [
-    'bool',
-    'byte',
-    'char',
-    'decimal',
-    'delegate',
-    'double',
-    'dynamic',
-    'enum',
-    'float',
-    'int',
-    'long',
-    'nint',
-    'nuint',
-    'object',
-    'sbyte',
-    'short',
-    'string',
-    'ulong',
-    'uint',
-    'ushort'
+    'Bool',
+    'Char',
+    'Double',
+    'Float',
+    'Int',
+    'Long',
+    'Object',
+    'Byte',
+    'Short',
+    'String'
   ];
   const FUNCTION_MODIFIERS = [
     'public',
@@ -52,6 +42,8 @@ export function hljsFlat(hljs) {
     'case',
     'catch',
     'class',
+    'implements',
+    'extends',
     'trait',
     'const',
     'continue',
@@ -146,7 +138,7 @@ export function hljsFlat(hljs) {
     built_in: BUILT_IN_KEYWORDS,
     literal: LITERAL_KEYWORDS
   };
-  const TITLE_MODE = hljs.inherit(hljs.TITLE_MODE, { begin: '[a-zA-Z](\\.?\\w)*' });
+  const TITLE_MODE = hljs.inherit(hljs.TITLE_MODE, { begin: '[a-zA-Z]((\\.|:)?\\w)*' });
   const NUMBERS = {
     className: 'number',
     variants: [
@@ -156,13 +148,6 @@ export function hljsFlat(hljs) {
     ],
     relevance: 0
   };
-  const VERBATIM_STRING = {
-    className: 'string',
-    begin: '@"',
-    end: '"',
-    contains: [ { begin: '""' } ]
-  };
-  const VERBATIM_STRING_NO_LF = hljs.inherit(VERBATIM_STRING, { illegal: /\n/ });
   const SUBST = {
     className: 'subst',
     begin: /\{/,
@@ -172,58 +157,32 @@ export function hljsFlat(hljs) {
   const SUBST_NO_LF = hljs.inherit(SUBST, { illegal: /\n/ });
   const INTERPOLATED_STRING = {
     className: 'string',
-    begin: /\$"/,
+    begin: /"/,
     end: '"',
     illegal: /\n/,
     contains: [
-      { begin: /\{\{/ },
-      { begin: /\}\}/ },
+      { begin: /#\{/ },
+      { begin: /\}/ },
       hljs.BACKSLASH_ESCAPE,
       SUBST_NO_LF
     ]
   };
-  const INTERPOLATED_VERBATIM_STRING = {
-    className: 'string',
-    begin: /\$@"/,
-    end: '"',
-    contains: [
-      { begin: /\{\{/ },
-      { begin: /\}\}/ },
-      { begin: '""' },
-      SUBST
-    ]
-  };
-  const INTERPOLATED_VERBATIM_STRING_NO_LF = hljs.inherit(INTERPOLATED_VERBATIM_STRING, {
-    illegal: /\n/,
-    contains: [
-      { begin: /\{\{/ },
-      { begin: /\}\}/ },
-      { begin: '""' },
-      SUBST_NO_LF
-    ]
-  });
   SUBST.contains = [
-    INTERPOLATED_VERBATIM_STRING,
     INTERPOLATED_STRING,
-    VERBATIM_STRING,
     hljs.APOS_STRING_MODE,
     hljs.QUOTE_STRING_MODE,
     NUMBERS,
     hljs.C_BLOCK_COMMENT_MODE
   ];
   SUBST_NO_LF.contains = [
-    INTERPOLATED_VERBATIM_STRING_NO_LF,
     INTERPOLATED_STRING,
-    VERBATIM_STRING_NO_LF,
     hljs.APOS_STRING_MODE,
     hljs.QUOTE_STRING_MODE,
     NUMBERS,
     hljs.inherit(hljs.C_BLOCK_COMMENT_MODE, { illegal: /\n/ })
   ];
   const STRING = { variants: [
-    INTERPOLATED_VERBATIM_STRING,
     INTERPOLATED_STRING,
-    VERBATIM_STRING,
     hljs.APOS_STRING_MODE,
     hljs.QUOTE_STRING_MODE
   ] };
@@ -232,7 +191,6 @@ export function hljsFlat(hljs) {
     begin: "<",
     end: ">",
     contains: [
-      { beginKeywords: "in out" },
       TITLE_MODE
     ]
   };
@@ -245,10 +203,9 @@ export function hljsFlat(hljs) {
   };
 
   return {
-    name: 'C#',
+    name: 'Flat',
     aliases: [
-      'cs',
-      'c#'
+      'flat'
     ],
     keywords: KEYWORDS,
     illegal: /::/,
