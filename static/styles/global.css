@@ -878,6 +878,10 @@ pre:not(.full) {
     text-align: center;
 }
 
+pre:not(.full).left {
+    text-align: left;
+}
+
 pre:not(.full) > code {
     display: inline-block;
     width: auto;
