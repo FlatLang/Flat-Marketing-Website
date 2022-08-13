@@ -26,7 +26,7 @@
       </tr>
       <tr>
           <td colspan="4">
-              <input class="url" type="text" value={url} readonly="readonly" bind:this={urlElement} />
+              <input class="url" type="text" value={url} readonly="readonly" bind:this={urlElement} aria-label="Share page link" />
           </td>
       </tr>
       {#if false}
