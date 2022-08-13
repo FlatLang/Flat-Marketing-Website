@@ -59,7 +59,7 @@
               <a class="neon-shadow" href="/">
                   <h1 class="return-home">RETURN HOME</h1>
               </a>
-              <TreeBrowser class="page-browser" data={docPages} urlPrefix="/docs"></TreeBrowser>
+              <TreeBrowser data={docPages} urlPrefix="/docs"></TreeBrowser>
           </div>
       </div>
       <div class="content white-background">
