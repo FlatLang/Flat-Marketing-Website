@@ -103,6 +103,12 @@ const blogPages: BlogPage[] = [{
     date: "3/20/2017",
     visible: false,
     author: "Braden Steffaniak"
+}, {
+    header: `Chaining Operator ":"`,
+    url: "chaining-operator",
+    date: "8/12/2022",
+    visible: true,
+    author: "Braden Steffaniak"
 }];
 
 blogPages.forEach(page => page.dateObj = new Date(page.date));
