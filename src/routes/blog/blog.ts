@@ -1,6 +1,21 @@
 import { writable } from 'svelte/store'
 
-const blogPages = [{
+export interface Reference {
+    header: string;
+    url: string;
+}
+
+export interface BlogPage {
+    header: string;
+    url: string;
+    date: string;
+    dateObj?: Date;
+    author: string;
+    visible?: boolean;
+    references?: Reference[];
+}
+
+const blogPages: BlogPage[] = [{
     header: "Flat Compiler Design",
     url: "compiler-design",
     date: "2/18/2017",
