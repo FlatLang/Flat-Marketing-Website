@@ -27,18 +27,9 @@
       <h2 class="bold" style="margin: 60px 0 30px 0;">FLAT PROGRAMMING LANGUAGE</h2>
       <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold neon-shadow">versatility</span> and <span class="bold neon-shadow">rapid development</span></h4>
       <div class="download">
-          <a href="/download">
-              <img
-                src="/images/download-square.svg"
-                alt="Download Page"
-                width="100%"
-                height="100%"
-              /><!--
-              --><div>
-                  <p>DOWNLOAD</p>
-                  <p><span class="bold">BETA BUILD</span></p>
-              </div>
-          </a>
+        <a class="neon-shadow download-button-link" href="/download">
+            <h1 class="download-button">DOWNLOAD FLAT</h1>
+        </a>
       </div>
   </div>
 </div>
