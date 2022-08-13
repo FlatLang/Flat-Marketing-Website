@@ -26,24 +26,23 @@
   <link href="/styles/blog-home.css" rel="stylesheet" type="text/css" onload="this.media='all'; this.onload=null;" />
 </svelte:head>
 
-<script>
-import { browser } from '$app/env';
-
+<script lang="typescript">
+    import { browser } from '$app/env';
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import { blogPages, currentPage } from './blog';
 
     currentPage.set(null);
 
-    let limit;
+    let limit: boolean;
     let limited = false;
-    let pages = [];
-    let searchValue;
+    let pages: any[] = [];
+    let searchValue: string;
 
     const toggleLimit = () => {
-        limit = !limit;
+        updateQueryParam("showAll", limit.toString());
 
-        updateQueryParam("showAll", !limit);
+        limit = !limit;
 
         updateResults();
     };
@@ -54,7 +53,7 @@ import { browser } from '$app/env';
         updateResults();
     };
 
-    const updateQueryParam = (name, value) => {
+    const updateQueryParam = (name: string, value: string) => {
         if (!value) {
             $page.url.searchParams.delete(name);
         } else {
@@ -69,7 +68,7 @@ import { browser } from '$app/env';
         pages = [...blogPages]
             .filter(p => p.visible !== false)
             .filter(p => !searchValue || p.header.toLocaleLowerCase().indexOf(searchValue.toLocaleLowerCase()) !== -1)
-            .sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
+            .sort((a, b) => b.dateObj!.getTime() - a.dateObj!.getTime());
 
         if (limit && pages.length > 10) {
             pages = pages.slice(0, 10);
