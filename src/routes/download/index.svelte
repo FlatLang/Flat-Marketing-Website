@@ -20,16 +20,7 @@
                 <p>{ os } is not currently supported by Flat.</p>
                 {/if}
                 <p>
-                    {#await latestRequest}
-                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
-                    {:then latest}
-                        {#if lowerOs}
-                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
-                        {/if}
-                    {:catch error}
-                        {error}
-                    {/await}
-                    <br>
+                    {#if currentOs}
                     {#await latestRequest}
                         Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
                     {:then latest}
@@ -37,19 +28,42 @@
                     {:catch error}
                         {error}
                     {/await}
+                    {/if}
+                    {#if lowerOs !== "windows"}
                     <br>
                     {#await latestRequest}
                         Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
                     {:then latest}
-                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
+                        Download <a href={latest.windows.browser_download_url}>{latest.windows.name}</a>
                     {:catch error}
                         {error}
                     {/await}
+                    {/if}
+                    {#if lowerOs !== "mac"}
                     <br>
                     {#await latestRequest}
                         Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
                     {:then latest}
-                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
+                        Download <a href={latest.mac.browser_download_url}>{latest.mac.name}</a>
+                    {:catch error}
+                        {error}
+                    {/await}
+                    {/if}
+                    {#if lowerOs !== "linux"}
+                    <br>
+                    {#await latestRequest}
+                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
+                    {:then latest}
+                        Download <a href={latest.linux.browser_download_url}>{latest.linux.name}</a>
+                    {:catch error}
+                        {error}
+                    {/await}
+                    {/if}
+                    <br>
+                    {#await latestRequest}
+                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
+                    {:then latest}
+                        Download <a href={latest.node.browser_download_url}>{latest.node.name}</a>
                     {:catch error}
                         {error}
                     {/await}
