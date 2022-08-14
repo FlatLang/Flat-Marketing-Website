@@ -16,8 +16,8 @@
                 <ul>
                 {#each downloadSchema as osAsset}
                     <li>
-                    {#await osAsset.asset}
-                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
+                    {#await osAsset.asset.promise}
+                        Download <a href="/" on:click|preventDefault={() => {}}>{osAsset.assetName}</a>
                     {:then asset}
                         Download <a href={asset.browser_download_url}>{asset.name}</a>
                         {#if lowerOs === osAsset.name}
@@ -56,15 +56,14 @@
     import Header from '/src/components/Header.svelte';
     import Footer from '/src/components/Footer.svelte';
 
-    import { jscd } from '/src/util';
+    import { jscd, defer } from '/src/util';
+    import type { Deferred } from '/src/util';
     import { slide } from '/src/slide';
-    import { browser } from '$app/env';
 
     interface OsAsset {
         name: string;
-        asset: Promise<Asset>;
+        asset: Deferred<Asset>;
         assetName: string;
-        assetDefer: {resolve: (value: any) => void};
     }
 
     interface Asset {
@@ -72,48 +71,24 @@
         name: string;
     }
 
-    function defer<T>(): {promise: Promise<T>} {
-        var deferred = {};
-        var promise = new Promise(function(resolve, reject) {
-            deferred.resolve = resolve;
-            deferred.reject  = reject;
-        });
-        deferred.promise = promise;
-        return deferred;
-    }
-
-
     const downloadSchema: OsAsset[] = [
-        {name: "windows", assetName: "airship-win.exe"},
-        {name: "mac", assetName: "airship-macos"},
-        {name: "linux", assetName: "airship-linux"},
-        {name: "node", assetName: "airship.js"}
-    ].map((a) => {
-        const deferred = defer();
-
-        return {
-            ...a,
-            asset: deferred.promise,
-            assetDefer: deferred
-        };
-    });
+        {name: "windows", assetName: "airship-win.exe", asset: defer()},
+        {name: "mac", assetName: "airship-macos", asset: defer()},
+        {name: "linux", assetName: "airship-linux", asset: defer()},
+        {name: "node", assetName: "airship.js", asset: defer()}
+    ];
 
     fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
         .then(resp => resp.json())
         .then(data => data.assets)
         .then((assets: Asset[]) => {
             downloadSchema.forEach((value) => {
-                value.assetDefer.resolve(assets.find(a => a.name === value.assetName))
+                value.asset.resolve(assets.find(a => a.name === value.assetName))
             });
         });
 
     let whyJava = false;
 
-    let buildVersion;
-    let disabled = false;
-    let version;
-    let build;
-    let type = {name: ""};
     let os = jscd.os || "";
     let osVersion = jscd.osVersion;
     let lowerOs = os?.toLowerCase();
@@ -132,37 +107,4 @@
     if (lowerOs?.indexOf("mac") == 0) {
         lowerOs = "mac";
     }
-
-    let oses = {
-        windows: {
-            name: "Windows",
-            key: "windows",
-            extension: ".exe",
-            filename: "FlatInstaller",
-            stableVersions: [],
-            betaVersions: ["0.3.0", "0.3.3", "0.3.4", "0.3.5", "0.3.6", "0.3.7", "0.3.8"]
-        },
-        mac: {
-            name: "Mac OS X",
-            key: "mac",
-            extension: ".dmg",
-            filename: "Flat",
-            stableVersions: [],
-            betaVersions: ["0.3.2", "0.3.3", "0.3.4", "0.3.5", "0.3.6", "0.3.7", "0.3.8"]
-        },
-        linux: {
-            name: "Linux",
-            key: "linux",
-            extension: ".deb",
-            filename: "flat",
-            stableVersions: [],
-            betaVersions: ["0.3.5", "0.3.6", "0.3.7", "0.3.8"]
-        }
-    };
-
-    let currentOs = oses[lowerOs];
-
-    let osArray = Object.keys(oses).map((key) => {
-        return oses[key];
-    });
 </script>
