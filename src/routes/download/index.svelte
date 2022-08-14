@@ -13,61 +13,22 @@
             <div use:slide id="downloads" class="slide">
                 <div><h1 class="primary">DOWNLOAD</h1></div>
                 <hr>
-                {#if currentOs}
-                <h4 class="gray">We think you are running { osHeader }</h4>
-                {/if}
-                {#if !currentOs}
-                <p>{ os } is not currently supported by Flat.</p>
-                {/if}
-                <p>
-                    {#if currentOs}
-                    {#await latestRequest}
+                <ul>
+                {#each downloadSchema as osAsset}
+                    <li>
+                    {#await osAsset.asset}
                         Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
-                    {:then latest}
-                        Download <a href={latest[lowerOs].browser_download_url}>{latest[lowerOs].name}</a>
+                    {:then asset}
+                        Download <a href={asset.browser_download_url}>{asset.name}</a>
+                        {#if lowerOs === osAsset.name}
+                            <span class="gray">// We think you are running { osHeader }</span>
+                        {/if}
                     {:catch error}
                         {error}
                     {/await}
-                    {/if}
-                    {#if lowerOs !== "windows"}
-                    <br>
-                    {#await latestRequest}
-                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
-                    {:then latest}
-                        Download <a href={latest.windows.browser_download_url}>{latest.windows.name}</a>
-                    {:catch error}
-                        {error}
-                    {/await}
-                    {/if}
-                    {#if lowerOs !== "mac"}
-                    <br>
-                    {#await latestRequest}
-                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
-                    {:then latest}
-                        Download <a href={latest.mac.browser_download_url}>{latest.mac.name}</a>
-                    {:catch error}
-                        {error}
-                    {/await}
-                    {/if}
-                    {#if lowerOs !== "linux"}
-                    <br>
-                    {#await latestRequest}
-                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
-                    {:then latest}
-                        Download <a href={latest.linux.browser_download_url}>{latest.linux.name}</a>
-                    {:catch error}
-                        {error}
-                    {/await}
-                    {/if}
-                    <br>
-                    {#await latestRequest}
-                        Download <a href="/" on:click|preventDefault={() => {}}>loading...</a>
-                    {:then latest}
-                        Download <a href={latest.node.browser_download_url}>{latest.node.name}</a>
-                    {:catch error}
-                        {error}
-                    {/await}
-                </p>
+                    </li>
+                {/each}
+                </ul>
             </div>
             <div use:slide id="installation" class="slide">
                 <div><h1 class="primary">INSTALLATION</h1></div>
@@ -97,22 +58,53 @@
 
     import { jscd } from '/src/util';
     import { slide } from '/src/slide';
+    import { browser } from '$app/env';
+
+    interface OsAsset {
+        name: string;
+        asset: Promise<Asset>;
+        assetName: string;
+        assetDefer: {resolve: (value: any) => void};
+    }
 
     interface Asset {
         browser_download_url: string;
         name: string;
     }
 
-    const latestRequest: Promise<{[target: string]: Asset}> = fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
+    function defer<T>(): {promise: Promise<T>} {
+        var deferred = {};
+        var promise = new Promise(function(resolve, reject) {
+            deferred.resolve = resolve;
+            deferred.reject  = reject;
+        });
+        deferred.promise = promise;
+        return deferred;
+    }
+
+
+    const downloadSchema: OsAsset[] = [
+        {name: "windows", assetName: "airship-win.exe"},
+        {name: "mac", assetName: "airship-macos"},
+        {name: "linux", assetName: "airship-linux"},
+        {name: "node", assetName: "airship.js"}
+    ].map((a) => {
+        const deferred = defer();
+
+        return {
+            ...a,
+            asset: deferred.promise,
+            assetDefer: deferred
+        };
+    });
+
+    fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
         .then(resp => resp.json())
         .then(data => data.assets)
-        .then(assets => {
-            return {
-                windows: assets.find(a => a.name.indexOf(".exe") !== -1),
-                mac: assets.find(a => a.name.indexOf("mac") !== -1),
-                linux: assets.find(a => a.name.indexOf("linux") !== -1),
-                node: assets.find(a => a.name.indexOf(".js") !== -1)
-            };
+        .then((assets: Asset[]) => {
+            downloadSchema.forEach((value) => {
+                value.assetDefer.resolve(assets.find(a => a.name === value.assetName))
+            });
         });
 
     let whyJava = false;
@@ -126,6 +118,16 @@
     let osVersion = jscd.osVersion;
     let lowerOs = os?.toLowerCase();
     let osHeader = os + (osVersion?.trim() ? " " + osVersion : "");
+
+    downloadSchema.sort((a, b) => {
+        if (lowerOs === a.name) {
+            return -1;
+        } else if (lowerOs === b.name) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
 
     if (lowerOs?.indexOf("mac") == 0) {
         lowerOs = "mac";
