@@ -13,15 +13,15 @@
             <div use:slide id="downloads" class="slide">
                 <div><h1 class="primary">DOWNLOAD</h1></div>
                 <hr>
-                {#await downloadSchema[0].version.promise}
+                {#await currentAssets[0].version.promise}
                     Version (loading...)
                 {:then version}
-                    Version {version}
+                    Version {version} [<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
                 {:catch error}
                     {error}
                 {/await}
                 <ul>
-                {#each downloadSchema as osAsset}
+                {#each currentAssets as osAsset}
                     <li>
                     {#await osAsset.asset.promise}
                         Download <a href="/" on:click|preventDefault={() => {}}>{osAsset.assetName}</a>
@@ -38,7 +38,7 @@
                 </ul>
                 {#if showAll}
                     {#each allDownloads as osAssets}
-                        Version {osAssets[0].version.value}
+                        Version {osAssets[0].version.value} [<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
                         <ul>
                         {#each osAssets as osAsset}
                             {#if osAsset.asset.value}
@@ -88,14 +88,16 @@
 
     interface GitHubRelease {
         name: string;
+        html_url: string;
         assets: Asset[];
     }
 
     interface OsAsset {
         name: string;
-        asset: Deferred<Asset>;
         assetName: string;
+        asset: Deferred<Asset>;
         version: Deferred<string>;
+        url: Deferred<string>;
     }
 
     interface Asset {
@@ -103,21 +105,26 @@
         name: string;
     }
 
-    const downloadSchema: OsAsset[] = [
-        {name: "windows", assetName: "airship-win.exe", asset: defer(), version: defer()},
-        {name: "mac", assetName: "airship-macos", asset: defer(), version: defer()},
-        {name: "linux", assetName: "airship-linux", asset: defer(), version: defer()},
-        {name: "node", assetName: "airship.js", asset: defer(), version: defer()}
+    function createAsset(name: string, assetName: string): OsAsset {
+        return {name, assetName, asset: defer(), version: defer(), url: defer()};
+    }
+
+    const currentAssets: OsAsset[] = [
+        createAsset("windows", "airship-win.exe"),
+        createAsset("mac", "airship-macos"),
+        createAsset("linux", "airship-linux"),
+        createAsset("node", "airship.js")
     ];
 
     let allDownloads: OsAsset[][] = [];
 
     fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
         .then(resp => resp.json() as Promise<GitHubRelease>)
-        .then(({name, assets}) => {
-            downloadSchema.forEach((value) => {
+        .then(({name, html_url, assets}) => {
+            currentAssets.forEach((value) => {
                 value.asset.resolve(assets.find(a => a.name === value.assetName))
                 value.version.resolve(name);
+                value.url.resolve(html_url);
             });
         });
 
@@ -128,17 +135,18 @@
             fetch('https://api.github.com/repos/FlatLang/Airship/releases')
                 .then(resp => resp.json() as Promise<GitHubRelease[]>)
                 .then(data => {
-                    allDownloads = data.slice(1).map(({name, assets}) => {
+                    allDownloads = data.slice(1).map(({name, html_url, assets}) => {
                         const values: OsAsset[] = [
-                            {name: "windows", assetName: "airship-win.exe", asset: defer(), version: defer()},
-                            {name: "mac", assetName: "airship-macos", asset: defer(), version: defer()},
-                            {name: "linux", assetName: "airship-linux", asset: defer(), version: defer()},
-                            {name: "node", assetName: "airship.js", asset: defer(), version: defer()}
+                            createAsset("windows", "airship-win.exe"),
+                            createAsset("mac", "airship-macos"),
+                            createAsset("linux", "airship-linux"),
+                            createAsset("node", "airship.js")
                         ];
 
                         values.forEach((value) => {
                             value.asset.resolve(assets.find(a => a.name === value.assetName))
                             value.version.resolve(name);
+                            value.url.resolve(html_url);
                         });
 
                         return values;
@@ -155,7 +163,7 @@
     let lowerOs = os?.toLowerCase();
     let osHeader = os + (osVersion?.trim() ? " " + osVersion : "");
 
-    downloadSchema.sort((a, b) => {
+    currentAssets.sort((a, b) => {
         if (lowerOs === a.name) {
             return -1;
         } else if (lowerOs === b.name) {
