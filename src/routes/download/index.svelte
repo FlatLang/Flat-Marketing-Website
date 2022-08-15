@@ -93,6 +93,7 @@
     import { jscd, defer } from '/src/util';
     import type { Deferred } from '/src/util';
     import { slide } from '/src/slide';
+    import { blogPages } from '/src/routes/blog/blog';
 
     interface GitHubRelease {
         name: string;
@@ -142,6 +143,15 @@
         value.asset.resolve(assets.find(a => a.name === value.assetName));
         value.version.resolve(name);
         value.url.resolve(html_url);
+
+        const blogPostUrl = name.replace(/[\.]/g, "_") + "-release-notes";
+        const page = blogPages.find(page => page.url === blogPostUrl);
+
+        if (page) {
+            value.releaseNotesUrl.resolve(`/blog/${page.url}`);
+        } else {
+            value.releaseNotesUrl.resolve(null);
+        }
 
         return value;
     }
