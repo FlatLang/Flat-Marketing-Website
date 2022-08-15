@@ -16,7 +16,11 @@
                 {#await currentAssets[0].version.promise}
                     Version (loading...)
                 {:then version}
-                    Version {version} [<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
+                    Version {version}
+                    [<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
+                    {#if currentAssets[0].releaseNotesUrl.value}
+                    [<a target="_blank" href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
+                    {/if}
                 {:catch error}
                     {error}
                 {/await}
@@ -38,7 +42,11 @@
                 </ul>
                 {#if showAll}
                     {#each allDownloads as osAssets}
-                        Version {osAssets[0].version.value} [<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
+                        Version {osAssets[0].version.value}
+                        [<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
+                        {#if osAssets[0].releaseNotesUrl.value}
+                        [<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
+                        {/if}
                         <ul>
                         {#each osAssets as osAsset}
                             {#if osAsset.asset.value}
@@ -98,6 +106,7 @@
         asset: Deferred<Asset>;
         version: Deferred<string>;
         url: Deferred<string>;
+        releaseNotesUrl: Deferred<string>;
     }
 
     interface Asset {
@@ -106,26 +115,43 @@
     }
 
     function createAsset(name: string, assetName: string): OsAsset {
-        return {name, assetName, asset: defer(), version: defer(), url: defer()};
+        return {
+            name,
+            assetName,
+            asset: defer(),
+            version: defer(),
+            url: defer(),
+            releaseNotesUrl: defer()
+        };
     }
 
-    const currentAssets: OsAsset[] = [
-        createAsset("windows", "airship-win.exe"),
-        createAsset("mac", "airship-macos"),
-        createAsset("linux", "airship-linux"),
-        createAsset("node", "airship.js")
-    ];
+    function createOsAssets(): OsAsset[] {
+        return [
+            createAsset("windows", "airship-win.exe"),
+            createAsset("mac", "airship-macos"),
+            createAsset("linux", "airship-linux"),
+            createAsset("node", "airship.js")
+        ];
+    }
+
+    const currentAssets: OsAsset[] = createOsAssets();
+
+    function resolveAsset(release: GitHubRelease, value: OsAsset): OsAsset {
+        const {name, html_url, assets} = release;
+
+        value.asset.resolve(assets.find(a => a.name === value.assetName));
+        value.version.resolve(name);
+        value.url.resolve(html_url);
+
+        return value;
+    }
 
     let allDownloads: OsAsset[][] = [];
 
     fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
         .then(resp => resp.json() as Promise<GitHubRelease>)
-        .then(({name, html_url, assets}) => {
-            currentAssets.forEach((value) => {
-                value.asset.resolve(assets.find(a => a.name === value.assetName))
-                value.version.resolve(name);
-                value.url.resolve(html_url);
-            });
+        .then((release) => {
+            currentAssets.forEach((value) => resolveAsset(release, value));
         });
 
     function toggleShowAll() {
@@ -134,22 +160,9 @@
         if (showAll) {
             fetch('https://api.github.com/repos/FlatLang/Airship/releases')
                 .then(resp => resp.json() as Promise<GitHubRelease[]>)
-                .then(data => {
-                    allDownloads = data.slice(1).map(({name, html_url, assets}) => {
-                        const values: OsAsset[] = [
-                            createAsset("windows", "airship-win.exe"),
-                            createAsset("mac", "airship-macos"),
-                            createAsset("linux", "airship-linux"),
-                            createAsset("node", "airship.js")
-                        ];
-
-                        values.forEach((value) => {
-                            value.asset.resolve(assets.find(a => a.name === value.assetName))
-                            value.version.resolve(name);
-                            value.url.resolve(html_url);
-                        });
-
-                        return values;
+                .then(releases => {
+                    allDownloads = releases.slice(1).map((release) => {
+                        return createOsAssets().map((value) => resolveAsset(release, value));
                     });
                 });
         }
