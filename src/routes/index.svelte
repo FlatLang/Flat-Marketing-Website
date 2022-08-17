@@ -216,7 +216,9 @@
                       <pre>
                         <code class="language-java code dark-background indent-children">{`
                             public static void main(String[] args) {
-                              Array<String> names = new Array<>(new String[] { "Braden", "Ethan", "George" });
+                              Array<String> names = new Array<>(
+                                new String[] { "Braden", "Ethan", "George" }
+                              );
 
                               Iterator<String> iterator = names.iterator();
 
@@ -273,14 +275,27 @@
                       <pre>
                         <code class="language-c code dark-background indent-children">{`
                             int main(int argc, char** argvs) {
-                              flat_Array* names = flat_Array_construct(0, 3, flat_String_construct(0, "Braden"), flat_String_construct(0, "Ethan"), flat_String_construct(0, "George"));
+                              flat_Array* names = flat_Array_construct(
+                                flat_String_construct("Braden"),
+                                flat_String_construct("Ethan"),
+                                flat_String_construct("George")
+                              );
 
                               flat_ArrayIterator* iterator = flat_Array_iterator(names);
 
                               while (flat_ArrayIterator_hasNext(iterator)) {
                                 flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator);
 
-                                flat_Logger_info(log, flat_String_concat(flat_String_concat(flat_String_construct(0, "Hello, "), name), flat_String_construct(0, "!")));
+                                flat_Logger_info(
+                                  log,
+                                  flat_String_concat(
+                                    flat_String_concat(
+                                      flat_String_construct(0, "Hello, "),
+                                      name
+                                    ),
+                                    flat_String_construct(0, "!")
+                                  )
+                                );
                               }
 
                               return 0;
