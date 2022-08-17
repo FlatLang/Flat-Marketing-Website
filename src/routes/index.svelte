@@ -61,13 +61,11 @@
 				</p>
 				<p>
 					In the code example on the right, you can see string interpolation in action. The strings
-					passed to <span class="pre"
-						><span class="type">Console</span>.<span class="identifier">writeLine</span>()</span
-					>
-					show this. String interpolation makes injecting variable values into strings effortless.
-					You just use <span class="pre">#{`{`} expression {`}`}</span> (or even just
-					<span class="pre">#variable</span>, if it is just accessing an attribute) within a string
-					literal and the compiler does the rest for you.
+					passed to <code class="language-flat">log.info()</code>
+					show this. String interpolation makes injecting variable values into strings effortless. You
+					just use <code class="language-flat">{`#{ expression }`}</code> (or even just
+					<code class="language-flat">#variable</code>, if it is just accessing an attribute) within
+					a string literal and the compiler does the rest for you.
 				</p>
 				<p>
 					One cool thing about the way List's are implemented in Flat is that because it is a trait,
@@ -77,25 +75,27 @@
 			</div>
 			<div class="code-container">
 				<pre class="full">
-          <code class="language-flat code dark-background indent-children">{`
-            let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
+          <code class="language-flat code dark-background indent-children">
+            {`
+              let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
 
-            log.info("Preorder: #{tree.preorder().join(", ")}")
+              log.info("Preorder: #{tree.preorder().join(", ")}")
 
-            // Preorder: [F, B, A, D, C, E, G, I, H]
+              // Preorder: [F, B, A, D, C, E, G, I, H]
 
-            log.info("Inorder: #{tree.inorder().join(", ")}")
+              log.info("Inorder: #{tree.inorder().join(", ")}")
 
-            // Inorder: [A, B, C, D, E, F, G, H, I]
+              // Inorder: [A, B, C, D, E, F, G, H, I]
 
-            log.info("Postorder: #{tree.postorder().join(", ")}")
+              log.info("Postorder: #{tree.postorder().join(", ")}")
 
-            // Postorder: [A, C, E, D, B, H, I, G, F]
+              // Postorder: [A, C, E, D, B, H, I, G, F]
 
-            log.info("Levelorder: #{tree.levelorder().join(", ")}")
+              log.info("Levelorder: #{tree.levelorder().join(", ")}")
 
-            // Levelorder: [F, B, G, A, D, I, C, E, H]
-        `}</code>
+              // Levelorder: [F, B, G, A, D, I, C, E, H]
+            `}
+          </code>
         </pre>
 			</div>
 		</div>
@@ -157,30 +157,32 @@
 			<div class="code-container">
 				<div class="dark-background indent-children">
 					<pre class="full">
-          <code class="language-flat code dark-background indent-children">{`
-            class MyClass implements MyTrait, MyInterface {
-              public calculateValue() => "my value"
+            <code class="language-flat code dark-background indent-children">
+              {`
+                class MyClass implements MyTrait, MyInterface {
+                  public calculateValue() => "my value"
 
-              public saySomething() {
-                log.info("My value is: '#calculateValue()'")
-              }
-            }
+                  public saySomething() {
+                    log.info("My value is: '#calculateValue()'")
+                  }
+                }
 
-            trait MyTrait implements PlusOperator<Int, MyTrait> {
-              visible Int id
+                trait MyTrait implements PlusOperator<Int, MyTrait> {
+                  visible Int id
 
-              public plus(Int num) -> MyTrait {
-                id += num
+                  public plus(Int num) -> MyTrait {
+                    id += num
 
-                return this
-              }
-            }
+                    return this
+                  }
+                }
 
-            interface MyInterface {
-              public calculateValue() -> String
-            }
-        `}</code>
-        </pre>
+                interface MyInterface {
+                  public calculateValue() -> String
+                }
+              `}
+            </code>
+          </pre>
 				</div>
 			</div>
 		</div>
@@ -207,15 +209,17 @@
 						<div class="transition from-bottom time08 delay05">
 							<h4>FLAT CODE:</h4>
 							<pre>
-                <code class="language-flat code dark-background indent-children">{`
-                  public static main() {
-                    let names = ["Braden", "Ethan", "George"]
+                <code class="language-flat code dark-background indent-children">
+                  {`
+                    public static main() {
+                      let names = ["Braden", "Ethan", "George"]
 
-                    for (name in names) {
-                      log.info("Hello, #name!")
+                      for (name in names) {
+                        log.info("Hello, #name!")
+                      }
                     }
-                  }
-                `}</code>
+                  `}
+                </code>
               </pre>
 						</div>
 					</div>
@@ -226,16 +230,18 @@
 						<div class="transition from-top time08 delay05">
 							<h4>GENERATED JAVASCRIPT CODE:</h4>
 							<pre>
-                <code class="language-js code dark-background indent-children">{`
-                  let names = new FlatArray(["Braden", "Ethan", "George"]);
+                <code class="language-js code dark-background indent-children">
+                  {`
+                    let names = new FlatArray(["Braden", "Ethan", "George"]);
 
-                  let iterator = names.iterator();
+                    let iterator = names.iterator();
 
-                  while (iterator.hasNext()) {
-                    let name = iterator.next();
-                    log.info("Hello, " + name + "!");
-                  }
-                `}</code>
+                    while (iterator.hasNext()) {
+                      let name = iterator.next();
+                      log.info("Hello, " + name + "!");
+                    }
+                  `}
+                </code>
               </pre>
 						</div>
 					</div>
@@ -268,15 +274,17 @@
 						<div class="transition from-bottom time08 delay05">
 							<h4>FLAT CODE:</h4>
 							<pre>
-                <code class="language-flat code dark-background indent-children">{`
-                  public static main() {
-                    let names = ["Braden", "Ethan", "George"]
+                <code class="language-flat code dark-background indent-children">
+                  {`
+                    public static main() {
+                      let names = ["Braden", "Ethan", "George"]
 
-                    for (name in names) {
-                      log.info("Hello, #name!")
+                      for (name in names) {
+                        log.info("Hello, #name!")
+                      }
                     }
-                  }
-                `}</code>
+                  `}
+                </code>
               </pre>
 						</div>
 					</div>
@@ -287,20 +295,22 @@
 						<div class="transition from-top time08 delay05">
 							<h4>GENERATED JAVA CODE:</h4>
 							<pre>
-                <code class="language-java code dark-background indent-children">{`
-                  public static void main(String[] args) {
-                    Array<String> names = new Array<>(
-                      new String[] { "Braden", "Ethan", "George" }
-                    );
+                <code class="language-java code dark-background indent-children">
+                  {`
+                    public static void main(String[] args) {
+                      Array<String> names = new Array<>(
+                        new String[] { "Braden", "Ethan", "George" }
+                      );
 
-                    Iterator<String> iterator = names.iterator();
+                      Iterator<String> iterator = names.iterator();
 
-                    while (iterator.hasNext()) {
-                      String name = iterator.next();
-                      log.info("Hello, " + name + "!");
+                      while (iterator.hasNext()) {
+                        String name = iterator.next();
+                        log.info("Hello, " + name + "!");
+                      }
                     }
-                  }
-                `}</code>
+                  `}
+                </code>
               </pre>
 						</div>
 					</div>
@@ -330,15 +340,17 @@
 						<div class="transition from-bottom time08 delay05">
 							<h4>FLAT CODE:</h4>
 							<pre>
-                <code class="language-flat code dark-background indent-children">{`
-                  public static main() {
-                    let names = ["Braden", "Ethan", "George"]
+                <code class="language-flat code dark-background indent-children">
+                  {`
+                    public static main() {
+                      let names = ["Braden", "Ethan", "George"]
 
-                    for (name in names) {
-                      log.info("Hello, #name!")
+                      for (name in names) {
+                        log.info("Hello, #name!")
+                      }
                     }
-                  }
-                `}</code>
+                  `}
+                </code>
               </pre>
 						</div>
 					</div>
@@ -349,34 +361,36 @@
 						<div class="transition from-top time08 delay05">
 							<h4>GENERATED C CODE:</h4>
 							<pre>
-                <code class="language-c code dark-background indent-children">{`
-                  int main(int argc, char** argvs) {
-                    flat_Array* names = flat_Array_construct(
-                      flat_String_construct("Braden"),
-                      flat_String_construct("Ethan"),
-                      flat_String_construct("George")
-                    );
-
-                    flat_ArrayIterator* iterator = flat_Array_iterator(names);
-
-                    while (flat_ArrayIterator_hasNext(iterator)) {
-                      flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator);
-
-                      flat_Logger_info(
-                        log,
-                        flat_String_concat(
-                          flat_String_concat(
-                            flat_String_construct(0, "Hello, "),
-                            name
-                          ),
-                          flat_String_construct(0, "!")
-                        )
+                <code class="language-c code dark-background indent-children">
+                  {`
+                    int main(int argc, char** argvs) {
+                      flat_Array* names = flat_Array_construct(
+                        flat_String_construct("Braden"),
+                        flat_String_construct("Ethan"),
+                        flat_String_construct("George")
                       );
-                    }
 
-                    return 0;
-                  }
-                `}</code>
+                      flat_ArrayIterator* iterator = flat_Array_iterator(names);
+
+                      while (flat_ArrayIterator_hasNext(iterator)) {
+                        flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator);
+
+                        flat_Logger_info(
+                          log,
+                          flat_String_concat(
+                            flat_String_concat(
+                              flat_String_construct(0, "Hello, "),
+                              name
+                            ),
+                            flat_String_construct(0, "!")
+                          )
+                        );
+                      }
+
+                      return 0;
+                    }
+                  `}
+                </code>
               </pre>
 						</div>
 					</div>
