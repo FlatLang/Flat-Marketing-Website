@@ -4,7 +4,6 @@
 
 	import { jscd, defer } from '/src/util';
 	import type { Deferred } from '/src/util';
-	import { slide } from '/src/slide';
 	import { blogPages } from '/src/routes/blog/blog';
 	import type { BlogPage } from '/src/routes/blog/blog';
 
@@ -133,7 +132,7 @@
 		<div class="page-container">
 			<Header />
 			<div id="content-container">
-				<div use:slide id="downloads" class="slide">
+				<section id="downloads">
 					<div><h1 class="primary">DOWNLOAD</h1></div>
 					<hr />
 					{#await currentAssets[0].version.promise}
@@ -194,8 +193,8 @@
 					{:else}
 						<a href="/" on:click|preventDefault={() => toggleShowAll()}>Show all</a>
 					{/if}
-				</div>
-				<div use:slide id="installation" class="slide">
+				</section>
+				<section id="installation">
 					<div><h1 class="primary">INSTALLATION</h1></div>
 					<hr />
 					<h4>Pre-requisites</h4>
@@ -217,7 +216,7 @@
 							href="/docs/getting-started/hello-world">write your first program</a
 						>.
 					</p>
-				</div>
+				</section>
 			</div>
 			<Footer />
 		</div>
