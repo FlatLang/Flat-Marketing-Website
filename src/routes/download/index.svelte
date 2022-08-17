@@ -69,7 +69,7 @@
 		return value;
 	}
 
-	let allDownloads: OsAsset[][] = [];
+	let allDownloads: Deferred<OsAsset[][]> = defer();
 
 	fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
 		.then((resp) => resp.json() as Promise<GitHubRelease>)
@@ -84,9 +84,11 @@
 			fetch('https://api.github.com/repos/FlatLang/Airship/releases')
 				.then((resp) => resp.json() as Promise<GitHubRelease[]>)
 				.then((releases) => {
-					allDownloads = releases.slice(1).map((release) => {
-						return createOsAssets().map((value) => resolveAsset(release, value));
-					});
+					allDownloads.resolve(
+						releases.slice(1).map((release) => {
+							return createOsAssets().map((value) => resolveAsset(release, value));
+						})
+					);
 				});
 		}
 	}
@@ -162,27 +164,33 @@
 						{/each}
 					</ul>
 					{#if showAll}
-						{#each allDownloads as osAssets}
-							Version {osAssets[0].version.value}
-							[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
-							{#if osAssets[0].releaseNotesUrl.value}
-								[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
-							{/if}
-							<ul>
-								{#each osAssets as osAsset}
-									{#if osAsset.asset.value}
-										<li>
-											Download <a href={osAsset.asset.value.browser_download_url}
-												>{osAsset.asset.value.name}</a
-											>
-											{#if lowerOs === osAsset.name}
-												<span class="gray">// We think you are running {osHeader}</span>
-											{/if}
-										</li>
-									{/if}
-								{/each}
-							</ul>
-						{/each}
+						{#await allDownloads.promise}
+							Loading...
+						{:then downloads}
+							{#each downloads as osAssets}
+								Version {osAssets[0].version.value}
+								[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
+								{#if osAssets[0].releaseNotesUrl.value}
+									[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
+								{/if}
+								<ul>
+									{#each osAssets as osAsset}
+										{#if osAsset.asset.value}
+											<li>
+												Download <a href={osAsset.asset.value.browser_download_url}
+													>{osAsset.asset.value.name}</a
+												>
+												{#if lowerOs === osAsset.name}
+													<span class="gray">// We think you are running {osHeader}</span>
+												{/if}
+											</li>
+										{/if}
+									{/each}
+								</ul>
+							{/each}
+						{:catch error}
+							{error}
+						{/await}
 					{:else}
 						<a href="/" on:click|preventDefault={() => toggleShowAll()}>Show all</a>
 					{/if}
