@@ -210,7 +210,7 @@
 								{#if osAssets[0].releaseNotesUrl.value}
 									[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
 								{/if}
-								<ul>
+								<ul class="downloads-list">
 									{#each osAssets as osAsset}
 										{#if osAsset.asset.value}
 											<li>
@@ -218,8 +218,27 @@
 													>{osAsset.asset.value.name}</a
 												>
 												({getSize(osAsset.asset.value.size)})
+												{#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
+													[<a
+														href="/"
+														on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
+														>more formats...</a
+													>]
+												{/if}
 												{#if lowerOs === osAsset.name}
 													<span class="gray">// We think you are running {osHeader}</span>
+												{/if}
+												{#if osAsset.showMoreFormats}
+													<div class="flash quick">
+														<ul>
+															{#each osAsset.otherFormats.value as asset}
+																<li>
+																	<a href={asset.browser_download_url}>{asset.name}</a>
+																	({getSize(asset.size)})
+																</li>
+															{/each}
+														</ul>
+													</div>
 												{/if}
 											</li>
 										{/if}
