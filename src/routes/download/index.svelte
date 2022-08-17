@@ -19,7 +19,7 @@
                     Version {version}
                     [<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
                     {#if currentAssets[0].releaseNotesUrl.value}
-                    [<a target="_blank" href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
+                    [<a href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
                     {/if}
                 {:catch error}
                     {error}
@@ -94,6 +94,7 @@
     import type { Deferred } from '/src/util';
     import { slide } from '/src/slide';
     import { blogPages } from '/src/routes/blog/blog';
+    import type { BlogPage } from '/src/routes/blog/blog';
 
     interface GitHubRelease {
         name: string;
@@ -144,8 +145,8 @@
         value.version.resolve(name);
         value.url.resolve(html_url);
 
-        const blogPostUrl = name.replace(/[\.]/g, "_") + "-release-notes";
-        const page = blogPages.find(page => page.url === blogPostUrl);
+        const blogPostUrl = "airship/" + name.replace(/[\.]/g, "_") + "-release-notes";
+        const page = (blogPages as BlogPage[]).find(page => page.url === blogPostUrl);
 
         if (page) {
             value.releaseNotesUrl.resolve(`/blog/${page.url}`);
