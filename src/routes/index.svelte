@@ -51,19 +51,19 @@
           <code class="language-flat code dark-background indent-children">{`
             let tree = new BinaryTree(["F", "B", "A", "D", "C", "E", "G", "I", "H"])
 
-            Console.writeLine("Preorder: #{tree.preorder().join(", ")}")
+            log.info("Preorder: #{tree.preorder().join(", ")}")
 
             // Preorder: [F, B, A, D, C, E, G, I, H]
 
-            Console.writeLine("Inorder: #{tree.inorder().join(", ")}")
+            log.info("Inorder: #{tree.inorder().join(", ")}")
 
             // Inorder: [A, B, C, D, E, F, G, H, I]
 
-            Console.writeLine("Postorder: #{tree.postorder().join(", ")}")
+            log.info("Postorder: #{tree.postorder().join(", ")}")
 
             // Postorder: [A, C, E, D, B, H, I, G, F]
 
-            Console.writeLine("Levelorder: #{tree.levelorder().join(", ")}")
+            log.info("Levelorder: #{tree.levelorder().join(", ")}")
 
             // Levelorder: [F, B, G, A, D, I, C, E, H]
         `}</code>
@@ -99,7 +99,7 @@
               public calculateValue() => "my value"
 
               public saySomething() {
-                Console.writeLine("My value is: '#calculateValue()'")
+                log.info("My value is: '#calculateValue()'")
               }
             }
 
@@ -145,7 +145,7 @@
                               let names = ["Braden", "Ethan", "George"]
 
                               for (name in names) {
-                                Console.writeLine("Hello, #name!")
+                                log.info("Hello, #name!")
                               }
                             }
                       `}</code>
@@ -166,7 +166,7 @@
 
                             while (iterator.hasNext()) {
                               let name = iterator.next();
-                              console.log("Hello, " + name + "!");
+                              log.info("Hello, " + name + "!");
                             }
                       `}</code>
                       </pre>
@@ -200,7 +200,7 @@
                               let names = ["Braden", "Ethan", "George"]
 
                               for (name in names) {
-                                Console.writeLine("Hello, #name!")
+                                log.info("Hello, #name!")
                               }
                             }
                       `}</code>
@@ -222,7 +222,7 @@
 
                               while (iterator.hasNext()) {
                                 String name = iterator.next();
-                                System.out.println("Hello, " + name + "!");
+                                log.info("Hello, " + name + "!");
                               }
                             }
                       `}</code>
@@ -257,7 +257,7 @@
                               let names = ["Braden", "Ethan", "George"]
 
                               for (name in names) {
-                                Console.writeLine("Hello, #name!")
+                                log.info("Hello, #name!")
                               }
                             }
                       `}</code>
@@ -273,27 +273,17 @@
                       <pre>
                         <code class="language-c code dark-background indent-children">{`
                             int main(int argc, char** argvs) {
-                              flat_Array* names = generate_array();
+                              flat_Array* names = flat_Array_construct(0, 3, flat_String_construct(0, "Braden"), flat_String_construct(0, "Ethan"), flat_String_construct(0, "George"));
 
-                              flat_ArrayIterator* iterator = flat_Array_iterator(names, exceptionData);
+                              flat_ArrayIterator* iterator = flat_Array_iterator(names);
 
-                              while (flat_ArrayIterator_hasNext(iterator, exceptionData)) {
-                                flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator, exceptionData);
+                              while (flat_ArrayIterator_hasNext(iterator)) {
+                                flat_String* name = (flat_String*)flat_ArrayIterator_next(iterator);
 
-                                flat_Console_writeLine(flat_String_concat(flat_String_concat(flat_String_construct(0, exceptionData, "Hello, "), exceptionData, name), flat_String_construct(0, exceptionData, "!")));
+                                flat_Logger_info(log, flat_String_concat(flat_String_concat(flat_String_construct(0, "Hello, "), name), flat_String_construct(0, "!")));
                               }
 
                               return 0;
-                            }
-
-                            flat_Array* generate_array() {
-                              flat_String** temp = (flat_String**)FLAT_MALLOC(sizeof(flat_String*) * 3);
-
-                              temp[0] = flat_String_construct(0, exceptionData, "Braden");
-                              temp[1] = flat_String_construct(0, exceptionData, "Ethan");
-                              temp[2] = flat_String_construct(0, exceptionData, "George");
-
-                              return flat_Array_construct(0, exceptionData, (flat_Object**)temp, 3);
                             }
                       `}</code>
                       </pre>
