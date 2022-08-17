@@ -155,7 +155,7 @@ export const jscd = (() => {
     }
   }
 
-  let osVersion = unknown;
+  let osVersion = null;
 
   if (/Windows/.test(os)) {
     osVersion = /Windows (.*)/.exec(os)[1];
