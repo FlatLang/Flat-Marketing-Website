@@ -109,6 +109,12 @@ const blogPages: BlogPage[] = [{
     date: "8/12/2022",
     visible: true,
     author: "Braden Steffaniak"
+}, {
+    header: `Airship v0.1.14 Release Notes`,
+    url: "airship/v0_1_14-release-notes",
+    date: "8/17/2022",
+    visible: true,
+    author: "Braden Steffaniak"
 }];
 
 blogPages.forEach(page => page.dateObj = new Date(page.date));
