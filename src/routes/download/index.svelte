@@ -184,11 +184,15 @@
 									{/if}
 									{#if osAsset.showMoreFormats}
 										<div class="flash quick">
-											{#each osAsset.otherFormats.value as asset}
-												Download <a href={asset.browser_download_url}>{asset.name}</a>
-												({getSize(asset.size)})
-												<br />
-											{/each}
+											<ul>
+												{#each osAsset.otherFormats.value as asset}
+													<li>
+														Download
+														<a href={asset.browser_download_url}>{asset.name}</a>
+														({getSize(asset.size)})
+													</li>
+												{/each}
+											</ul>
 										</div>
 									{/if}
 								{:catch error}
