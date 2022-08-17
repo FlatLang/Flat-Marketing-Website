@@ -20,6 +20,7 @@
 
 .download #content-container {
     display: block;
+    padding-bottom: 70px;
 }
 
 #content-container section {
