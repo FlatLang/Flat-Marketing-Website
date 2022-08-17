@@ -3,7 +3,8 @@ div.container {
 }
 
 .content {
-    margin: auto;
+    margin: 0 auto;
     padding-top: 40px;
-    display: grid;
+    display: flex;
+    flex-direction: column;
 }

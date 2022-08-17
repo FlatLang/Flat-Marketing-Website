@@ -49,11 +49,11 @@
 
 .content-view-container {
     display: flex;
-    margin: auto;
 }
 
 .content-view {
     padding: 20px;
+    margin: 0 auto;
 
     order: 1;
     flex-grow: 10;
