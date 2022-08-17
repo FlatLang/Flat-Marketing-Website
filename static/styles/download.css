@@ -6,7 +6,7 @@
 
 }
 
-#downloads .downloads-list {
+#downloads ul {
     list-style: none;
     padding-left: 0;
 }
@@ -16,6 +16,14 @@
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 12px;
+}
+
+#downloads .more-formats li::before {
+  content: "• ";
+}
+
+#downloads .more-formats ul {
+  padding-left: 20px;
 }
 
 .download #content-container {

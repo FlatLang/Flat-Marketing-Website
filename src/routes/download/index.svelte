@@ -183,7 +183,7 @@
 										<span class="gray">// We think you are running {osHeader}</span>
 									{/if}
 									{#if osAsset.showMoreFormats}
-										<div class="flash quick">
+										<div class="flash quick more-formats">
 											<ul>
 												{#each osAsset.otherFormats.value as asset}
 													<li>
@@ -229,7 +229,7 @@
 													<span class="gray">// We think you are running {osHeader}</span>
 												{/if}
 												{#if osAsset.showMoreFormats}
-													<div class="flash quick">
+													<div class="flash quick more-formats">
 														<ul>
 															{#each osAsset.otherFormats.value as asset}
 																<li>
