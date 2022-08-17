@@ -7,14 +7,6 @@
 
 <template lang="flat-html">
 <div use:slide id="splashscreen" class="full slide">
-  <a href="/">
-      <h1 class="flat-text" style="color: rgba(0,0,0,0);">FLAT</h1>
-      <h1 class="flat-text">FLAT</h1>
-  </a>
-  <div class="home-navigation">
-      <a class="blog-link" href="/blog">BLOG</a>
-      <a class="documentation-link" href="/docs">DOCUMENTATION</a>
-  </div>
   <div class="centered logo-container">
       <img
         id="logo-main"
@@ -31,6 +23,14 @@
             <h1 class="download-button">DOWNLOAD FLAT</h1>
         </a>
       </div>
+  </div>
+  <a href="/">
+      <h1 class="flat-text" style="color: rgba(0,0,0,0);">FLAT</h1>
+      <h1 class="flat-text">FLAT</h1>
+  </a>
+  <div class="home-navigation">
+      <a class="blog-link" href="/blog">BLOG</a>
+      <a class="documentation-link" href="/docs">DOCUMENTATION</a>
   </div>
 </div>
 <div use:slide id="code-example" class="slide">
