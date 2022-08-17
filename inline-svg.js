@@ -1,4 +1,5 @@
 import { parse } from 'node-html-parser';
+import { optimize } from 'svgo';
 import fs from 'fs';
 
 export default async function ({content}) {
@@ -9,7 +10,9 @@ export default async function ({content}) {
     const contents = fs.readFileSync("static/" + img.getAttribute("src"), "utf8")
       .replace(/<\?xml.+\?>/g, "");
 
-    const svgElement = parse(contents).querySelector("svg");
+    const {data} = optimize(contents);
+
+    const svgElement = parse(data).querySelector("svg");
     svgElement.removeAttribute("id");
 
     svgElement.setAttributes({
