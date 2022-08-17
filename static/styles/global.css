@@ -107,6 +107,11 @@ input {
     -webkit-animation: flash 1.1s linear;
 }
 
+.flash.quick {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+}
+
 [contenteditable=true].cursor:focus:before {
     color: transparent;
 }

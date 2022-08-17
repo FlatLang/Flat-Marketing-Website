@@ -26,6 +26,8 @@
 		version: Deferred<string>;
 		url: Deferred<string>;
 		releaseNotesUrl: Deferred<string>;
+		showMoreFormats: boolean;
+		otherFormats: Deferred<Asset[]>;
 	}
 
 	function createAsset(name: string, assetName: string): OsAsset {
@@ -35,7 +37,9 @@
 			asset: defer(),
 			version: defer(),
 			url: defer(),
-			releaseNotesUrl: defer()
+			releaseNotesUrl: defer(),
+			showMoreFormats: false,
+			otherFormats: defer()
 		};
 	}
 
@@ -54,6 +58,9 @@
 		const { name, html_url, assets } = release;
 
 		value.asset.resolve(assets.find((a) => a.name === value.assetName));
+		value.otherFormats.resolve(
+			assets.filter((a) => a.name !== value.assetName && a.name.startsWith(value.assetName))
+		);
 		value.version.resolve(name);
 		value.url.resolve(html_url);
 
@@ -167,8 +174,22 @@
 								{:then asset}
 									Download <a href={asset.browser_download_url}>{asset.name}</a>
 									({getSize(asset.size)})
+									{#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
+										[<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
+											>more formats...</a
+										>]
+									{/if}
 									{#if lowerOs === osAsset.name}
 										<span class="gray">// We think you are running {osHeader}</span>
+									{/if}
+									{#if osAsset.showMoreFormats}
+										<div class="flash quick">
+											{#each osAsset.otherFormats.value as asset}
+												Download <a href={asset.browser_download_url}>{asset.name}</a>
+												({getSize(asset.size)})
+												<br />
+											{/each}
+										</div>
 									{/if}
 								{:catch error}
 									{error}
