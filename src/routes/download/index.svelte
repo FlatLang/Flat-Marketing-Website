@@ -166,7 +166,7 @@
 					{:catch error}
 						{error}
 					{/await}
-					<ul>
+					<ul class="downloads-list">
 						{#each currentAssets as osAsset}
 							<li>
 								{#await osAsset.asset.promise}
@@ -187,7 +187,6 @@
 											<ul>
 												{#each osAsset.otherFormats.value as asset}
 													<li>
-														Download
 														<a href={asset.browser_download_url}>{asset.name}</a>
 														({getSize(asset.size)})
 													</li>
