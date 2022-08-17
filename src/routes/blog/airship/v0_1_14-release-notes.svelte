@@ -16,9 +16,9 @@
 			<div use:anchorButton id="es6-target" class="release-note">
 				<h4>Handle ES6 Compilation Target</h4>
 				<p>
-					The ES6 compilation target is now handled as a subtarget of js. That means that any
+					The ES6 compilation target is now handled as a sub-target of js. That means that any
 					existing js configuration files that are not overridden with ES6 ones will apply to ES6
-					builds. This makes it so common configuation that is likely shared between vanilla js and
+					builds. This makes it so common configuration that is likely shared between vanilla js and
 					es6 target builds can easily be shared without having to duplicate the configuration.
 				</p>
 			</div>
