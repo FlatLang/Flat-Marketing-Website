@@ -13,6 +13,12 @@
 		assets: Asset[];
 	}
 
+	interface Asset {
+		browser_download_url: string;
+		name: string;
+		size: number;
+	}
+
 	interface OsAsset {
 		name: string;
 		assetName: string;
@@ -20,11 +26,6 @@
 		version: Deferred<string>;
 		url: Deferred<string>;
 		releaseNotesUrl: Deferred<string>;
-	}
-
-	interface Asset {
-		browser_download_url: string;
-		name: string;
 	}
 
 	function createAsset(name: string, assetName: string): OsAsset {
@@ -92,6 +93,18 @@
 		}
 	}
 
+	function getSize(size: number) {
+		if (size < 1024) {
+			return `${size}B`;
+		} else if (size / 1024 < 1024) {
+			return `${(size / 1024).toFixed(1)}KiB`;
+		} else if (size / 1024 / 1024 < 1024) {
+			return `${(size / 1024 / 1024).toFixed(1)}MiB`;
+		} else {
+			return `${(size / 1024 / 1024 / 1024).toFixed(1)}GiB`;
+		}
+	}
+
 	let whyJava = false;
 	let showAll = false;
 
@@ -153,6 +166,7 @@
 									Download <a href="/" on:click|preventDefault={() => {}}>{osAsset.assetName}</a>
 								{:then asset}
 									Download <a href={asset.browser_download_url}>{asset.name}</a>
+									({getSize(asset.size)})
 									{#if lowerOs === osAsset.name}
 										<span class="gray">// We think you are running {osHeader}</span>
 									{/if}
@@ -179,6 +193,7 @@
 												Download <a href={osAsset.asset.value.browser_download_url}
 													>{osAsset.asset.value.name}</a
 												>
+												({getSize(osAsset.asset.value.size)})
 												{#if lowerOs === osAsset.name}
 													<span class="gray">// We think you are running {osHeader}</span>
 												{/if}
