@@ -16,11 +16,11 @@
         width="100%"
         height="100%"
       />
-      <h2 class="bold" style="margin: 60px 0 30px 0;">FLAT PROGRAMMING LANGUAGE</h2>
-      <h4 class="motto" style="margin: 30px 0 40px 0;">A multi-paradigm language built for <span class="bold neon-shadow">versatility</span> and <span class="bold neon-shadow">rapid development</span></h4>
+      <h2 class="bold" style="margin: 5vh 0 2.5vh 0;">FLAT PROGRAMMING LANGUAGE</h2>
+      <h4 class="motto" style="margin: 2.5vh 0 3vh 0;">A multi-paradigm language built for <span class="bold neon-shadow">versatility</span> and <span class="bold neon-shadow">rapid development</span></h4>
       <div class="download">
         <a class="neon-shadow download-button-link" href="/download">
-            <h1 class="download-button">DOWNLOAD FLAT</h1>
+            <h1 style="margin-top: 0;" class="download-button">DOWNLOAD FLAT</h1>
         </a>
       </div>
   </div>
