@@ -2,11 +2,13 @@
 	import Header from '/src/components/Header.svelte';
 	import Footer from '/src/components/Footer.svelte';
 
-	import { jscd, defer, anchorButton } from '/src/util';
-	import type { Deferred } from '/src/util';
-	import { blogPages } from '/src/routes/blog/blog';
 	import type { BlogPage } from '/src/routes/blog/blog';
-  import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
+	import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
+	import type { Deferred } from '/src/util';
+
+	import { jscd, defer, anchorButton } from '/src/util';
+	import { blogPages } from '/src/routes/blog/blog';
+	import { checkHash } from '/src/flash';
 
 	function createAsset(
 		release: GitHubRelease,
@@ -67,7 +69,8 @@
 	fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
 		.then((resp) => resp.json() as Promise<GitHubRelease>)
 		.then((release) => createOsRelease(release))
-		.then((osRelease) => currentRelease.resolve(osRelease));
+		.then((osRelease) => currentRelease.resolve(osRelease))
+		.then(() => checkHash());
 
 	function toggleShowAll() {
 		showAll = !showAll;
@@ -77,7 +80,8 @@
 				.then((resp) => resp.json() as Promise<GitHubRelease[]>)
 				.then((releases) => releases.slice(1))
 				.then((previousReleases) => previousReleases.map(createOsRelease))
-				.then((previousOsReleases) => previousReleases.resolve(previousOsReleases));
+				.then((previousOsReleases) => previousReleases.resolve(previousOsReleases))
+				.then(() => checkHash());
 		}
 	}
 
@@ -157,25 +161,25 @@
 		</div>
 	</element>
 
-  <element id="release">
-    <div use:anchorButton id={formatClassName(release.version)}>
-      <h4>{release.version}</h4>
-      [<a target="_blank" href={release.url}>GitHub</a>]
-      {#if release.releaseNotesUrl}
-        [<a href={release.releaseNotesUrl}>Release Notes</a>]
-      {/if}
-      <ul class="downloads-list">
-        {#each release.assets as osAsset}
-          {@const asset = osAsset.asset}
-          {#if asset}
-            <li>
-              <replace id="download-element" />
-            </li>
-          {/if}
-        {/each}
-      </ul>
-    </div>
-  </element>
+	<element id="release">
+		<div use:anchorButton id={formatClassName(release.version)}>
+			<h4>{release.version}</h4>
+			[<a target="_blank" href={release.url}>GitHub</a>]
+			{#if release.releaseNotesUrl}
+				[<a href={release.releaseNotesUrl}>Release Notes</a>]
+			{/if}
+			<ul class="downloads-list">
+				{#each release.assets as osAsset}
+					{@const asset = osAsset.asset}
+					{#if asset}
+						<li>
+							<replace id="download-element" />
+						</li>
+					{/if}
+				{/each}
+			</ul>
+		</div>
+	</element>
 
 	<div class="white-background download">
 		<div class="page-container">
@@ -207,7 +211,7 @@
 							{:then releases}
 								{#each releases as release}
 									<hr />
-                  <replace id="release" />
+									<replace id="release" />
 								{/each}
 							{:catch error}
 								{error}
