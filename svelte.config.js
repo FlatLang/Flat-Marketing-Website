@@ -17,7 +17,8 @@ const config = {
       code = (await replaceElement({...args, content: code})).code;
 
       return {code};
-    }
+    },
+    'replace': [[/(from\s*["'])src\//g, "$1/src/"]]
   }),
 
 	kit: {
