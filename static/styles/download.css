@@ -139,3 +139,8 @@
 .os-comment {
   font-size: smaller;
 }
+
+.date {
+  font-size: 65%;
+  font-weight: normal;
+}

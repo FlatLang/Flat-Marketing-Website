@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export interface GitHubRelease {
   name: string;
   html_url: string;
@@ -16,7 +18,7 @@ export interface OsRelease {
   version: string;
   url: string;
   releaseNotesUrl?: string;
-  createdAt: Date;
+  createdAt: dayjs.Dayjs;
 }
 
 export interface OsAsset {

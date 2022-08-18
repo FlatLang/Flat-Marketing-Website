@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from 'src/components/Header.svelte';
 	import Footer from 'src/components/Footer.svelte';
+	import dayjs from 'dayjs';
 
 	import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
 
@@ -47,7 +48,7 @@
 			version: name,
 			url: html_url,
 			releaseNotesUrl: page ? `/blog/${page.url}` : undefined,
-			createdAt: new Date(release.created_at)
+			createdAt: dayjs(release.created_at)
 		};
 
 		value.assets.sort((a, b) => {
@@ -99,7 +100,7 @@
 					const existing = currentRelease.value!;
 
 					osReleases.push(existing);
-					osReleases.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+					osReleases.sort((a, b) => b.createdAt.diff(a.createdAt));
 
 					currentRelease = defer<OsRelease>();
 					currentRelease.resolve(osReleases.shift()!);
@@ -189,7 +190,9 @@
 
 	<element id="release">
 		<div use:anchorButton id={formatClassName(release.version)}>
-			<h4>{release.version}</h4>
+			<h4>
+				{release.version} <span class="date gray">{release.createdAt.format('MMMM D, YYYY')}</span>
+			</h4>
 			[<a target="_blank" href={release.url}>GitHub</a>]
 			{#if release.releaseNotesUrl}
 				[<a href={release.releaseNotesUrl}>Release Notes</a>]
