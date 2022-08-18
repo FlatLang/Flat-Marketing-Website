@@ -134,8 +134,8 @@
 		lowerOs = 'mac';
 	}
 
-  let asset: Asset;
-  let osAsset: OsAsset;
+	let asset: Asset;
+	let osAsset: OsAsset;
 </script>
 
 <svelte:head>
@@ -151,30 +151,30 @@
 </svelte:head>
 
 <template lang="flat-html">
-  <element id="download-element">
-    Download <a href={asset .browser_download_url}>{asset.name}</a>
-    <span class="asset-size">({getSize(asset.size)})</span>
-    {#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
-      [<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
-        >more formats...</a
-      >]
-    {/if}
-    {#if lowerOs === osAsset.name}
-      <span class="gray os-comment">// We think you are running {osHeader}</span>
-    {/if}
-    {#if osAsset.showMoreFormats}
-      <div class="more-formats">
-        <ul>
-          {#each osAsset.otherFormats.value as asset}
-            <li>
-              <a href={asset.browser_download_url}>{asset.name}</a>
-              <span class="asset-size">({getSize(asset.size)})</span>
-            </li>
-          {/each}
-        </ul>
-      </div>
-    {/if}
-  </element>
+	<element id="download-element">
+		Download <a href={asset.browser_download_url}>{asset.name}</a>
+		<span class="asset-size">({getSize(asset.size)})</span>
+		{#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
+			[<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
+				>more formats...</a
+			>]
+		{/if}
+		{#if lowerOs === osAsset.name}
+			<span class="gray os-comment">// We think you are running {osHeader}</span>
+		{/if}
+		{#if osAsset.showMoreFormats}
+			<div class="more-formats">
+				<ul>
+					{#each osAsset.otherFormats.value as asset}
+						<li>
+							<a href={asset.browser_download_url}>{asset.name}</a>
+							<span class="asset-size">({getSize(asset.size)})</span>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
+	</element>
 
 	<div class="white-background download">
 		<div class="page-container">
@@ -212,15 +212,15 @@
 							Loading...
 						{:then downloads}
 							{#each downloads as osAssets}
-							<hr />
-              <h4>{osAssets[0].version.value}</h4>
+								<hr />
+								<h4>{osAssets[0].version.value}</h4>
 								[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
 								{#if osAssets[0].releaseNotesUrl.value}
 									[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
 								{/if}
 								<ul class="downloads-list">
 									{#each osAssets as osAsset}
-                    {@const asset = osAsset.asset.value}
+										{@const asset = osAsset.asset.value}
 										{#if asset}
 											<li>
 												<replace id="download-element" />
