@@ -198,6 +198,19 @@
 				<section id="downloads">
 					<div><h1 class="primary">DOWNLOAD</h1></div>
 					<hr />
+					<p>
+						The recommended way to install Flat is with Flat's package manager <a
+							target="_blank"
+							href="https://github.com/FlatLang/Airship">Airship</a
+						>. You can download a native binary for Airship for your OS below, or you can download
+						the node
+						{#await currentAssets[0].version.promise}
+							<a on:click|preventDefault={() => {}} href="#node">airship.js</a>
+						{:then version}
+							<a href="#{formatClassName(version)}-node">airship.js</a>
+						{/await}
+						script file and run it directly with node 16 or later.
+					</p>
 					{#await currentAssets[0].version.promise}
 						<h4>Loading...</h4>
 					{:then version}
