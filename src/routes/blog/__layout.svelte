@@ -28,7 +28,7 @@
                                         <span> - </span>
                                         {/if}
                                         {#if $currentPage.date}
-                                        <span class="date">{$currentPage.date}</span>
+                                        <span class="date">{$currentPage.date.format("MMM D, YYYY")}</span>
                                         {/if}
                                     </p>
                                     {/if}

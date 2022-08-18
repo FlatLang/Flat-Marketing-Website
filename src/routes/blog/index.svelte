@@ -14,7 +14,7 @@
         {#each pages as page}
         <div class="post">
             <h3><a href="/blog/{page.url}"><span>{page.header}</span></a></h3>
-            <h6><span class="date">{page.date}</span></h6>
+            <h6><span class="date">{page.date.format("MMM D, YYYY")}</span></h6>
         </div>
         {/each}
         {#if limit && limited}<h3 class="show-all" on:click={() => toggleLimit()}>Show all</h3>{/if}
@@ -68,7 +68,7 @@
         pages = [...blogPages]
             .filter(p => p.visible !== false)
             .filter(p => !searchValue || p.header.toLocaleLowerCase().indexOf(searchValue.toLocaleLowerCase()) !== -1)
-            .sort((a, b) => b.dateObj!.getTime() - a.dateObj!.getTime());
+            .sort((a, b) => b.date.diff(a.date));
 
         if (limit && pages.length > 10) {
             pages = pages.slice(0, 10);
