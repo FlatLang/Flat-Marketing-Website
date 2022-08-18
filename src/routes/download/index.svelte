@@ -131,10 +131,6 @@
 			.replace(/[^\w-]/g, '_')
 			.toLocaleLowerCase();
 	}
-
-	let asset: Asset;
-	let osAsset: OsAsset;
-	let release: OsRelease;
 </script>
 
 <svelte:head>
@@ -150,55 +146,6 @@
 </svelte:head>
 
 <template lang="flat-html">
-	<element id="download-element">
-		<div id={formatClassName(`${release.version}-${osAsset.name}`)}>
-			Download <a href={asset.browser_download_url}>{asset.name}</a>
-			<span class="asset-size">({getSize(asset.size)})</span>
-			{#if osAsset.otherFormats.length > 0 && !osAsset.showMoreFormats}
-				[<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
-					>more formats...</a
-				>]
-			{/if}
-			{#if lowerOs === osAsset.name}
-				<span class="gray os-comment">// We think you are running {osHeader}</span>
-			{/if}
-			{#if osAsset.showMoreFormats}
-				<div class="more-formats">
-					<ul>
-						{#each osAsset.otherFormats as asset}
-							<li>
-								<a href={asset.browser_download_url}>{asset.name}</a>
-								<span class="asset-size">({getSize(asset.size)})</span>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-		</div>
-	</element>
-
-	<element id="release">
-		<div use:anchorButton id={formatClassName(release.version)}>
-			<h4>
-				{release.version} <span class="date gray">{release.createdAt.format('MMMM D, YYYY')}</span>
-			</h4>
-			[<a target="_blank" href={release.url}>GitHub</a>]
-			{#if release.releaseNotesUrl}
-				[<a href={release.releaseNotesUrl}>Release Notes</a>]
-			{/if}
-			<ul class="downloads-list">
-				{#each release.assets as osAsset}
-					{@const asset = osAsset.asset}
-					{#if asset}
-						<li>
-							<replace id="download-element" />
-						</li>
-					{/if}
-				{/each}
-			</ul>
-		</div>
-	</element>
-
 	<div class="white-background download">
 		<div class="page-container">
 			<Header />
@@ -224,7 +171,53 @@
 					{:then releases}
 						{#each releases as release, i}
 							{#if i > 0}<hr />{/if}
-							<replace id="release" />
+							<div use:anchorButton id={formatClassName(release.version)}>
+								<h4>
+									{release.version}
+									<span class="date gray">{release.createdAt.format('MMMM D, YYYY')}</span>
+								</h4>
+								[<a target="_blank" href={release.url}>GitHub</a>]
+								{#if release.releaseNotesUrl}
+									[<a href={release.releaseNotesUrl}>Release Notes</a>]
+								{/if}
+								<ul class="downloads-list">
+									{#each release.assets as osAsset}
+										{@const asset = osAsset.asset}
+										{#if asset}
+											<li>
+												<div id={formatClassName(`${release.version}-${osAsset.name}`)}>
+													Download <a href={asset.browser_download_url}>{asset.name}</a>
+													<span class="asset-size">({getSize(asset.size)})</span>
+													{#if osAsset.otherFormats.length > 0 && !osAsset.showMoreFormats}
+														[<a
+															href="/"
+															on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
+															>more formats...</a
+														>]
+													{/if}
+													{#if lowerOs === osAsset.name}
+														<span class="gray os-comment"
+															>// We think you are running {osHeader}</span
+														>
+													{/if}
+													{#if osAsset.showMoreFormats}
+														<div class="more-formats">
+															<ul>
+																{#each osAsset.otherFormats as asset}
+																	<li>
+																		<a href={asset.browser_download_url}>{asset.name}</a>
+																		<span class="asset-size">({getSize(asset.size)})</span>
+																	</li>
+																{/each}
+															</ul>
+														</div>
+													{/if}
+												</div>
+											</li>
+										{/if}
+									{/each}
+								</ul>
+							</div>
 						{/each}
 						{#if !showAll}
 							<a href="/" on:click|preventDefault={() => toggleShowAll()}>Show all</a>
