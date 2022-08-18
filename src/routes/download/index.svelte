@@ -176,9 +176,6 @@
     {/if}
   </element>
 
-  <element id="test">
-  </element>
-
 	<div class="white-background download">
 		<div class="page-container">
 			<Header />
@@ -189,7 +186,7 @@
 					{#await currentAssets[0].version.promise}
 						<h4>Version</h4>
 					{:then version}
-						<h4>Version {version}</h4>
+						<h4>{version}</h4>
 						[<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
 						{#if currentAssets[0].releaseNotesUrl.value}
 							[<a href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
@@ -216,7 +213,7 @@
 						{:then downloads}
 							{#each downloads as osAssets}
 							<hr />
-              <h4>Version {osAssets[0].version.value}</h4>
+              <h4>{osAssets[0].version.value}</h4>
 								[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
 								{#if osAssets[0].releaseNotesUrl.value}
 									[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
