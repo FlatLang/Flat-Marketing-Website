@@ -6,34 +6,7 @@
 	import type { Deferred } from '/src/util';
 	import { blogPages } from '/src/routes/blog/blog';
 	import type { BlogPage } from '/src/routes/blog/blog';
-
-	interface GitHubRelease {
-		name: string;
-		html_url: string;
-		assets: Asset[];
-	}
-
-	interface Asset {
-		browser_download_url: string;
-		name: string;
-		size: number;
-	}
-
-	interface OsRelease {
-		assets: OsAsset[];
-		version: string;
-		url: string;
-		releaseNotesUrl?: string;
-	}
-
-	interface OsAsset {
-		name: string;
-		assetName: string;
-		assetMatcher: (assetName: string) => boolean;
-		asset?: Asset;
-		showMoreFormats: boolean;
-		otherFormats: Asset[];
-	}
+  import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
 
 	function createAsset(
 		release: GitHubRelease,
