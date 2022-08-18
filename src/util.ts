@@ -1,3 +1,6 @@
+function isHeader(element: HTMLElement): boolean {
+  return ["h1", "h2", "h3", "h4", "h5", "h6"].indexOf(element.tagName.toLocaleLowerCase()) >= 0;
+}
 
 export function anchorButton(element: HTMLElement) {
   const anchor = document.createElement("a");
@@ -5,16 +8,22 @@ export function anchorButton(element: HTMLElement) {
   anchor.classList.add("anchor-button")
   anchor.setAttribute("href", `#${element.id}`);
 
-  const child = element.children[0] as HTMLElement;
-
-  if (["h1", "h2", "h3", "h4", "h5", "h6"].indexOf(child.tagName.toLocaleLowerCase()) >= 0) {
-    child.appendChild(anchor);
-    child.classList.add("anchor-button-container");
-    child.style.position = "relative";
-  } else {
+  function addAnchor(element: HTMLElement) {
     element.appendChild(anchor);
     element.classList.add("anchor-button-container");
     element.style.position = "relative";
+  }
+
+  if (isHeader(element)) {
+    addAnchor(element);
+  } else {
+    const child = element.children[0] as HTMLElement;
+
+    if (isHeader(child)) {
+      addAnchor(child)
+    } else {
+      addAnchor(element);
+    }
   }
 }
 

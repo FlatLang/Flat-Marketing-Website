@@ -2,7 +2,7 @@
 	import Header from '/src/components/Header.svelte';
 	import Footer from '/src/components/Footer.svelte';
 
-	import { jscd, defer } from '/src/util';
+	import { jscd, defer, anchorButton } from '/src/util';
 	import type { Deferred } from '/src/util';
 	import { blogPages } from '/src/routes/blog/blog';
 	import type { BlogPage } from '/src/routes/blog/blog';
@@ -140,6 +140,13 @@
 		lowerOs = 'mac';
 	}
 
+	function formatClassName(value: string): string {
+		return value
+			.replace(/ /g, '-')
+			.replace(/[^\w-]/g, '_')
+			.toLocaleLowerCase();
+	}
+
 	let asset: Asset;
 	let osAsset: OsAsset;
 </script>
@@ -158,28 +165,30 @@
 
 <template lang="flat-html">
 	<element id="download-element">
-		Download <a href={asset.browser_download_url}>{asset.name}</a>
-		<span class="asset-size">({getSize(asset.size)})</span>
-		{#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
-			[<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
-				>more formats...</a
-			>]
-		{/if}
-		{#if lowerOs === osAsset.name}
-			<span class="gray os-comment">// We think you are running {osHeader}</span>
-		{/if}
-		{#if osAsset.showMoreFormats}
-			<div class="more-formats">
-				<ul>
-					{#each osAsset.otherFormats.value as asset}
-						<li>
-							<a href={asset.browser_download_url}>{asset.name}</a>
-							<span class="asset-size">({getSize(asset.size)})</span>
-						</li>
-					{/each}
-				</ul>
-			</div>
-		{/if}
+		<div id={formatClassName(`${osAsset.version.value}-${osAsset.name}`)}>
+			Download <a href={asset.browser_download_url}>{asset.name}</a>
+			<span class="asset-size">({getSize(asset.size)})</span>
+			{#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
+				[<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
+					>more formats...</a
+				>]
+			{/if}
+			{#if lowerOs === osAsset.name}
+				<span class="gray os-comment">// We think you are running {osHeader}</span>
+			{/if}
+			{#if osAsset.showMoreFormats}
+				<div class="more-formats">
+					<ul>
+						{#each osAsset.otherFormats.value as asset}
+							<li>
+								<a href={asset.browser_download_url}>{asset.name}</a>
+								<span class="asset-size">({getSize(asset.size)})</span>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			{/if}
+		</div>
 	</element>
 
 	<div class="white-background download">
@@ -192,55 +201,61 @@
 					{#await currentAssets[0].version.promise}
 						<h4>Loading...</h4>
 					{:then version}
-						<h4>{version}</h4>
-						[<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
-						{#if currentAssets[0].releaseNotesUrl.value}
-							[<a href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
+						<div use:anchorButton id={formatClassName(currentAssets[0].version.value)}>
+							<h4>{version}</h4>
+							[<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
+							{#if currentAssets[0].releaseNotesUrl.value}
+								[<a href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
+							{/if}
+							<ul class="downloads-list">
+								{#each currentAssets as osAsset}
+									<li>
+										{#await osAsset.asset.promise}
+											Download <a href="/" on:click|preventDefault={() => {}}>{osAsset.assetName}</a
+											>
+										{:then asset}
+											<replace id="download-element" />
+										{:catch error}
+											{error}
+										{/await}
+									</li>
+								{/each}
+							</ul>
+						</div>
+						{#if showAll}
+							{#await allDownloads.promise}
+								Loading...
+							{:then downloads}
+								{#each downloads as osAssets}
+									<hr />
+									<div use:anchorButton id={formatClassName(osAssets[0].version.value)}>
+										<h4>{osAssets[0].version.value}</h4>
+										[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
+										{#if osAssets[0].releaseNotesUrl.value}
+											[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a
+											>]
+										{/if}
+										<ul class="downloads-list">
+											{#each osAssets as osAsset}
+												{@const asset = osAsset.asset.value}
+												{#if asset}
+													<li>
+														<replace id="download-element" />
+													</li>
+												{/if}
+											{/each}
+										</ul>
+									</div>
+								{/each}
+							{:catch error}
+								{error}
+							{/await}
+						{:else}
+							<a href="/" on:click|preventDefault={() => toggleShowAll()}>Show all</a>
 						{/if}
 					{:catch error}
 						{error}
 					{/await}
-					<ul class="downloads-list">
-						{#each currentAssets as osAsset}
-							<li>
-								{#await osAsset.asset.promise}
-									Download <a href="/" on:click|preventDefault={() => {}}>{osAsset.assetName}</a>
-								{:then asset}
-									<replace id="download-element" />
-								{:catch error}
-									{error}
-								{/await}
-							</li>
-						{/each}
-					</ul>
-					{#if showAll}
-						{#await allDownloads.promise}
-							Loading...
-						{:then downloads}
-							{#each downloads as osAssets}
-								<hr />
-								<h4>{osAssets[0].version.value}</h4>
-								[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
-								{#if osAssets[0].releaseNotesUrl.value}
-									[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
-								{/if}
-								<ul class="downloads-list">
-									{#each osAssets as osAsset}
-										{@const asset = osAsset.asset.value}
-										{#if asset}
-											<li>
-												<replace id="download-element" />
-											</li>
-										{/if}
-									{/each}
-								</ul>
-							{/each}
-						{:catch error}
-							{error}
-						{/await}
-					{:else}
-						<a href="/" on:click|preventDefault={() => toggleShowAll()}>Show all</a>
-					{/if}
 				</section>
 				<section id="installation">
 					<div><h1 class="primary">INSTALLATION</h1></div>
