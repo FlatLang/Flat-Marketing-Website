@@ -153,14 +153,14 @@
 <template lang="flat-html">
   <element id="download-element">
     Download <a href={asset .browser_download_url}>{asset.name}</a>
-    ({getSize(asset.size)})
+    <span class="asset-size">({getSize(asset.size)})</span>
     {#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
       [<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
         >more formats...</a
       >]
     {/if}
     {#if lowerOs === osAsset.name}
-      <span class="gray">// We think you are running {osHeader}</span>
+      <span class="gray os-comment">// We think you are running {osHeader}</span>
     {/if}
     {#if osAsset.showMoreFormats}
       <div class="more-formats">
@@ -168,7 +168,7 @@
           {#each osAsset.otherFormats.value as asset}
             <li>
               <a href={asset.browser_download_url}>{asset.name}</a>
-              ({getSize(asset.size)})
+              <span class="asset-size">({getSize(asset.size)})</span>
             </li>
           {/each}
         </ul>
@@ -187,9 +187,9 @@
 					<div><h1 class="primary">DOWNLOAD</h1></div>
 					<hr />
 					{#await currentAssets[0].version.promise}
-						Version (loading...)
+						<h4>Version</h4>
 					{:then version}
-						Version {version}
+						<h4>Version {version}</h4>
 						[<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
 						{#if currentAssets[0].releaseNotesUrl.value}
 							[<a href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
@@ -215,7 +215,8 @@
 							Loading...
 						{:then downloads}
 							{#each downloads as osAssets}
-								Version {osAssets[0].version.value}
+							<hr />
+              <h4>Version {osAssets[0].version.value}</h4>
 								[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
 								{#if osAssets[0].releaseNotesUrl.value}
 									[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a>]
