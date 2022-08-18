@@ -79,7 +79,7 @@
 	}
 
 	const currentRelease: Deferred<OsRelease> = defer();
-	const previousReleases: Deferred<OsRelease[]> = defer();
+	const otherReleases: Deferred<OsRelease[]> = defer();
 	const releaseTag = getReleaseTagFromHash();
 	const releaseUrl = `https://api.github.com/repos/FlatLang/Airship/releases/${
 		releaseTag ? 'tags/' + releaseTag : 'latest'
@@ -98,8 +98,8 @@
 			fetch('https://api.github.com/repos/FlatLang/Airship/releases')
 				.then((resp) => resp.json() as Promise<GitHubRelease[]>)
 				.then((releases) => releases.filter((r) => r.name !== currentRelease.value.version))
-				.then((previousReleases) => previousReleases.map(createOsRelease))
-				.then((previousOsReleases) => previousReleases.resolve(previousOsReleases))
+				.then((otherReleases) => otherReleases.map(createOsRelease))
+				.then((osReleases) => otherReleases.resolve(osReleases))
 				.then(() => checkHash());
 		}
 	}
@@ -225,7 +225,7 @@
 					{:then release}
 						<replace id="release" />
 						{#if showAll}
-							{#await previousReleases.promise}
+							{#await otherReleases.promise}
 								Loading...
 							{:then releases}
 								{#each releases as release}
