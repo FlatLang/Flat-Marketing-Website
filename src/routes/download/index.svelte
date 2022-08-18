@@ -9,6 +9,7 @@
 	import { blogPages } from 'src/routes/blog/blog';
 	import { checkHash } from 'src/flash';
 	import { browser } from '$app/env';
+	import { writable } from 'svelte/store';
 
 	function createAsset(
 		release: GitHubRelease,
@@ -78,15 +79,14 @@
 		}
 	}
 
-	let currentRelease = defer<OsRelease>();
-	const otherReleases = defer<OsRelease[]>();
+	const releases = writable(defer<OsRelease[]>());
 	const releaseTag = getReleaseTagFromHash();
 	const apiRoot = `https://api.github.com/repos/FlatLang/Airship`;
 	const releaseUrl = `${apiRoot}/releases/${releaseTag ? 'tags/' + releaseTag : 'latest'}`;
 
 	fetchJson<GitHubRelease>(releaseUrl)
 		.then((release) => createOsRelease(release))
-		.then((osRelease) => currentRelease.resolve(osRelease))
+		.then((osRelease) => $releases.resolve([osRelease]))
 		.then(() => checkHash());
 
 	function toggleShowAll() {
@@ -94,20 +94,9 @@
 
 		if (showAll) {
 			fetchJson<GitHubRelease[]>(`${apiRoot}/releases`)
-				.then((releases) => releases.filter((r) => r.name !== currentRelease.value!.version))
 				.then((otherReleases) => otherReleases.map(createOsRelease))
-				.then((osReleases) => {
-					const existing = currentRelease.value!;
-
-					osReleases.push(existing);
-					osReleases.sort((a, b) => b.createdAt.diff(a.createdAt));
-
-					currentRelease = defer<OsRelease>();
-					currentRelease.resolve(osReleases.shift()!);
-
-					return osReleases;
-				})
-				.then((osReleases) => otherReleases.resolve(osReleases))
+				.then((osReleases) => osReleases.sort((a, b) => b.createdAt.diff(a.createdAt)))
+				.then((osReleases) => releases.set(defer<OsRelease[]>().resolve(osReleases)))
 				.then(() => checkHash());
 		}
 	}
@@ -223,29 +212,21 @@
 							href="https://github.com/FlatLang/Airship">Airship</a
 						>. You can download a native binary for Airship for your OS below, or you can download
 						the node
-						{#await currentRelease.promise}
+						{#await $releases.promise}
 							<a on:click|preventDefault={() => {}} href="#node">airship.js</a>
-						{:then release}
-							<a href="#{formatClassName(release.version)}-node">airship.js</a>
+						{:then releases}
+							<a href="#{formatClassName(releases[0].version)}-node">airship.js</a>
 						{/await}
 						script file and run it directly with node 16 or later.
 					</p>
-					{#await currentRelease.promise}
+					{#await $releases.promise}
 						<h4>Loading...</h4>
-					{:then release}
-						<replace id="release" />
-						{#if showAll}
-							{#await otherReleases.promise}
-								Loading...
-							{:then releases}
-								{#each releases as release}
-									<hr />
-									<replace id="release" />
-								{/each}
-							{:catch error}
-								{error}
-							{/await}
-						{:else}
+					{:then releases}
+						{#each releases as release, i}
+							{#if i > 0}<hr />{/if}
+							<replace id="release" />
+						{/each}
+						{#if !showAll}
 							<a href="/" on:click|preventDefault={() => toggleShowAll()}>Show all</a>
 						{/if}
 					{:catch error}
