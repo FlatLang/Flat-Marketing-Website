@@ -184,7 +184,7 @@
 					<div><h1 class="primary">DOWNLOAD</h1></div>
 					<hr />
 					{#await currentAssets[0].version.promise}
-						<h4>Version</h4>
+						<h4>Loading...</h4>
 					{:then version}
 						<h4>{version}</h4>
 						[<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
