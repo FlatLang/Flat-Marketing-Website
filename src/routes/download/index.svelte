@@ -9,6 +9,7 @@
 	import { jscd, defer, anchorButton } from '/src/util';
 	import { blogPages } from '/src/routes/blog/blog';
 	import { checkHash } from '/src/flash';
+	import { browser } from '$app/env';
 
 	function createAsset(
 		release: GitHubRelease,
@@ -63,10 +64,28 @@
 		return value;
 	}
 
+	function getReleaseTagFromHash(): string | null {
+		if (!browser) {
+			return null;
+		}
+
+		const hashValue = window.location.hash?.substring(1);
+
+		if (hashValue && /v\d+_\d+_\d+/g.test(hashValue)) {
+			return hashValue.replace(/_/g, '.');
+		} else {
+			return null;
+		}
+	}
+
 	const currentRelease: Deferred<OsRelease> = defer();
 	const previousReleases: Deferred<OsRelease[]> = defer();
+	const releaseTag = getReleaseTagFromHash();
+	const releaseUrl = `https://api.github.com/repos/FlatLang/Airship/releases/${
+		releaseTag ? 'tags/' + releaseTag : 'latest'
+	}`;
 
-	fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
+	fetch(releaseUrl)
 		.then((resp) => resp.json() as Promise<GitHubRelease>)
 		.then((release) => createOsRelease(release))
 		.then((osRelease) => currentRelease.resolve(osRelease))
@@ -78,7 +97,7 @@
 		if (showAll) {
 			fetch('https://api.github.com/repos/FlatLang/Airship/releases')
 				.then((resp) => resp.json() as Promise<GitHubRelease[]>)
-				.then((releases) => releases.slice(1))
+				.then((releases) => releases.filter((r) => r.name !== currentRelease.value.version))
 				.then((previousReleases) => previousReleases.map(createOsRelease))
 				.then((previousOsReleases) => previousReleases.resolve(previousOsReleases))
 				.then(() => checkHash());
