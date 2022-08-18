@@ -220,9 +220,10 @@ export const jscd = (() => {
 
 export interface Deferred<T> {
   value?: T;
+  error?: any;
   promise: Promise<T>;
-  resolve: (value: T) => void;
-  reject: (value: any) => void;
+  resolve: (value: T) => Deferred<T>;
+  reject: (value: any) => Deferred<T>;
 }
 
 export function defer<T>(): Deferred<T> {
@@ -232,8 +233,13 @@ export function defer<T>(): Deferred<T> {
     deferred.resolve = (...args: any[]) => {
       deferred.value = args.length === 1 ? args[0] : args;
       resolve(deferred.value!);
+      return deferred;
     };
-    deferred.reject = reject;
+    deferred.reject = (...args: any[]) => {
+      deferred.error = args.length === 1 ? args[0] : args;
+      reject(deferred.error!);
+      return deferred;
+    };
   });
 
   return deferred;
