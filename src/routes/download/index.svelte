@@ -4,7 +4,7 @@
 
 	import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
 
-	import { jscd, defer, anchorButton } from 'src/util';
+	import { jscd, defer, anchorButton, fetchJson } from 'src/util';
 	import { blogPages } from 'src/routes/blog/blog';
 	import { checkHash } from 'src/flash';
 	import { browser } from '$app/env';
@@ -83,8 +83,7 @@
 		releaseTag ? 'tags/' + releaseTag : 'latest'
 	}`;
 
-	fetch(releaseUrl)
-		.then((resp) => resp.json() as Promise<GitHubRelease>)
+	fetchJson<GitHubRelease>(releaseUrl)
 		.then((release) => createOsRelease(release))
 		.then((osRelease) => currentRelease.resolve(osRelease))
 		.then(() => checkHash());
@@ -93,9 +92,8 @@
 		showAll = !showAll;
 
 		if (showAll) {
-			fetch('https://api.github.com/repos/FlatLang/Airship/releases')
-				.then((resp) => resp.json() as Promise<GitHubRelease[]>)
-				.then((releases) => releases.filter((r) => r.name !== currentRelease.value.version))
+			fetchJson<GitHubRelease[]>('https://api.github.com/repos/FlatLang/Airship/releases')
+				.then((releases) => releases.filter((r) => r.name !== currentRelease.value!.version))
 				.then((otherReleases) => otherReleases.map(createOsRelease))
 				.then((osReleases) => otherReleases.resolve(osReleases))
 				.then(() => checkHash());

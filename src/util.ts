@@ -1,3 +1,9 @@
+export async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const response = await fetch(url, init);
+
+	return response.json();
+}
+
 function isHeader(element: HTMLElement): boolean {
   return ["h1", "h2", "h3", "h4", "h5", "h6"].indexOf(element.tagName.toLocaleLowerCase()) >= 0;
 }
