@@ -133,6 +133,9 @@
 	if (lowerOs?.indexOf('mac') == 0) {
 		lowerOs = 'mac';
 	}
+
+  let asset: Asset;
+  let osAsset: OsAsset;
 </script>
 
 <svelte:head>
