@@ -89,8 +89,7 @@
 	}
 
 	const currentRelease: Deferred<OsRelease> = defer();
-
-	let allDownloads: Deferred<OsRelease[]> = defer();
+	const previousReleases: Deferred<OsRelease[]> = defer();
 
 	fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
 		.then((resp) => resp.json() as Promise<GitHubRelease>)
@@ -105,7 +104,7 @@
 				.then((resp) => resp.json() as Promise<GitHubRelease[]>)
 				.then((releases) => releases.slice(1))
 				.then((previousReleases) => previousReleases.map(createOsRelease))
-				.then((previousOsReleases) => allDownloads.resolve(previousOsReleases));
+				.then((previousOsReleases) => previousReleases.resolve(previousOsReleases));
 		}
 	}
 
@@ -230,10 +229,10 @@
 					{:then release}
 						<replace id="release" />
 						{#if showAll}
-							{#await allDownloads.promise}
+							{#await previousReleases.promise}
 								Loading...
-							{:then downloads}
-								{#each downloads as release}
+							{:then releases}
+								{#each releases as release}
 									<hr />
                   <replace id="release" />
 								{/each}
