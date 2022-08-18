@@ -185,6 +185,26 @@
 		</div>
 	</element>
 
+  <element id="release">
+    <div use:anchorButton id={formatClassName(release.version)}>
+      <h4>{release.version}</h4>
+      [<a target="_blank" href={release.url}>GitHub</a>]
+      {#if release.releaseNotesUrl}
+        [<a href={release.releaseNotesUrl}>Release Notes</a>]
+      {/if}
+      <ul class="downloads-list">
+        {#each release.assets as osAsset}
+          {@const asset = osAsset.asset}
+          {#if asset}
+            <li>
+              <replace id="download-element" />
+            </li>
+          {/if}
+        {/each}
+      </ul>
+    </div>
+  </element>
+
 	<div class="white-background download">
 		<div class="page-container">
 			<Header />
@@ -208,46 +228,14 @@
 					{#await currentRelease.promise}
 						<h4>Loading...</h4>
 					{:then release}
-						<div use:anchorButton id={formatClassName(release.version)}>
-							<h4>{release.version}</h4>
-							[<a target="_blank" href={release.url}>GitHub</a>]
-							{#if release.releaseNotesUrl}
-								[<a href={release.releaseNotesUrl}>Release Notes</a>]
-							{/if}
-							<ul class="downloads-list">
-								{#each release.assets as osAsset}
-									{@const asset = osAsset.asset}
-									{#if asset}
-										<li>
-											<replace id="download-element" />
-										</li>
-									{/if}
-								{/each}
-							</ul>
-						</div>
+						<replace id="release" />
 						{#if showAll}
 							{#await allDownloads.promise}
 								Loading...
 							{:then downloads}
 								{#each downloads as release}
 									<hr />
-									<div use:anchorButton id={formatClassName(release.version)}>
-										<h4>{release.version}</h4>
-										[<a target="_blank" href={release.url}>GitHub</a>]
-										{#if release.releaseNotesUrl}
-											[<a target="_blank" href={release.releaseNotesUrl}>Release Notes</a>]
-										{/if}
-										<ul class="downloads-list">
-											{#each release.assets as osAsset}
-												{@const asset = osAsset.asset}
-												{#if asset}
-													<li>
-														<replace id="download-element" />
-													</li>
-												{/if}
-											{/each}
-										</ul>
-									</div>
+                  <replace id="release" />
 								{/each}
 							{:catch error}
 								{error}
