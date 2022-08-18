@@ -38,7 +38,7 @@
 			version: defer(),
 			url: defer(),
 			releaseNotesUrl: defer(),
-			showMoreFormats: false,
+			showMoreFormats: true,
 			otherFormats: defer()
 		};
 	}
@@ -163,7 +163,7 @@
       <span class="gray">// We think you are running {osHeader}</span>
     {/if}
     {#if osAsset.showMoreFormats}
-      <div class="flash quick more-formats">
+      <div class="more-formats">
         <ul>
           {#each osAsset.otherFormats.value as asset}
             <li>
