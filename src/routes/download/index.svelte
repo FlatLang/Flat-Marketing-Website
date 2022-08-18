@@ -22,6 +22,7 @@
 	interface OsAsset {
 		name: string;
 		assetName: string;
+		assetMatcher: (assetName: string) => boolean;
 		asset: Deferred<Asset>;
 		version: Deferred<string>;
 		url: Deferred<string>;
@@ -30,10 +31,15 @@
 		otherFormats: Deferred<Asset[]>;
 	}
 
-	function createAsset(name: string, assetName: string): OsAsset {
+	function createAsset(
+		name: string,
+		assetName: string,
+		assetMatcher: (assetName: string) => boolean
+	): OsAsset {
 		return {
 			name,
 			assetName,
+			assetMatcher,
 			asset: defer(),
 			version: defer(),
 			url: defer(),
@@ -45,10 +51,10 @@
 
 	function createOsAssets(): OsAsset[] {
 		return [
-			createAsset('windows', 'airship-win.exe'),
-			createAsset('mac', 'airship-macos'),
-			createAsset('linux', 'airship-linux'),
-			createAsset('node', 'airship.js')
+			createAsset('windows', 'airship-win.exe', (name) => name.startsWith('airship-win')),
+			createAsset('mac', 'airship-macos', (name) => name.startsWith('airship-macos')),
+			createAsset('linux', 'airship-linux', (name) => name.startsWith('airship-linux')),
+			createAsset('node', 'airship.js', (name) => name.startsWith('airship.'))
 		];
 	}
 
@@ -59,7 +65,7 @@
 
 		value.asset.resolve(assets.find((a) => a.name === value.assetName));
 		value.otherFormats.resolve(
-			assets.filter((a) => a.name !== value.assetName && a.name.startsWith(value.assetName))
+			assets.filter((a) => a.name !== value.assetName && value.assetMatcher(a.name))
 		);
 		value.version.resolve(name);
 		value.url.resolve(html_url);
