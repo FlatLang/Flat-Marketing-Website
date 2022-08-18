@@ -1,6 +1,6 @@
 let lastFlashed: HTMLElement;
 
-export function checkHash(allowSame: boolean) {
+export function checkHash(allowSame?: boolean) {
   if (typeof window === 'undefined') {
     return;
   }
