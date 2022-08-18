@@ -21,66 +21,59 @@
 
 	interface OsRelease {
 		assets: OsAsset[];
-		version: Deferred<string>;
-		url: Deferred<string>;
-		releaseNotesUrl: Deferred<string>;
+		version: string;
+		url: string;
+		releaseNotesUrl?: string;
 	}
 
 	interface OsAsset {
 		name: string;
 		assetName: string;
 		assetMatcher: (assetName: string) => boolean;
-		asset: Deferred<Asset>;
+		asset?: Asset;
 		showMoreFormats: boolean;
-		otherFormats: Deferred<Asset[]>;
+		otherFormats: Asset[];
 	}
 
 	function createAsset(
+		release: GitHubRelease,
 		name: string,
 		assetName: string,
 		assetMatcher: (assetName: string) => boolean
 	): OsAsset {
+		const { assets } = release;
+
 		return {
 			name,
 			assetName,
 			assetMatcher,
-			asset: defer(),
+			asset: assets.find((a) => a.name === assetName),
 			showMoreFormats: true,
-			otherFormats: defer()
+			otherFormats: assets.filter((a) => a.name !== assetName && assetMatcher(a.name))
 		};
 	}
 
-	function createOsRelease(): OsRelease {
-		return {
-			assets: [
-				createAsset('windows', 'airship-win.exe', (name) => name.startsWith('airship-win')),
-				createAsset('mac', 'airship-macos', (name) => name.startsWith('airship-macos')),
-				createAsset('linux', 'airship-linux', (name) => name.startsWith('airship-linux')),
-				createAsset('node', 'airship.js', (name) => name.startsWith('airship.'))
-			],
-			version: defer(),
-			url: defer(),
-			releaseNotesUrl: defer()
-		};
-	}
-
-	const currentRelease: OsRelease = createOsRelease();
-
-	function resolveRelease(release: GitHubRelease, value: OsRelease) {
+	function createOsRelease(release: GitHubRelease): OsRelease {
 		const { name, html_url } = release;
-
-		value.assets = value.assets.map((value) => resolveAsset(release, value));
-		value.version.resolve(name);
-		value.url.resolve(html_url);
 
 		const blogPostUrl = 'airship/' + name.replace(/[\.]/g, '_') + '-release-notes';
 		const page = (blogPages as BlogPage[]).find((page) => page.url === blogPostUrl);
 
-		if (page) {
-			value.releaseNotesUrl.resolve(`/blog/${page.url}`);
-		} else {
-			value.releaseNotesUrl.resolve(null);
+		function prefixedWith(value: string): (name: string) => boolean {
+			return (name) => name.startsWith(value);
 		}
+
+		const value = {
+			assets: [
+				createAsset(release, 'windows', 'airship-win.exe', prefixedWith('airship-win')),
+				createAsset(release, 'mac', 'airship-macos', prefixedWith('airship-macos')),
+				createAsset(release, 'linux', 'airship-linux', prefixedWith('airship-linux')),
+				createAsset(release, 'node', 'airship.js', prefixedWith('airship.'))
+			],
+			version: name,
+			url: html_url,
+			releaseNotesUrl: page ? `/blog/${page.url}` : undefined
+		};
 
 		value.assets.sort((a, b) => {
 			if (lowerOs === a.name) {
@@ -95,22 +88,14 @@
 		return value;
 	}
 
-	function resolveAsset(release: GitHubRelease, value: OsAsset): OsAsset {
-		const { assets } = release;
-
-		value.asset.resolve(assets.find((a) => a.name === value.assetName));
-		value.otherFormats.resolve(
-			assets.filter((a) => a.name !== value.assetName && value.assetMatcher(a.name))
-		);
-
-		return value;
-	}
+	const currentRelease: Deferred<OsRelease> = defer();
 
 	let allDownloads: Deferred<OsRelease[]> = defer();
 
 	fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
 		.then((resp) => resp.json() as Promise<GitHubRelease>)
-		.then((release) => resolveRelease(release, currentRelease));
+		.then((release) => createOsRelease(release))
+		.then((osRelease) => currentRelease.resolve(osRelease));
 
 	function toggleShowAll() {
 		showAll = !showAll;
@@ -118,13 +103,9 @@
 		if (showAll) {
 			fetch('https://api.github.com/repos/FlatLang/Airship/releases')
 				.then((resp) => resp.json() as Promise<GitHubRelease[]>)
-				.then((releases) => {
-					allDownloads.resolve(
-						releases.slice(1).map((release) => {
-							return resolveRelease(release, createOsRelease());
-						})
-					);
-				});
+				.then((releases) => releases.slice(1))
+				.then((previousReleases) => previousReleases.map(createOsRelease))
+				.then((previousOsReleases) => allDownloads.resolve(previousOsReleases));
 		}
 	}
 
@@ -178,10 +159,10 @@
 
 <template lang="flat-html">
 	<element id="download-element">
-		<div id={formatClassName(`${release.version.value}-${osAsset.name}`)}>
+		<div id={formatClassName(`${release.version}-${osAsset.name}`)}>
 			Download <a href={asset.browser_download_url}>{asset.name}</a>
 			<span class="asset-size">({getSize(asset.size)})</span>
-			{#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
+			{#if osAsset.otherFormats.length > 0 && !osAsset.showMoreFormats}
 				[<a href="/" on:click|preventDefault={() => (osAsset.showMoreFormats = true)}
 					>more formats...</a
 				>]
@@ -192,7 +173,7 @@
 			{#if osAsset.showMoreFormats}
 				<div class="more-formats">
 					<ul>
-						{#each osAsset.otherFormats.value as asset}
+						{#each osAsset.otherFormats as asset}
 							<li>
 								<a href={asset.browser_download_url}>{asset.name}</a>
 								<span class="asset-size">({getSize(asset.size)})</span>
@@ -217,34 +198,27 @@
 							href="https://github.com/FlatLang/Airship">Airship</a
 						>. You can download a native binary for Airship for your OS below, or you can download
 						the node
-						{#await currentRelease.version.promise}
+						{#await currentRelease.promise}
 							<a on:click|preventDefault={() => {}} href="#node">airship.js</a>
-						{:then version}
-							<a href="#{formatClassName(version)}-node">airship.js</a>
+						{:then release}
+							<a href="#{formatClassName(release.version)}-node">airship.js</a>
 						{/await}
 						script file and run it directly with node 16 or later.
 					</p>
-					{#await currentRelease.version.promise}
+					{#await currentRelease.promise}
 						<h4>Loading...</h4>
-					{:then version}
-						<div use:anchorButton id={formatClassName(currentRelease.version.value)}>
-							<h4>{version}</h4>
-							[<a target="_blank" href={currentRelease.url.value}>GitHub</a>]
-							{#if currentRelease.releaseNotesUrl.value}
-								[<a href={currentRelease.releaseNotesUrl.value}>Release Notes</a>]
+					{:then release}
+						<div use:anchorButton id={formatClassName(release.version)}>
+							<h4>{release.version}</h4>
+							[<a target="_blank" href={release.url}>GitHub</a>]
+							{#if release.releaseNotesUrl}
+								[<a href={release.releaseNotesUrl}>Release Notes</a>]
 							{/if}
 							<ul class="downloads-list">
-								{#each currentRelease.assets as osAsset}
-									{@const release = currentRelease}
+								{#each release.assets as osAsset}
+									{@const asset = osAsset.asset}
 									<li>
-										{#await osAsset.asset.promise}
-											Download <a href="/" on:click|preventDefault={() => {}}>{osAsset.assetName}</a
-											>
-										{:then asset}
-											<replace id="download-element" />
-										{:catch error}
-											{error}
-										{/await}
+										<replace id="download-element" />
 									</li>
 								{/each}
 							</ul>
@@ -255,15 +229,15 @@
 							{:then downloads}
 								{#each downloads as release}
 									<hr />
-									<div use:anchorButton id={formatClassName(release.version.value)}>
-										<h4>{release.version.value}</h4>
-										[<a target="_blank" href={release.url.value}>GitHub</a>]
-										{#if release.releaseNotesUrl.value}
-											[<a target="_blank" href={release.releaseNotesUrl.value}>Release Notes</a>]
+									<div use:anchorButton id={formatClassName(release.version)}>
+										<h4>{release.version}</h4>
+										[<a target="_blank" href={release.url}>GitHub</a>]
+										{#if release.releaseNotesUrl}
+											[<a target="_blank" href={release.releaseNotesUrl}>Release Notes</a>]
 										{/if}
 										<ul class="downloads-list">
 											{#each release.assets as osAsset}
-												{@const asset = osAsset.asset.value}
+												{@const asset = osAsset.asset}
 												{#if asset}
 													<li>
 														<replace id="download-element" />
