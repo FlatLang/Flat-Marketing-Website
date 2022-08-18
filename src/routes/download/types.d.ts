@@ -1,6 +1,7 @@
 export interface GitHubRelease {
   name: string;
   html_url: string;
+  created_at: string;
   assets: Asset[];
 }
 
@@ -15,6 +16,7 @@ export interface OsRelease {
   version: string;
   url: string;
   releaseNotesUrl?: string;
+  createdAt: Date;
 }
 
 export interface OsAsset {

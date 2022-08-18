@@ -46,7 +46,8 @@
 			],
 			version: name,
 			url: html_url,
-			releaseNotesUrl: page ? `/blog/${page.url}` : undefined
+			releaseNotesUrl: page ? `/blog/${page.url}` : undefined,
+			createdAt: new Date(release.created_at)
 		};
 
 		value.assets.sort((a, b) => {
@@ -76,7 +77,7 @@
 		}
 	}
 
-	const currentRelease = defer<OsRelease>();
+	let currentRelease = defer<OsRelease>();
 	const otherReleases = defer<OsRelease[]>();
 	const releaseTag = getReleaseTagFromHash();
 	const apiRoot = `https://api.github.com/repos/FlatLang/Airship`;
@@ -94,6 +95,17 @@
 			fetchJson<GitHubRelease[]>(`${apiRoot}/releases`)
 				.then((releases) => releases.filter((r) => r.name !== currentRelease.value!.version))
 				.then((otherReleases) => otherReleases.map(createOsRelease))
+				.then((osReleases) => {
+					const existing = currentRelease.value!;
+
+					osReleases.push(existing);
+					osReleases.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+
+					currentRelease = defer<OsRelease>();
+					currentRelease.resolve(osReleases.shift()!);
+
+					return osReleases;
+				})
 				.then((osReleases) => otherReleases.resolve(osReleases))
 				.then(() => checkHash());
 		}
