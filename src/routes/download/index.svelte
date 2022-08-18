@@ -217,9 +217,11 @@
 							<ul class="downloads-list">
 								{#each release.assets as osAsset}
 									{@const asset = osAsset.asset}
-									<li>
-										<replace id="download-element" />
-									</li>
+									{#if asset}
+										<li>
+											<replace id="download-element" />
+										</li>
+									{/if}
 								{/each}
 							</ul>
 						</div>
