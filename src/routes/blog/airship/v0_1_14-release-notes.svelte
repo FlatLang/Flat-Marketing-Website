@@ -4,7 +4,7 @@
 
 <template lang="flat-html">
 	<div>
-		<h3><a href="/download">DOWNLOAD v0.1.14</a></h3>
+		<h3><a href="/download#v0_1_14">DOWNLOAD v0.1.14</a></h3>
 		<h1>NOTABLE CHANGES</h1>
 		<h4 style="margin-bottom: 0px;">tl;dr:</h4>
 		<ul>
