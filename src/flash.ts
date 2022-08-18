@@ -1,6 +1,10 @@
 let lastFlashed;
 
 export function checkHash() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   const hash = window.location.hash?.substring(1);
 
   if (hash) {
