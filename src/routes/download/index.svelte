@@ -1,14 +1,12 @@
 <script lang="ts">
-	import Header from '/src/components/Header.svelte';
-	import Footer from '/src/components/Footer.svelte';
+	import Header from 'src/components/Header.svelte';
+	import Footer from 'src/components/Footer.svelte';
 
-	import type { BlogPage } from '/src/routes/blog/blog';
 	import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
-	import type { Deferred } from '/src/util';
 
-	import { jscd, defer, anchorButton } from '/src/util';
-	import { blogPages } from '/src/routes/blog/blog';
-	import { checkHash } from '/src/flash';
+	import { jscd, defer, anchorButton } from 'src/util';
+	import { blogPages } from 'src/routes/blog/blog';
+	import { checkHash } from 'src/flash';
 	import { browser } from '$app/env';
 
 	function createAsset(
@@ -33,7 +31,7 @@
 		const { name, html_url } = release;
 
 		const blogPostUrl = 'airship/' + name.replace(/[\.]/g, '_') + '-release-notes';
-		const page = (blogPages as BlogPage[]).find((page) => page.url === blogPostUrl);
+		const page = blogPages.find((page) => page.url === blogPostUrl);
 
 		function prefixedWith(value: string): (name: string) => boolean {
 			return (name) => name.startsWith(value);
@@ -78,8 +76,8 @@
 		}
 	}
 
-	const currentRelease: Deferred<OsRelease> = defer();
-	const otherReleases: Deferred<OsRelease[]> = defer();
+	const currentRelease = defer<OsRelease>();
+	const otherReleases = defer<OsRelease[]>();
 	const releaseTag = getReleaseTagFromHash();
 	const releaseUrl = `https://api.github.com/repos/FlatLang/Airship/releases/${
 		releaseTag ? 'tags/' + releaseTag : 'latest'
