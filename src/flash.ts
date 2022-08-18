@@ -1,6 +1,6 @@
-let lastFlashed;
+let lastFlashed: HTMLElement;
 
-export function checkHash() {
+export function checkHash(allowSame: boolean) {
   if (typeof window === 'undefined') {
     return;
   }
@@ -8,15 +8,22 @@ export function checkHash() {
   const hash = window.location.hash?.substring(1);
 
   if (hash) {
-    lastFlashed?.classList.remove("flash");
-
     const element = document.getElementById(hash);
 
-    element?.classList.remove("flash");
+    if (!element) {
+      return;
+    }
+    if (!allowSame && element === lastFlashed) {
+      return;
+    }
+
+    lastFlashed?.classList.remove("flash");
+
+    element.classList.remove("flash");
 
     setTimeout(() => {
-      element?.classList.add("flash");
-      element?.scrollIntoView();
+      element.classList.add("flash");
+      element.scrollIntoView();
     }, 0);
 
     lastFlashed = element;
@@ -40,7 +47,7 @@ if (typeof document !== 'undefined') {
       const hash = window.location.hash;
 
       if (hash === href) {
-        checkHash();
+        checkHash(true);
       }
     }
   });
