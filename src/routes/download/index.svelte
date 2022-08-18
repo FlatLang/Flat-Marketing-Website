@@ -19,14 +19,18 @@
 		size: number;
 	}
 
+	interface OsRelease {
+		assets: OsAsset[];
+		version: Deferred<string>;
+		url: Deferred<string>;
+		releaseNotesUrl: Deferred<string>;
+	}
+
 	interface OsAsset {
 		name: string;
 		assetName: string;
 		assetMatcher: (assetName: string) => boolean;
 		asset: Deferred<Asset>;
-		version: Deferred<string>;
-		url: Deferred<string>;
-		releaseNotesUrl: Deferred<string>;
 		showMoreFormats: boolean;
 		otherFormats: Deferred<Asset[]>;
 	}
@@ -41,32 +45,31 @@
 			assetName,
 			assetMatcher,
 			asset: defer(),
-			version: defer(),
-			url: defer(),
-			releaseNotesUrl: defer(),
 			showMoreFormats: true,
 			otherFormats: defer()
 		};
 	}
 
-	function createOsAssets(): OsAsset[] {
-		return [
-			createAsset('windows', 'airship-win.exe', (name) => name.startsWith('airship-win')),
-			createAsset('mac', 'airship-macos', (name) => name.startsWith('airship-macos')),
-			createAsset('linux', 'airship-linux', (name) => name.startsWith('airship-linux')),
-			createAsset('node', 'airship.js', (name) => name.startsWith('airship.'))
-		];
+	function createOsRelease(): OsRelease {
+		return {
+			assets: [
+				createAsset('windows', 'airship-win.exe', (name) => name.startsWith('airship-win')),
+				createAsset('mac', 'airship-macos', (name) => name.startsWith('airship-macos')),
+				createAsset('linux', 'airship-linux', (name) => name.startsWith('airship-linux')),
+				createAsset('node', 'airship.js', (name) => name.startsWith('airship.'))
+			],
+			version: defer(),
+			url: defer(),
+			releaseNotesUrl: defer()
+		};
 	}
 
-	const currentAssets: OsAsset[] = createOsAssets();
+	const currentRelease: OsRelease = createOsRelease();
 
-	function resolveAsset(release: GitHubRelease, value: OsAsset): OsAsset {
-		const { name, html_url, assets } = release;
+	function resolveRelease(release: GitHubRelease, value: OsRelease) {
+		const { name, html_url } = release;
 
-		value.asset.resolve(assets.find((a) => a.name === value.assetName));
-		value.otherFormats.resolve(
-			assets.filter((a) => a.name !== value.assetName && value.assetMatcher(a.name))
-		);
+		value.assets = value.assets.map((value) => resolveAsset(release, value));
 		value.version.resolve(name);
 		value.url.resolve(html_url);
 
@@ -79,16 +82,35 @@
 			value.releaseNotesUrl.resolve(null);
 		}
 
+		value.assets.sort((a, b) => {
+			if (lowerOs === a.name) {
+				return -1;
+			} else if (lowerOs === b.name) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+
 		return value;
 	}
 
-	let allDownloads: Deferred<OsAsset[][]> = defer();
+	function resolveAsset(release: GitHubRelease, value: OsAsset): OsAsset {
+		const { assets } = release;
+
+		value.asset.resolve(assets.find((a) => a.name === value.assetName));
+		value.otherFormats.resolve(
+			assets.filter((a) => a.name !== value.assetName && value.assetMatcher(a.name))
+		);
+
+		return value;
+	}
+
+	let allDownloads: Deferred<OsRelease[]> = defer();
 
 	fetch('https://api.github.com/repos/FlatLang/Airship/releases/latest')
 		.then((resp) => resp.json() as Promise<GitHubRelease>)
-		.then((release) => {
-			currentAssets.forEach((value) => resolveAsset(release, value));
-		});
+		.then((release) => resolveRelease(release, currentRelease));
 
 	function toggleShowAll() {
 		showAll = !showAll;
@@ -99,7 +121,7 @@
 				.then((releases) => {
 					allDownloads.resolve(
 						releases.slice(1).map((release) => {
-							return createOsAssets().map((value) => resolveAsset(release, value));
+							return resolveRelease(release, createOsRelease());
 						})
 					);
 				});
@@ -126,16 +148,6 @@
 	let lowerOs = os?.toLowerCase();
 	let osHeader = os + (osVersion?.trim() ? ' ' + osVersion : '');
 
-	currentAssets.sort((a, b) => {
-		if (lowerOs === a.name) {
-			return -1;
-		} else if (lowerOs === b.name) {
-			return 1;
-		} else {
-			return 0;
-		}
-	});
-
 	if (lowerOs?.indexOf('mac') == 0) {
 		lowerOs = 'mac';
 	}
@@ -149,6 +161,7 @@
 
 	let asset: Asset;
 	let osAsset: OsAsset;
+	let release: OsRelease;
 </script>
 
 <svelte:head>
@@ -165,7 +178,7 @@
 
 <template lang="flat-html">
 	<element id="download-element">
-		<div id={formatClassName(`${osAsset.version.value}-${osAsset.name}`)}>
+		<div id={formatClassName(`${release.version.value}-${osAsset.name}`)}>
 			Download <a href={asset.browser_download_url}>{asset.name}</a>
 			<span class="asset-size">({getSize(asset.size)})</span>
 			{#if osAsset.otherFormats.value.length > 0 && !osAsset.showMoreFormats}
@@ -204,24 +217,25 @@
 							href="https://github.com/FlatLang/Airship">Airship</a
 						>. You can download a native binary for Airship for your OS below, or you can download
 						the node
-						{#await currentAssets[0].version.promise}
+						{#await currentRelease.version.promise}
 							<a on:click|preventDefault={() => {}} href="#node">airship.js</a>
 						{:then version}
 							<a href="#{formatClassName(version)}-node">airship.js</a>
 						{/await}
 						script file and run it directly with node 16 or later.
 					</p>
-					{#await currentAssets[0].version.promise}
+					{#await currentRelease.version.promise}
 						<h4>Loading...</h4>
 					{:then version}
-						<div use:anchorButton id={formatClassName(currentAssets[0].version.value)}>
+						<div use:anchorButton id={formatClassName(currentRelease.version.value)}>
 							<h4>{version}</h4>
-							[<a target="_blank" href={currentAssets[0].url.value}>GitHub</a>]
-							{#if currentAssets[0].releaseNotesUrl.value}
-								[<a href={currentAssets[0].releaseNotesUrl.value}>Release Notes</a>]
+							[<a target="_blank" href={currentRelease.url.value}>GitHub</a>]
+							{#if currentRelease.releaseNotesUrl.value}
+								[<a href={currentRelease.releaseNotesUrl.value}>Release Notes</a>]
 							{/if}
 							<ul class="downloads-list">
-								{#each currentAssets as osAsset}
+								{#each currentRelease.assets as osAsset}
+									{@const release = currentRelease}
 									<li>
 										{#await osAsset.asset.promise}
 											Download <a href="/" on:click|preventDefault={() => {}}>{osAsset.assetName}</a
@@ -239,17 +253,16 @@
 							{#await allDownloads.promise}
 								Loading...
 							{:then downloads}
-								{#each downloads as osAssets}
+								{#each downloads as release}
 									<hr />
-									<div use:anchorButton id={formatClassName(osAssets[0].version.value)}>
-										<h4>{osAssets[0].version.value}</h4>
-										[<a target="_blank" href={osAssets[0].url.value}>GitHub</a>]
-										{#if osAssets[0].releaseNotesUrl.value}
-											[<a target="_blank" href={osAssets[0].releaseNotesUrl.value}>Release Notes</a
-											>]
+									<div use:anchorButton id={formatClassName(release.version.value)}>
+										<h4>{release.version.value}</h4>
+										[<a target="_blank" href={release.url.value}>GitHub</a>]
+										{#if release.releaseNotesUrl.value}
+											[<a target="_blank" href={release.releaseNotesUrl.value}>Release Notes</a>]
 										{/if}
 										<ul class="downloads-list">
-											{#each osAssets as osAsset}
+											{#each release.assets as osAsset}
 												{@const asset = osAsset.asset.value}
 												{#if asset}
 													<li>
