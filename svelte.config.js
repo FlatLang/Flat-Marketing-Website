@@ -2,6 +2,7 @@ import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 import inlineSvg from './inline-svg.js'
 import highlight from './highlight.js'
+import replaceElement from './replace-element.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,9 +11,10 @@ const config = {
 	preprocess: preprocess({
     'flat-html': async function (args) {
       let code = args.content;
-      
+
       code = (await inlineSvg(args)).code;
       code = (await highlight({...args, content: code})).code;
+      code = (await replaceElement({...args, content: code})).code;
 
       return {code};
     }
