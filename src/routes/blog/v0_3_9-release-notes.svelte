@@ -21,6 +21,6 @@
     </div>
 </div>
 
-<script>
-    import Issue from '/src/components/Issue.svelte';
+<script lang="ts">
+    import Issue from 'src/components/Issue.svelte';
 </script>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Header from 'src/components/Header.svelte';
 	import Footer from 'src/components/Footer.svelte';
 	import Share from 'src/components/Share.svelte';

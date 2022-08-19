@@ -7,6 +7,6 @@
     >#{issue.number}</a></span>{/each}]
 </span>
 
-<script>
+<script lang="ts">
     export let values;
 </script>

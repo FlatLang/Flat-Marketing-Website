@@ -1,8 +1,22 @@
 import { writable } from "svelte/store";
 
-const docPages = [{
+interface DocPage {
+  header: string;
+  subheader?: string;
+  url: string;
+  references: any[];
+  children?: DocPage[];
+  tooltip?: string;
+  css?: string;
+  parent?: DocPage;
+  path?: string;
+  href?: string;
+}
+
+const docPages: DocPage[] = [{
   header: "Class types",
   url: "class-types",
+  references: [],
   children: [{
       header: "Classes",
       url: "classes",
@@ -36,10 +50,10 @@ const docPages = [{
 }, {
   header: "Getting started",
   url: "getting-started",
+  references: [],
   children: [{
       header: "Configure environment",
       url: "configure-environment",
-      controller: "ConfigureEnvironmentController",
       css: "/docs/getting-started/configure-environment.css",
       references: [],
       children: []
@@ -57,7 +71,7 @@ const docPages = [{
   }]
 }];
 
-function setParent(page) {
+function setParent(page: DocPage) {
     page.children?.forEach((child) => {
         child.parent = page;
 
@@ -67,7 +81,7 @@ function setParent(page) {
 
 docPages.forEach(setParent);
 
-function getUrl(page) {
+function getUrl(page: DocPage) {
     let value = page.url;
     let current = page.parent;
 
@@ -80,27 +94,27 @@ function getUrl(page) {
     return value;
 }
 
-function setPaths(page, prefix) {
+function setPaths(page: DocPage, prefix: string) {
     if (prefix) {
         page.path = `${prefix}/${page.url}`;
     } else {
         page.path = page.url;
     }
 
-    page.children?.forEach(p => setPaths(p, page.path));
+    page.children?.forEach(p => setPaths(p, page.path!));
 }
 
 docPages.forEach(page => setPaths(page, ""));
 
-function setHrefs(page, prefix) {
+function setHrefs(page: DocPage, prefix: string) {
     page.href = `${prefix}/${page.url}`;
 
-    page.children?.forEach(p => setHrefs(p, page.href));
+    page.children?.forEach(p => setHrefs(p, page.href!));
 }
 
 docPages.forEach(page => setHrefs(page, "/docs"));
 
-function getDoc(url, page) {
+function getDoc(url: string, page?: DocPage): DocPage | undefined {
     if (!page) {
         for (let child of docPages) {
             const doc = getDoc(url, child);
@@ -129,7 +143,7 @@ function getDoc(url, page) {
     }
 }
 
-function updateReferences(page) {
+function updateReferences(page: DocPage) {
     page.references = page.references
         ?.map((ref) => {
             if (typeof ref === 'string') {
@@ -169,8 +183,8 @@ function updateReferences(page) {
 
 docPages.forEach(updateReferences);
 
-function getDocFromPath(path) {
-    function searchDocs(page) {
+function getDocFromPath(path: string) {
+    function searchDocs(page: DocPage): DocPage | undefined {
         if (page.path === path) {
             return page;
         }
@@ -197,6 +211,6 @@ function getDocFromPath(path) {
     }
 }
 
-const currentPage = writable(null);
+const currentPage = writable<DocPage | null>(null);
 
 export { docPages, currentPage, getDocFromPath };

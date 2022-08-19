@@ -46,9 +46,9 @@
   {/each}
 </div>
 
-<script>
+<script lang="ts">
     import { page } from '$app/stores';
-    import { currentPage } from '/src/routes/docs/docs';
+    import { currentPage } from 'src/routes/docs/docs';
 
     import TreeBrowser from './TreeBrowser.svelte';
 

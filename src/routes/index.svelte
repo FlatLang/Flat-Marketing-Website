@@ -1,7 +1,7 @@
-<script>
-	import Footer from '/src/components/Footer.svelte';
+<script lang="ts">
+	import Footer from 'src/components/Footer.svelte';
 
-	import { slide } from '/src/slide';
+	import { slide } from 'src/slide';
 </script>
 
 <svelte:head>

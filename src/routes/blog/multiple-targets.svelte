@@ -468,7 +468,7 @@
 </div>
 </template>
 
-<script>
-    import Footnote from '/src/components/Footnote.svelte';
-    import FootnoteRef from '/src/components/FootnoteRef.svelte';
+<script lang="ts">
+    import Footnote from 'src/components/Footnote.svelte';
+    import FootnoteRef from 'src/components/FootnoteRef.svelte';
 </script>

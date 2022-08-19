@@ -1,10 +1,10 @@
-<script>
-  import { checkHash } from '/src/flash'
+<script lang="ts">
+  import { checkHash } from 'src/flash'
   import { afterNavigate, beforeNavigate } from '$app/navigation';
-  import { clearFootnotes } from '/src/components/footnotes';
-  import { resetSlides } from '/src/slide';
+  import { clearFootnotes } from 'src/components/footnotes';
+  import { resetSlides } from 'src/slide';
 
-  beforeNavigate(()=> {
+  beforeNavigate(() => {
     resetSlides();
   });
 

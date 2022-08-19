@@ -81,9 +81,9 @@
 </div>
 
 
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
-    import { jscd } from '/src/util';
+    import { jscd } from 'src/util';
 
     let os = jscd.os || "";
     let osVersion = jscd.osVersion;
@@ -94,7 +94,7 @@
         lowerOs = "mac";
     }
 
-    let oses = {
+    let oses: any = {
         windows: {
             name: "Windows",
             key: "windows",

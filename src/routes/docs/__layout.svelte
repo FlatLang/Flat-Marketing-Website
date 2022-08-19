@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores';
   import { docPages, currentPage, getDocFromPath } from './docs';
   import { writable } from 'svelte/store';
 
-  import TreeBrowser from '/src/components/TreeBrowser.svelte';
-  import Share from '/src/components/Share.svelte';
+  import TreeBrowser from 'src/components/TreeBrowser.svelte';
+  import Share from 'src/components/Share.svelte';
 
   let share = writable(false);
 
@@ -96,17 +96,19 @@
                     <slot></slot>
                   </div>
               </div>
-              {#if $currentPage?.references?.length > 0}
-              <div anchor-button id="references" class="references dark-border">
-                  <h2>References</h2>
-                  <ul class="references-list">
-                    {#each $currentPage.references as ref}
-                      <li>
-                          <a href="{ref.href}">{ref.header}</a>
-                      </li>
-                    {/each}
-                  </ul>
-              </div>
+              {#if $currentPage}
+                {#if $currentPage.references.length > 0}
+                <div anchor-button id="references" class="references dark-border">
+                    <h2>References</h2>
+                    <ul class="references-list">
+                      {#each $currentPage.references as ref}
+                        <li>
+                            <a href="{ref.href}">{ref.header}</a>
+                        </li>
+                      {/each}
+                    </ul>
+                </div>
+                {/if}
               {/if}
           </div>
           <Share active={share}></Share>
