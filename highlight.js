@@ -4,7 +4,7 @@ import { hljsFlat } from "./static/js/flat.js";
 hljs.registerLanguage('flat', hljsFlat);
 
 function escapeHTML(str) {
-  return str.replaceAll(/[}{]/g,
+  return str.replaceAll(/[}{]/gi,
     tag => ({
       '{': '{`{`}',
       '}': '{`}`}'
@@ -25,7 +25,7 @@ function getLanguageFromAttributes(attributes) {
     return "flat";
   }
 
-  const end = regexIndexOf(attributes, /\W/g, start);
+  const end = regexIndexOf(attributes, /\W/gi, start);
 
   return attributes.substring(start, end);
 }
@@ -47,7 +47,7 @@ function trimPrecedingTabs(rawContent, trimmedValue) {
 export default async function ({content}) {
   let matches = [];
 
-  let index = regexIndexOf(content, /<\s*?code/g);
+  let index = regexIndexOf(content, /<\s*?code/gi);
 
   while (index > 0) {
     const start = content.indexOf(">", index + "<code".length) + 1;
@@ -56,7 +56,7 @@ export default async function ({content}) {
       break;
     }
 
-    const end = regexIndexOf(content, /<\/code\s*?>/g, start);
+    const end = regexIndexOf(content, /<\/code\s*?>/gi, start);
 
     if (end === -1) {
       break;
@@ -67,7 +67,7 @@ export default async function ({content}) {
 
     matches.push({start, end, index, language});
 
-    index = regexIndexOf(content, /<code/g, end + "</code>".length);
+    index = regexIndexOf(content, /<code/gi, end + "</code>".length);
   }
 
   for (let i = matches.length - 1; i >= 0; i--) {
@@ -76,6 +76,14 @@ export default async function ({content}) {
     const index = matches[i].index;
     const language = matches[i].language;
 
+    const prevTagIndex = content.lastIndexOf("<", index - 2);
+    const insidePreTag = prevTagIndex !== -1 && content.substring(prevTagIndex, prevTagIndex + 4) === "<pre";
+
+    if (insidePreTag) {
+      const endPreTag = regexIndexOf(content, /<\/\s*pre\s*>/gi, end +"</code>".length);
+      content = content.substring(0, endPreTag).trimEnd() + content.substring(endPreTag);
+    }
+
     const rawContent = content.substring(start, end);
     const trimmed = rawContent.trim();
     const value = trimmed[0] === '{' && trimmed[1] === '`' ? trimmed.substring(2, trimmed.length - 2).trim() : trimmed;
@@ -83,9 +91,7 @@ export default async function ({content}) {
 
     content = content.substring(0, start) + escapeHTML(hljs.highlight(trimmedValue, {language}).value) + content.substring(end);
 
-    const prevTagIndex = content.lastIndexOf("<", index - 2);
-
-    if (prevTagIndex !== -1 && content.substring(prevTagIndex, prevTagIndex + 4) === "<pre") {
+    if (insidePreTag) {
       content = content.substring(0, index).trimEnd() + content.substring(index);
     }
   }
