@@ -1,5 +1,5 @@
 <template lang="flat-html">
-<div use:anchorButton id="why">
+<div anchor-button id="why">
     <h1>WHY LOAD MODULES AT RUNTIME?</h1>
     <p>
         Loading modules at runtime is incredibly powerful when developing scalable software. But under what circumstances do you need to load modules at runtime?
@@ -15,7 +15,7 @@
     </p>
 </div>
 
-<div use:anchorButton id="how">
+<div anchor-button id="how">
     <h1>HOW TO LOAD MODULES AT RUNTIME</h1>
     <p>
         Let's say that we have an external library in that is contained within a packaged named "com/myproject" and contains a single class that is named "MySpecialClass". And also imagine that the source code of this class looks like this:
@@ -172,7 +172,7 @@
     </p>
 </div>
 
-<div use:anchorButton id="conclusion">
+<div anchor-button id="conclusion">
     <h1>Conclusion</h1>
     <p>
         I will release a more in-depth blog post on this topic tomorrow <a href="/blog/scalable-compiler-components">here</a>. It will pertain to how dynamic loading of modules will be used in the Flat compiler to achieve the ultra-scalability that is necessary to expedite the development of the Flat language.

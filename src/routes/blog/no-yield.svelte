@@ -1,10 +1,10 @@
 <template lang="flat-html">
-<div use:anchorButton id="what-is-yield">
+<div anchor-button id="what-is-yield">
     <h1>WHAT IS YIELD?</h1>
     <p>
         Yield is a keyword in several different languages that is used to create free-form enumerable types. That is, types that that can be iterated over. They are often used instead of map and filter functionality in favor of saving memory and being more performant. Instead of creating a new list data structure to hold a temporary set of data that is only used to iterator over, you simply return a specific element at a specific position until some condition is met. This is in contrast to mapping and filtering, where a new list data structure would be created for each type of iteration that is needed.
     </p>
-    <div use:anchorButton id="essence">
+    <div anchor-button id="essence">
         <h3>THE ESSENCE AND INNER WORKINGS OF YIELD</h3>
         <p>
             Here is an example in C# of the yield keyword:
@@ -145,7 +145,7 @@
             The main idea to take away from the state-machine implementation is that there is <i>no allocation</i> for a list.
         </p>
     </div>
-    <div use:anchorButton id="drawbacks">
+    <div anchor-button id="drawbacks">
         <h3>YIELD DRAWBACKS</h3>
         <p>
             Although you save memory from not generating a temporary buffer, there are some drawbacks to this approach.
@@ -158,7 +158,7 @@
         </p>
     </div>
 </div>
-<div use:anchorButton id="solution">
+<div anchor-button id="solution">
     <h1>FLAT'S SOLUTION</h1>
     <p>
         If the compiler were able to somehow know that the list of Fibonacci numbers generated from the Fib function were only used in place at that one location, then you wouldn't need to use the yield keyword to gain this performance, the compiler could optimize the map and filter functions to run in place. This is the solution that Flat will use. Take a look at the use of the <span class="pre">map</span> function in the Flat example again:
@@ -288,7 +288,7 @@
     </p>
 </div>
 
-<div use:anchorButton id="conclusion">
+<div anchor-button id="conclusion">
     <h1>Conclusion</h1>
     <p>
         While in C#, using the yield keyword can give a performance boost based on less allocation, if the compiler could optimize out the allocation in the first place, there would be no need for such a keyword. Adding a keyword adds complexity to the language, and as stated before, the only benefit the yield keyword gives is performance. Because Flat can optimize out map and filter calls to the same performance of having used the yield keyword, there is no point in adding it to the language. This is why there will never be a yield keyword in Flat.
@@ -298,7 +298,7 @@
     </p>
 </div>
 
-<div use:anchorButton id="footnotes">
+<div anchor-button id="footnotes">
     <h4>Footnotes:</h4>
     <Footnote id="csharp-yield-backend">A more in-depth explanation of the back-end implementation of the C# yield return state machine can be found <a target="_blank" href="https://startbigthinksmall.wordpress.com/2008/06/09/behind-the-scenes-of-the-c-yield-keyword">here</a>.</Footnote>
     <Footnote id="obscure-behavior"><a target="_blank" href="http://www.daedtech.com/getting-too-cute-with-c-yield-return">Obscure behavior</a> with C# yield return.</Footnote>

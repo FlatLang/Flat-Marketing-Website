@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
+import anchorButton from './anchor-button.js'
 import inlineSvg from './inline-svg.js'
 import highlight from './highlight.js'
 import replaceElement from './replace-element.js'
@@ -10,13 +11,14 @@ const config = {
 	// for more information about preprocessors
 	preprocess: preprocess({
     'flat-html': async function (args) {
-      let code = args.content;
+      args.content;
 
-      code = (await inlineSvg(args)).code;
-      code = (await highlight({...args, content: code})).code;
-      code = (await replaceElement({...args, content: code})).code;
+      args.content = (await anchorButton(args)).code;
+      args.content = (await inlineSvg(args)).code;
+      args.content = (await highlight(args)).code;
+      args.content = (await replaceElement(args)).code;
 
-      return {code};
+      return {code: args.content};
     },
     'replace': [[/(from\s*["'])src\//g, "$1/src/"]]
   }),

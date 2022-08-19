@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     {#if $currentPage && $currentPage.references && $currentPage.references.length > 0}
-                    <div use:anchorButton id="references" class="references dark-border">
+                    <div anchor-button id="references" class="references dark-border">
                         <h2>References</h2>
                         <ul class="references-list">
                             {#each $currentPage.references as ref}
@@ -82,7 +82,6 @@
     import { currentPage, blogPages } from './blog';
     import { page } from '$app/stores';
     import { writable } from 'svelte/store';
-    import { anchorButton } from '/src/util';
 
     let share = writable(false);
 

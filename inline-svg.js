@@ -13,8 +13,15 @@ export default async function ({content}) {
     const {data} = optimize(contents);
 
     const svgElement = parse(data).querySelector("svg");
-    svgElement.removeAttribute("id");
 
+    const widthAttr = svgElement.getAttribute("width");
+    const heightAttr = svgElement.getAttribute("height");
+
+    if (widthAttr && heightAttr) {
+      svgElement.setAttribute("viewBox", `0 0 ${widthAttr} ${heightAttr}`);
+    }
+
+    svgElement.removeAttribute("id");
     svgElement.setAttributes({
       ...svgElement.attributes,
       ...img.attributes

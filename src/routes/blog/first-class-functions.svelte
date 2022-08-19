@@ -1,5 +1,5 @@
 <template lang="flat-html">
-<div use:anchorButton id="how-they-work">
+<div anchor-button id="how-they-work">
     <h1>HOW FIRST-CLASS FUNCTIONS WORK</h1>
     <p>
         First-class functions in their essence are just variables that point to executable code (functions). However, there are some key aspects that define what a first-class function means:
@@ -13,7 +13,7 @@
     <p>
         These points boil down to the fact that <i>functions should act like variables</i>.
     </p>
-    <div use:anchorButton id="function-as-parameters">
+    <div anchor-button id="function-as-parameters">
         <h3>PASSING FUNCTIONS AS ARGUMENTS TO OTHER FUNCTIONS</h3>
         <p>
             This functionality is already available in Flat, and has been since the first Beta release. Defining a function that takes a function as an argument looks like:
@@ -54,7 +54,7 @@
             Passing functions as arguments to functions is one of the core aspects of the mapping and filtering functionality of the List framework.
         </p>
     </div>
-    <div use:anchorButton id="functions-return-functions">
+    <div anchor-button id="functions-return-functions">
         <h3>RETURNING FUNCTIONS AS RETURN VALUES</h3>
         <p>
            Returning functions from functions looks like this:
@@ -90,7 +90,7 @@
             This func1 returns a lambda (aka anonymous function) that takes a String and Int. The types of the parameters for the lambda are deduced from the return type of the func1 function. Calling the function that is returned from the function would write func1's input parameter to the console 5 times, as well as calling 'otherFunc' 5 times.
         </p>
     </div>
-    <div use:anchorButton id="functions-as-variables">
+    <div anchor-button id="functions-as-variables">
         <h3>ASSIGNING FUNCTIONS TO VARIABLES</h3>
         <p>
            Assigning functions to variables looks like this:
@@ -121,7 +121,7 @@
             You can pass as many arguments to the function as you want, as long as you fulfill the original functions parameters. The original parameters, in this instance, are a single String. However, the extra parameters that are passed to the function will be never used.
         </p>
     </div>
-    <div use:anchorButton id="functions-in-collections">
+    <div anchor-button id="functions-in-collections">
         <h3>STORING FUNCTIONS IN COLLECTIONS</h3>
         <p>
             Storing functions in collections extends upon the ability to assign to them variables. For instance, when able to store functions in collections, this is possible:
@@ -168,21 +168,21 @@
     </div>
 </div>
 
-<div use:anchorButton id="use-cases">
+<div anchor-button id="use-cases">
     <h1>USE CASES IN FLAT</h1>
-    <div use:anchorButton id="runtime-module-loading">
+    <div anchor-button id="runtime-module-loading">
         <h3>RUNTIME MODULE LOADING</h3>
         <p>
             First-class functions have an important role in loading modules at runtime. When you load a module at runtime you can access fields and functions from that module dynamically. Accessing fields is pretty self explanatory; you are returned the value of the field. Functions on the other hand require a function reference to be returned in order to be useful.
         </p>
     </div>
-    <div use:anchorButton id="functional-paradigm">
+    <div anchor-button id="functional-paradigm">
         <h3>FUNCTIONAL PARADIGM</h3>
         <p>
             Functional coding also has a inherent need for first-class functions. When programming in the functional paradigm, you expect functions to behave like variables because thats essentially what the paradigm is built off of.
         </p>
     </div>
-    <div use:anchorButton id="concise">
+    <div anchor-button id="concise">
         <h3>MORE CONCISE CODE</h3>
         <p>
             First-class functions can reduce the amount of code to perform tasks. This is an important point considering one of the founding principles of Flat is <i>speed of development</i>. When you reduce the amount of code to solve a problem, you often times are reducing the time it takes to complete the task.

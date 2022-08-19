@@ -1,5 +1,5 @@
 <template lang="flat-html">
-<div use:anchorButton id="what-are-generic-types">
+<div anchor-button id="what-are-generic-types">
     <h1>WHAT IS THREAD-LOCAL STORAGE (TLS)?</h1>
     <p>
         Thread-local storage<FootnoteRef id="tls"></FootnoteRef> is global and static memory, but instead of being shared between threads, it is local to individual threads. To better explain this, I will briefly go over the types of memory in a program<FootnoteRef id="types-of-memory"></FootnoteRef>:
@@ -18,9 +18,9 @@
         This poses a problem for when you want a variable that is static or global, but not shared among threads (i.e. each thread has its own copy of the variable). Different languages have different solutions to this problem.
     </p>
 </div>
-<div use:anchorButton id="implementations">
+<div anchor-button id="implementations">
     <h1>LANGUAGE IMPLEMENTATIONS</h1>
-    <div use:anchorButton id="pthread-implementation">
+    <div anchor-button id="pthread-implementation">
         <h3>PThread Implementation</h3>
         <p>
             <a target="_blank" href="http://stackoverflow.com/a/15101240/1305997">Pthread implementations in C</a> have <span class="pre">pthread_key_create</span> and <span class="pre">pthread_key_delete</span> to allocate and deallocate space on a thread, and <span class="pre">pthread_getspecific</span> and <span class="pre">pthread_setspecific</span> to retrieve and set the data.
@@ -73,7 +73,7 @@
             }
         `}</code></pre>
     </div>
-    <div use:anchorButton id="swift-implementation">
+    <div anchor-button id="swift-implementation">
         <h3>Swift Implementation</h3>
         <p>
             <a target="_blank" href="https://gist.github.com/kristopherjohnson/6f14a50006127424faf3">Swift's implementation</a> uses a dictionary called <span class="pre">threadDictionary</span>.
@@ -130,7 +130,7 @@
             This is because inside the <span class="pre">DispatchQueue.main.async</span> block, you are inside a separate thread with its own threadDictionary.
         </p>
     </div>
-    <div use:anchorButton id="java-implementation">
+    <div anchor-button id="java-implementation">
         <h3>Java Implementation</h3>
         <p>
             <a target="_blank" href="http://tutorials.jenkov.com/java-concurrency/threadlocal.html">Java's implementation</a> uses a data structure that is near identical to what Flat uses. Java uses a ThreadLocal object that takes a generic argument for the type of data that is being stored, and you use get/set/remove functions to manage that memory within the thread.
@@ -165,7 +165,7 @@
             }
         `}</code></pre>
     </div>
-    <div use:anchorButton id="flat-implementation">
+    <div anchor-button id="flat-implementation">
         <h3>Flat Implementation</h3>
         <p>
             The same code in Flat would look like:
@@ -230,14 +230,14 @@
     </div>
 </div>
 
-<div use:anchorButton id="conclusion">
+<div anchor-button id="conclusion">
     <h1>Conclusion</h1>
     <p>
         Considering the different approaches that the different languages in this article showcased, Flat decided to use a ThreadLocal data structure because of its clean implementation with the <span class="pre">thread_local</span> modifier. There needed to be a seamless way to define thread-local data without using some sort of key/value pair to keep track of it. Instead of requiring you to keep track of the thread ID <i>and</i> the variable itself, the <span class="pre">thread_local</span> modifier consolidates the user's focus on the variable itself.
     </p>
 </div>
 
-<div use:anchorButton id="footnotes">
+<div anchor-button id="footnotes">
     <h4>Footnotes:</h4>
     <Footnote id="tls">More information on thread-local storage can be found <a target="_blank" href="https://en.wikipedia.org/wiki/Thread-local_storage">here</a>.</Footnote>
     <Footnote id="types-of-memory">More information can be found <a target="_blank" href="https://en.wikipedia.org/wiki/Data_segment">here</a>.</Footnote>

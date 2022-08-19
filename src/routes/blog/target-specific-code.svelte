@@ -1,5 +1,5 @@
 <template lang="flat-html">
-<div use:anchorButton id="when">
+<div anchor-button id="when">
     <h1>WHEN DO YOU NEED TO WRITE TARGET SPECIFIC CODE?</h1>
     <p>
         If you are writing a program that you need to be available on a wide range of devices, then you will most likely come across a situation where you need to write some device-specific code. That is where target-specific code comes into play.
@@ -12,7 +12,7 @@
     </p>
 </div>
 
-<div use:anchorButton id="organizing-code">
+<div anchor-button id="organizing-code">
     <h2>ORGANIZING THE CODE</h2>
     <p>
         Building off of the mobile app plotline, lets lay out a package structure for this app:
@@ -99,7 +99,7 @@
     </p>
 </div>
 
-<div use:anchorButton id="compiling-code">
+<div anchor-button id="compiling-code">
     <h2>COMPILING THE CODE</h2>
     <p>
         When you want to compile your code to the specific target (Swift or Java in this case), you need to tell the compiler which target to output as. Assuming you have the required compilation targets included in your Flat compiler package, you can use the following commands:
@@ -116,7 +116,7 @@
     </p>
 </div>
 
-<div use:anchorButton id="best-of-both-worlds">
+<div anchor-button id="best-of-both-worlds">
     <h2>THE BEST OF BOTH WORLDS</h2>
     <p>
         The ability to separate target-specific code into separate files in Flat offers a clean solution to managing target-specific code across a project where you might have otherwise had to write two completely separate codebases for each individual target. With the integration offered by the target-specific files, you retain access to all of the general libraries and functionality written for your app across each of the different targets, while allowing complete control over each of the target specific aspects. You get the best of both worlds.

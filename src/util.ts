@@ -4,41 +4,6 @@ export async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> 
 	return response.json();
 }
 
-function isHeader(element: HTMLElement): boolean {
-  return ["h1", "h2", "h3", "h4", "h5", "h6"].indexOf(element.tagName.toLocaleLowerCase()) >= 0;
-}
-
-export function anchorButton(element: HTMLElement) {
-  const anchor = document.createElement("a");
-  anchor.innerHTML = `<img src="/images/link.svg" alt="permalink" />`;
-  anchor.classList.add("anchor-button")
-  anchor.setAttribute("href", `#${element.id}`);
-
-  function addAnchor(element: HTMLElement) {
-    element.appendChild(anchor);
-    element.classList.add("anchor-button-container");
-    element.style.position = "relative";
-  }
-
-  function addContentToHeader(header: HTMLElement) {
-    header.innerHTML = `<span class="anchor-button-content">${header.innerHTML}</span>`;
-  }
-
-  if (isHeader(element)) {
-    addAnchor(element);
-    addContentToHeader(element);
-  } else {
-    const child = element.children[0] as HTMLElement;
-
-    if (isHeader(child)) {
-      addAnchor(child)
-      addContentToHeader(child);
-    } else {
-      addAnchor(element);
-    }
-  }
-}
-
 export const jscd = (() => {
   if (typeof screen === 'undefined' || typeof navigator === 'undefined') {
     return {};

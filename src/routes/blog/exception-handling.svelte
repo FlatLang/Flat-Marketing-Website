@@ -1,14 +1,14 @@
 <template lang="flat-html">
-<div use:anchorButton id="introduction">
+<div anchor-button id="introduction">
     <h1>INTRODUCTION TO EXCEPTION HANDLING</h1>
     <p>
         Exception handling is the process of responding to the occurrence, during computation, of <i>exceptions</i>. Exception handling is one of the most common ways of dealing with errors within a program. Error handling is a big issue for programming languages. What do you do when a program doesn't act according to plan? Different languages have different answers to this problem.
     </p>
 </div>
 
-<div use:anchorButton id="methods">
+<div anchor-button id="methods">
     <h1>DIFFERENT METHODS OF ERROR HANDLING</h1>
-    <div use:anchorButton id="return-values">
+    <div anchor-button id="return-values">
         <h3>RETURN VALUES</h3>
         <p>
             A common method of handling errors is to output whether a function was successful or not within the return value of the function. This is used in many lower-level languages such as C, C++, and Rust. Typically functional languages use this paradigm of error handling because it does not break the flow of the program. The newer langages that use this kind of error handling usually use a coupled structure as the return value that return the value, if available, and an error if there was one.
@@ -41,7 +41,7 @@
         <p>
             Many functions in languages like C will return a NULL value or 0 if there was an error during the function's execution. Type typical return values that indicate failure within a function's execution usually follow these rules:
         </p>
-        <div use:anchorButton id="c-error-return-types" style="margin-left: 25px; margin-bottom: 20px;">
+        <div anchor-button id="c-error-return-types" style="margin-left: 25px; margin-bottom: 20px;">
             <h4>For non-pointer return types</h4>
             <ul>
                 <li><b>0</b>: success</li>
@@ -57,7 +57,7 @@
             The non-pointer return types can cause some ambiguity when the return values is supposed to be used for more than just error handling. For example, the atoi function in C is used to parse a string of text to an integer. The return type of the function is an int, but a return value of 0 indicates that the function failed. What if the input was a string value that represented 0? How would you differentiate "0" vs an error ocurring within the function? atoi does not include support for such functionality. This is why out parameters are used in many cases in C.
         </p>
     </div>
-    <div use:anchorButton id="out-parameters">
+    <div anchor-button id="out-parameters">
         <h3>OUT PARAMETERS</h3>
         <p>
             Out parameters are parameters that are passed to a function by reference and require a value be assigned to them before the function is returned.
@@ -94,7 +94,7 @@
             You are required to pass in the reference to a variable, which requires that you have a variable defined in the first place. While this addresses the ambiguity between return values vs errors, you pay the price in being verbose and the possible performance implications of having to allocate space for an extra variable used just for determining the success of a function.
         </p>
     </div>
-    <div use:anchorButton id="global-variable">
+    <div anchor-button id="global-variable">
         <h3>GLOBAL VARIABLE</h3>
         <p>
             Global variables are often to indicate the latest error in a program. An example of this is the errno library in C which is defined in the errno.h file. The errno library uses a single global integer variable <i>errno</i> to deal with errors in a program. The out parameter code we used before can be modified to follow this design pattern:
@@ -127,7 +127,7 @@
             This cleans up the function call some, but just as the other methods, it has some drawbacks to it as well. With a global variable being used, you have to be more careful in multi-threaded programs that are calling functions that read/write to the errno variable. To keep errno thread-safe, you have to use a mutex or semaphore. Both of those will impact the performance of the program.
         </p>
     </div>
-    <div use:anchorButton id="design-by-contract">
+    <div anchor-button id="design-by-contract">
         <h3>DESIGN BY CONTRACT</h3>
         <p>
             <a target="_blank" href="https://en.wikibooks.org/wiki/Computer_Programming/Design_by_Contract">Design by Contract</a> (DbC) handles errors by requiring correct input and correct output. A function does this by specifying <b>pre-condition</b> and <b>post-condition</b> states that the function must fulfill to be considered a success.
@@ -154,7 +154,7 @@
             }
         `}</code></pre>
     </div>
-    <div use:anchorButton id="thrown-exceptions">
+    <div anchor-button id="thrown-exceptions">
         <h3>THROWN EXCEPTIONS</h3>
         <p>
             The standard Java/C# style of handling errors in code is to throw exceptions. This is done by defining an area in the code to <i>catch</i> exceptions, and an area to <i>throw</i> exceptions. A catch without any corresponding throws is useless. The common design pattern for try/catch/throw looks something like this:
@@ -198,7 +198,7 @@
     </div>
 </div>
 
-<div use:anchorButton id="flat-error-handling">
+<div anchor-button id="flat-error-handling">
     <h1>FLAT'S ERROR HANDLING</h1>
     <p>
         Flat uses exceptions to handle errors. The reason for this choice stems from several factors:
@@ -210,7 +210,7 @@
         <li><b>Global variables</b> are not thread-safe and are generally accepted as bad practice.</li>
         <li><b>Design by contract</b> is compatible with exception handling.</li>
     </ul>
-    <div use:anchorButton id="toss">
+    <div anchor-button id="toss">
         <h3>TOSS</h3>
         <p>
             In addition to traditional try/catch/throw functionality, Flat also includes "toss" functionality. Tossing an exception is analogous to throwing an exception. The difference is that when you toss an exception, it only breaks the execution flow if there is a catch block waiting for that specific type of exception. For example, you can replace the throw keyword with toss:
@@ -258,7 +258,3 @@
     </div>
 </div>
 </template>
-
-<script>
-    import { anchorButton } from '/src/util';
-</script>

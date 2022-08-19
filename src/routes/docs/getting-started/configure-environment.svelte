@@ -1,5 +1,5 @@
 <hr>
-<div use:anchorButton id="windows">
+<div anchor-button id="windows">
     <h1>Configuring a Windows environment</h1>
     <h3>If you used the installer, then you should already have these configurations set up.</h3>
     {#if lowerOs === 'windows'}
@@ -65,7 +65,7 @@
     <div class="note">After setting the environment variables, you will need to restart any open command prompts or IDEs for the changes to take effect.</div>
 </div>
 <hr>
-<div use:anchorButton id="mac">
+<div anchor-button id="mac">
     <h1>Configuring a Mac OS X environment</h1>
     {#if lowerOs === 'mac'}
     <h4 class="gray">We think you are running { osHeader }</h4>
@@ -73,7 +73,7 @@
 
 </div>
 <hr>
-<div use:anchorButton id="linux">
+<div anchor-button id="linux">
     <h1>Configuring a Linux environment</h1>
     {#if lowerOs === 'linux'}
     <h4 class="gray">We think you are running { osHeader }</h4>

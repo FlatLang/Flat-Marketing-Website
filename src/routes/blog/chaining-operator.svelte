@@ -1,9 +1,5 @@
-<script>
-	import { anchorButton } from '/src/util';
-</script>
-
 <template lang="flat-html">
-	<div use:anchorButton id="introduction">
+	<div anchor-button id="introduction">
 		<h1>INTRODUCING THE CHAINING OPERATOR ":"</h1>
 		<p>
 			The "Chaining Operator" <code>{`: // <=== this colon guy`}</code> is a new idea in the realm
@@ -22,9 +18,9 @@
 		</p>
 	</div>
 
-	<div use:anchorButton id="examples">
+	<div anchor-button id="examples">
 		<h1>EXAMPLES</h1>
-		<div use:anchorButton id="logging">
+		<div anchor-button id="logging">
 			<h3>LOGGING</h3>
 			<p>Here is a one-liner that outputs three info messages:</p>
 			<pre class="left">
@@ -55,7 +51,7 @@
         </code>
       </pre>
 		</div>
-		<div use:anchorButton id="networking">
+		<div anchor-button id="networking">
 			<h3>NETWORKING</h3>
 			<p>
 				Here is an example that demonstrates starting and closing a ServerSocket on a single line:
@@ -81,7 +77,7 @@
         </code>
       </pre>
 		</div>
-		<div use:anchorButton id="string-building">
+		<div anchor-button id="string-building">
 			<h3>STRING BUILDING</h3>
 			<p>A common use of the chaining operator is for string building:</p>
 			<pre class="left">
@@ -127,7 +123,7 @@
         </code>
       </pre>
 		</div>
-		<div use:anchorButton id="list-processing">
+		<div anchor-button id="list-processing">
 			<h3>LIST PROCESSING</h3>
 			<p>Call forEach multiple times on a List</p>
 			<pre class="left">

@@ -934,16 +934,29 @@ a.anchor-button {
     height: .75em;
 }
 
+a.anchor-button > svg {
+  vertical-align: top;
+}
+
+div > a.anchor-button > svg {
+  height: 20px;
+}
+
+:not(div) > a.anchor-button > svg {
+  width: 100%;
+  height: 100%;
+}
+
 a.anchor-button > img {
-    vertical-align: top;
+  vertical-align: top;
 }
 
 div > a.anchor-button > img {
-    height: 20px;
+  height: 20px;
 }
 
 :not(div) > a.anchor-button > img {
-    height: 100%;
+  height: 100%;
 }
 
 .anchor-button-container {

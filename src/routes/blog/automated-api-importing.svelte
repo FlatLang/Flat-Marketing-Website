@@ -1,5 +1,5 @@
 <template lang="flat-html">
-<div use:anchorButton id="working-with-external-apis">
+<div anchor-button id="working-with-external-apis">
     <h1>WORKING WITH EXTERNAL APIS</h1>
     <p>
         When dealing with multiple targets you are often required to call upon external APIs. There are a couple ways you could do this:
@@ -8,7 +8,7 @@
         <li>Call them directly with external code blocks</li>
         <li>Create bindings to the API in Flat</li>
     </ul>
-    <div use:anchorButton id="direct-calling">
+    <div anchor-button id="direct-calling">
         <h3>CALLING EXTERNAL CODE DIRECTLY</h3>
         <p>
             The quickest (and dirtiest) way of working with external libraries is to call the external code directly. Flat provides external blocks that are used to achieve this functionality:
@@ -66,7 +66,7 @@
             }
         `}</code></pre>
     </div>
-    <div use:anchorButton id="binding-apis">
+    <div anchor-button id="binding-apis">
         <h3>CREATING BINDINGS TO API</h3>
         <p>
             Calling external code through external blocks is the basis of how creating bindings to an API works in Flat. When creating an API for a language, you typically do it by hand. For example, if you were to create bindings for some std output functions in C, you could do it like:
@@ -95,7 +95,7 @@
         </p>
     </div>
 </div>
-<div use:anchorButton id="automated-api-importing">
+<div anchor-button id="automated-api-importing">
     <h1>AUTOMATED API IMPORTING</h1>
     <p>
         Because you can <a href="/blog/compiler-design#parser-uses">write custom parsers</a>, adding API importing functionality will be surprisingly simple. If a parser for a language is available, instead of translating it to Flat, you could pass an -api argument to the compiler to have it generate the API binding for the functions in the input library. For example, say you want to import the C standard library. Using a C header file parser, you could import all stdlib functions with this command:
@@ -133,14 +133,10 @@
     </p>
 </div>
 
-<div use:anchorButton id="conclusion">
+<div anchor-button id="conclusion">
     <h1>CONCLUSION</h1>
     <p>
         Automated importing of external APIs plays an integral part in making compilation to multiple-targets more powerful. It alleviates many of the issues that normally come up when writing programs that interface with multiple different languages. Automated importing of external APIs <b>expidiates</b> the process of multi-target development, while making it <b>safe</b>. Both of which are fundamental to the design of the Flat language.
     </p>
 </div>
 </template>
-
-<script>
-    import { anchorButton } from '/src/util';
-</script>

@@ -171,7 +171,7 @@
 					{:then releases}
 						{#each releases as release, i}
 							{#if i > 0}<hr />{/if}
-							<div use:anchorButton id={formatClassName(release.version)}>
+							<div anchor-button id={formatClassName(release.version)}>
 								<h4>
 									{release.version}
 									<span class="date gray">{release.createdAt.format('MMMM D, YYYY')}</span>
