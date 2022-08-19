@@ -12,6 +12,7 @@ function escapeHTML(str) {
 }
 
 function regexIndexOf(text, re, i) {
+  i = typeof i === 'number' ? i : 0;
   var indexInSuffix = text.slice(i).search(re);
   return indexInSuffix < 0 ? indexInSuffix : indexInSuffix + i;
 }
@@ -46,7 +47,7 @@ function trimPrecedingTabs(rawContent, trimmedValue) {
 export default async function ({content}) {
   let matches = [];
 
-  let index = content.indexOf(`<code`);
+  let index = regexIndexOf(content, /<\s*?code/g);
 
   while (index > 0) {
     const start = content.indexOf(">", index + "<code".length) + 1;
@@ -55,7 +56,7 @@ export default async function ({content}) {
       break;
     }
 
-    const end = content.indexOf(`</code>`, start);
+    const end = regexIndexOf(content, /<\/code\s*?>/g, start);
 
     if (end === -1) {
       break;
@@ -66,7 +67,7 @@ export default async function ({content}) {
 
     matches.push({start, end, index, language});
 
-    index = content.indexOf(`<code`, end + "</code>".length);
+    index = regexIndexOf(content, /<code/g, end + "</code>".length);
   }
 
   for (let i = matches.length - 1; i >= 0; i--) {
