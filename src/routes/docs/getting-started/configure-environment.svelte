@@ -83,7 +83,7 @@
 
 <script>
     import { onMount } from 'svelte';
-    import { jscd, anchorButton } from '/src/util';
+    import { jscd } from '/src/util';
 
     let os = jscd.os || "";
     let osVersion = jscd.osVersion;

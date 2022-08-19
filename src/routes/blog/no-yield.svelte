@@ -308,6 +308,4 @@
 <script>
     import Footnote from '/src/components/Footnote.svelte';
     import FootnoteRef from '/src/components/FootnoteRef.svelte'
-
-    import {anchorButton } from '/src/util';
 </script>

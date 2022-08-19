@@ -5,7 +5,7 @@
 
 	import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
 
-	import { jscd, defer, anchorButton, fetchJson } from 'src/util';
+	import { jscd, defer, fetchJson } from 'src/util';
 	import { blogPages } from 'src/routes/blog/blog';
 	import { checkHash } from 'src/flash';
 	import { browser } from '$app/env';

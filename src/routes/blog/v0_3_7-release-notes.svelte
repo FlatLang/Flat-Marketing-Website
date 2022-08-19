@@ -81,6 +81,4 @@
 
 <script>
     import Issue from '/src/components/Issue.svelte';
-
-    import {anchorButton } from '/src/util';
 </script>

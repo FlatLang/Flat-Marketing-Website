@@ -179,7 +179,3 @@
     </p>
 </div>
 </template>
-
-<script>
-    import {anchorButton } from '/src/util';
-</script>
