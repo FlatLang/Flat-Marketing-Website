@@ -32,7 +32,7 @@ export function anchorButton(element) {
   }
 }
 
-export default async function ({content}) {
+export default async function ({ content }) {
   const root = parse(content);
   const anchors = root.querySelectorAll(`[anchor-button]`);
 
@@ -42,5 +42,5 @@ export default async function ({content}) {
 
   const code = root.toString();
 
-  return {code};
+  return { code };
 }
