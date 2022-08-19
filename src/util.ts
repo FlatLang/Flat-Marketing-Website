@@ -20,13 +20,19 @@ export function anchorButton(element: HTMLElement) {
     element.style.position = "relative";
   }
 
+  function addContentToHeader(header: HTMLElement) {
+    header.innerHTML = `<span class="anchor-button-content">${header.innerHTML}</span>`;
+  }
+
   if (isHeader(element)) {
     addAnchor(element);
+    addContentToHeader(element);
   } else {
     const child = element.children[0] as HTMLElement;
 
     if (isHeader(child)) {
       addAnchor(child)
+      addContentToHeader(child);
     } else {
       addAnchor(element);
     }
