@@ -116,6 +116,12 @@ const blogPages: BlogPage[] = [{
     date: dayjs("8/17/2022"),
     visible: true,
     author: "Braden Steffaniak"
+}, {
+  header: "v0.1.6 Release Notes",
+  url: "v0_1_6-release-notes",
+  date: dayjs("8/19/2022"),
+  visible: true,
+  author: "Braden Steffaniak"
 }];
 
 const currentPage = writable<any>(null);
