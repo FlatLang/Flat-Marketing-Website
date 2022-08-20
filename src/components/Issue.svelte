@@ -1,4 +1,4 @@
-<span>
+<span class="issues">
   [Issue
   {#each values as issue, i}
   <span>{i > 0 ? ', ' : ''}<a

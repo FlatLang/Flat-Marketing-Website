@@ -972,3 +972,7 @@ div > a.anchor-button > img {
 .anchor-button-container .anchor-button-content:hover {
   background-color: rgb(255, 132, 100, 0.6);
 }
+
+.issues {
+  font-size: smaller;
+}
