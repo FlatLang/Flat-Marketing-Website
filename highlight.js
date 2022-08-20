@@ -17,17 +17,56 @@ function regexIndexOf(text, re, i) {
   return indexInSuffix < 0 ? indexInSuffix : indexInSuffix + i;
 }
 
+function parseAttributes(value) {
+  const values = value.trim().split(/\s+|('[^']*?'|"[^"]*?")/g);
+
+  const attrs = {};
+  let key = null;
+
+  values
+    .filter(v => typeof v === 'undefined' ? true : v)
+    .forEach((v) => {
+      if (v) {
+        if (key) {
+          if (/^"[^"]*?"|'[^']*?$'/g.test(v)) {
+            v = v.substring(1, v.length - 1);
+          }
+
+          attrs[key] = v;
+          key = null;
+        } else {
+          key = v.replace(/[^A-Za-z0-9\-]/g, "");
+          attrs[key] = null;
+        }
+      } else {
+        key = null;
+      }
+    });
+
+  return attrs;
+}
+
 function getLanguageFromAttributes(attributes) {
   const prefix = "language-";
-  const start = attributes.indexOf(prefix) + prefix.length;
+  const attrs = parseAttributes(attributes);
+  const languages = ["flat", "javascript", "csharp", "cpp", "c", "bash"];
 
-  if (start === prefix.length - 1) {
-    return "flat";
+  const languageFromRawAttr = languages.find(l => typeof attrs[l] !== 'undefined');
+
+  if (languageFromRawAttr) {
+    return languageFromRawAttr;
   }
 
-  const end = regexIndexOf(attributes, /\W/gi, start);
+  if (attrs.class) {
+    const classNames = attrs.class.split(/\s+/g);
+    const language = classNames.find(n => n.indexOf(prefix) === 0);
 
-  return attributes.substring(start, end);
+    if (language) {
+      return language.substring(prefix.length);
+    }
+  }
+
+  return "flat";
 }
 
 function trimPrecedingTabs(rawContent, trimmedValue) {
@@ -62,7 +101,7 @@ export default async function ({content}) {
       break;
     }
 
-    const elementAttributes = content.substring(index, start);
+    const elementAttributes = content.substring(content.indexOf("code", index) + "code".length, start - 1);
     const language = getLanguageFromAttributes(elementAttributes);
 
     matches.push({start, end, index, language});
