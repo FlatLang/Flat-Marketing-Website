@@ -173,7 +173,7 @@
 							{#if i > 0}<hr />{/if}
 							<div anchor-button id={formatClassName(release.version)}>
 								<h4>
-									{release.version}
+									Airship {release.version}
 									<span class="date gray">{release.createdAt.format('MMMM D, YYYY')}</span>
 								</h4>
 								[<a target="_blank" href={release.url}>GitHub</a>]
