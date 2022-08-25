@@ -8,14 +8,14 @@
 		<h1>NOTABLE CHANGES</h1>
 		<h4 style="margin-bottom: 0px;">tl;dr:</h4>
 		<ul>
-			<li><a href="#init-command">Add <code>init</code> command</a></li>
-			<li><a href="#create-command">Add <code>create</code> command</a></li>
+			<li><a href="#init-command">Add <code bash>init</code> command</a></li>
+			<li><a href="#create-command">Add <code bash>create</code> command</a></li>
 			<li><a href="#default-exports">Add support for default exports</a></li>
 			<li><a href="#bug-fixes">Bug fixes</a></li>
 		</ul>
 		<div id="release-notes" class="release-notes" style="margin-bottom: 20px;">
 			<div anchor-button id="init-command" class="release-note">
-				<h4>Add <code>init</code> command <Issue values={[{ number: 1, repo: 'Airship' }]} /></h4>
+				<h4>Add <code bash>init</code> command <Issue values={[{ number: 1, repo: 'Airship' }]} /></h4>
 				<p>
 					You can now run <code bash>./airship init</code> and it will guide you through the process
 					of creating a new Flat project.
@@ -39,7 +39,7 @@
         </pre>
 			</div>
 			<div anchor-button id="create-command" class="release-note">
-				<h4>Add <code>create</code> command <Issue values={[{ number: 7, repo: 'Airship' }]} /></h4>
+				<h4>Add <code bash>create</code> command <Issue values={[{ number: 7, repo: 'Airship' }]} /></h4>
 				<p>
 					You can now run <code bash>{`./airship create {thing}`}</code> and it will guide you through
 					the process of creating a new component.
@@ -77,7 +77,7 @@
         </pre>
 				<p>
 					This allows any package that imports this package as a dependency to automatically have
-					<code>flatlang/io/Console</code> imported in all files.
+					<code bash>flatlang/io/Console</code> imported in all files.
 				</p>
 			</div>
 			<div anchor-button id="bug-fixes" class="release-note">
