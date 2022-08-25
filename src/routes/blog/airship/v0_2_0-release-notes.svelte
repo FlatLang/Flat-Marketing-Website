@@ -41,8 +41,8 @@
 			<div anchor-button id="create-command" class="release-note">
 				<h4>Add <code>create</code> command <Issue values={[{ number: 7, repo: 'Airship' }]} /></h4>
 				<p>
-					You can now run <code bash>./airship create {thing}</code> and it will guide you through the
-					process of creating a new component.
+					You can now run <code bash>{`./airship create {thing}`}</code> and it will guide you through
+					the process of creating a new component.
 				</p>
 				<pre>
           <code bash>
@@ -55,27 +55,29 @@
 			<div anchor-button id="default-exports" class="release-note">
 				<h4>Add support for default exports <Issue values={[{ number: 6, repo: 'Airship' }]} /></h4>
 				<p>Default exports can now be defined in the flat.json file as such:</p>
-        <pre>
+				<pre>
           <code json>
-            {
-              "name": "IO",
-              "version": "0.1.0",
+            {`
+              {
+                "name": "IO",
+                "version": "0.1.0",
 
-              ...
-
-              "main": {
                 ...
 
-                "defaultExports": [
-                  "flatlang/io/Console"
-                ]
+                "main": {
+                  ...
+
+                  "defaultExports": [
+                    "flatlang/io/Console"
+                  ]
+                }
               }
-            }
+            `}
           </code>
         </pre>
 				<p>
 					This allows any package that imports this package as a dependency to automatically have
-          <code>flatlang/io/Console</code> imported in all files.
+					<code>flatlang/io/Console</code> imported in all files.
 				</p>
 			</div>
 			<div anchor-button id="bug-fixes" class="release-note">
