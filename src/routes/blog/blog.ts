@@ -140,6 +140,12 @@ const blogPages: BlogPage[] = [{
   date: dayjs("8/20/2022"),
   visible: true,
   author: "Braden Steffaniak"
+}, {
+  header: `Airship v0.2.0 Release Notes`,
+  url: "airship/v0_2_0-release-notes",
+  date: dayjs("8/25/2022"),
+  visible: true,
+  author: "Braden Steffaniak"
 }];
 
 const currentPage = writable<any>(null);
