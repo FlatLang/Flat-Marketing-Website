@@ -474,8 +474,8 @@
 				is accessible from any of the available target languages. Here is an illustration of this
 				point:
 			</p>
-			<pre>
-        <code class="language-flat" style="margin-top: 40px;">
+			<pre class="centered">
+        <code style="margin-top: 40px;">
           {`
             class SomeLibrary {
               public static distance(Point a, Point b) -> Double {
@@ -519,8 +519,8 @@
 				After compiling <span class="pre type">SomeLibrary</span> to each of the target languages, you
 				are able to access the functionality from that target language:
 			</p>
-			<pre>
-        <code class="language-flat" style="margin: 40px 0;">
+			<pre class="centered">
+        <code style="margin: 40px 0;">
           {`
             // ======================= C ===========================
 

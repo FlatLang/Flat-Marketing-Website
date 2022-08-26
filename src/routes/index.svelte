@@ -18,7 +18,7 @@
 
 <template lang="flat-html">
 	<div use:slide id="splashscreen" class="full slide">
-		<div class="centered logo-container">
+		<div class="centered-absolute logo-container">
 			<img
 				id="logo-main"
 				class="glow-logo"

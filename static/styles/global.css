@@ -230,7 +230,7 @@ a {
     margin: 0 10px;
 }
 
-.centered {
+.centered-absolute {
     position: absolute;
 
     left: 50%;
@@ -883,6 +883,10 @@ tree-browser {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 4;
     backdrop-filter: blur(3px);
+}
+
+pre:not(.full).centered {
+    text-align: center;
 }
 
 pre:not(.full) > code {
