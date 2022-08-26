@@ -3,12 +3,12 @@
 	<p>
 		After having <a href="/download">downloaded</a> and installed
 		<a href="/download#installation">Airship</a>, run the following command:
-		<code bash>./airship init</code>
+		<code bash>airship init</code>
 	</p>
 	<p>Run through the init process:</p>
 	<pre>
     <code bash>
-      $ node ./airship.js init
+      $ airship init
       Package name (default: home): HelloWorld
       Initialize package in current folder: "C:/Users/home"? (Y/n): n
       Folder name (default: HelloWorld): HelloWorld
@@ -57,7 +57,15 @@
 	</p>
 	<pre>
     <code bash>
-      ./airship add github:FlatLang/IO
+      airship add github:FlatLang/IO
+    </code>
+  </pre>
+  <p>
+    Now you can install the HelloWorld program:
+  </p>
+	<pre>
+    <code bash>
+      airship install
     </code>
   </pre>
 	<p>
