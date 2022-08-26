@@ -114,6 +114,7 @@
 	}
 
 	let whyJava = false;
+	let whyMaven = false;
 	let showAll = false;
 
 	let os = jscd.os || '';
@@ -150,8 +151,8 @@
 		<div class="page-container">
 			<Header />
 			<div id="content-container">
-				<section id="downloads">
-					<div><h1 class="primary">DOWNLOAD</h1></div>
+				<section anchor-button id="downloads">
+					<h1 class="primary">DOWNLOAD</h1>
 					<hr />
 					<p>
 						The recommended way to install Flat is with Flat's package manager <a
@@ -164,7 +165,8 @@
 						{:then releases}
 							<a href="#{formatClassName(releases[0].version)}-node">airship.js</a>
 						{/await}
-						script file and run it directly with node 16 or later.
+						script file and run it directly with node 14 or later. Once you have downloaded Airship,
+						you can continue on with the <a href="#installation">installation steps below</a>.
 					</p>
 					{#await $releases.promise}
 						<h4>Loading...</h4>
@@ -226,23 +228,51 @@
 						{error}
 					{/await}
 				</section>
-				<section id="installation">
-					<div><h1 class="primary">INSTALLATION</h1></div>
+				<section anchor-button id="installation">
+					<h1 class="primary">INSTALLATION</h1>
 					<hr />
-					<h4>Pre-requisites</h4>
+					<h4 anchor-button id="installation-prerequisites">Pre-requisites</h4>
 					<ul>
 						<li>
 							Java Runtime 1.8 or later
 							<span class="why gray">
 								{#if !whyJava}<span class="tooltip" on:click={() => (whyJava = true)}
-										>why java?</span
+										>why Java?</span
 									>{/if}
 								{#if whyJava}<span>The first iteration of the compiler is written in Java</span
 									>{/if}
 							</span>
 						</li>
+						<li>
+							Maven
+							<span class="why gray">
+								{#if !whyMaven}<span class="tooltip" on:click={() => (whyMaven = true)}
+										>why Maven?</span
+									>{/if}
+								{#if whyMaven}<span
+										>The first iteration of the compiler requires Maven to build the compiler</span
+									>{/if}
+							</span>
+						</li>
 					</ul>
-					<p />
+					<h4 anchor-button id="installation-prepare-executable">
+						Prepare executable for execution
+					</h4>
+					<ul>
+						<li>Windows: The executable requires no preparation.</li>
+						<li>
+							Mac: Give the executable permission to run: <code bash>chmod +x airship-macos</code>
+						</li>
+						<li>
+							Linux: Give the executable permission to run: <code bash>chmod +x airship-linux</code>
+						</li>
+					</ul>
+					<h4 anchor-button id="installation-run-setup-command">Run the setup command</h4>
+					<ul>
+						<li>Windows: Run <code bash>./airship-win.exe setup</code></li>
+						<li>Mac: Run <code bash>./airship-macos setup</code></li>
+						<li>Linux: Run <code bash>./airship-linux setup</code></li>
+					</ul>
 					<p>
 						After the installer has finished, you are ready to <a
 							href="/docs/getting-started/hello-world">write your first program</a
