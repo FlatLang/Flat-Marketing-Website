@@ -1,52 +1,64 @@
 import { writable } from "svelte/store";
 
-interface DocPage {
+export interface DocPage {
   header: string;
   subheader?: string;
   url: string;
   references: any[];
-  children?: DocPage[];
+  children: DocPage[];
   tooltip?: string;
   css?: string;
   parent?: DocPage;
-  path?: string;
+  path: string;
   href?: string;
+  visible?: boolean;
 }
 
 const docPages: DocPage[] = [{
   header: "Class types",
   url: "class-types",
+  visible: false,
   references: [],
   children: [{
     header: "Classes",
     url: "classes",
     references: ["class-types/traits", "class-types/interfaces"],
-    children: []
+    children: [],
+    path: ""
   }, {
     header: "Interfaces",
     url: "interfaces",
     references: ["class-types/traits", "class-types/classes"],
-    children: []
+    children: [],
+    path: ""
   }, {
     header: "Traits",
     url: "traits",
     references: ["class-types/classes", "class-types/interfaces"],
-    children: []
-  }]
+    children: [],
+    path: ""
+  }],
+  path: ""
 }, {
   header: "Data structures",
   url: "data-structures",
+  visible: false,
   references: ["data-structures/lists"],
   children: [{
     header: "Lists",
     url: "lists",
     tooltip: "Fundamental collection datatype",
-    references: ["data-structures/arrays"]
+    references: ["data-structures/arrays"],
+    children: [],
+    path: ""
   }, {
     header: "Arrays",
     url: "arrays",
-    references: ["data-structures/lists"]
-  }]
+    references: ["data-structures/lists"],
+    children: [],
+    path: ""
+  }],
+  path: ""
 }, {
   header: "Getting started",
   url: "getting-started",
@@ -54,21 +66,22 @@ const docPages: DocPage[] = [{
   children: [{
     header: "Configure environment",
     url: "configure-environment",
+    visible: false,
     css: "/docs/getting-started/configure-environment.css",
     references: [],
-    children: []
+    children: [],
+    path: ""
   }, {
     header: "Hello world",
     url: "hello-world",
     references: [{
       header: "Downloading flat",
       href: "/download#downloads"
-    }, {
-      header: "Setting environment variables",
-      url: "getting-started/configure-environment"
     }],
-    children: []
-  }]
+    children: [],
+    path: ""
+  }],
+  path: ""
 }];
 
 function setParent(page: DocPage) {
