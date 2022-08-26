@@ -1,12 +1,48 @@
 <template lang="flat-html">
 	<h1>CREATING A HELLO WORLD PROGRAM</h1>
 	<p>
-		After having <a href="/download">downloaded</a> and installed Flat, enter the following code into
-		a file named HelloWorld.flat
+		After having <a href="/download">downloaded</a> and installed
+		<a href="/download#installation">Airship</a>, run the following command:
+		<code bash>./airship init</code>
 	</p>
-
+	<p>Run through the init process:</p>
 	<pre>
-    <code class="language-flat">
+    <code bash>
+      $ node ./airship.js init
+      Package name (default: home): HelloWorld
+      Initialize package in current folder: "C:/Users/home"? (Y/n): n
+      Folder name (default: HelloWorld): HelloWorld
+      Package version (default: 0.1.0): 0.1.0
+      Package description: Flat Hello World program
+      Package author: Your Name
+      Package license (default: ISC): ISC
+      Default compilation target (default: es6): es6
+      Main class (e.g.: example/ClassName) [optional - press enter to skip]: HelloWorld
+      Create a testing pipeline? (Y/n): y
+      Pipeline file (default: .github/workflows/test.yml):
+      Pipeline file created at "C:/Users/home/HelloWorld/.github/workflows/test.yml"
+    </code>
+  </pre>
+	<p>
+		Once the initialization is finished, you should see a file with these contents at
+		"HelloWorld/src/HelloWorld.flat":
+	</p>
+	<pre>
+    <code>
+      {`
+        class {
+          public static main(String[] args) {
+
+          }
+        }
+      `}
+    </code>
+  </pre>
+	<p>
+		Now you can add a console logging statement to the main function like this:
+	</p>
+	<pre>
+    <code>
       {`
         class {
           public static main(String[] args) {
@@ -16,71 +52,27 @@
       `}
     </code>
   </pre>
-
 	<p>
-		Then from command line, or terminal, navigate to the directory that you created the file in and
-		run the following command:
+		Now you need to install the Flat IO package so that we can use that Console library:
 	</p>
-
 	<pre>
-    <code class="language-bash">
-        flatc HelloWorld.flat -o HelloWorld
+    <code bash>
+      ./airship add github:FlatLang/IO
     </code>
   </pre>
-
-	<p class="note" style="margin-top: 20px;">
-		If you see an error that looks something like: "<i
-			>'flatc' is not recognized as an internal or external command, operable program or batch file.</i
-		>", follow the instructions explained
-		<a href="/docs/getting-started/configure-environment">here</a>.
-	</p>
-
 	<p>
-		You should see a new executable file outputted in the folder that you ran
-		<span class="pre">flatc</span> in.
+		You should see a new js file generated at <code bash>HelloWorld/dist/index.js</code>
 	</p>
-	<p>From the same command prompt window, you can run the HelloWorld program:</p>
-
+	<p>You can now run the HelloWorld program:</p>
 	<pre>
-    <code class="language-bash">
-      HelloWorld
+    <code bash>
+      node dist/index.js
     </code>
   </pre>
-
-	<p>or on non-windows platforms:</p>
-
+	<p>And you should see this logged out into to the console:</p>
 	<pre>
-    <code class="language-bash">
-      ./HelloWorld
-    </code>
-  </pre>
-
-	<p>And you should see:</p>
-
-	<pre>
-    <code class="language-bash">
+    <code bash>
       Hello, world!
     </code>
   </pre>
-
-	<div class="note" style="margin-top: 20px;">
-		<p>
-			If you try to run the program by double click the executable, you will need to add the
-			following line to your program to make it wait for user input before closing the window.
-		</p>
-
-		<pre>
-      <code class="language-flat">
-        {`
-          class HelloWorld {
-            public static main(String[] args) {
-              Console.writeLine("Hello, world!")
-
-              Console.waitForEnter()
-            }
-          }
-        `}
-      </code>
-    </pre>
-	</div>
 </template>
