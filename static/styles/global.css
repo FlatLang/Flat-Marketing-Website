@@ -296,6 +296,8 @@ code {
     color: white;
     background-color: #1f122d;
     font-size: 14px;
+
+    vertical-align: middle;
 }
 
 pre code,
