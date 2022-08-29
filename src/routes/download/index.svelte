@@ -84,20 +84,28 @@
 	const apiRoot = `https://api.github.com/repos/FlatLang/Airship`;
 	const releaseUrl = `${apiRoot}/releases/${releaseTag ? 'tags/' + releaseTag : 'latest'}`;
 
-	fetchJson<GitHubRelease>(releaseUrl)
-		.then((release) => createOsRelease(release))
-		.then((osRelease) => $releases.resolve([osRelease]))
-		.then(() => checkHash());
+	async function fetchInitialRelease() {
+		$releases.resolve([
+      createOsRelease(await fetchJson<GitHubRelease>(releaseUrl))
+    ]);
 
-	function toggleShowAll() {
+		checkHash();
+	}
+
+	fetchInitialRelease();
+
+	async function toggleShowAll() {
 		showAll = !showAll;
 
 		if (showAll) {
-			fetchJson<GitHubRelease[]>(`${apiRoot}/releases`)
-				.then((otherReleases) => otherReleases.map(createOsRelease))
-				.then((osReleases) => osReleases.sort((a, b) => b.createdAt.diff(a.createdAt)))
-				.then((osReleases) => releases.set(defer<OsRelease[]>().resolve(osReleases)))
-				.then(() => checkHash());
+			const otherReleases = await fetchJson<GitHubRelease[]>(`${apiRoot}/releases`);
+			const osReleases = otherReleases
+				.map(createOsRelease)
+				.sort((a, b) => b.createdAt.diff(a.createdAt));
+
+			releases.set(defer<OsRelease[]>().resolve(osReleases));
+
+			checkHash();
 		}
 	}
 
