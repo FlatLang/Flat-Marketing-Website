@@ -173,8 +173,12 @@
 						{:then releases}
 							<a href="#{formatClassName(releases[0].version)}-node">airship.js</a>
 						{/await}
-						script file and run it directly with node 14 or later. Once you have downloaded Airship,
-						you can continue on with the <a href="#installation">installation steps below</a>.
+						script file and run it directly with node 14 or later.
+					</p>
+					<p>
+						Once you have downloaded Airship, you can continue on with the <a href="#installation"
+							>installation steps below</a
+						>.
 					</p>
 					{#await $releases.promise}
 						<h4>Loading...</h4>
