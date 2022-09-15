@@ -54,18 +54,15 @@
 				<h2>Trees and Lists</h2>
 				<p>
 					Flat's List data structure makes processing lists of data easy. With the use of lambda
-					expressions, the code to perform operations can be concise. Like many other modern
-					languages, Flat lets you use lambda expressions and functions as first class values. Flat
-					is smart enough to infer the type of the variables that were defined with the use of the
-					"let" and "var" modifiers.
+					expressions, the code to perform operations can be concise. Like many modern programming
+					languages, Flat lets you use lambda expressions and functions as first class values.
 				</p>
 				<p>
 					In the code example on the right, you can see string interpolation in action. The strings
 					passed to <code class="language-flat">log.info()</code>
 					show this. String interpolation makes injecting variable values into strings effortless. You
-					just use <code class="language-flat">{`#{ expression }`}</code> (or even just
-					<code class="language-flat">#variable</code>, if it is just accessing an attribute) within
-					a string literal and the compiler does the rest for you.
+					just use <code class="language-flat">{`#{ expression }`}</code> within a string literal and
+					the compiler does the rest for you.
 				</p>
 				<p>
 					One cool thing about the way List's are implemented in Flat is that because it is a trait,
