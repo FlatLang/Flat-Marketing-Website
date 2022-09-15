@@ -62,7 +62,10 @@
 					<a class="neon-shadow" href="/">
 						<h1 class="return-home">RETURN HOME</h1>
 					</a>
-					<TreeBrowser data={docPages} urlPrefix="/docs" />
+
+					<div style="margin-top: 25px;">
+						<TreeBrowser data={docPages} urlPrefix="/docs" />
+					</div>
 				</div>
 			</div>
 			<div class="content white-background">
