@@ -35,6 +35,7 @@ const blogPages: BlogPage[] = [{
     header: "Zero-Cost Primitive Generics",
     url: "zero-cost-primitive-generics",
     date: dayjs("2/21/2017"),
+    visible: false,
     author: "Braden Steffaniak"
 }, {
     header: "Thread-Local Storage",
@@ -70,16 +71,19 @@ const blogPages: BlogPage[] = [{
     header: "Runtime Module Loading",
     url: "runtime-module-loading",
     date: dayjs("2/28/2017"),
+    visible: false,
     author: "Braden Steffaniak"
 }, {
     header: "Scalable Compiler Components",
     url: "scalable-compiler-components",
     date: dayjs("3/1/2017"),
+    visible: false,
     author: "Braden Steffaniak"
 }, {
     header: "Flat Path Forward",
     url: "path-forward",
     date: dayjs("3/2/2017"),
+    visible: false,
     author: "Braden Steffaniak"
 }, {
     header: "Flat Unit Testing",
