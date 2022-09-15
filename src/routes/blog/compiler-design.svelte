@@ -173,8 +173,7 @@
 		<h2>MOVING FORWARD</h2>
 		<p>
 			This is only the first evolution of the compiler and I expect a lot to change in the future
-			when there are more components built on it, as well as more different perspectives on it from
-			the community.
+			when there are more components built on it.
 		</p>
 	</div>
 </template>
