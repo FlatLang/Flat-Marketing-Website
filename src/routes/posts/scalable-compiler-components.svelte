@@ -19,22 +19,22 @@
 		<p>
 			The Flat compiler is being developed with the aim of being the most scalable compiler ever.
 			The approach that is being taken to do this is to make use of <a
-				href="/blog/runtime-module-loading">runtime module loading</a
+				href="/posts/runtime-module-loading">runtime module loading</a
 			>.
 		</p>
 		<p>
-			The blog post that was written on runtime module loading was geared toward the essence of
-			runtime module loading, not necessarily the application of it. This post is going to explain
-			how runtime loading of modules is applied within the compiler.
+			The post that was written on runtime module loading was geared toward the essence of runtime
+			module loading, not necessarily the application of it. This post is going to explain how
+			runtime loading of modules is applied within the compiler.
 		</p>
 	</div>
 
 	<div anchor-button id="compiler-structure">
 		<h1>COMPILER STRUCTURE</h1>
 		<p>
-			I wrote a blog post on the <a href="/blog/compiler-design">compiler design</a> and how it is had
-			three core principles: Separation of concerns, extensibility, and simplicity. The source of how
-			a lot of each of those principles are kept rely on the scalability of the compiler. Here is a refresher
+			I wrote a post on the <a href="/posts/compiler-design">compiler design</a> and how it is had three
+			core principles: Separation of concerns, extensibility, and simplicity. The source of how a lot
+			of each of those principles are kept rely on the scalability of the compiler. Here is a refresher
 			on the structure of the compiler:
 		</p>
 		<div class="flow-container">
@@ -180,15 +180,15 @@
 		<p>
 			<i
 				><b>Disclaimer</b>: The following code is just demo code to give a general idea of what the
-				implementation looks like. There will be individual blog posts on each of the specific
-				component types in the future where the implementation details and specifics are shared.</i
+				implementation looks like. There will be individual posts on each of the specific component
+				types in the future where the implementation details and specifics are shared.</i
 			>
 		</p>
 		<p>
 			The compiler looks for classes that extend or implement specific classes or interfaces to
 			determine what components to run for each stage of compilation. After loading the Library
-			(explained in the <a href="/blog/runtime-module-loading">previous blog post</a>), you can
-			search for classes that extended or implement a specific class or interface with the
+			(explained in the <a href="/posts/runtime-module-loading">previous post</a>), you can search
+			for classes that extended or implement a specific class or interface with the
 			Class.getClassesOfType function<FootnoteRef id="class-filtering" />.
 		</p>
 		<div anchor-button id="parsers">

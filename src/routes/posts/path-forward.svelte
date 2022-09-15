@@ -158,11 +158,11 @@
 		<div anchor-button id="runtime-module-loading">
 			<h3>COMPONENTS LOADED AT RUNTIME</h3>
 			<p>
-				This, also, has been preached on many times in previous blog posts. The compiler needs to
-				have a few foundational components (Abstract Syntax Tree model, component pipeline model),
-				and some default supplementary components (default Flat code parser, default type
-				validators, default optimizers, default generators). The rest of the components are included
-				and loaded by the will of the user.
+				This, also, has been preached on many times in previous posts. The compiler needs to have a
+				few foundational components (Abstract Syntax Tree model, component pipeline model), and some
+				default supplementary components (default Flat code parser, default type validators, default
+				optimizers, default generators). The rest of the components are included and loaded by the
+				will of the user.
 			</p>
 		</div>
 		<div anchor-button id="separation-of-concerns">
@@ -248,7 +248,7 @@
 	<div anchor-button id="performance-analysis">
 		<h1>PERFORMANCE ANALYSIS TOOLKIT</h1>
 		<p>
-			The performance analysis in Flat, <a href="/blog/multiple-targets#performance-analysis"
+			The performance analysis in Flat, <a href="/posts/multiple-targets#performance-analysis"
 				>as explained here</a
 			>, has some serious potential. The performance perspective that multiple-targets allows for is
 			a big white-space in the performance analysis field.
@@ -266,7 +266,7 @@
 			from each commit, try to compile and run it with performance analysis. Doing this could give 3
 			dimensional insight on the project's performance. You would be able to see which functions got
 			faster or got slower, what areas of the code have always been bottlenecks, etc. And with the
-			ability to differentiate from <a href="/blog/multiple-targets#bottleneck-types"
+			ability to differentiate from <a href="/posts/multiple-targets#bottleneck-types"
 				>language architecture bottlenecks and algorithmic bottlenecks</a
 			>, the performance history becomes exponentially more powerful.
 		</p>
@@ -282,7 +282,7 @@
 			Flat 1.0 will be defined by the finalization of the syntax. However, in this case,
 			finalization of syntax does not mean the syntax will never be updated again. It simply means
 			that the main objective is shifted from language design to tool design. There will be a tool
-			created, much like <a target="_blank" href="https://blog.golang.org/introducing-gofix"
+			created, much like <a target="_blank" href="https://posts.golang.org/introducing-gofix"
 				>gofix</a
 			>, where even if the new syntax is not backwards compatible, the old code will be convertible
 			to the new syntax through automation. I think the releasing of the "Flatfix", or whatever it
@@ -303,8 +303,8 @@
 		</p>
 		<p>
 			The fragmentation of the library brings up an important point on which I will make a future
-			blog post on: <b>package management</b>. I have been lightly thinking about the package
-			manager that Flat is going to use, called "<a
+			post on: <b>package management</b>. I have been lightly thinking about the package manager
+			that Flat is going to use, called "<a
 				target="_blank"
 				href="https://github.com/FlatLang/Airship">Airship</a
 			>". The package manager would be much like

@@ -43,7 +43,7 @@
 			<h1 class="flat-text">FLAT</h1>
 		</a>
 		<div class="home-navigation">
-			<a class="blog-link" href="/blog">BLOG</a>
+			<a class="posts-link" href="/posts">POSTS</a>
 			<a class="documentation-link" href="/docs">DOCUMENTATION</a>
 		</div>
 	</div>

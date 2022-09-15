@@ -91,7 +91,7 @@
 		descr = descr || '';
 
 		window.open(
-			`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=Check%20out%20this%20Flat%20blog%20post&summary=&source=`,
+			`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=Check%20out%20this%20Flat%20posts%20post&summary=&source=`,
 			'sharer',
 			'top=' +
 				winTop +

@@ -6,7 +6,7 @@
 	import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
 
 	import { jscd, defer, fetchJson } from 'src/util';
-	import { blogPages } from 'src/routes/blog/blog';
+	import { postsPages } from 'src/routes/posts/posts';
 	import { checkHash } from 'src/flash';
 	import { browser } from '$app/env';
 	import { writable } from 'svelte/store';
@@ -32,8 +32,8 @@
 	function createOsRelease(release: GitHubRelease): OsRelease {
 		const { name, html_url } = release;
 
-		const blogPostUrl = 'airship/' + name.replace(/[\.]/g, '_') + '-release-notes';
-		const page = blogPages.find((page) => page.url === blogPostUrl);
+		const postsPostUrl = 'airship/' + name.replace(/[\.]/g, '_') + '-release-notes';
+		const page = postsPages.find((page) => page.url === postsPostUrl);
 
 		function prefixedWith(value: string): (name: string) => boolean {
 			return (name) => name.startsWith(value);
@@ -48,7 +48,7 @@
 			],
 			version: name,
 			url: html_url,
-			releaseNotesUrl: page ? `/blog/${page.url}` : undefined,
+			releaseNotesUrl: page ? `/posts/${page.url}` : undefined,
 			createdAt: dayjs(release.created_at)
 		};
 

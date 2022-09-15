@@ -10,8 +10,8 @@
 			<div anchor-button id="thread_local" class="release-note">
 				<h4>Added thread_local annotation modifier</h4>
 				<p>
-					As explained in <a href="/blog/thread-local-storage">this blog post</a>, allows thread
-					local storage (TLS).
+					As explained in <a href="/posts/thread-local-storage">this post</a>, allows thread local
+					storage (TLS).
 				</p>
 			</div>
 			<div anchor-button id="compiler_visible" class="release-note">
@@ -27,7 +27,7 @@
 			</div>
 			<div anchor-button id="tls-exception-data" class="release-note">
 				<h4>
-					Updated ExceptionData to be kept track of through <a href="/blog/thread-local-storage"
+					Updated ExceptionData to be kept track of through <a href="/posts/thread-local-storage"
 						>TLS</a
 					> instead of being passed by parameter
 				</h4>

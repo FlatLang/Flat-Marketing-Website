@@ -3,7 +3,7 @@
 	import Footer from 'src/components/Footer.svelte';
 	import Share from 'src/components/Share.svelte';
 
-	import { currentPage, blogPages } from './blog';
+	import { currentPage, postsPages } from './posts';
 	import { page } from '$app/stores';
 	import { writable } from 'svelte/store';
 
@@ -12,21 +12,21 @@
 	page.subscribe(({ url }) => {
 		currentPage.set(null);
 
-		const prefix = '/blog/';
+		const prefix = '/posts/';
 		const urlIndex = url.pathname.indexOf(prefix);
 
 		if (urlIndex === 0) {
-			const blogPage = url.pathname.substring(urlIndex + prefix.length);
+			const postsPage = url.pathname.substring(urlIndex + prefix.length);
 
-			if (blogPage) {
-				currentPage.set(blogPages.find((p) => p.url === blogPage));
+			if (postsPage) {
+				currentPage.set(postsPages.find((p) => p.url === postsPage));
 			}
 		}
 	});
 </script>
 
 <template lang="flat-html">
-	<div class="white-background blog">
+	<div class="white-background posts">
 		<div class="page-container">
 			<Header />
 			<div id="content-container">
@@ -97,7 +97,7 @@
 </template>
 
 <svelte:head>
-	<title>Blog | Flat Programming Language</title>
+	<title>Posts | Flat Programming Language</title>
 
 	<link href="/styles/docs.css" rel="preload" as="style" />
 	<link
@@ -106,16 +106,16 @@
 		type="text/css"
 		onload="this.media='all'; this.onload=null;"
 	/>
-	<link href="/styles/blog.css" rel="preload" as="style" />
+	<link href="/styles/posts.css" rel="preload" as="style" />
 	<link
-		href="/styles/blog.css"
+		href="/styles/posts.css"
 		rel="stylesheet"
 		type="text/css"
 		onload="this.media='all'; this.onload=null;"
 	/>
-	<link href="/styles/blog-styles.css" rel="preload" as="style" />
+	<link href="/styles/posts-styles.css" rel="preload" as="style" />
 	<link
-		href="/styles/blog-styles.css"
+		href="/styles/posts-styles.css"
 		rel="stylesheet"
 		type="text/css"
 		onload="this.media='all'; this.onload=null;"

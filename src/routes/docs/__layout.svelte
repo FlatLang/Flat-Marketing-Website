@@ -34,9 +34,9 @@
 		type="text/css"
 		onload="this.media='all'; this.onload=null;"
 	/>
-	<link href="/styles/blog-styles.css" rel="preload" as="style" />
+	<link href="/styles/posts-styles.css" rel="preload" as="style" />
 	<link
-		href="/styles/blog-styles.css"
+		href="/styles/posts-styles.css"
 		rel="stylesheet"
 		type="text/css"
 		onload="this.media='all'; this.onload=null;"

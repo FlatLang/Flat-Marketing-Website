@@ -2,7 +2,7 @@
 <slide id="footer">
     <table>
         <tr>
-            <td><a class="bold" href="/blog">BLOG</a></td>
+            <td><a class="bold" href="/posts">POSTS</a></td>
             <td><a class="bold" href="/docs">DOCUMENTATION</a></td>
             {#if false}
             <td class="social">

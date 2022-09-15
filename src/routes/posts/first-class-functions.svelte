@@ -350,7 +350,7 @@
 				First-class functions that can be returned by a function, assigned to a variable, and stored
 				in collections, will be added in the v0.3.8 release. The target release date for v0.3.8 is
 				next week on 3/5/2017. If you are seeing this after v0.3.8 has been released, then you can
-				see the release notes <a href="/blog/v0_3_8-release-notes">here</a>. Otherwise that link
+				see the release notes <a href="/posts/v0_3_8-release-notes">here</a>. Otherwise that link
 				will be a broken link.
 			</p>
 		</div>

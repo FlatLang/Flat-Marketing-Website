@@ -27,8 +27,8 @@
 					/>
 				</h4>
 				<p>
-					More info on first class functions discussed in <a href="/blog/first-class-functions"
-						>this blog post</a
+					More info on first class functions discussed in <a href="/posts/first-class-functions"
+						>this post</a
 					>.
 				</p>
 			</div>
@@ -135,8 +135,8 @@
 					>
 				</h4>
 				<p>
-					There will be a blog post on how to use Flat Nest's unit testing framework <a
-						href="/blog/flat-unit-testing">here</a
+					There will be a post on how to use Flat Nest's unit testing framework <a
+						href="/posts/flat-unit-testing">here</a
 					>.
 				</p>
 			</div>

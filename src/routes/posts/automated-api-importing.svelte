@@ -126,7 +126,7 @@
 	<div anchor-button id="automated-api-importing">
 		<h1>AUTOMATED API IMPORTING</h1>
 		<p>
-			Because you can <a href="/blog/compiler-design#parser-uses">write custom parsers</a>, adding
+			Because you can <a href="/posts/compiler-design#parser-uses">write custom parsers</a>, adding
 			API importing functionality will be surprisingly simple. If a parser for a language is
 			available, instead of translating it to Flat, you could pass an -api argument to the compiler
 			to have it generate the API binding for the functions in the input library. For example, say

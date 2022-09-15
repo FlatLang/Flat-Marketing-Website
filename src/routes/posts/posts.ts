@@ -7,7 +7,7 @@ export interface Reference {
     url: string;
 }
 
-export interface BlogPage {
+export interface PostsPage {
     header: string;
     url: string;
     date: dayjs.Dayjs;
@@ -16,7 +16,7 @@ export interface BlogPage {
     references?: Reference[];
 }
 
-const blogPages: BlogPage[] = [{
+const postsPages: PostsPage[] = [{
     header: "Flat Compiler Design",
     url: "compiler-design",
     date: dayjs("2/18/2017"),
@@ -99,7 +99,7 @@ const blogPages: BlogPage[] = [{
     references: [
         {
             header: "First-class Functions",
-            url: "/blog/first-class-functions"
+            url: "/posts/first-class-functions"
         }
     ]
 }, {
@@ -154,4 +154,4 @@ const blogPages: BlogPage[] = [{
 
 const currentPage = writable<any>(null);
 
-export { blogPages, currentPage };
+export { postsPages, currentPage };

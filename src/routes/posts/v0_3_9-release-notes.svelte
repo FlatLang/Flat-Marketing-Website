@@ -18,8 +18,8 @@
 					/>
 				</h4>
 				<p>
-					More info on first class functions discussed in <a href="/blog/first-class-functions"
-						>this blog post</a
+					More info on first class functions discussed in <a href="/posts/first-class-functions"
+						>this post</a
 					>.
 				</p>
 			</div>

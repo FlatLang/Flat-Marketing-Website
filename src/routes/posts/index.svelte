@@ -2,7 +2,7 @@
 	import { browser } from '$app/env';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { blogPages, currentPage } from './blog';
+	import { postsPages, currentPage } from './posts';
 
 	currentPage.set(null);
 
@@ -41,7 +41,7 @@
 
 	const updateResults = () => {
 		limited = false;
-		pages = [...blogPages]
+		pages = [...postsPages]
 			.filter((p) => p.visible !== false)
 			.filter(
 				(p) =>
@@ -104,7 +104,7 @@
 	<div class="post-list">
 		{#each pages as page}
 			<div class="post">
-				<h3><a href="/blog/{page.url}"><span>{page.header}</span></a></h3>
+				<h3><a href="/posts/{page.url}"><span>{page.header}</span></a></h3>
 				<h6><span class="date">{page.date.format('MMM D, YYYY')}</span></h6>
 			</div>
 		{/each}
@@ -113,9 +113,9 @@
 </div>
 
 <svelte:head>
-	<link href="/styles/blog-home.css" rel="preload" as="style" />
+	<link href="/styles/posts-home.css" rel="preload" as="style" />
 	<link
-		href="/styles/blog-home.css"
+		href="/styles/posts-home.css"
 		rel="stylesheet"
 		type="text/css"
 		onload="this.media='all'; this.onload=null;"
