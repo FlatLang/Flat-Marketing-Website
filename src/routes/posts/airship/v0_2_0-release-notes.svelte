@@ -68,7 +68,7 @@
                   ...
 
                   "defaultExports": [
-                    "flatlang/io/Console"
+                    "flat/io/Console"
                   ]
                 }
               }
@@ -77,7 +77,7 @@
         </pre>
 				<p>
 					This allows any package that imports this package as a dependency to automatically have
-					<code bash>flatlang/io/Console</code> imported in all files.
+					<code bash>flat/io/Console</code> imported in all files.
 				</p>
 			</div>
 			<div anchor-button id="bug-fixes" class="release-note">
