@@ -29,8 +29,8 @@
 			/>
 			<h2 class="bold" style="margin: 5vh 0 2.5vh 0;">FLAT PROGRAMMING LANGUAGE</h2>
 			<h4 class="motto" style="margin: 2.5vh 0 3vh 0;">
-				A multi-paradigm language built for <span class="bold neon-shadow">versatility</span> and
-				<span class="bold neon-shadow">rapid development</span>
+				A high-level multi-paradigm programming language used as an intermediary between
+				transpilation
 			</h4>
 			<div class="download">
 				<a class="neon-shadow download-button-link" href="/download">
