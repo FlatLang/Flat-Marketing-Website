@@ -16,12 +16,12 @@
 	</ul>
 </div>
 
-<div anchor-button id="nest">
+<div anchor-button id="test">
 	<h1>FLAT'S UNIT TESTING LIBRARY</h1>
 	<p>
-		Flat's unit testing library is named <a target="_blank" href="https://github.com/FlatLang/Nest"
-			>Nest</a
-		>. Nest follows the xUnit paradigm of having test runners, test cases, test fixtures, and test
+		Flat's unit testing library is named <a target="_blank" href="https://github.com/FlatLang/Test"
+			>Test</a
+		>. Test follows the xUnit paradigm of having test runners, test cases, test fixtures, and test
 		suites.
 	</p>
 </div>

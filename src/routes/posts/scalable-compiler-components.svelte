@@ -219,7 +219,7 @@
           {`
             // Import the findOperatorOnTopLevel extension function, as well
             // as many other useful extension functions for parsing.
-            import "novex/astro/util/CompilerStringFunctions"
+            import "flat/astro/util/CompilerStringFunctions"
 
             class AssignmentParser extends NodeParser {
               public static parse(String input, Node parent = null, Location location = Location.INVALID) -> Assignment => null {

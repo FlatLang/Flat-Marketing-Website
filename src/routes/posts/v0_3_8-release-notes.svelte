@@ -131,11 +131,11 @@
 				<h4>
 					Added unit testing functionality with Flat <a
 						target="_blank"
-						href="https://github.com/FlatLang/Nest">Nest</a
+						href="https://github.com/FlatLang/Test">Test</a
 					>
 				</h4>
 				<p>
-					There will be a post on how to use Flat Nest's unit testing framework <a
+					There will be a post on how to use Flat Test's unit testing framework <a
 						href="/posts/flat-unit-testing">here</a
 					>.
 				</p>
