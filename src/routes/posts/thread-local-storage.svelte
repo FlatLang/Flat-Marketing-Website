@@ -178,7 +178,7 @@
           {`
             public class ThreadLocalExample {
               public static class MyRunnable extends Thread {
-                private static ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+                private static ThreadLocal<Integer> threadLocal = ThreadLocal<Integer>();
 
                 public void run() {
                   threadLocal.set((int)(Math.random() * 100));
@@ -192,8 +192,8 @@
               }
 
               public static void main(String[] args) {
-                Thread thread1 = new MyRunnable();
-                Thread thread2 = new MyRunnable();
+                Thread thread1 = MyRunnable();
+                Thread thread2 = MyRunnable();
 
                 thread1.start();
                 thread2.start();
@@ -214,7 +214,7 @@
           {`
             class ThreadLocalExample {
               static class MyRunnable extends Thread {
-                static ThreadLocal<Int> threadLocal = new ThreadLocal()
+                static ThreadLocal<Int> threadLocal = ThreadLocal()
 
                 public run() {
                   threadLocal.set((Int)(Math.random() * 100))
@@ -226,8 +226,8 @@
               }
 
               public static main(String[] args) {
-                let thread1 = new MyRunnable()
-                let thread2 = new MyRunnable()
+                let thread1 = MyRunnable()
+                let thread2 = MyRunnable()
 
                 thread1.start()
                 thread2.start()
@@ -263,7 +263,7 @@
               }
 
               public static main(String[] args) {
-                let sharedRunnableInstance = new MyRunnable()
+                let sharedRunnableInstance = MyRunnable()
 
                 thread1.start()
                 thread2.start()

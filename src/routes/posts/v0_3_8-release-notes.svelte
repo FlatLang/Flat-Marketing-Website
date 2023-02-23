@@ -47,7 +47,7 @@
                 public construct(this Int myField) {}
               }
 
-              let myClass = new MyClass(10)
+              let myClass = MyClass(10)
 
               Console.writeLine(myClass.myField) // outputs 10
             `}
@@ -65,7 +65,7 @@
                 }
               }
 
-              let myClass = new MyClass(10)
+              let myClass = MyClass(10)
 
               Console.writeLine(myClass.myField) // outputs 10
             `}

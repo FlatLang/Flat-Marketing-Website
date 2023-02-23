@@ -57,7 +57,7 @@
 		</p>
 		<pre>
       <code class="language-flat">
-        let myLibrary = new Library("path/to/project/folder").load()
+        let myLibrary = Library("path/to/project/folder").load()
       </code>
     </pre>
 		<p>
@@ -73,7 +73,7 @@
 		<pre>
       <code class="language-flat">
         {`
-          let myLibrary = new Library("path/to/project/folder").load()
+          let myLibrary = Library("path/to/project/folder").load()
 
           let func = myLibrary.getFunction("funcName", "com/myproject/MySpecialClass")
 
@@ -125,7 +125,7 @@
 		<pre>
       <code class="language-flat">
         {`
-          let myLibrary = new Library("path/to/project/folder").load()
+          let myLibrary = Library("path/to/project/folder").load()
 
           let func(String, Int) -> String = myLibrary.getFunction("complexFunc", "com/myproject/MySpecialClass")
 
@@ -179,7 +179,7 @@
 		<pre>
       <code class="language-flat">
         {`
-          let myLibrary = new Library("path/to/project/folder").load()
+          let myLibrary = Library("path/to/project/folder").load()
 
           let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
 
@@ -194,7 +194,7 @@
 		<pre>
       <code class="language-flat">
         {`
-          let myLibrary = new Library("path/to/project/folder").load()
+          let myLibrary = Library("path/to/project/folder").load()
 
           let instance = myLibrary.getInstance("com/myproject/MySpecialClass")
 

@@ -149,7 +149,7 @@
             public static main(String[] args) {
               let path = getenv("PATH")
 
-              let myStringPath = new String(path)
+              let myStringPath = String(path)
 
               Console.writeLine("Path: #myStringPath")
             }

@@ -62,7 +62,7 @@
               var prevFib = 0
               var currFib = 1
 
-              return new Int[fibCount].map({
+              return Int[fibCount].map({
                 let value = prevFib
 
                 prevFib = currFib
@@ -151,7 +151,7 @@
 
             static MyStateMachine Fibs(int fibCount)
             {
-              return new MyStateMachine(6);
+              return MyStateMachine(6);
             }
           `}
         </code>
@@ -224,7 +224,7 @@
             var prevFib = 0
             var currFib = 1
 
-            return new Int[fibCount].map({
+            return Int[fibCount].map({
               let value = prevFib
 
               prevFib = currFib
@@ -240,7 +240,7 @@
 		<pre>
       <code class="language-flat" style="margin: 40px 0;">
         {`
-          return new Int[fibCount].map({
+          return Int[fibCount].map({
             let value = prevFib
 
             prevFib = currFib
@@ -261,7 +261,7 @@
 		<pre>
       <code class="language-flat" style="margin: 40px 0;">
         {`
-          let array = new Int[fibCount]
+          let array = Int[fibCount]
 
           // Replaced with size constraint instead of "for (element in this)"
           for (i in 0..fibCount) {
@@ -291,7 +291,7 @@
             var prevFib = 0
             var currFib = 1
 
-            let array = new Int[fibCount]
+            let array = Int[fibCount]
 
             // Replaced with size constraint instead of "for (element in this)"
             for (i in 0..fibCount) {
@@ -320,7 +320,7 @@
       <code class="language-flat" style="margin: 40px 0;">
         {`
           public static main(String[] args) {
-            for (fib in new FibsIterator(6)) {
+            for (fib in FibsIterator(6)) {
               Console.writeLine("#fib ")
             }
           }

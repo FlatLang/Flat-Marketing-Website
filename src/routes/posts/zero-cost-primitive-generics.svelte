@@ -39,16 +39,16 @@
       <code class="language-flat" style="margin: 40px 0;">
         {`
           // A barrel containing elements of type Bottle
-          let barrelOfBottles = new Barrel<Bottle>()
+          let barrelOfBottles = Barrel<Bottle>()
 
           // A barrel containing elements of type Monkey
-          let monkeysInABarrel = new Barrel<Monkey>()
+          let monkeysInABarrel = Barrel<Monkey>()
 
           // A barrel containing elements of type Shell
-          let barrelOfShells = new Barrel<Shell>()
+          let barrelOfShells = Barrel<Shell>()
 
           // A barrel containing elements of type Int
-          let barrelOfNumbers = new Barrel<Int>()
+          let barrelOfNumbers = Barrel<Int>()
         `}
       </code>
     </pre>
@@ -76,7 +76,7 @@
 
           }
 
-          myGenericFunc<Shell, Monkey>(5, new Shell(), new Monkey())
+          myGenericFunc<Shell, Monkey>(5, Shell(), Monkey())
         `}
       </code>
     </pre>
@@ -93,7 +93,7 @@
         <code class="language-flat" style="margin: 40px 0;">
           {`
             // A barrel containing elements of type Int
-            let barrelOfNumbers = new Barrel<Int>()
+            let barrelOfNumbers = Barrel<Int>()
 
             barrelOfNumbers.add(5) // valid
           `}
@@ -108,9 +108,9 @@
         <code class="language-flat" style="margin: 40px 0;">
           {`
             // A barrel containing elements of type Int
-            let barrelOfNumbers = new Barrel<IntWrapperClass>()
+            let barrelOfNumbers = Barrel<IntWrapperClass>()
 
-            barrelOfNumbers.add(new IntWrapperClass(5))
+            barrelOfNumbers.add(IntWrapperClass(5))
           `}
         </code>
       </pre>
@@ -148,7 +148,7 @@
       </pre>
 			<p>
 				Then you would create the barrelOfNumbers like: <span class="pre"
-					>let barrelOfNumbers = new IntBarrel()</span
+					>let barrelOfNumbers = IntBarrel()</span
 				>
 			</p>
 			<p>
@@ -166,7 +166,7 @@
 
             ...
 
-            let barrelOfNumbers = new IntBarrel()
+            let barrelOfNumbers = IntBarrel()
 
             // COMPILE ERROR: Expected type Barrel, but was given IntBarrel
             myFunBarrelFunction(barrelOfNumbers)

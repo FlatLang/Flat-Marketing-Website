@@ -71,11 +71,11 @@
             public construct(visible String message) {}
 
             public show() {
-              throw new Exception("A target implementation needs to override this function!")
+              throw Exception("A target implementation needs to override this function!")
             }
 
             public close() {
-              throw new Exception("A target implementation needs to override this function!")
+              throw Exception("A target implementation needs to override this function!")
             }
           }
         `}

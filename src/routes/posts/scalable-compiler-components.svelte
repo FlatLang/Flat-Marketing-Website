@@ -226,11 +226,11 @@
                 let assignmentIndex = input.findOperatorOnTopLevel('=')
 
                 if (assignmentIndex > 0) {
-                  let node = new Assignment(parent, location)
+                  let node = Assignment(parent, location)
 
                   if (node.parseAssignedNode(findAssigned(input, assignmentIndex)) &&
                     node.parseAssignment(findAssignment(input, assignmentIndex))) {
-                    node.operators.add(new Operator(parent: node, value: "="))
+                    node.operators.add(Operator(parent: node, value: "="))
 
                     return node
                   }
@@ -301,7 +301,7 @@
                   let suggestionsText = suggestions.count > 0 ?
                     "Some suggestions include: " + suggestions.join(", ") : ""
 
-                  toss new SpellCheckWarning(
+                  toss SpellCheckWarning(
                     "Identifier '#identifier.name' is not spelled correctly. #suggestionsText",
                     identifier
                   )
@@ -402,7 +402,7 @@
                 let startValue = Int.parse(startLiteral.value)
                 let endValue = Int.parse(endLiteral.value)
 
-                let replacementScope = new Scope(node.parent, node.location)
+                let replacementScope = Scope(node.parent, node.location)
 
                 // Unroll the contents of the foreach loop into a replacementScope
                 // buffer before replacing the foreach loop with the scope.

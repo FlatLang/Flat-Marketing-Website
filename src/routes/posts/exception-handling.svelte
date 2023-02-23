@@ -258,7 +258,7 @@
 
               sketchyFunction() {
                 if (someInvalidCondition) {
-                  throw new Exception("Bad thing happened")
+                  throw Exception("Bad thing happened")
                 } else {
                   // do whatever sketchyFunction is supposed to do
                 }
@@ -279,7 +279,7 @@
 
               sketchyFunction() {
                 if (someInvalidCondition) {
-                  throw new Exception("Bad thing happened")
+                  throw Exception("Bad thing happened")
                 } else {
                   // do whatever sketchyFunction is supposed to do
                 }
@@ -335,7 +335,7 @@
 
               sketchyFunction() {
                 if (someInvalidCondition) {
-                  toss new Exception("Bad thing happened")
+                  toss Exception("Bad thing happened")
                 } else {
                   // do whatever sketchyFunction is supposed to do
                 }
@@ -347,9 +347,9 @@
         </pre>
 			<p>
 				The difference that this has on the execution flow is that instead of stopping at the <span
-					class="pre">toss new Exception("Bad thing happened")</span
+					class="pre">toss Exception("Bad thing happened")</span
 				>
-				as it would have with <span class="pre">throw new Exception("Bad thing happened")</span>,
+				as it would have with <span class="pre">throw Exception("Bad thing happened")</span>,
 				the code will continue to execute. Now if we were to catch the exception, you would have a
 				different execution flow:
 			</p>
@@ -366,7 +366,7 @@
 
               sketchyFunction() {
                 if (someInvalidCondition) {
-                  toss new Exception("Bad thing happened")
+                  toss Exception("Bad thing happened")
                 } else {
                   // do whatever sketchyFunction is supposed to do
                 }

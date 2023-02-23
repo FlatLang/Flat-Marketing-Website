@@ -276,7 +276,7 @@
             }
 
             class Customer {
-              Billable billStrategy = new NormalHours()
+              Billable billStrategy = NormalHours()
 
               Double sum = 0
 
@@ -286,16 +286,16 @@
             }
 
             public static main(String[] args) {
-              let c1 = new Customer()
+              let c1 = Customer()
 
               c1.charge() // 5
 
               //surge hour
-              c1.billStrategy = new SurgeHour()
+              c1.billStrategy = SurgeHour()
               c1.charge() // 10
 
               // happy hour
-              c1.billStrategy = new HappyHour()
+              c1.billStrategy = HappyHour()
               c1.charge() // 2.5
               c1.charge() // 2.5
             }
@@ -320,7 +320,7 @@
             }
 
             public static main(String[] args) {
-              let c1 = new Customer()
+              let c1 = Customer()
 
               c1.charge() // 5
 

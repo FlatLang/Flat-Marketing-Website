@@ -59,7 +59,7 @@
 			<pre class="left">
         <code class="language-flat">
           {`
-            new ServerSocket():start(8080):close()
+            ServerSocket():start(8080):close()
           `}
         </code>
       </pre>
@@ -70,7 +70,7 @@
 			<pre class="left">
         <code class="language-flat">
           {`
-            let server = new ServerSocket()
+            let server = ServerSocket()
             server.start(8080)
             server.close()
           `}
@@ -83,7 +83,7 @@
 			<pre class="left">
         <code class="language-flat">
           {`
-            let builder = new StringBuilder()
+            let builder = StringBuilder()
               :append("this ")
               :append("is ")
               :append("an ")
@@ -98,7 +98,7 @@
         <code class="language-flat">
           {`
             log.info(
-              new StringBuilder()
+              StringBuilder()
                 :append("this ")
                 :append("is ")
                 :append("an ")
@@ -111,7 +111,7 @@
 			<pre class="left">
         <code class="language-flat">
           {`
-            let builder = new StringBuilder()
+            let builder = StringBuilder()
 
             builder.append("this ")
             builder.append("is ")

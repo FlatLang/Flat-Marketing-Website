@@ -531,15 +531,15 @@
 
             // ====================== JAVA =========================
 
-            Point a = new Point(5, 6);
-            Point b = new Point(10, 6);
+            Point a = Point(5, 6);
+            Point b = Point(10, 6);
 
             double distance = SomeLibrary.distance(a, b); // 5.0
 
             // ======================= C# ==========================
 
-            var a = new Point(5, 6);
-            var b = new Point(10, 6);
+            var a = Point(5, 6);
+            var b = Point(10, 6);
 
             var distance = SomeLibrary.distance(a, b); // 5.0
           `}

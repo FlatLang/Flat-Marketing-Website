@@ -180,7 +180,7 @@
 					<pre class="left">
             <code class="language-flat">
               {`
-                new CliArg("--link", new Array<String>(), minCount: 0, maxCount: 1)
+                CliArg("--link", String[], minCount: 0, maxCount: 1)
               `}
             </code>
           </pre>
