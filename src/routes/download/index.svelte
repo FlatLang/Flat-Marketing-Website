@@ -123,6 +123,7 @@
 
 	let whyJava = false;
 	let whyMaven = false;
+	let whyGit = false;
 	let showAll = false;
 
 	let os = jscd.os || '';
@@ -263,6 +264,16 @@
 									>{/if}
 								{#if whyMaven}<span
 										>The first iteration of the compiler requires Maven to build the compiler</span
+									>{/if}
+							</span>
+						</li>
+						<li>
+							Git
+							<span class="why gray">
+								{#if !whyGit}<span class="tooltip" on:click={() => (whyGit = true)}
+										>why Git?</span
+									>{/if}
+								{#if whyGit}<span>Git is used to download project dependencies</span
 									>{/if}
 							</span>
 						</li>
