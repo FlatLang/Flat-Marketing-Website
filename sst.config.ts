@@ -12,16 +12,18 @@ export default {
     app.stack(function Site({ stack }) {
       const domain = 'flatlang.org';
       const subdomain = stack.stage === 'prod' ? '' : `${stack.stage}.`;
+      const domainName = `${subdomain}${domain}`;
 
       const site = new SvelteKitSite(stack, 'site', {
         customDomain: {
           hostedZone: domain,
-          domainName: `${subdomain}${domain}`,
+          domainName,
         },
         edge: true,
       });
       stack.addOutputs({
         url: site.url,
+        host: `https://${domainName}`,
       });
     });
   },
