@@ -13,7 +13,7 @@
         only covers the most common items, and tries to guess sensible
         defaults.
 
-        Use `airship add <pkg>` afterwards to install a package and save
+        Use \`airship add <pkg>\` afterwards to install a package and save
         it as a dependency in the flat.json file.
 
         Press ^C at any time to quit.
@@ -47,7 +47,9 @@
       `}
     </code>
   </pre>
-	<p style="margin-top: 50px;">Now you can add a console logging statement to the main function like this:</p>
+	<p style="margin-top: 50px;">
+		Now you can add a console logging statement to the main function like this:
+	</p>
 	<pre style="margin-top: 20px;">
     <code>
       {`
