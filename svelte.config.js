@@ -20,7 +20,7 @@ const config = {
 
       return {code: args.content};
     },
-    'replace': [[/(from\s*["'])src\//g, "$1/src/"]]
+    'replace': [[/(from\s*["'])src\//g, "$1/src/"]],
   }),
 
 	kit: {
@@ -30,11 +30,11 @@ const config = {
       pages: 'build',
       assets: 'build',
       fallback: null,
-      precompress: true
+      precompress: true,
     }),
     prerender: {
-      // This can be false if you're using a fallback (i.e. SPA mode)
-      default: true
+      // This can be false if you're using LOCAL_GIT_DIRECTORY fallback (i.e. SPA mode) default: true
+      handleMissingId: 'ignore',
     }
 	}
 };
