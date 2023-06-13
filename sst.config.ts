@@ -11,8 +11,8 @@ export default {
 	stacks(app) {
 		app.stack(function Site({ stack }) {
 			const site = new SvelteKitSite(stack, 'site', {
-        edge: true
-      });
+				edge: true
+			});
 			stack.addOutputs({
 				url: site.url
 			});
