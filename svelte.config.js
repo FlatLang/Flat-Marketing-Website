@@ -1,4 +1,4 @@
-import adapter from "svelte-kit-sst";
+import adapter from 'svelte-kit-sst';
 import preprocess from 'svelte-preprocess';
 import anchorButton from './anchor-button.js';
 import inlineSvg from './inline-svg.js';
