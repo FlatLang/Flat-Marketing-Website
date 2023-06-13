@@ -1,492 +1,492 @@
 #splashscreen:before {
-	content: '';
+  content: '';
 
-	position: fixed;
+  position: fixed;
 
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 
-	-webkit-filter: blur(5px);
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-	filter: blur(5px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 
-	background-image: url(/images/code.webp);
-	background-size: cover;
-	background-position: left;
+  background-image: url(/images/code.webp);
+  background-size: cover;
+  background-position: left;
 
-	-webkit-transform: translate3d(0, 0, 0);
-	-webkit-backface-visibility: hidden;
-	-webkit-perspective: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
 
-	transform: translateZ(0);
+  transform: translateZ(0);
 
-	z-index: -1;
+  z-index: -1;
 }
 
 #splashscreen:after {
-	content: '';
+  content: '';
 
-	background-color: #1f122d;
+  background-color: #1f122d;
 
-	position: absolute;
+  position: absolute;
 
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 
-	opacity: 0.85;
+  opacity: 0.85;
 
-	z-index: -1;
+  z-index: -1;
 }
 
 #splashscreen {
-	position: relative;
+  position: relative;
 
-	text-align: center;
+  text-align: center;
 
-	color: white;
+  color: white;
 }
 
 .splash-header {
-	font-size: 34px;
+  font-size: 34px;
 }
 
 .splash-subheader {
-	font-size: 25px;
+  font-size: 25px;
 }
 
 .motto {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 #splashscreen .flat-text {
-	margin: 0;
+  margin: 0;
 
-	position: absolute;
+  position: absolute;
 
-	left: 38px;
-	top: 16.5px;
+  left: 38px;
+  top: 16.5px;
 }
 
 #logo-main {
-	height: 38vh;
+  height: 38vh;
 }
 
 .downloads {
-	text-align: center;
+  text-align: center;
 
-	margin: auto;
+  margin: auto;
 
-	width: 100%;
+  width: 100%;
 
-	display: table;
-	border-spacing: 25px;
+  display: table;
+  border-spacing: 25px;
 
-	table-layout: fixed;
+  table-layout: fixed;
 
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .downloads > a {
-	display: table-cell;
+  display: table-cell;
 }
 
 .downloads > a > div {
-	background-color: #f15d3b;
+  background-color: #f15d3b;
 
-	border: 1.5px solid #fff;
-	box-shadow: 0 0 0 8px #f15d3b;
-	border-radius: 25px;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 0 8px #f15d3b;
+  border-radius: 25px;
 
-	line-height: 0.8;
+  line-height: 0.8;
 
-	padding: 18px;
+  padding: 18px;
 
-	color: #fff;
+  color: #fff;
 }
 
 .downloads p {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .downloads * {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .downloads .stable {
-	margin-right: 4%;
+  margin-right: 4%;
 
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .downloads .beta {
-	margin-left: 4%;
+  margin-left: 4%;
 
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .download {
-	border-radius: 0;
+  border-radius: 0;
 
-	position: relative;
+  position: relative;
 
-	display: inline-block;
+  display: inline-block;
 }
 
 .download table {
-	margin: auto;
+  margin: auto;
 }
 
 .download table p {
-	color: #fff;
+  color: #fff;
 
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .download table p {
-	margin: 4px 0;
+  margin: 4px 0;
 }
 
 .download div {
-	display: inline-block;
+  display: inline-block;
 
-	border-radius: 10px;
+  border-radius: 10px;
 
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 
-	padding: 12px;
-	padding-right: 20px;
+  padding: 12px;
+  padding-right: 20px;
 
-	background-color: #f15d3b;
+  background-color: #f15d3b;
 
-	line-height: 0.8;
+  line-height: 0.8;
 
-	color: #fff;
+  color: #fff;
 
-	vertical-align: top;
+  vertical-align: top;
 
-	height: 90px;
+  height: 90px;
 
-	box-sizing: border-box;
+  box-sizing: border-box;
 
-	z-index: -1;
+  z-index: -1;
 
-	position: relative;
+  position: relative;
 
-	right: 1px;
+  right: 1px;
 }
 
 .download svg {
-	height: 90px;
-	width: 90px;
+  height: 90px;
+  width: 90px;
 
-	display: inline-block;
+  display: inline-block;
 
-	transform: scale(1.011);
+  transform: scale(1.011);
 }
 
 .download a {
-	display: block;
+  display: block;
 
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .download-button-link {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .download-button {
-	border: 3px solid #fff;
+  border: 3px solid #fff;
 
-	margin-top: 15px;
+  margin-top: 15px;
 
-	padding: 8px 12px;
+  padding: 8px 12px;
 
-	font-weight: bold;
-	font-size: 30px;
+  font-weight: bold;
+  font-size: 30px;
 
-	color: white;
+  color: white;
 }
 
 #aspects {
-	white-space: nowrap;
+  white-space: nowrap;
 
-	padding-left: 0;
-	padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 
-	background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 #aspects > div {
-	display: flex;
+  display: flex;
 }
 
 #aspects > div > div:nth-of-type(1) {
-	order: 1;
+  order: 1;
 }
 
 #aspects > div > div:nth-of-type(2) {
-	order: 2;
+  order: 2;
 }
 
 #aspects > div > div:nth-of-type(3) {
-	order: 3;
+  order: 3;
 }
 
 .section {
-	width: 27vw;
-	height: 27vw;
+  width: 27vw;
+  height: 27vw;
 
-	margin: 50px 3vw;
+  margin: 50px 3vw;
 
-	border: 3px solid;
+  border: 3px solid;
 
-	display: inline-block;
+  display: inline-block;
 
-	text-align: center;
+  text-align: center;
 
-	white-space: normal;
+  white-space: normal;
 }
 
 .section > table {
-	color: inherit;
-	text-align: inherit;
+  color: inherit;
+  text-align: inherit;
 
-	width: 100%;
-	height: 100%;
-	padding: 0 5%;
+  width: 100%;
+  height: 100%;
+  padding: 0 5%;
 }
 
 .section > table tr:nth-of-type(1) {
-	height: 50%;
+  height: 50%;
 }
 
 .section > table tr:nth-of-type(1) td {
-	border-bottom-width: 2px;
-	border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
 }
 
 .section > table tr:nth-of-type(2) {
-	/*vertical-align: top;*/
+  /*vertical-align: top;*/
 }
 
 @media (max-width: 1100px) {
-	#aspects {
-	}
+  #aspects {
+  }
 
-	#aspects > div {
-		flex-direction: column;
-	}
+  #aspects > div {
+    flex-direction: column;
+  }
 
-	.section:nth-of-type(2) {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
+  .section:nth-of-type(2) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-	.section {
-		width: 80vw;
-		height: 80vw;
+  .section {
+    width: 80vw;
+    height: 80vw;
 
-		margin-left: auto;
-		margin-right: auto;
-	}
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .stay-up-to-date {
-	font-size: 25px;
+  font-size: 25px;
 
-	color: white;
+  color: white;
 
-	padding: 0;
+  padding: 0;
 }
 
 .logo-container {
-	max-width: 600px;
-	width: 90%;
+  max-width: 600px;
+  width: 90%;
 }
 
 .stay-up-to-date .header {
-	margin-top: 12px;
-	margin-bottom: 15px;
+  margin-top: 12px;
+  margin-bottom: 15px;
 }
 
 .stay-up-to-date > .content {
-	margin: 50px;
-	padding: 0px 25px;
+  margin: 50px;
+  padding: 0px 25px;
 
-	border-width: 2px;
-	border-style: solid;
+  border-width: 2px;
+  border-style: solid;
 }
 
 #code-example ul {
-	margin-left: 50px;
+  margin-left: 50px;
 }
 
 #code-example {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 
-	background-color: #fff;
+  background-color: #fff;
 
-	background-image: url(/images/code2.webp);
-	background-size: cover;
-	background-position: left;
+  background-image: url(/images/code2.webp);
+  background-size: cover;
+  background-position: left;
 }
 
 pre {
-	padding: 0;
-	white-space: pre-wrap;
-	word-break: normal;
-	word-wrap: normal;
-	/* display: flex; */
+  padding: 0;
+  white-space: pre-wrap;
+  word-break: normal;
+  word-wrap: normal;
+  /* display: flex; */
 }
 
 .code,
 .example-code {
-	color: #fff;
+  color: #fff;
 }
 
 #code-example p {
-	padding: 0 50px;
-	font-size: 16px;
+  padding: 0 50px;
+  font-size: 16px;
 }
 
 #code-example .code p,
 #code-example .example-code p {
-	padding-left: 5px;
-	padding-right: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #code-example .code-container {
-	width: 50%;
+  width: 50%;
 }
 
 #code-example .example .code,
 #code-example .example .example-code {
-	padding: 30px;
+  padding: 30px;
 
-	line-height: 1.1;
+  line-height: 1.1;
 }
 
 #code-example .example .description {
-	width: 50%;
+  width: 50%;
 
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 
-	align-self: center;
+  align-self: center;
 }
 
 #code-example .example {
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 
-	display: flex;
+  display: flex;
 }
 
 #code-example .example .description > h2 {
-	text-align: center;
+  text-align: center;
 }
 
 #code-example .example .description > h2 {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 #code-example .tree .code,
 #code-example .tree .example-code {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 
-	margin-left: 50px;
+  margin-left: 50px;
 }
 
 .code,
 .example-code {
-	white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 #code-example .traits .code,
 #code-example .traits .example-code {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 
-	margin-right: 50px;
+  margin-right: 50px;
 }
 
 #code-example .example:nth-of-type(even) .code-container {
-	order: 1;
+  order: 1;
 }
 
 #code-example .example:nth-of-type(even) .description {
-	order: 2;
+  order: 2;
 }
 
 @media (max-width: 1100px) {
-	#code-example .example {
-		flex-direction: column;
-	}
+  #code-example .example {
+    flex-direction: column;
+  }
 
-	#code-example .example .description,
-	#code-example .example .code-container {
-		width: 100%;
-	}
+  #code-example .example .description,
+  #code-example .example .code-container {
+    width: 100%;
+  }
 
-	#code-example .example:nth-of-type(even) .code-container {
-		order: 2;
-	}
+  #code-example .example:nth-of-type(even) .code-container {
+    order: 2;
+  }
 
-	#code-example .example:nth-of-type(even) .description {
-		order: 1;
-	}
+  #code-example .example:nth-of-type(even) .description {
+    order: 1;
+  }
 }
 
 #code-comparisons > h1 {
-	color: white;
+  color: white;
 }
 
 #code-comparisons {
-	padding: 0 50px;
-	margin: 0;
+  padding: 0 50px;
+  margin: 0;
 
-	padding-bottom: 35px;
+  padding-bottom: 35px;
 }
 
 #code-comparisons h3 {
-	color: white;
+  color: white;
 }
 
 #code-comparisons .code h4,
 #code-comparisons .example-code h4 {
-	margin: 0;
-	margin-left: 18px;
-	margin-bottom: 0px;
+  margin: 0;
+  margin-left: 18px;
+  margin-bottom: 0px;
 }
 
 #code-comparisons .code,
 #code-comparisons .example-code {
-	border-radius: 0;
+  border-radius: 0;
 }
 
 #code-comparisons code.code {
-	margin-left: 0;
-	margin-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #code-comparisons .code hr,
 #code-comparisons .example-code hr {
-	width: 80%;
-	margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 #code-comparisons .explanation {
-	width: 40%;
-	padding: 5px 0px;
+  width: 40%;
+  padding: 5px 0px;
 }
 
 /*#code-comparisons .explanation h3 {
@@ -494,222 +494,222 @@ pre {
 }*/
 
 #code-comparisons .explanation p {
-	color: #f15d3b;
+  color: #f15d3b;
 
-	font-size: 22px;
+  font-size: 22px;
 }
 
 #code-comparisons .comparison {
-	display: flex;
+  display: flex;
 
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 #code-comparisons .comparison > div {
-	align-self: center;
+  align-self: center;
 }
 
 #code-comparisons table {
-	width: 100%;
+  width: 100%;
 }
 
 .l.bracket-container {
-	left: 0;
+  left: 0;
 }
 
 .r.bracket-container {
-	right: 0;
+  right: 0;
 }
 
 .bracket-container {
-	background-color: inherit;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	z-index: 1;
+  background-color: inherit;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
 
-	width: 50%;
+  width: 50%;
 }
 
 .bracket-cover {
-	content: '';
+  content: '';
 
-	position: absolute;
+  position: absolute;
 
-	left: 0;
-	top: 0;
-	bottom: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
 
-	width: calc(50% + 1px);
+  width: calc(50% + 1px);
 
-	background-color: inherit;
+  background-color: inherit;
 
-	z-index: 2;
+  z-index: 2;
 }
 
 .slide.visible .hack.transition:not(.on-active),
 .slide.active .hack.transition.on-active {
-	width: 0%;
+  width: 0%;
 }
 
 .bracket-cover,
 .bracket-container {
-	-webkit-transition: 1s ease all;
-	transition: 1s ease all;
+  -webkit-transition: 1s ease all;
+  transition: 1s ease all;
 
-	-webkit-transition-property: width;
-	transition-property: width;
+  -webkit-transition-property: width;
+  transition-property: width;
 
-	-webkit-transform-style: preserve-3d;
-	transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 
-	-webkit-perspective: 1000;
-	perspective: 1000;
+  -webkit-perspective: 1000;
+  perspective: 1000;
 }
 
 .l.bracket {
-	left: 100%;
-	border-right: none;
+  left: 100%;
+  border-right: none;
 }
 
 .r.bracket {
-	right: 100%;
-	border-left: none;
+  right: 100%;
+  border-left: none;
 }
 
 .bracket {
-	position: absolute;
-	width: 20px;
-	border: 3px solid #f15d3b;
-	top: 0;
-	bottom: 0;
+  position: absolute;
+  width: 20px;
+  border: 3px solid #f15d3b;
+  top: 0;
+  bottom: 0;
 }
 
 #code-comparisons div.code,
 #code-comparisons div.example-code {
-	position: relative;
+  position: relative;
 
-	max-width: 50%;
+  max-width: 50%;
 
-	margin: auto;
+  margin: auto;
 
-	overflow: hidden;
+  overflow: hidden;
 }
 
 #code-comparisons .code .container > div:nth-of-type(1),
 #code-comparisons .example-code .container > div:nth-of-type(1) {
-	padding-bottom: 15px;
+  padding-bottom: 15px;
 }
 
 #code-comparisons .code .container > div:nth-of-type(3),
 #code-comparisons .example-code .container > div:nth-of-type(3) {
-	padding-top: 15px;
+  padding-top: 15px;
 }
 
 #code-comparisons .code .container > div,
 #code-comparisons .example-code .container > div {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 #code-comparisons .code p,
 #code-comparisons .example-code p {
-	padding: 0 25px;
+  padding: 0 25px;
 
-	line-height: 1.3;
+  line-height: 1.3;
 
-	margin-top: 0;
-	margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 
-	font-size: 13px;
+  font-size: 13px;
 }
 
 #code-comparisons .code .indent #code-comparisons .example-code .indent {
-	margin-left: 31px;
-	text-indent: -31px;
+  margin-left: 31px;
+  text-indent: -31px;
 }
 
 @media (min-width: 1100px) {
-	#code-comparisons .comparison:nth-of-type(odd) > div:first-of-type,
-	#code-comparisons .comparison:nth-of-type(even) > div:last-of-type {
-		order: 1;
-	}
+  #code-comparisons .comparison:nth-of-type(odd) > div:first-of-type,
+  #code-comparisons .comparison:nth-of-type(even) > div:last-of-type {
+    order: 1;
+  }
 
-	#code-comparisons .comparison:nth-of-type(odd) > .explanation {
-		text-align: right;
-	}
+  #code-comparisons .comparison:nth-of-type(odd) > .explanation {
+    text-align: right;
+  }
 
-	#code-comparisons .comparison:nth-of-type(even) > div:first-of-type,
-	#code-comparisons .comparison:nth-of-type(odd) > div:last-of-type {
-		order: 2;
-	}
+  #code-comparisons .comparison:nth-of-type(even) > div:first-of-type,
+  #code-comparisons .comparison:nth-of-type(odd) > div:last-of-type {
+    order: 2;
+  }
 }
 @media (max-width: 1100px) {
-	#code-comparisons .comparison {
-		display: block;
-	}
+  #code-comparisons .comparison {
+    display: block;
+  }
 
-	#code-comparisons .comparison > div {
-		box-sizing: border-box;
-	}
+  #code-comparisons .comparison > div {
+    box-sizing: border-box;
+  }
 
-	#code-comparisons .explanation {
-		text-align: center;
-		display: block;
-		width: 100%;
-	}
+  #code-comparisons .explanation {
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
 
-	#code-comparisons div.code,
-	#code-comparisons div.example-code {
-		display: inline-block;
-		max-width: 90%;
+  #code-comparisons div.code,
+  #code-comparisons div.example-code {
+    display: inline-block;
+    max-width: 90%;
 
-		left: 50%;
-		transform: translateX(-50%);
-	}
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 #downloads {
-	padding: 50px;
+  padding: 50px;
 }
 
 #downloads > .downloads {
-	width: 500px;
+  width: 500px;
 }
 
 #target-benefits {
-	padding-left: 6%;
-	padding-right: 6%;
+  padding-left: 6%;
+  padding-right: 6%;
 }
 
 .component-container {
-	width: 100%;
+  width: 100%;
 
-	display: flex;
+  display: flex;
 }
 
 .component-container:nth-of-type(odd) .component:first-of-type {
-	width: 60%;
+  width: 60%;
 
-	order: 1;
+  order: 1;
 }
 .component-container:nth-of-type(odd) .component:last-of-type {
-	width: 40%;
+  width: 40%;
 
-	order: 2;
+  order: 2;
 }
 
 .component-container:nth-of-type(even) .component:first-of-type {
-	width: 60%;
+  width: 60%;
 
-	order: 2;
+  order: 2;
 }
 .component-container:nth-of-type(even) .component:last-of-type {
-	width: 40%;
+  width: 40%;
 
-	order: 1;
+  order: 1;
 }
 
 .component-container h1,
@@ -718,33 +718,33 @@ pre {
 .component-container h4,
 .component-container h5,
 .component-container h6 {
-	text-align: center;
+  text-align: center;
 }
 
 @media (max-width: 1100px) {
-	.component-container {
-		flex-direction: column;
-	}
+  .component-container {
+    flex-direction: column;
+  }
 
-	.component-container:nth-of-type(even) .component:first-of-type,
-	.component-container:nth-of-type(even) .component:last-of-type,
-	.component-container:nth-of-type(odd) .component:first-of-type,
-	.component-container:nth-of-type(odd) .component:last-of-type {
-		width: 100%;
-	}
+  .component-container:nth-of-type(even) .component:first-of-type,
+  .component-container:nth-of-type(even) .component:last-of-type,
+  .component-container:nth-of-type(odd) .component:first-of-type,
+  .component-container:nth-of-type(odd) .component:last-of-type {
+    width: 100%;
+  }
 
-	.component:nth-of-type(1) {
-		order: 1;
-	}
+  .component:nth-of-type(1) {
+    order: 1;
+  }
 
-	.component:nth-of-type(2) {
-		order: 2;
-	}
+  .component:nth-of-type(2) {
+    order: 2;
+  }
 
-	.component-container:nth-of-type(even) .component:first-of-type {
-		order: 1;
-	}
-	.component-container:nth-of-type(even) .component:last-of-type {
-		order: 2;
-	}
+  .component-container:nth-of-type(even) .component:first-of-type {
+    order: 1;
+  }
+  .component-container:nth-of-type(even) .component:last-of-type {
+    order: 2;
+  }
 }

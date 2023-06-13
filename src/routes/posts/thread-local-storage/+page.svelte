@@ -1,45 +1,45 @@
 <script lang="ts">
-	import Footnote from '$lib/components/Footnote.svelte';
-	import FootnoteRef from '$lib/components/FootnoteRef.svelte';
+  import Footnote from '$lib/components/Footnote.svelte';
+  import FootnoteRef from '$lib/components/FootnoteRef.svelte';
 </script>
 
 <template lang="flat-html">
-	<div anchor-button id="what-are-generic-types">
-		<h1>WHAT IS THREAD-LOCAL STORAGE (TLS)?</h1>
-		<p>
-			Thread-local storage<FootnoteRef id="tls" /> is global and static memory, but instead of being
-			shared between threads, it is local to individual threads. To better explain this, I will briefly
-			go over the types of memory in a program<FootnoteRef id="types-of-memory" />:
-		</p>
-		<ul>
-			<li><b>Data</b>: preinitialized modifiable static and global data</li>
-			<li><b>BSS</b>: uninitialized static and global data</li>
-			<li><b>Heap</b>: shared static and global data</li>
-			<li><b>Stack</b>: local variables and parameters</li>
-			<li><b>Registers</b>: really fast CPU memory</li>
-		</ul>
-		<p>The types of memory that are shared among threads include: Data, BSS, and Heap.</p>
-		<p>
-			This poses a problem for when you want a variable that is static or global, but not shared
-			among threads (i.e. each thread has its own copy of the variable). Different languages have
-			different solutions to this problem.
-		</p>
-	</div>
-	<div anchor-button id="implementations">
-		<h1>LANGUAGE IMPLEMENTATIONS</h1>
-		<div anchor-button id="pthread-implementation">
-			<h3>PThread Implementation</h3>
-			<p>
-				<a target="_blank" href="http://stackoverflow.com/a/15101240/1305997"
-					>Pthread implementations in C</a
-				>
-				have <span class="pre">pthread_key_create</span> and
-				<span class="pre">pthread_key_delete</span>
-				to allocate and deallocate space on a thread, and
-				<span class="pre">pthread_getspecific</span>
-				and <span class="pre">pthread_setspecific</span> to retrieve and set the data.
-			</p>
-			<pre>
+  <div anchor-button id="what-are-generic-types">
+    <h1>WHAT IS THREAD-LOCAL STORAGE (TLS)?</h1>
+    <p>
+      Thread-local storage<FootnoteRef id="tls" /> is global and static memory, but instead of being
+      shared between threads, it is local to individual threads. To better explain this, I will briefly
+      go over the types of memory in a program<FootnoteRef id="types-of-memory" />:
+    </p>
+    <ul>
+      <li><b>Data</b>: preinitialized modifiable static and global data</li>
+      <li><b>BSS</b>: uninitialized static and global data</li>
+      <li><b>Heap</b>: shared static and global data</li>
+      <li><b>Stack</b>: local variables and parameters</li>
+      <li><b>Registers</b>: really fast CPU memory</li>
+    </ul>
+    <p>The types of memory that are shared among threads include: Data, BSS, and Heap.</p>
+    <p>
+      This poses a problem for when you want a variable that is static or global, but not shared
+      among threads (i.e. each thread has its own copy of the variable). Different languages have
+      different solutions to this problem.
+    </p>
+  </div>
+  <div anchor-button id="implementations">
+    <h1>LANGUAGE IMPLEMENTATIONS</h1>
+    <div anchor-button id="pthread-implementation">
+      <h3>PThread Implementation</h3>
+      <p>
+        <a target="_blank" href="http://stackoverflow.com/a/15101240/1305997"
+          >Pthread implementations in C</a
+        >
+        have <span class="pre">pthread_key_create</span> and
+        <span class="pre">pthread_key_delete</span>
+        to allocate and deallocate space on a thread, and
+        <span class="pre">pthread_getspecific</span>
+        and <span class="pre">pthread_setspecific</span> to retrieve and set the data.
+      </p>
+      <pre>
         <code class="language-c" style="margin: 40px 0;">
           {`
             #include <stdio.h>
@@ -88,16 +88,16 @@
           `}
         </code>
       </pre>
-		</div>
-		<div anchor-button id="swift-implementation">
-			<h3>Swift Implementation</h3>
-			<p>
-				<a target="_blank" href="https://gist.github.com/kristopherjohnson/6f14a50006127424faf3"
-					>Swift's implementation</a
-				>
-				uses a dictionary called <span class="pre">threadDictionary</span>.
-			</p>
-			<pre>
+    </div>
+    <div anchor-button id="swift-implementation">
+      <h3>Swift Implementation</h3>
+      <p>
+        <a target="_blank" href="https://gist.github.com/kristopherjohnson/6f14a50006127424faf3"
+          >Swift's implementation</a
+        >
+        uses a dictionary called <span class="pre">threadDictionary</span>.
+      </p>
+      <pre>
         <code class="language-javascript" style="margin: 40px 0;">
           {`
             public func checkThreadLocal<T: AnyObject>(key: String, create: () -> T) -> T {
@@ -130,19 +130,19 @@
           `}
         </code>
       </pre>
-			<p>
-				In the above code example, the <span class="pre">checkThreadLocal</span> function checks the
-				threadDictionary to see if an entry with the given <span class="pre">key</span> value has
-				been added to the current thread's threadDictionary. If it has, then it simply returns the
-				already created object. Otherwise it creates the object (using the create() lambda) and
-				returns it. <span class="pre">x1</span>, <span class="pre">x2</span>, and
-				<span class="pre">x3</span> all reference the same variable in the current running thread's memory.
-			</p>
-			<p>
-				However, if you were to run <span class="pre">getFormatter()</span> once again in a new thread,
-				you would create a separate instance of the NSDateFormatter:
-			</p>
-			<pre>
+      <p>
+        In the above code example, the <span class="pre">checkThreadLocal</span> function checks the
+        threadDictionary to see if an entry with the given <span class="pre">key</span> value has
+        been added to the current thread's threadDictionary. If it has, then it simply returns the
+        already created object. Otherwise it creates the object (using the create() lambda) and
+        returns it. <span class="pre">x1</span>, <span class="pre">x2</span>, and
+        <span class="pre">x3</span> all reference the same variable in the current running thread's memory.
+      </p>
+      <p>
+        However, if you were to run <span class="pre">getFormatter()</span> once again in a new thread,
+        you would create a separate instance of the NSDateFormatter:
+      </p>
+      <pre>
         <code class="language-javascript" style="margin: 40px 0;">
           {`
             let x1 = getFormatter() // NEW INSTANCE CREATED!!
@@ -159,21 +159,21 @@
           `}
         </code>
       </pre>
-			<p>
-				This is because inside the <span class="pre">DispatchQueue.main.async</span> block, you are inside
-				a separate thread with its own threadDictionary.
-			</p>
-		</div>
-		<div anchor-button id="java-implementation">
-			<h3>Java Implementation</h3>
-			<p>
-				<a target="_blank" href="http://tutorials.jenkov.com/java-concurrency/threadlocal.html"
-					>Java's implementation</a
-				> uses a data structure that is near identical to what Flat uses. Java uses a ThreadLocal object
-				that takes a generic argument for the type of data that is being stored, and you use get/set/remove
-				functions to manage that memory within the thread.
-			</p>
-			<pre>
+      <p>
+        This is because inside the <span class="pre">DispatchQueue.main.async</span> block, you are inside
+        a separate thread with its own threadDictionary.
+      </p>
+    </div>
+    <div anchor-button id="java-implementation">
+      <h3>Java Implementation</h3>
+      <p>
+        <a target="_blank" href="http://tutorials.jenkov.com/java-concurrency/threadlocal.html"
+          >Java's implementation</a
+        > uses a data structure that is near identical to what Flat uses. Java uses a ThreadLocal object
+        that takes a generic argument for the type of data that is being stored, and you use get/set/remove
+        functions to manage that memory within the thread.
+      </p>
+      <pre>
         <code class="language-flat" style="margin: 40px 0;">
           {`
             public class ThreadLocalExample {
@@ -205,11 +205,11 @@
           `}
         </code>
       </pre>
-		</div>
-		<div anchor-button id="flat-implementation">
-			<h3>Flat Implementation</h3>
-			<p>The same code in Flat would look like:</p>
-			<pre>
+    </div>
+    <div anchor-button id="flat-implementation">
+      <h3>Flat Implementation</h3>
+      <p>The same code in Flat would look like:</p>
+      <pre>
         <code class="language-flat" style="margin: 40px 0;">
           {`
             class ThreadLocalExample {
@@ -239,14 +239,14 @@
           `}
         </code>
       </pre>
-			<p>
-				They are nearly identical. However, this is not the only way that Flat allows you to declare
-				thread locals. With a little syntax sugar from the <span class="pre">thread_local</span>
-				modifier (or <span class="pre">[ThreadLocal]</span> annotation), you are able to achieve the
-				same result with minimal change to how you would program it if it were not necessary to be local
-				to the thread:
-			</p>
-			<pre>
+      <p>
+        They are nearly identical. However, this is not the only way that Flat allows you to declare
+        thread locals. With a little syntax sugar from the <span class="pre">thread_local</span>
+        modifier (or <span class="pre">[ThreadLocal]</span> annotation), you are able to achieve the
+        same result with minimal change to how you would program it if it were not necessary to be local
+        to the thread:
+      </p>
+      <pre>
         <code class="language-flat" style="margin: 40px 0;">
           {`
             class ThreadLocalExample {
@@ -275,47 +275,47 @@
           `}
         </code>
       </pre>
-			<p>
-				The thread_local modifier also allows for more platform specific optimizations to take
-				place. For instance, when compiled to C, the compiler will output the thread_local fields
-				using the <a
-					target="_blank"
-					href="https://gcc.gnu.org/onlinedocs/gcc-3.3/gcc/Thread-Local.html">__thread</a
-				>
-				modifier, which offers a performance boost. Flat's <span class="pre">thread_local</span> modifier
-				will be available in version 0.3.7 and up.
-			</p>
-		</div>
-	</div>
+      <p>
+        The thread_local modifier also allows for more platform specific optimizations to take
+        place. For instance, when compiled to C, the compiler will output the thread_local fields
+        using the <a
+          target="_blank"
+          href="https://gcc.gnu.org/onlinedocs/gcc-3.3/gcc/Thread-Local.html">__thread</a
+        >
+        modifier, which offers a performance boost. Flat's <span class="pre">thread_local</span> modifier
+        will be available in version 0.3.7 and up.
+      </p>
+    </div>
+  </div>
 
-	<div anchor-button id="conclusion">
-		<h1>Conclusion</h1>
-		<p>
-			Considering the different approaches that the different languages in this article showcased,
-			Flat decided to use a ThreadLocal data structure because of its clean implementation with the <span
-				class="pre">thread_local</span
-			>
-			modifier. There needed to be a seamless way to define thread-local data without using some sort
-			of key/value pair to keep track of it. Instead of requiring you to keep track of the thread ID
-			<i>and</i>
-			the variable itself, the <span class="pre">thread_local</span> modifier consolidates the user's
-			focus on the variable itself.
-		</p>
-	</div>
+  <div anchor-button id="conclusion">
+    <h1>Conclusion</h1>
+    <p>
+      Considering the different approaches that the different languages in this article showcased,
+      Flat decided to use a ThreadLocal data structure because of its clean implementation with the <span
+        class="pre">thread_local</span
+      >
+      modifier. There needed to be a seamless way to define thread-local data without using some sort
+      of key/value pair to keep track of it. Instead of requiring you to keep track of the thread ID
+      <i>and</i>
+      the variable itself, the <span class="pre">thread_local</span> modifier consolidates the user's
+      focus on the variable itself.
+    </p>
+  </div>
 
-	<div anchor-button id="footnotes">
-		<h4>Footnotes:</h4>
-		<Footnote id="tls"
-			>More information on thread-local storage can be found <a
-				target="_blank"
-				href="https://en.wikipedia.org/wiki/Thread-local_storage">here</a
-			>.</Footnote
-		>
-		<Footnote id="types-of-memory"
-			>More information can be found <a
-				target="_blank"
-				href="https://en.wikipedia.org/wiki/Data_segment">here</a
-			>.</Footnote
-		>
-	</div>
+  <div anchor-button id="footnotes">
+    <h4>Footnotes:</h4>
+    <Footnote id="tls"
+      >More information on thread-local storage can be found <a
+        target="_blank"
+        href="https://en.wikipedia.org/wiki/Thread-local_storage">here</a
+      >.</Footnote
+    >
+    <Footnote id="types-of-memory"
+      >More information can be found <a
+        target="_blank"
+        href="https://en.wikipedia.org/wiki/Data_segment">here</a
+      >.</Footnote
+    >
+  </div>
 </template>

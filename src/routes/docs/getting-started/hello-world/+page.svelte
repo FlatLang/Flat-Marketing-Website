@@ -1,11 +1,11 @@
 <template lang="flat-html">
-	<h1>CREATING A HELLO WORLD PROGRAM</h1>
-	<p style="margin-top: 50px;">
-		After having <a href="/download">downloaded</a> and installed
-		<a href="/download#installation">Airship</a>, run
-		<code bash>airship init HelloWorld</code> and you should see this output:
-	</p>
-	<pre style="margin-top: 20px;">
+  <h1>CREATING A HELLO WORLD PROGRAM</h1>
+  <p style="margin-top: 50px;">
+    After having <a href="/download">downloaded</a> and installed
+    <a href="/download#installation">Airship</a>, run
+    <code bash>airship init HelloWorld</code> and you should see this output:
+  </p>
+  <pre style="margin-top: 20px;">
     <code bash>
       {`
         $ airship init HelloWorld
@@ -32,11 +32,11 @@
       `}
     </code>
   </pre>
-	<p style="margin-top: 50px;">
-		Once the initialization is finished, you should see a file with these contents at
-		<code bash>HelloWorld/src/HelloWorld.flat</code>:
-	</p>
-	<pre style="margin-top: 20px;">
+  <p style="margin-top: 50px;">
+    Once the initialization is finished, you should see a file with these contents at
+    <code bash>HelloWorld/src/HelloWorld.flat</code>:
+  </p>
+  <pre style="margin-top: 20px;">
     <code>
       {`
         class {
@@ -47,10 +47,10 @@
       `}
     </code>
   </pre>
-	<p style="margin-top: 50px;">
-		Now you can add a console logging statement to the main function like this:
-	</p>
-	<pre style="margin-top: 20px;">
+  <p style="margin-top: 50px;">
+    Now you can add a console logging statement to the main function like this:
+  </p>
+  <pre style="margin-top: 20px;">
     <code>
       {`
         class {
@@ -61,23 +61,23 @@
       `}
     </code>
   </pre>
-	<p style="margin-top: 50px;">Now you can install the HelloWorld program:</p>
-	<pre style="margin-top: 20px;">
+  <p style="margin-top: 50px;">Now you can install the HelloWorld program:</p>
+  <pre style="margin-top: 20px;">
     <code bash>
       airship install
     </code>
   </pre>
-	<p style="margin-top: 50px;">
-		You should see a new js file generated at <code bash>HelloWorld/dist/index.js</code>
-	</p>
-	<p>You can now run the HelloWorld program:</p>
-	<pre style="margin-top: 20px;">
+  <p style="margin-top: 50px;">
+    You should see a new js file generated at <code bash>HelloWorld/dist/index.js</code>
+  </p>
+  <p>You can now run the HelloWorld program:</p>
+  <pre style="margin-top: 20px;">
     <code bash>
       node dist/index.js
     </code>
   </pre>
-	<p style="margin-top: 50px;">And you should see this logged out into to the console:</p>
-	<pre style="margin-top: 20px;">
+  <p style="margin-top: 50px;">And you should see this logged out into to the console:</p>
+  <pre style="margin-top: 20px;">
     <code bash>
       Hello, world!
     </code>

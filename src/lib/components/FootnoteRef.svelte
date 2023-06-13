@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { getFootnote } from './footnotes';
+  import { getFootnote } from './footnotes';
 
-	export let id;
+  export let id;
 
-	let footnote = getFootnote(id);
+  let footnote = getFootnote(id);
 </script>
 
 <a href="#{id}" class="footnote">{footnote.number}</a>

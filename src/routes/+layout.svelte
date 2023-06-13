@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { checkHash } from '$lib/flash';
-	import { afterNavigate, beforeNavigate } from '$app/navigation';
-	import { clearFootnotes } from '$lib/components/footnotes';
-	import { resetSlides } from '$lib/slide';
+  import { checkHash } from '$lib/flash';
+  import { afterNavigate, beforeNavigate } from '$app/navigation';
+  import { clearFootnotes } from '$lib/components/footnotes';
+  import { resetSlides } from '$lib/slide';
 
-	beforeNavigate(() => {
-		resetSlides();
-	});
+  beforeNavigate(() => {
+    resetSlides();
+  });
 
-	afterNavigate(() => {
-		checkHash();
-		clearFootnotes();
-	});
+  afterNavigate(() => {
+    checkHash();
+    clearFootnotes();
+  });
 </script>
 
 <slot />
