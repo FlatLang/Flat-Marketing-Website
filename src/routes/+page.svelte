@@ -27,11 +27,11 @@
 				width="100%"
 				height="100%"
 			/>
-			<h2 class="bold" style="margin: 5vh 0 2.5vh 0;">FLAT PROGRAMMING LANGUAGE</h2>
-			<h4 class="motto" style="margin: 2.5vh 0 3vh 0;">
+			<h1 class="bold splash-header" style="margin: 5vh 0 2.5vh 0;">FLAT PROGRAMMING LANGUAGE</h1>
+			<h2 class="motto splash-subheader" style="margin: 2.5vh 0 3vh 0;">
 				A high-level multi-paradigm programming language used as an intermediary between
 				transpilation
-			</h4>
+			</h2>
 			<div class="download">
 				<a class="neon-shadow download-button-link" href="/download">
 					<h1 style="margin-top: 0;" class="download-button">DOWNLOAD FLAT</h1>

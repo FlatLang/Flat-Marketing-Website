@@ -52,6 +52,14 @@
 	color: white;
 }
 
+.splash-header {
+  font-size: 34px;
+}
+
+.splash-subheader {
+  font-size: 25px;
+}
+
 .motto {
 	font-weight: normal;
 }
