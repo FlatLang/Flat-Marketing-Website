@@ -85,9 +85,7 @@
 	const releaseUrl = `${apiRoot}/releases/${releaseTag ? 'tags/' + releaseTag : 'latest'}`;
 
 	async function fetchInitialRelease() {
-		$releases.resolve([
-      createOsRelease(await fetchJson<GitHubRelease>(releaseUrl))
-    ]);
+		$releases.resolve([createOsRelease(await fetchJson<GitHubRelease>(releaseUrl))]);
 
 		checkHash();
 	}
@@ -270,11 +268,9 @@
 						<li>
 							Git
 							<span class="why gray">
-								{#if !whyGit}<span class="tooltip" on:click={() => (whyGit = true)}
-										>why Git?</span
+								{#if !whyGit}<span class="tooltip" on:click={() => (whyGit = true)}>why Git?</span
 									>{/if}
-								{#if whyGit}<span>Git is used to download project dependencies</span
-									>{/if}
+								{#if whyGit}<span>Git is used to download project dependencies</span>{/if}
 							</span>
 						</li>
 					</ul>

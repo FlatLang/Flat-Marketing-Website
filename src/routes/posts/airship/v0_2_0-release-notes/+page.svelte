@@ -15,7 +15,9 @@
 		</ul>
 		<div id="release-notes" class="release-notes" style="margin-bottom: 20px;">
 			<div anchor-button id="init-command" class="release-note">
-				<h4>Add <code bash>init</code> command <Issue values={[{ number: 1, repo: 'Airship' }]} /></h4>
+				<h4>
+					Add <code bash>init</code> command <Issue values={[{ number: 1, repo: 'Airship' }]} />
+				</h4>
 				<p>
 					You can now run <code bash>./airship init</code> and it will guide you through the process
 					of creating a new Flat project.
@@ -39,7 +41,9 @@
         </pre>
 			</div>
 			<div anchor-button id="create-command" class="release-note">
-				<h4>Add <code bash>create</code> command <Issue values={[{ number: 7, repo: 'Airship' }]} /></h4>
+				<h4>
+					Add <code bash>create</code> command <Issue values={[{ number: 7, repo: 'Airship' }]} />
+				</h4>
 				<p>
 					You can now run <code bash>{`./airship create {thing}`}</code> and it will guide you through
 					the process of creating a new component.

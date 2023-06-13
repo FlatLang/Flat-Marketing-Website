@@ -26,9 +26,9 @@ function onScroll(element: HTMLElement) {
 	const visible = y + window.innerHeight / 3 < scrollBottom && y + height > scroll;
 	const rendering = y - 700 < scrollBottom && y + height + 700 > scroll;
 
-	toggleClass(element, "active", active);
-	toggleClass(element, "visible", visible);
-	toggleClass(element, "rendering", rendering);
+	toggleClass(element, 'active', active);
+	toggleClass(element, 'visible', visible);
+	toggleClass(element, 'rendering', rendering);
 }
 
 let slideElements: HTMLElement[] = [];
@@ -38,7 +38,7 @@ export function resetSlides() {
 }
 
 if (typeof window !== 'undefined') {
-	window.addEventListener("scroll", () => {
+	window.addEventListener('scroll', () => {
 		slideElements.forEach(onScroll);
 	});
 }

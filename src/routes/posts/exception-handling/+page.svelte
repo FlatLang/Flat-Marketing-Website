@@ -193,9 +193,9 @@
 					href="https://en.wikibooks.org/wiki/Computer_Programming/Design_by_Contract"
 					>Design by Contract</a
 				>
-				(DbC) handles errors by requiring correct input and correct output. A function does this by
-				specifying <b>pre-condition</b> and <b>post-condition</b> states that the function must fulfill
-				to be considered a success.
+				(DbC) handles errors by requiring correct input and correct output. A function does this by specifying
+				<b>pre-condition</b>
+				and <b>post-condition</b> states that the function must fulfill to be considered a success.
 			</p>
 			<pre>
           <code class="language-flat" style="margin: 40px 0;">
@@ -349,8 +349,8 @@
 				The difference that this has on the execution flow is that instead of stopping at the <span
 					class="pre">toss Exception("Bad thing happened")</span
 				>
-				as it would have with <span class="pre">throw Exception("Bad thing happened")</span>,
-				the code will continue to execute. Now if we were to catch the exception, you would have a
+				as it would have with <span class="pre">throw Exception("Bad thing happened")</span>, the
+				code will continue to execute. Now if we were to catch the exception, you would have a
 				different execution flow:
 			</p>
 			<pre>

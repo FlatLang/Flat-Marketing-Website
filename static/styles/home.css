@@ -59,10 +59,10 @@
 #splashscreen .flat-text {
 	margin: 0;
 
-    position: absolute;
+	position: absolute;
 
-    left: 38px;
-    top: 16.5px;
+	left: 38px;
+	top: 16.5px;
 }
 
 #logo-main {
@@ -192,20 +192,20 @@
 }
 
 .download-button-link {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .download-button {
-  border: 3px solid #fff;
+	border: 3px solid #fff;
 
-  margin-top: 15px;
+	margin-top: 15px;
 
-  padding: 8px 12px;
+	padding: 8px 12px;
 
-  font-weight: bold;
-  font-size: 30px;
+	font-weight: bold;
+	font-size: 30px;
 
-  color: white;
+	color: white;
 }
 
 #aspects {
@@ -272,7 +272,6 @@
 
 @media (max-width: 1100px) {
 	#aspects {
-
 	}
 
 	#aspects > div {
@@ -335,16 +334,16 @@
 }
 
 pre {
-    padding: 0;
-    white-space: pre-wrap;
-    word-break: normal;
-    word-wrap: normal;
-		/* display: flex; */
+	padding: 0;
+	white-space: pre-wrap;
+	word-break: normal;
+	word-wrap: normal;
+	/* display: flex; */
 }
 
 .code,
 .example-code {
-    color: #fff;
+	color: #fff;
 }
 
 #code-example p {
@@ -507,21 +506,21 @@ pre {
 }
 
 .l.bracket-container {
-    left: 0;
+	left: 0;
 }
 
 .r.bracket-container {
-    right: 0;
+	right: 0;
 }
 
 .bracket-container {
 	background-color: inherit;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
 
-    width: 50%;
+	width: 50%;
 }
 
 .bracket-cover {
@@ -533,7 +532,7 @@ pre {
 	top: 0;
 	bottom: 0;
 
-    width: calc(50% + 1px);
+	width: calc(50% + 1px);
 
 	background-color: inherit;
 
@@ -545,12 +544,13 @@ pre {
 	width: 0%;
 }
 
-.bracket-cover, .bracket-container {
+.bracket-cover,
+.bracket-container {
 	-webkit-transition: 1s ease all;
 	transition: 1s ease all;
 
-    -webkit-transition-property: width;
-    transition-property: width;
+	-webkit-transition-property: width;
+	transition-property: width;
 
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
@@ -563,21 +563,21 @@ pre {
 }
 
 .l.bracket {
-    left: 100%;
-    border-right: none;
+	left: 100%;
+	border-right: none;
 }
 
 .r.bracket {
-    right: 100%;
-    border-left: none;
+	right: 100%;
+	border-left: none;
 }
 
 .bracket {
-    position: absolute;
-    width: 20px;
-    border: 3px solid #f15d3b;
-    top: 0;
-    bottom: 0;
+	position: absolute;
+	width: 20px;
+	border: 3px solid #f15d3b;
+	top: 0;
+	bottom: 0;
 }
 
 #code-comparisons div.code,
@@ -618,10 +618,9 @@ pre {
 	font-size: 13px;
 }
 
-#code-comparisons .code .indent
-#code-comparisons .example-code .indent {
-    margin-left: 31px;
-    text-indent: -31px;
+#code-comparisons .code .indent #code-comparisons .example-code .indent {
+	margin-left: 31px;
+	text-indent: -31px;
 }
 
 @media (min-width: 1100px) {

@@ -50,14 +50,14 @@
 			);
 
 		pages.sort((a, b) => {
-        const value = b.date.diff(a.date);
+			const value = b.date.diff(a.date);
 
-        if (value !== 0) {
-          return value;
-        }
+			if (value !== 0) {
+				return value;
+			}
 
-        return pages.indexOf(b) - pages.indexOf(a);
-      });
+			return pages.indexOf(b) - pages.indexOf(a);
+		});
 
 		if (limit && pages.length > 10) {
 			pages = pages.slice(0, 10);

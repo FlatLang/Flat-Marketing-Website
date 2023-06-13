@@ -1,9 +1,12 @@
-<p id={id} class="footnote"><span class="footnote-number">{footnote.number}.</span> <span class="footnote-content"><slot/></span></p>
-
 <script lang="ts">
-  import { getFootnote } from './footnotes';
+	import { getFootnote } from './footnotes';
 
-  export let id;
+	export let id;
 
-  let footnote = getFootnote(id);
+	let footnote = getFootnote(id);
 </script>
+
+<p {id} class="footnote">
+	<span class="footnote-number">{footnote.number}.</span>
+	<span class="footnote-content"><slot /></span>
+</p>
