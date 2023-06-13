@@ -15,7 +15,7 @@ export default {
       const subdomain = isProd ? '' : `${stack.stage}.`;
       const domainName = `${subdomain}${domain}`;
 
-      const site = new SvelteKitSite(stack, 'site', {
+      const site = new SvelteKitSite(stack, 'flatlang', {
         customDomain: {
           hostedZone: domain,
           domainName,
