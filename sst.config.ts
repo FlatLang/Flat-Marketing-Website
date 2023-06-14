@@ -21,6 +21,9 @@ export default {
           domainName,
         },
         edge: isProd,
+        environment: {
+          API_HOST: `https://api.${domain}/api`,
+        },
       });
 
       stack.addOutputs({
