@@ -22,7 +22,7 @@
       }
     },
     "test": {
-      "mainClass": "flat/website/functions/StatusBadge_TestSuite",
+      "mainClass": "flat/website/functions/Server_TestSuite",
       "source": "src/**/*_Test*.flat",
       "dependencies": {
         "https://github.com/FlatLang/Test.git": "master"

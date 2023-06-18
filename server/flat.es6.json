@@ -1,8 +1,6 @@
 {
   "scripts": {
-    "test": "node dist/es6/test.js",
-    "StatusBadge": "node dist/es6/index.js StatusBadge",
-    "server": "node dist/es6/server.js"
+    "test": "node dist/es6/test.js"
   },
   "sources": {
     "main": {
