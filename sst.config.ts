@@ -1,5 +1,10 @@
+import { RemovalPolicy } from 'aws-cdk-lib';
 import type { SSTConfig } from 'sst';
-import { SvelteKitSite } from 'sst/constructs';
+import { SvelteKitSite, Table } from 'sst/constructs';
+
+const { GITHUB_API_TOKEN } = process.env as { [key: string]: string };
+
+if (!GITHUB_API_TOKEN) throw Error('GITHUB_API_TOKEN environment variable is required');
 
 export default {
   config(_input) {
@@ -10,24 +15,38 @@ export default {
   },
   stacks(app) {
     app.stack(function Site({ stack }) {
+      const cacheTable = new Table(stack, 'cache', {
+        fields: {
+          key: 'string',
+          value: 'string',
+        },
+        primaryIndex: { partitionKey: 'key' },
+        cdk: {
+          table: {
+            removalPolicy: RemovalPolicy.DESTROY,
+          },
+        },
+      });
+
       const isProd = stack.stage === 'prod';
       const domain = 'flatlang.org';
       const subdomain = isProd ? '' : `${stack.stage}.`;
       const domainName = `${subdomain}${domain}`;
 
-      const site = new SvelteKitSite(stack, 'flatlang', {
+      new SvelteKitSite(stack, 'flatlang', {
         customDomain: {
           hostedZone: domain,
           domainName,
         },
-        edge: isProd,
         environment: {
-          API_HOST: `https://api.${domain}/api`,
+          GITHUB_API_TOKEN,
+          LOGGING_DEFAULT_SHOW_PREFIX: 'true',
+          LOGGING_DEBUG_LABEL_LOGGING_LEVELS: '*',
         },
+        bind: [cacheTable],
       });
 
       stack.addOutputs({
-        url: site.url,
         host: `https://${domainName}`,
       });
     });

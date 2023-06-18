@@ -6,6 +6,7 @@ node_modules
 .env
 .env.*
 !.env.example
+src/lib/server/server.js
 
 # dependencies
 node_modules

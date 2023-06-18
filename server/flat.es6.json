@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "test": "node dist/es6/test.js",
+    "StatusBadge": "node dist/es6/index.js StatusBadge",
+    "server": "node dist/es6/server.js"
+  },
+  "sources": {
+    "main": {
+      "outDirectory": "../src/lib/server",
+      "outFile": "server.js"
+    }
+  }
+}
