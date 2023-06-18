@@ -1,10 +1,8 @@
 import { RemovalPolicy } from 'aws-cdk-lib';
 import type { SSTConfig } from 'sst';
 import { SvelteKitSite, Table } from 'sst/constructs';
-
-const { GITHUB_API_TOKEN } = process.env as { [key: string]: string };
-
-if (!GITHUB_API_TOKEN) throw Error('GITHUB_API_TOKEN environment variable is required');
+import { fetchSstSecret } from './sst-secrets';
+import { SSMClient } from '@aws-sdk/client-ssm';
 
 export default {
   config(_input) {
@@ -13,8 +11,11 @@ export default {
       region: 'us-east-1',
     };
   },
-  stacks(app) {
-    app.stack(function Site({ stack }) {
+  async stacks(app) {
+    return app.stack(async function Site({ stack, app }) {
+      const ssm = new SSMClient({ region: stack.region });
+      const GITHUB_API_TOKEN = await fetchSstSecret(ssm, app.name, 'GITHUB_API_TOKEN', stack.stage);
+
       const cacheTable = new Table(stack, 'cache', {
         fields: {
           key: 'string',
