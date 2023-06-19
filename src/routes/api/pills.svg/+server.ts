@@ -8,7 +8,6 @@ export async function GET({ url, params }: { url: any; params: any }): Promise<R
   flatRequest.params = HashMap.jsObjectToFlatHashMap(params);
 
   const tables = Table as any;
-  console.log("Searching table", tables.cache.tableName);
   const statusPills = StatusPills.construct(FlatString.construct5(tables.cache.tableName));
   const svg = await statusPills.run(flatRequest);
 
