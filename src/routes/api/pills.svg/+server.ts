@@ -7,8 +7,7 @@ export async function GET({ url, params }: { url: any; params: any }): Promise<R
   flatRequest.query = HashMap.jsObjectToFlatHashMap(Object.fromEntries(url.searchParams));
   flatRequest.params = HashMap.jsObjectToFlatHashMap(params);
 
-  const tables = Table as any;
-  const statusPills = StatusPills.construct(FlatString.construct5(tables.cache.tableName));
+  const statusPills = StatusPills.construct(FlatString.construct5(Table.cache.tableName));
   const svg = await statusPills.run(flatRequest);
 
   const headers = {
