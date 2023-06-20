@@ -1,13 +1,15 @@
 import { Table } from 'sst/node/table';
 import { StatusPills, flat_server_Request, HashMap, FlatString } from '$lib/server/server';
 
+let statusPills: StatusPills;
+
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url, params }: { url: any; params: any }): Promise<Response> {
   const flatRequest = flat_server_Request.construct();
   flatRequest.query = HashMap.jsObjectToFlatHashMap(Object.fromEntries(url.searchParams));
   flatRequest.params = HashMap.jsObjectToFlatHashMap(params);
 
-  const statusPills = StatusPills.construct(FlatString.construct5(Table.cache.tableName));
+  statusPills = statusPills || StatusPills.construct(FlatString.construct5(Table.cache.tableName));
   const svg = await statusPills.run(flatRequest);
 
   const headers = {
