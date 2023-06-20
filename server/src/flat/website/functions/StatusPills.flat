@@ -38,7 +38,9 @@ class {
 
     public async run(Request req) -> String {
         log.debug("Fetching status pills...")
+        log.debug("Fetching workflows...")
         let workflows = workflowsCache.getThenStoreIfInvalid({
+            log.debug("Calculating workflows...")
             return getOrganizationRepos(ORG_NAME, token: TOKEN)
                 .filter({ _.visibility == "public" })
                 .flatMapParallel({ getRepositoryWorkflows(ORG_NAME, _.name, token: TOKEN) })
@@ -48,8 +50,11 @@ class {
                 .filter({ !_.name.startsWith("Prepare ") })
                 .toArray()
         })
+        log.debug("Finished fetching workflows")
 
+        log.debug("Fetching svgs...")
         let svgs = svgCache.getThenStoreIfInvalid({
+            log.debug("Calculating svgs...")
             return workflows.mapParallel({
                 let svgData = Http.get(_x.badgeUrl).data
                 let prefix = "https://api.github.com/repos/#{ORG_NAME}/"
@@ -63,6 +68,7 @@ class {
                     :add("repoName", repoName)
             })
         })
+        log.debug("Finished fetching svgs")
 
         var Double x = 0
         var Double y = 0
@@ -122,6 +128,8 @@ class {
             return newRect
         })
 
+        log.debug("Building SVGs response")
+
         let svgContents = svgs.map({
             return generateStatusBox(
                 id: _i,
@@ -133,6 +141,8 @@ class {
                 textMargin: textMargin
             )
         })
+
+        log.debug("Returning SVGs response")
 
         return "|
             <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 #{canvasWidth} #{y + pillHeight}\">
