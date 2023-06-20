@@ -27,12 +27,14 @@ class {
             .withLifetime(300000)
             .withStore(ItemDynamoDBCacheStore({ _.toJson() }, { deserializer.parseArray(_).map({ Workflow((HashMap)_x) }) }, tableName))
             .withKey("workflows")
+            .withInvalidateOnExpired(false)
             .build()
 
         svgCache = ItemCache.Builder()
             .withLifetime(30000)
             .withStore(ItemDynamoDBCacheStore({ _.toJson() }, { deserializer.parseArray(_) }, tableName))
             .withKey("svg")
+            .withInvalidateOnExpired(false)
             .build()
     }
 
