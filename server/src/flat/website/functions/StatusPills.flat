@@ -49,7 +49,7 @@ class {
                 .toArray()
         })
 
-        let svgs = svgCache.getOrStore({
+        let svgs = svgCache.getThenStoreIfInvalid({
             return workflows.mapParallel({
                 let svgData = Http.get(_x.badgeUrl).data
                 let prefix = "https://api.github.com/repos/#{ORG_NAME}/"
