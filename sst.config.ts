@@ -41,6 +41,7 @@ export default {
         },
         environment: {
           GITHUB_API_TOKEN,
+          LOGGING_DEFAULT_SHOW_FORMATTING: 'false',
           LOGGING_DEFAULT_SHOW_PREFIX: 'true',
           LOGGING_DEBUG_LABEL_LOGGING_LEVELS: '*',
         },
