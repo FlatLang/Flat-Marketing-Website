@@ -10,6 +10,7 @@ import flat/cache
 import flat/server/Request
 import flat/github
 import flat/github/models
+import flat/aws/dynamodb
 
 import static flat/github/GitHub
 
@@ -18,6 +19,13 @@ class {
     static String ORG_NAME = "FlatLang"
     static Logger log = Logger(StatusPills.class)
     static JsonDeserializer deserializer = JsonDeserializer()
+    static DynamoDBClient client = DynamoDBClient(
+        HashMap()
+            :add("apiVersion", "2012-08-10")
+            :add("sslEnabled", false)
+            :add("paramValidation", false)
+            :add("convertResponseTypes", false)
+    )
 
     ItemCache<Array<Workflow>> workflowsCache
     ItemCache<Array<HashMap<String, String>>> svgCache
@@ -25,14 +33,28 @@ class {
     public construct(String tableName) {
         workflowsCache = ItemCache.Builder()
             .withLifetime(300000)
-            .withStore(ItemDynamoDBCacheStore({ _.toJson() }, { deserializer.parseArray(_).map({ Workflow((HashMap)_x) }) }, tableName))
+            .withStore(
+                ItemDynamoDBCacheStore(
+                    { _.toJson() },
+                    { deserializer.parseArray(_).map({ Workflow((HashMap)_x) }) },
+                    tableName,
+                    client
+                )
+            )
             .withKey("workflows")
             .withInvalidateOnExpired(false)
             .build()
 
         svgCache = ItemCache.Builder()
             .withLifetime(30000)
-            .withStore(ItemDynamoDBCacheStore({ _.toJson() }, { deserializer.parseArray(_) }, tableName))
+            .withStore(
+                ItemDynamoDBCacheStore(
+                    { _.toJson() },
+                    { deserializer.parseArray(_) },
+                    tableName,
+                    client
+                )
+            )
             .withKey("svg")
             .withInvalidateOnExpired(false)
             .build()
