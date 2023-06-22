@@ -15,6 +15,7 @@ export default {
     return app.stack(async function Site({ stack, app }) {
       const ssm = new SSMClient({ region: stack.region });
       const GITHUB_API_TOKEN = await fetchSstSecret(ssm, app.name, 'GITHUB_API_TOKEN', stack.stage);
+      const DOMAIN = await fetchSstSecret(ssm, app.name, 'DOMAIN', stack.stage);
 
       const cacheTable = new Table(stack, 'cache', {
         fields: {
@@ -30,13 +31,12 @@ export default {
       });
 
       const isProd = stack.stage === 'prod';
-      const domain = 'flatlang.org';
       const subdomain = isProd ? '' : `${stack.stage}.`;
-      const domainName = `${subdomain}${domain}`;
+      const domainName = `${subdomain}${DOMAIN}`;
 
       new SvelteKitSite(stack, 'flatlang', {
         customDomain: {
-          hostedZone: domain,
+          hostedZone: DOMAIN,
           domainName,
         },
         environment: {
