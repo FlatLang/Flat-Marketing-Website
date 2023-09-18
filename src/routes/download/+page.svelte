@@ -3,7 +3,7 @@
   import Footer from '$lib/components/Footer.svelte';
   import dayjs from 'dayjs';
 
-  import type { GitHubRelease, OsRelease, OsAsset, Asset } from './types';
+  import type { GitHubRelease, OsRelease, OsAsset } from './types';
 
   import { jscd, defer, fetchJson } from '$lib/util';
   import { postsPages } from 'src/routes/posts/posts';
@@ -144,12 +144,10 @@
 <svelte:head>
   <title>Download | Flat Programming Language</title>
 
-  <link href="/styles/download.css" rel="preload" as="style" />
   <link
     href="/styles/download.css"
     rel="stylesheet"
     type="text/css"
-    onload="this.media='all'; this.onload=null;"
   />
 </svelte:head>
 

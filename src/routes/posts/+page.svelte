@@ -113,11 +113,9 @@
 </div>
 
 <svelte:head>
-  <link href="/styles/posts-home.css" rel="preload" as="style" />
   <link
     href="/styles/posts-home.css"
     rel="stylesheet"
     type="text/css"
-    onload="this.media='all'; this.onload=null;"
   />
 </svelte:head>

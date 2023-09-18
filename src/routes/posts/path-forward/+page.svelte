@@ -1,17 +1,13 @@
 <svelte:head>
-  <link href="/styles/flow-boxes.css" rel="preload" as="style" />
   <link
     href="/styles/flow-boxes.css"
     rel="stylesheet"
     type="text/css"
-    onload="this.media='all'; this.onload=null;"
   />
-  <link href="/styles/path-forward.css" rel="preload" as="style" />
   <link
     href="/styles/path-forward.css"
     rel="stylesheet"
     type="text/css"
-    onload="this.media='all'; this.onload=null;"
   />
 </svelte:head>
 

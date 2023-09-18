@@ -4,12 +4,10 @@
 </script>
 
 <svelte:head>
-  <link href="/styles/scalable-compiler-components.css" rel="preload" as="style" />
   <link
     href="/styles/scalable-compiler-components.css"
     rel="stylesheet"
     type="text/css"
-    onload="this.media='all'; this.onload=null;"
   />
 </svelte:head>
 
