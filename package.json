@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "sst bind vite dev",
+    "dev": "sst bind \"vite dev --host\"",
     "build:server": "airship --use-links install -f server -- -library -module",
     "build:vite": "vite build",
     "build": "npm run build:server && npm run build:vite",
