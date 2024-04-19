@@ -44,6 +44,9 @@ class {
             .withKey("workflows")
             .withInvalidateOnExpired(false)
             .build()
+            :onException((e) => {
+                log.error("Encountered exception from cache: #{e}")
+            })
 
         svgCache = ItemCache.Builder()
             .withLifetime(30000)
@@ -58,6 +61,9 @@ class {
             .withKey("svg")
             .withInvalidateOnExpired(false)
             .build()
+            :onException((e) => {
+                log.error("Encountered exception from cache: #{e}")
+            })
     }
 
     public async run(Request req) -> String {
