@@ -75,6 +75,7 @@ class {
                 .toArray()
         })
         log.debug("Finished fetching workflows")
+        log.trace("Workflows: #{workflows}")
 
         log.debug("Fetching svgs...")
         let svgs = svgCache.getThenStoreIfInvalid({
