@@ -10,6 +10,7 @@
   import { checkHash } from '$lib/flash';
   import { browser } from '$app/environment';
   import { writable } from 'svelte/store';
+  import { onMount } from 'svelte';
 
   function createAsset(
     release: GitHubRelease,
@@ -90,7 +91,9 @@
     checkHash();
   }
 
-  fetchInitialRelease();
+  onMount(async () => {
+    await fetchInitialRelease();
+  });
 
   async function toggleShowAll() {
     showAll = !showAll;
@@ -144,11 +147,7 @@
 <svelte:head>
   <title>Download | Flat Programming Language</title>
 
-  <link
-    href="/styles/download.css"
-    rel="stylesheet"
-    type="text/css"
-  />
+  <link href="/styles/download.css" rel="stylesheet" type="text/css" />
 </svelte:head>
 
 <template lang="flat-html">

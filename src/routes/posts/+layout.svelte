@@ -99,19 +99,7 @@
 <svelte:head>
   <title>Posts | Flat Programming Language</title>
 
-  <link
-    href="/styles/docs.css"
-    rel="stylesheet"
-    type="text/css"
-  />
-  <link
-    href="/styles/posts.css"
-    rel="stylesheet"
-    type="text/css"
-  />
-  <link
-    href="/styles/posts-styles.css"
-    rel="stylesheet"
-    type="text/css"
-  />
+  <link href="/styles/docs.css" rel="stylesheet" type="text/css" />
+  <link href="/styles/posts.css" rel="stylesheet" type="text/css" />
+  <link href="/styles/posts-styles.css" rel="stylesheet" type="text/css" />
 </svelte:head>

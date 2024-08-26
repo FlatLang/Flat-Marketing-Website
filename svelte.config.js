@@ -1,5 +1,5 @@
 import adapter from 'svelte-kit-sst';
-import preprocess from 'svelte-preprocess';
+import {sveltePreprocess} from 'svelte-preprocess';
 import anchorButton from './anchor-button.js';
 import inlineSvg from './inline-svg.js';
 import highlight from './highlight.js';
@@ -9,7 +9,7 @@ import replaceElement from './replace-element.js';
 const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
-  preprocess: preprocess({
+  preprocess: sveltePreprocess({
     'flat-html': async function (args) {
       args.content;
 
