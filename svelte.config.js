@@ -1,5 +1,5 @@
 import adapter from 'svelte-kit-sst';
-import {sveltePreprocess} from 'svelte-preprocess';
+import { sveltePreprocess } from 'svelte-preprocess';
 import anchorButton from './anchor-button.js';
 import inlineSvg from './inline-svg.js';
 import highlight from './highlight.js';
@@ -36,6 +36,7 @@ const config = {
       // This can be false if you're using LOCAL_GIT_DIRECTORY fallback (i.e. SPA mode) default: true
       handleMissingId: 'ignore',
     },
+    paths: { relative: false },
   },
 };
 
