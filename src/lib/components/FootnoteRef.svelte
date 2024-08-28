@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getFootnote } from './footnotes';
+  import { getFootnote } from '$lib/components/footnotes';
 
   export let id;
 
