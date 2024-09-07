@@ -36,7 +36,7 @@ const config = {
       // This can be false if you're using LOCAL_GIT_DIRECTORY fallback (i.e. SPA mode) default: true
       handleMissingId: 'ignore',
     },
-    paths: { relative: false },
+    paths: { relative: false, base: '' },
   },
 };
 
